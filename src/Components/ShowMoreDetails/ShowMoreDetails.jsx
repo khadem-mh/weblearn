@@ -9,7 +9,7 @@ export default function ShowMoreDetails({ refDetails }) {
     useEffect(() => {
         if (isShowDetails) refDetails.current.classList.replace('unShowOveflowYDetails', 'showOveflowYDetails')
         else refDetails.current.classList.replace('showOveflowYDetails', 'unShowOveflowYDetails')
-    }, [isShowDetails])
+    })
 
     return (
         <div className={`parent-show-more-intro ${isShowDetails ? 'show-more' : ''}`}>

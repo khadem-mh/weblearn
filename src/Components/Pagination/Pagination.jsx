@@ -3,28 +3,28 @@ import './Pagination.css'
 
 export default function Pagination() {
     return (
-        <div class="pagination">
-            <ul class="pagination-list">
-                <li class="pagination-item">
-                    <a href="#" class="pagination-link">
-                        <i class="fas fa-long-arrow-alt-right pagination-icon"></i>
+        <div className="pagination">
+            <ul className="pagination-list">
+                <li className="pagination-item">
+                    <a href="/" className="pagination-link">
+                        <i className="fas fa-long-arrow-alt-right pagination-icon"></i>
                     </a>
                 </li>
 
-                <li class="pagination-item">
-                    <a href="#" class="pagination-link">
+                <li className="pagination-item">
+                    <a href="/" className="pagination-link">
                         1
                     </a>
                 </li>
-                <li class="pagination-item">
-                    <a href="#" class="pagination-link">
+                <li className="pagination-item">
+                    <a href="/" className="pagination-link">
                         2
                     </a>
                 </li>
 
-                <li class="pagination-item">
-                    <a href="#" class="pagination-link">
-                        <i class="fas fa-long-arrow-alt-left pagination-icon"></i>
+                <li className="pagination-item">
+                    <a href="/" className="pagination-link">
+                        <i className="fas fa-long-arrow-alt-left pagination-icon"></i>
                     </a>
                 </li>
             </ul>
