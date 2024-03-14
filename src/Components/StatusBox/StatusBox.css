@@ -1,0 +1,46 @@
+/* Start Course boxes styles */
+
+.parent-status-box {
+    min-width: 33% !important;
+}
+
+.course-boxes__box {
+    display: flex;
+    font-family: Lalezar;
+    border-radius: 1.5rem;
+    padding: 1.8rem 2rem;
+    margin: 1rem 0;
+    transition: all 400ms ease;
+    cursor: default;
+}
+
+.course-boxes__box:hover {
+    transform: translateY(-.6rem);
+}
+
+.course-boxes__box-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.course-boxes__box-right svg {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+}
+
+.course-boxes__box-left {
+    display: flex;
+    flex-direction: column;
+    margin-right: 1.5rem;
+}
+
+.course-boxes__box-left-title {
+    color: var(--white-color);
+}
+
+.course-boxes__box-left--subtitle {
+    color: var(--whitedie-color);
+}
+
+/* Finish Course boxes styles */

@@ -1,0 +1,17 @@
+.offcanvas.offcanvas-end {
+    width: 52.5% !important;
+    background-color: var(--dark-alpha-color) !important;
+    color: whitesmoke !important;
+}
+
+.offcanvas-end .offcanvas-header {
+    justify-content: space-between !important;
+    align-items: center;
+    flex-direction: row-reverse;
+    padding: 2rem 2rem !important;
+}
+
+.offcanvas-title {
+    font-size: 2rem !important;
+    padding: 1.5rem 1rem !important;
+}

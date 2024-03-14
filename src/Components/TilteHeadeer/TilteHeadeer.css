@@ -1,0 +1,19 @@
+.introduction__title {
+    z-index: 999;
+    position: relative;
+    text-align: start !important;
+    color: var(--white-color);
+    font-size: 2.5rem;
+    font-family: Lalezar;
+    margin-top: 2rem;
+}
+
+.introduction__title::before {
+    width: 50px !important;
+    height: 50px !important;
+}
+
+.introduction__title {
+    display: block;
+    text-align: center;
+}

@@ -1,0 +1,99 @@
+.article__card {
+    margin: 2rem 0;
+    transition: all 400ms ease;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.5);
+    height: 460px;
+}
+
+.article__card:hover {
+    transform: translateY(-0.6rem);
+}
+
+.article-card__img {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    width: 100%;
+    height: 230px;
+    display: block;
+    margin: 0rem auto;
+    object-fit: cover;
+}
+
+.blog__banner {
+    position: relative;
+}
+
+.blog__banner::after {
+    background: linear-gradient(0deg, rgba(27, 27, 40, 1) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.blog__banner::before {
+    background: linear-gradient(0deg, rgba(27, 27, 40, 1) 0%, rgba(255, 255, 255, 0) 90%);
+}
+
+.blog__banner::after,
+.blog__banner::before {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 160px;
+}
+
+.article-card__content {
+    padding: 1rem 2rem 3rem 2rem;
+    height: 150px;
+    display: block;
+    margin: 0rem auto;
+}
+
+.article-card__link {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primarydie-color);
+}
+
+.article-card__text {
+    color: darkgrey;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+
+.article-card__link-btn {
+    text-align: center !important;
+    transition: all 400ms;
+    cursor: pointer;
+    margin-top: 1rem;
+    padding: .3rem 0;
+    font-size: 1.3rem;
+}
+
+.article-card__link-btn:hover .article-card__icon-arrow,
+.article-card__link-btn:hover .read-article {
+    color: var(--primarydie-color) !important;
+}
+
+.article-card__icon-arrow {
+    margin-right: .5rem;
+    transition: all 400ms;
+    color: var(--white-color);
+}
+
+.line-clamp-article {
+    display: -webkit-box;
+    display: -moz-box;
+    overflow: hidden;
+    line-clamp: 4;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+}
+
+@media screen and (max-width: 576px) {
+    .article__card {
+        margin: 2rem 11.5rem;
+    }
+}
