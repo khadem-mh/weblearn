@@ -1,0 +1,71 @@
+/* Start landing styles */
+
+.landing {
+    margin-top: 4rem;
+    margin-bottom: -6rem;
+    font-family: Lalezar;
+}
+
+.landing__poem {
+    font-size: 2.5rem;
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+.landing__title {
+    color: var(--bluedie-color);
+    text-align: center;
+    font-size: 1.4rem;
+    margin-bottom: 2.5rem;
+}
+
+.landing-parent {
+    width: 70%;
+    margin: 1rem auto 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.landing-status__item svg {
+    fill: var(--bluedie-color);
+}
+
+.landing__parent-icon-bottom {
+    text-align: center;
+    padding-top: 2em;
+    display: none;
+    position: relative;
+}
+
+.landing__icon-bottom {
+    color: var(--bluedie-color);
+    font-size: 1.7em;
+    cursor: pointer;
+    transition: all 300ms ease;
+}
+
+.landing__icon-bottom:hover {
+    color: var(--whitedie-color);
+}
+
+.Typewriter {
+    display: inline-block;
+}
+
+@media screen and (max-width: 892px) {
+    .landing {
+        margin-bottom: -10rem;
+    }
+
+    .landing .landing-parent {
+        display: none;
+    }
+
+    .landing__parent-icon-bottom {
+        display: block;
+    }
+}
+
+/* Finish landing styles */
