@@ -18,6 +18,7 @@ import CourseCoverAside from '../../Components/CourseCoverAside/CourseCoverAside
 import TilteHeadeer from '../../Components/TilteHeadeer/TilteHeadeer';
 import AccordionListVideo from '../../Components/AccordionListVideo/AccordionListVideo';
 import ShowMoreDetails from '../../Components/ShowMoreDetails/ShowMoreDetails';
+import ReapondComment from '../../Components/RespondComment/ReapondComment';
 //Funcs
 import faNumber from '../../Functions/FaNumber/FaNumber';
 
@@ -236,6 +237,9 @@ export default function CourseInfo() {
 
                     <div className="comments__content">
                       {/* <!-- Comments Loaded From JS --> */}
+
+                      <ReapondComment />
+
                     </div>
 
                     <section className='container-submit-coment'>

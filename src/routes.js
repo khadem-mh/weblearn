@@ -7,7 +7,7 @@ import Page404 from "./Pages/Page404/Page404"
 const routes = [
     { path: '/', element: <Index/>},
     { path: '/course-info', element: <CourseInfo/>},
-    { path: '/article-info/:articleName', element: <ArticleInfo/>},
+    { path: '/article-info', element: <ArticleInfo/>},
     { path: '/category-info', element: <Category/>},
     { path: '/*', element: <Page404/>},
 ]
