@@ -47,69 +47,6 @@
     margin-bottom: 3rem;
 }
 
-.comments__question-header,
-.comments__ansewr-header {
-    display: flex;
-    justify-content: space-between;
-}
-
-.comments__question-header-right,
-.comments__ansewr-header-right {
-    display: flex;
-    align-items: center;
-}
-
-.comment-name {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--dark-color);
-}
-
-.comment-status {
-    display: flex;
-    align-items: center;
-    background-color: var(--primary-color);
-    color: var(--white-color);
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 0.3rem 0.7rem;
-    border-radius: 0.5rem;
-    margin: 0 1rem;
-}
-
-.comment-date {
-    font-size: 1.5rem;
-    color: #adb5bd;
-}
-
-.comment-link {
-    font-size: 1.2rem;
-    color: #b1bbbf;
-    border: 1px solid #b1bbbf;
-    padding: 0.5rem 1.2rem;
-    border-radius: 0.3rem;
-    background-color: #fff;
-}
-
-.comments__question-text {
-    margin-top: 1rem;
-}
-
-.comment-paragraph {
-    font-size: 1.3rem;
-    color: #7d7e7f;
-}
-
-.comments__ansewr {
-    border: 1px dashed #ccc;
-    border-radius: 1rem;
-    padding: 3rem;
-}
-
-.comments__ansewr-staus {
-    background-color: #2196f3;
-}
-
 .comments__pagantion-list {
     display: flex;
     justify-content: center;
