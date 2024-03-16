@@ -4,7 +4,7 @@ import './CourseInfo.css'
 import './Comments.css'
 import './media.css'
 //icons
-import { GoShieldCheck, GoCommentDiscussion } from "react-icons/go";
+import { GoShieldCheck } from "react-icons/go";
 import { MdOutlineAccessTime, MdOutlineDateRange } from "react-icons/md";
 import { FaUserFriends, FaUsers, FaRedRiver } from "react-icons/fa";
 import { GiHandBag } from "react-icons/gi";
@@ -18,7 +18,7 @@ import CourseCoverAside from '../../Components/CourseCoverAside/CourseCoverAside
 import TilteHeadeer from '../../Components/TilteHeadeer/TilteHeadeer';
 import AccordionListVideo from '../../Components/AccordionListVideo/AccordionListVideo';
 import ShowMoreDetails from '../../Components/ShowMoreDetails/ShowMoreDetails';
-import ReapondComment from '../../Components/RespondComment/ReapondComment';
+import ReapondComment from '../../Components/Comment/RespondComment/ReapondComment';
 //Funcs
 import faNumber from '../../Functions/FaNumber/FaNumber';
 
@@ -228,77 +228,40 @@ export default function CourseInfo() {
                   </div>
 
                   <div className="comments">
-                    <div className="comments__header">
-                      <div className="comments__header-icon-content">
-                        <GoCommentDiscussion className='comments__header-icon' />
-                      </div>
-                      <span className="comments__header-title">نظرات</span>
-                    </div>
 
                     <div className="comments__content">
-                      {/* <!-- Comments Loaded From JS --> */}
 
-                      <ReapondComment />
+                      <ReapondComment
+                        commentCreatorName={'محمدحسین خادم المهدی'}
+                        commentCreatorRole={'user'}
+                        commentCreatorDate={'1402/12/09'}
+                        commentBody={'سلام آقای سعیدی راد از دوره ای که برگزار کردید بسیار سپاس گزارم'}
+
+                        responds={[
+                          {
+                            name: 'محمد امین سعیدی راد', role: 'teachr', date: '1402/12/10', comment: "خیلی خوشحالم محمدحسین جانم که از این دوره راضی بودی موفق باشی☻", responds: [
+                              { name: 'علی مرادی', role: 'user', date: '1402/12/10', comment: 'استاد چه زمانی این دوره به پایان میرسه' },
+                              { name: 'محمد امین سعیدی راد', role: 'teacher', date: '1402/12/12', comment: 'مردای جان به شما هیچ ربطی نداره' },
+                              { name: 'علی مرادی', role: 'user', date: '1402/12/13', comment: 'استاد من گزارش بد اخلاقیتون رو به مدیر دادم' },
+                              { name: 'یاسین فراز دل', role: 'user', date: '1402/12/14', comment: 'انقدر شما دوتا بجه بازی در نیارین خجالت بکشین از سنتون با هردو تونم' },
+                            ]
+                          },
+
+                          { name: 'عباس پور', role: 'user', date: '1402/12/29', comment: 'من با نظرت موافقم  خادم المهدی دمت گرم ♥' },
+
+                          {
+                            name: 'محمد امین سعیدی راد', role: 'teachr', date: '1402/12/10', comment: "خیلی خوشحالم محمدحسین جانم که از این دوره راضی بودی موفق باشی☻", responds: [
+                              { name: 'علی مرادی', role: 'user', date: '1402/12/10', comment: 'خیلی ممنون بابت زحماتتون' },
+                              { name: 'محمد امین سعیدی راد', role: 'teacher', date: '1402/12/12', comment: 'خواهش می کنم' }
+                            ]
+                          },
+
+                          { name: 'محمد امین سعیدی راد', role: 'teacher', date: '1403/01/01', comment: 'من به عنوان بزرگترتون حق درام به گردنتون پس لطفا دهناتون رو ببندید' },
+
+                        ]}
+                      />
 
                     </div>
-
-                    <section className='container-submit-coment'>
-                      <div className="comments__rules">
-                        <span className="comments__rules-title">قوانین ثبت دیدگاه</span>
-
-                        <div className='comments__rules-box'>
-                          <i className="fas fa-check comments__rules-icon"></i>
-                          <p className="comments__rules-item">
-                            اگر نیاز به پشتیبانی دوره دارید از قسمت پرسش سوال در قسمت نمایش انلاین استفاده
-                            نمایید و سوالات مربوط به رفع اشکال تایید نخواهند شد
-                          </p>
-                        </div>
-
-                        <div className='comments__rules-box'>
-                          <i className="fas fa-check comments__rules-icon"></i>
-                          <p className="comments__rules-item">
-                            دیدگاه های نامرتبط به دوره تایید نخواهد شد.
-                          </p>
-                        </div>
-
-                        <div className='comments__rules-box'>
-                          <i className="fas fa-check comments__rules-icon"></i>
-                          <p className="comments__rules-item">
-                            سوالات مرتبط با رفع اشکال در این بخش تایید نخواهد شد.
-                          </p>
-                        </div>
-
-                        <div className='comments__rules-box'>
-                          <i className="fas fa-check comments__rules-icon"></i>
-                          <p className="comments__rules-item">
-                            از درج دیدگاه های تکراری پرهیز نمایید.
-                          </p>
-                        </div>
-
-                      </div>
-
-                      <div className="comments__respond">
-                        <div className="comments__score">
-                          <span className="comments__score-title">امتیاز شما</span>
-
-                          <div className="col-12">
-                            <select id="comment-score" className="comments__score-input w-100">
-                              <option value="5">به دوره امتیاز دهید</option>
-                              <option value="5">عالی</option>
-                              <option value="4">خیلی خوب</option>
-                              <option value="3">خوب</option>
-                              <option value="2">قابل قبول</option>
-                              <option value="1">ضعیف</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div className="comments__respond-content">
-                          <div className="comments__respond-title">دیدگاه شما *</div>
-                          <textarea className="comments__score-input-respond"></textarea>
-                        </div>
-                        <button type="submit" className="comments__respond-btn">ارسال</button>
-                      </div>
-                    </section>
 
                   </div>
 

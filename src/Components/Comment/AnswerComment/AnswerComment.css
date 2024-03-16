@@ -1,0 +1,11 @@
+.comments__ansewr-header {
+    margin-bottom: .5rem;
+}
+
+.comments__ansewr {
+    background-color: var(--blue-lighter-hight-color);
+    border-radius: 1.5rem;
+    margin: 1rem;
+    padding: 3rem;
+    position: relative;
+}
