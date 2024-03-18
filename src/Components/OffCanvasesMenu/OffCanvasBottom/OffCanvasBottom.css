@@ -32,3 +32,11 @@
     padding: 1rem 2rem;
     cursor: pointer;
 }
+
+.offcanvas-header-category {
+    padding: 3rem;
+}
+
+.offcanvas-header .btn-close {
+    margin: 0 !important
+}
