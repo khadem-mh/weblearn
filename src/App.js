@@ -26,7 +26,7 @@ export default function App() {
         }
       </header>
 
-      <section className="app">
+      <section className={location.pathname === '/' && `app`}>
         {router}
       </section>
 
