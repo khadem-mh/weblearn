@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import './Category.css'
+import './CategoryCourses.css'
 import './media.css'
 //components
 import Course from '../../Components/Course/Course'
@@ -12,7 +12,7 @@ import { RiSearchLine } from "react-icons/ri";
 import { ImSortAmountDesc } from "react-icons/im";
 import { HiMiniAdjustmentsHorizontal } from "react-icons/hi2";
 
-export default function Category() {
+export default function CategoryCourses() {
 
   const refListSort = useRef()
   const [selectedItem, setSelectedItem] = useState(0)
