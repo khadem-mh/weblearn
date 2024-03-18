@@ -4,7 +4,7 @@ import { FaArrowCircleLeft } from "react-icons/fa";
 
 export default function Article({ srcImg, titleArticle, detailsArticle }) {
     return (
-        <div className="col-12">
+        <div className="col-12 article-card">
             <div className="article__card">
 
                 <div className="article-card__header">

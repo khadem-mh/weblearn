@@ -34,7 +34,7 @@
 }
 
 .offcanvas-header-category {
-    padding: 3rem;
+    padding-right: 3rem !important;
 }
 
 .offcanvas-header .btn-close {

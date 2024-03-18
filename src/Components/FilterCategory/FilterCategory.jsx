@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function FilterCategory() {
+export default function FilterCategory({ categorySwitch , titleCategory}) {
     return (
         <>
             <section className='category-list__parent'>
-                <p className='category-list__title'>دسته بندی دوره ها</p>
+                <p className='category-list__title'>{titleCategory}</p>
                 <ul className='category-list__ul'>
                     <li className='category-list'>
 
@@ -63,31 +63,34 @@ export default function FilterCategory() {
                     </li>
                 </ul>
             </section>
+            {
+                categorySwitch &&
+                <section className='category-switch'>
 
-            <section className='category-switch'>
-
-                <div className='category-switch__div'>
-                    <div className="form-check form-switch">
-                        <input type="checkbox" className="form-check-input" />
+                    <div className='category-switch__div'>
+                        <div className="form-check form-switch">
+                            <input type="checkbox" className="form-check-input" />
+                        </div>
+                        <p className='category-switch__text'>فقط دوره های رایگان</p>
                     </div>
-                    <p className='category-switch__text'>فقط دوره های رایگان</p>
-                </div>
 
-                <div className='category-switch__div'>
-                    <div className="form-check form-switch">
-                        <input type="checkbox" className="form-check-input" />
+                    <div className='category-switch__div'>
+                        <div className="form-check form-switch">
+                            <input type="checkbox" className="form-check-input" />
+                        </div>
+                        <p className='category-switch__text'>در حال پیش فروش</p>
                     </div>
-                    <p className='category-switch__text'>در حال پیش فروش</p>
-                </div>
 
-                <div className='category-switch__div'>
-                    <div className="form-check form-switch">
-                        <input type="checkbox" className="form-check-input" />
+                    <div className='category-switch__div'>
+                        <div className="form-check form-switch">
+                            <input type="checkbox" className="form-check-input" />
+                        </div>
+                        <p className='category-switch__text'>محبوب ترین دوره ها</p>
                     </div>
-                    <p className='category-switch__text'>محبوب ترین دوره ها</p>
-                </div>
 
-            </section>
+                </section>
+            }
+
         </>
     )
 }

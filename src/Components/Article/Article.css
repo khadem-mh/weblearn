@@ -91,9 +91,3 @@
     -webkit-box-orient: vertical;
     -moz-box-orient: vertical;
 }
-
-@media screen and (max-width: 576px) {
-    .article__card {
-        margin: 2rem 11.5rem;
-    }
-}

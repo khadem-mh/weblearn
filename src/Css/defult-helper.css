@@ -43,6 +43,30 @@ body {
     background: linear-gradient(0, rgba(27, 27, 40, 1) 0%, rgba(27, 27, 40, 0) 90%);
 }
 
+/* category title page */
+.category-h2 {
+    color: whitesmoke;
+    font-size: 5rem;
+    font-family: Lalezar;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 7rem;
+    position: relative;
+    width: fit-content;
+}
+
+.category-h2::before {
+    content: "";
+    width: 45px;
+    height: 10px;
+    background-color: var(--primary-color);
+    position: absolute;
+    top: 40px;
+    right: -65px;
+}
+
+/* category title page */
+
 a {
     text-decoration: none;
     color: var(--dark-color);

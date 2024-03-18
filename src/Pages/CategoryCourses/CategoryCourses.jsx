@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React from 'react'
 import './CategoryCourses.css'
 import './media.css'
 //components
@@ -7,24 +7,13 @@ import OffCanvasBottom from '../../Components/OffCanvasesMenu/OffCanvasBottom/Of
 import OffCanvasRight from '../../Components/OffCanvasesMenu/OffCanvasRight/OffCanvasRight';
 import FilterCategory from '../../Components/FilterCategory/FilterCategory';
 import Pagination from '../../Components/Pagination/Pagination';
+import CategorySort from '../../Components/CategorySort/CategorySort';
 //icons
 import { RiSearchLine } from "react-icons/ri";
 import { ImSortAmountDesc } from "react-icons/im";
 import { HiMiniAdjustmentsHorizontal } from "react-icons/hi2";
 
 export default function CategoryCourses() {
-
-  const refListSort = useRef()
-  const [selectedItem, setSelectedItem] = useState(0)
-
-  const clickHandlerSelectItem = (e) => {
-    if (e.target.dataset.value !== selectedItem) {
-      const childrenListArray = Array.from(refListSort.current.children)
-      childrenListArray.map(child => child.classList.contains('select-item-sort') && child.classList.remove('select-item-sort'))
-    }
-    e.target.classList.add('select-item-sort')
-    setSelectedItem(e.target.dataset.value)
-  }
 
   return (
     <section className='page category-page'>
@@ -42,29 +31,18 @@ export default function CategoryCourses() {
 
           <div className='d-flex align-items-center justify-content-between'>
             <OffCanvasBottom displayCanvas={'d-flex d-sm-none'} iconBtn={<ImSortAmountDesc />} titleHeader={'مرتب سازی بر اساس'} namesLi={['همه دوره ها', 'ارزان ترین', 'گران ترین', 'پرمخاطب ترین']} />
-            <OffCanvasRight displayCanvas={'d-flex d-sm-none'} iconBtn={<HiMiniAdjustmentsHorizontal />} children={<FilterCategory />} />
+            <OffCanvasRight displayCanvas={'d-flex d-sm-none'} iconBtn={<HiMiniAdjustmentsHorizontal />} children={<FilterCategory categorySwitch={true} titleCategory={'دسته بندی دوره ها'}/>} />
           </div>
 
           <div className='d-none d-sm-block'>
-            <FilterCategory />
+            <FilterCategory categorySwitch={true} titleCategory={'دسته بندی دوره ها'}/>
           </div>
 
         </aside>
 
         <div className='category-courses-and-sort-parent'>
 
-          <section className='category-sort d-none d-sm-flex'>
-            <div className='category-sort__right'>
-              <ImSortAmountDesc className='category-sort__icon' />
-              <span className='category-sort__title'>مرتب سازی :</span>
-            </div>
-            <div className='category-sort__left' ref={refListSort}>
-              <p className='category-sort__item select-item-sort' data-value="0" onClick={(e) => clickHandlerSelectItem(e)}>همه دوره ها</p>
-              <p className='category-sort__item' data-value="1" onClick={(e) => clickHandlerSelectItem(e)}>ارزان ترین</p>
-              <p className='category-sort__item' data-value="2" onClick={(e) => clickHandlerSelectItem(e)}>گران ترین</p>
-              <p className='category-sort__item' data-value="3" onClick={(e) => clickHandlerSelectItem(e)}>پرمخاطب ترین</p>
-            </div>
-          </section>
+          <CategorySort/>
 
           <section className='category-courses'>
             <div className="row row-cols-sm-2 row-cols-md-2 row-cols-xl-3" id="courses-container">

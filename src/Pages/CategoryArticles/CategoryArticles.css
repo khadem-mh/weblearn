@@ -1,3 +1,6 @@
-.article {
-    margin-top: 4rem;
+@media screen and (max-width: 576px) {
+    #courses-container > .article-card {
+        width: 313px;      margin: auto;
+        display: block;
+    }
 }
