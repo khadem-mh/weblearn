@@ -37,7 +37,7 @@ export default function CategoryArticles() {
 
         <div className='category-courses-and-sort-parent'>
 
-          <CategorySort />
+          <CategorySort namesList={['عادی', 'قدیمی ترین', 'جدیدترین', 'پرمخاطب ترین']}/>
 
           <section className='category-courses'>
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-3" id="courses-container">

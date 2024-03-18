@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import './CategorySort.css'
 import { ImSortAmountDesc } from "react-icons/im";
 
-export default function CategorySort() {
+export default function CategorySort({ namesList }) {
 
     const refListSort = useRef()
     const [selectedItem, setSelectedItem] = useState(0)
@@ -23,10 +23,17 @@ export default function CategorySort() {
                 <span className='category-sort__title'>مرتب سازی :</span>
             </div>
             <div className='category-sort__left' ref={refListSort}>
-                <p className='category-sort__item select-item-sort' data-value="0" onClick={(e) => clickHandlerSelectItem(e)}>همه دوره ها</p>
-                <p className='category-sort__item' data-value="1" onClick={(e) => clickHandlerSelectItem(e)}>ارزان ترین</p>
-                <p className='category-sort__item' data-value="2" onClick={(e) => clickHandlerSelectItem(e)}>گران ترین</p>
-                <p className='category-sort__item' data-value="3" onClick={(e) => clickHandlerSelectItem(e)}>پرمخاطب ترین</p>
+                {
+                    namesList.length > 1
+                        ?
+                        (
+                            namesList.map((item, index) => (
+                                <p className={`category-sort__item ${index === 0 ? "select-item-sort" : ''}`} data-value={index} onClick={(e) => clickHandlerSelectItem(e)}>{item}</p>
+                            ))
+                        )
+                        :
+                        <p className='category-sort__item select-item-sort' data-value="0" onClick={(e) => clickHandlerSelectItem(e)}>{namesList}</p>
+                }
             </div>
         </section>
     )
