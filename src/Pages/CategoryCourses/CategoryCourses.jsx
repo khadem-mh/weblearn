@@ -1,5 +1,5 @@
 import React from 'react'
-import './CategoryCourses.css'
+import '../../Css/categories.css'
 import './media.css'
 //components
 import Course from '../../Components/Course/Course'

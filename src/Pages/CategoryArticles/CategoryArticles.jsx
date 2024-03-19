@@ -1,5 +1,6 @@
 import React from 'react'
 import './CategoryArticles.css'
+import '../../Css/categories.css'
 //icons
 import { RiSearchLine } from "react-icons/ri";
 import { ImSortAmountDesc } from "react-icons/im";
