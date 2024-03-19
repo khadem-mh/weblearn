@@ -211,54 +211,6 @@
     color: var(--white-color);
 }
 
-.course-info__header-short-url {
-    display: flex;
-    align-items: center;
-    color: var(--white-color);
-    font-family: Lalezar;
-}
-
-.course-info__short-url-icon {
-    font-size: 1.7rem;
-}
-
-.course-info__short-url-text {
-    font-size: 2rem;
-    margin-right: 0.5rem;
-}
-
-.course-info__short-url-iconcopy {
-    cursor: pointer;
-    transition: all 400ms;
-    font-size: 2rem;
-}
-
-.course-info__short-url-iconcopy:hover {
-    color: whitesmoke;
-}
-
-.course-info__short-url {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 1rem 0;
-    color: var(--whitedie-color);
-    background-color: var(--blue-lighter-color);
-    border-radius: 1rem;
-    padding: 1.5rem 1rem;
-    font-size: 1.4rem;
-    direction: ltr;
-    border: 1px solid rgb(74, 74, 74);
-}
-
-.course-info__courses-title {
-    font-family: Lalezar;
-    font-size: 2rem;
-    display: block;
-    color: var(--white-color);
-    margin-bottom: 1.5rem;
-}
-
 /* Finish Sidebar Styles */
 
 /* new */

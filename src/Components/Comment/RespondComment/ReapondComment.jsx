@@ -119,68 +119,81 @@ export default function ReapondComment({ commentCreatorName, commentCreatorRole,
 
             <section className="comments__item">
 
-                <div className="comments__question">
-                    <div className="comments__question-header">
-
-                        <div className="comments__question-header-right">
-                            <div>
-                                <p className="comments__question-name comment-name">{commentCreatorName}</p>
-                                <p className={`comments__question-status comment-status ${commentCreatorRole === 'user' ? 'comment-status-user ' : ''}`}>
-                                    {
-                                        commentCreatorRole === 'user' ? 'دانشجو' : 'مدرس'
-                                    }
-                                </p>
-                            </div>
-                            <p className="comments__question-date comment-date">{commentCreatorDate}</p>
-                        </div>
-
-                        <div className="comments__question-header-left">
-                            <button className="comments__question-header-link comment-link" onClick={() => setSubmitCommetnUser(true)}><LiaReplySolid /></button>
-                        </div>
-                    </div>
-
-                    <div className="comments__question-text">
-                        <p className="comments__question-paragraph comment-paragraph">{commentBody}</p>
-                    </div>
-                </div>
-
                 {
-                    responds.map(comment => (
-                        comment?.responds ?
-                            <section className={`parent-comment__answer`}>
-                                < AnswerComment
-                                    respondCreatorContent={comment.comment}
-                                    respondCreatorDate={comment.date}
-                                    respondCreatorName={comment.name}
-                                    respondCreatorRole={comment.role}
-                                    setFunc={setSubmitCommetnUser}
-                                />
-                                {
-                                    comment.responds.map(commentUser => (
-                                        < AnswerComment
-                                            respondCreatorContent={commentUser.comment}
-                                            respondCreatorDate={commentUser.date}
-                                            respondCreatorName={commentUser.name}
-                                            respondCreatorRole={commentUser.role}
-                                            setFunc={setSubmitCommetnUser}
-                                        />
-                                    ))
-                                }
+                    (commentCreatorName && commentCreatorRole && commentBody) ?
+                        <>
+                            <div className="comments__question">
+                                <div className="comments__question-header">
 
-                            </section>
-                            :
-                            <div >
-                                < AnswerComment
-                                    style={"mt-4 mx-0 bg-transparent"}
-                                    respondCreatorContent={comment.comment}
-                                    respondCreatorDate={comment.date}
-                                    respondCreatorName={comment.name}
-                                    respondCreatorRole={comment.role}
-                                    setFunc={setSubmitCommetnUser}
-                                />
+                                    <div className="comments__question-header-right">
+                                        <div>
+                                            <p className="comments__question-name comment-name">{commentCreatorName}</p>
+                                            <p className={`comments__question-status comment-status ${commentCreatorRole === 'user' ? 'comment-status-user ' : ''}`}>
+                                                {
+                                                    commentCreatorRole === 'user' ? 'دانشجو' : 'مدرس'
+                                                }
+                                            </p>
+                                        </div>
+                                        <p className="comments__question-date comment-date">{commentCreatorDate}</p>
+                                    </div>
+
+                                    <div className="comments__question-header-left">
+                                        <button className="comments__question-header-link comment-link" onClick={() => setSubmitCommetnUser(true)}><LiaReplySolid /></button>
+                                    </div>
+                                </div>
+
+                                <div className="comments__question-text">
+                                    <p className="comments__question-paragraph comment-paragraph">{commentBody}</p>
+                                </div>
                             </div>
-                    ))
+
+                            {
+                                responds.map(comment => (
+                                    comment?.responds ?
+                                        <section className={`parent-comment__answer`}>
+                                            < AnswerComment
+                                                respondCreatorContent={comment.comment}
+                                                respondCreatorDate={comment.date}
+                                                respondCreatorName={comment.name}
+                                                respondCreatorRole={comment.role}
+                                                setFunc={setSubmitCommetnUser}
+                                            />
+                                            {
+                                                comment.responds.map(commentUser => (
+                                                    < AnswerComment
+                                                        respondCreatorContent={commentUser.comment}
+                                                        respondCreatorDate={commentUser.date}
+                                                        respondCreatorName={commentUser.name}
+                                                        respondCreatorRole={commentUser.role}
+                                                        setFunc={setSubmitCommetnUser}
+                                                    />
+                                                ))
+                                            }
+
+                                        </section>
+                                        :
+                                        <div >
+                                            < AnswerComment
+                                                style={"mt-4 mx-0 bg-transparent"}
+                                                respondCreatorContent={comment.comment}
+                                                respondCreatorDate={comment.date}
+                                                respondCreatorName={comment.name}
+                                                respondCreatorRole={comment.role}
+                                                setFunc={setSubmitCommetnUser}
+                                            />
+                                        </div>
+                                ))
+                            }
+                        </>
+                        :
+                        <div className='no-comment'>
+                        <p>☻</p>
+                        <p>هنوز هیچ نظری ثبت نشده</p>
+                        <p>تو اولین نفر باش</p>
+                        </div>
                 }
+
+
 
             </section>
 

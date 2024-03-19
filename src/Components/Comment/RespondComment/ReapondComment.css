@@ -218,3 +218,13 @@
     background-color: gray;
 }
 /* comment genration line conect */
+
+.no-comment {
+    font-family: Lalezar;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.no-comment > p:first-child {
+    font-size: 4rem !important;
+}

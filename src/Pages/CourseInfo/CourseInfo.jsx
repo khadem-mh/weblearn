@@ -1,5 +1,4 @@
-import React, { useState, useLayoutEffect, useRef } from 'react'
-import ReactDOM from 'react-dom';
+import React, { useRef } from 'react'
 import './CourseInfo.css'
 import './Comments.css'
 import './media.css'
@@ -10,7 +9,6 @@ import { FaUserFriends, FaUsers, FaRedRiver } from "react-icons/fa";
 import { GiHandBag } from "react-icons/gi";
 import { CiVideoOn } from "react-icons/ci";
 import { FaStar, FaArrowRightFromBracket } from "react-icons/fa6";
-import { RiFileCopy2Line } from "react-icons/ri";
 //components
 import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb'
 import StatusBox from '../../Components/StatusBox/StatusBox';
@@ -19,42 +17,14 @@ import TilteHeadeer from '../../Components/TilteHeadeer/TilteHeadeer';
 import AccordionListVideo from '../../Components/AccordionListVideo/AccordionListVideo';
 import ShowMoreDetails from '../../Components/ShowMoreDetails/ShowMoreDetails';
 import ReapondComment from '../../Components/Comment/RespondComment/ReapondComment';
+import CopyLinkBox from '../../Components/CopyLinkBox/CopyLinkBox';
+import CategoryBox from '../../Components/CategoryBox/CategoryBox';
 //Funcs
 import faNumber from '../../Functions/FaNumber/FaNumber';
 
 export default function CourseInfo() {
 
-  const toastRef = useRef()
   const introductionRef = useRef()
-  const [showCopyText, setShowCopyText] = useState('')
-
-  useLayoutEffect(() => {
-    if (showCopyText.length) {
-      let timeToast = setTimeout(() => {
-        toastRef.current.classList.replace('show', 'hide')
-      }, 5000)
-      return () => {
-        clearTimeout(timeToast)
-        setShowCopyText('')
-      }
-    }
-  }, [showCopyText])
-
-  const clickHandleCopy = (text) => {
-    setShowCopyText('')
-    if (toastRef.current) {
-      if (toastRef.current.classList.contains('hide')) {
-        toastRef.current.classList.replace('hide', 'show')
-      }
-    }
-    navigator.clipboard.writeText(text)
-      .then(() => {
-        setShowCopyText('متن با موفقیت به کلیپ‌بورد کپی شد! 📋')
-      })
-      .catch(err => {
-        setShowCopyText('مشکلی در کپی کردن متن به وجود آمده است')
-      });
-  }
 
   return (
     <>
@@ -322,30 +292,14 @@ export default function CourseInfo() {
                     </div>
                   </section>
 
-                  <div className="course-info d-none d-lg-block">
-                    <div className="course-info__header-short-url">
-                      <i className="fas fa-link course-info__short-url-icon"></i>
-                      <span className="course-info__short-url-text">
-                        لینک کوتاه
-                      </span>
-                    </div>
-                    <p className="course-info__short-url">
-                      <p>https://sabzlearn.ir/?p=117472</p>
-                      <RiFileCopy2Line className='course-info__short-url-iconcopy' onClick={() => clickHandleCopy('https://sabzlearn.ir/?p=117472')} />
-                    </p>
-                  </div>
 
-                  <div className="course-info d-none d-lg-block">
-                    <span className="course-info__courses-title">دوره های مرتبط</span>
-                    <ul className="course-info__courses-list">
+                  <CopyLinkBox textForCopy={'https://sabzlearn.ir/?p=117472'} titleBox={'لینک کوتاه'} yourStyle={'d-none d-lg-block'} children={<i className="fas fa-link short-url-icon"></i>} />
 
-                      <CourseCoverAside teacher={'سید محمد حسین خادم المهدی'} img={'PWA-min.jpg'} link={'pwa'} title={'دوره آموزشی Pwa'} />
-                      <CourseCoverAside teacher={'محمد امین سعیدی راد'} img={'TypeScript-min-2.jpg'} link={'typescript'} title={'دوره آموزشی TypeScript'} />
-                      <CourseCoverAside teacher={'قدیر یلمه'} img={'BJS-852x479-1.png'} link={'blackjs'} title={'دوره آموزشی هک و امنیت جاوااسکریپت سیاه'} />
-
-
-                    </ul>
-                  </div>
+                  <CategoryBox title={'دوره های مرتبط'} yourStyle={'d-none d-lg-block'}>
+                        <CourseCoverAside teacher={'سید محمد حسین خادم المهدی'} pathImg={'Courses/PWA-min.jpg'} link={'pwa'} title={'دوره آموزشی Pwa'} />
+                      <CourseCoverAside teacher={'محمد امین سعیدی راد'} pathImg={'Courses/TypeScript-min-2.jpg'} link={'typescript'} title={'دوره آموزشی TypeScript'} />
+                      <CourseCoverAside teacher={'قدیر یلمه'} pathImg={'Courses/BJS-852x479-1.png'} link={'blackjs'} title={'دوره آموزشی هک و امنیت جاوااسکریپت سیاه'} />
+                  </CategoryBox>
 
                 </div>
               </div>
@@ -357,20 +311,7 @@ export default function CourseInfo() {
 
       </section>
 
-      {showCopyText && ReactDOM.createPortal(
-        <div className="toast align-items-center fade show toast-text-copy rounded-4" role="alert" aria-live="assertive" aria-atomic="true" ref={toastRef}>
-          <div className="d-flex parent-toast">
-            <div className="toast-body">
-              {showCopyText}
-            </div>
-            <button type="button" className="btn-close" data-bs-dismiss="toast" aria-label="Close" onClick={() => {
-              toastRef.current.classList.replace('show', 'hide')
-              setShowCopyText('')
-            }}></button>
-          </div>
-        </div>,
-        document.documentElement.querySelector('#offcanvases')
-      )}
+
     </>
   )
 }

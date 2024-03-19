@@ -7,14 +7,14 @@ export default function BreadCrumb({ links }) {
     return (
         <div className="breadcrumb">
             <div className="breadcrumb__item">
-                <a href="/" className="breadcrumb__link">
+                <Link to="/" className="breadcrumb__link">
                     <HiOutlineHome className='breadcrumb__link-home' />
-                </a>
+                </Link>
             </div>
             {
                 links && links.map((link, index) => (
                     <div key={index} className="breadcrumb__item">
-                        <Link to={`/${link.to}`} className="breadcrumb__link">{link.title}</Link>
+                        <Link to={`/${link.to && link.to}`} className="breadcrumb__link">{link.title}</Link>
                     </div>
                 ))
             }
