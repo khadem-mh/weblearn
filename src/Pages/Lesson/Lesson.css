@@ -1,0 +1,18 @@
+.plyr__poster {
+    background-size: cover !important;
+    border-radius: 2rem !important;
+}
+
+.plyr--video {
+    background-color: transparent !important;
+}
+
+.plyr__video-wrapper {
+    background-color: transparent !important;
+}
+
+.plyr audio,
+.plyr iframe,
+.plyr__poster {
+    border-radius: 2rem !important;
+}

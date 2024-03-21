@@ -3,6 +3,7 @@ import CategoryCourses from "./Pages/CategoryCourses/CategoryCourses"
 import CategoryArticles from "./Pages/CategoryArticles/CategoryArticles"
 import CourseInfo from "./Pages/CourseInfo/CourseInfo"
 import ArticleInfo from "./Pages/ArticleInfo/ArticleInfo"
+import Lesson from "./Pages/Lesson/Lesson"
 import Page404 from "./Pages/Page404/Page404"
 
 const routes = [
@@ -11,6 +12,7 @@ const routes = [
     { path: '/article-info', element: <ArticleInfo/>},
     { path: '/category-articles', element: <CategoryArticles/>},
     { path: '/category-courses', element: <CategoryCourses/>},
+    { path: '/lesson', element: <Lesson/>},
     { path: '/*', element: <Page404/>},
 ]
 
