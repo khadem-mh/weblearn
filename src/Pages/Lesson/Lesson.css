@@ -1,5 +1,14 @@
+.container-plyr {
+    border-radius: 2rem;
+    overflow: hidden;
+}
+
 .plyr__poster {
     background-size: cover !important;
+    border-radius: 2rem !important;
+}
+
+.plyr video {
     border-radius: 2rem !important;
 }
 

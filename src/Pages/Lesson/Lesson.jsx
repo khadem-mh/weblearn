@@ -26,37 +26,39 @@ export default function Lesson() {
                 }
             />
 
-            <Plyr
-                source={{
-                    type: 'video',
-                    poster: 'Images/Courses/BL-852x479-1.png',
-                    ratio: '16:9',
-                    sources: [
-                        {
-                            src: 'Images/video-1.mp4',
-                            type: 'video/mp4',
-                        },
-                    ],
-                }}
-                options={{
-                    controls: [
-                        'play-large',
-                        'play',
-                        'progress',
-                        'current-time',
-                        'mute',
-                        'volume',
-                        'captions',
-                        'settings',
-                        'pip',
-                        'airplay',
-                        'fullscreen'
-                    ],
-                    autoplay: false,
-                    volume: 0.5,
-                }}
-                style={playerStyle}
-            />
+            <div className='container-plyr'>
+                <Plyr
+                    source={{
+                        type: 'video',
+                        poster: 'Images/Courses/BL-852x479-1.png',
+                        ratio: '16:9',
+                        sources: [
+                            {
+                                src: 'Images/video-1.mp4',
+                                type: 'video/mp4',
+                            },
+                        ],
+                    }}
+                    options={{
+                        controls: [
+                            'play-large',
+                            'play',
+                            'progress',
+                            'current-time',
+                            'mute',
+                            'volume',
+                            'captions',
+                            'settings',
+                            'pip',
+                            'airplay',
+                            'fullscreen'
+                        ],
+                        autoplay: false,
+                        volume: 0.5,
+                    }}
+                    style={playerStyle}
+                />
+            </div>
 
         </section>
     )
