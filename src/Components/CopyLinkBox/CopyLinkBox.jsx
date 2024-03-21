@@ -38,7 +38,7 @@ export default function CopyLinkBox({ yourStyle, titleBox, textForCopy, children
 
     return (
         <>
-            <div className={`parent-copy-text ${yourStyle}`}>
+            <div className={`parent-copy-text ${yourStyle ? yourStyle : ''}`}>
                 <div className="header-short-url">
                     {children}
                     <span className="short-url-text" style={{ fontSize: fzTitle }}>

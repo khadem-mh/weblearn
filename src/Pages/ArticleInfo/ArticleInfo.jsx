@@ -1,5 +1,6 @@
 import React from 'react'
 import './ArticleInfo.css'
+import './media.css'
 //components
 import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb'
 import faNumber from '../../Functions/FaNumber/FaNumber'
@@ -13,7 +14,7 @@ import CopyLinkBox from '../../Components/CopyLinkBox/CopyLinkBox';
 
 export default function ArticleInfo() {
   return (
-    <section className="page">
+    <section className="container-article-info page">
 
       {/* <!-- Start Breadcrumb --> */}
       <BreadCrumb
@@ -68,7 +69,7 @@ export default function ArticleInfo() {
         <div className='blog-infos__left'>
           <section className='blog-infos__share'>
 
-            <CopyLinkBox textForCopy={'https://sabzlearn.ir/?blog=31592'} titleBox={'اشتراک گذاری مطلب'} yourStyle={'mt-0'} children={<BsShare className='blog-infos__share-icon' />} fzTitle={'1.6rem'} />
+            <CopyLinkBox textForCopy={'https://sabzlearn.ir/?blog=31592'} titleBox={'اشتراک گذاری مطلب'} children={<BsShare className='blog-infos__share-icon' />} fzTitle={'1.6rem'} />
 
             <CategoryBox title={'پیشنهاد مطالعه'}>
               <CourseCoverAside fzTitle={'1.1rem'} pathImg={'Blogs/1.png'} title={'حداقل سیستم برای برنامه نویسی'} teacher={'محمد امین سعیدی راد'} link={'pwa'} />

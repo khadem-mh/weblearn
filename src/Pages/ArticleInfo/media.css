@@ -1,0 +1,90 @@
+@media screen and (max-width: 1230px) {
+    .container-article-info.page {
+        padding: 0 5rem;
+    }
+}
+
+@media screen and (max-width: 892px) {
+
+    .course-info__courses-text {
+        font-size: 1.3rem !important;
+    }
+
+    .course-info__courses-teacher {
+        font-size: 1.1rem;
+    }
+
+    .blog-infos__share>.parent-copy-text {
+        margin-top: 1.5rem;
+    }
+
+    .parent-box-list {
+        margin-top: 1.5rem;
+    }
+
+    .container-article-info.page {
+        padding: 0 10rem;
+    }
+
+    .blog-infos {
+        flex-direction: column;
+    }
+
+    .parent-right-page {
+        width: 100%;
+    }
+
+    .blog-infos__left {
+        width: 100%;
+        position: relative;
+    }
+
+    .parent-copy-text {
+        margin-top: 1.5rem !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container-article-info.page {
+        padding: 0 2rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .container-article-info.page {
+        padding: 0 .5rem;
+    }
+}
+
+@media screen and (max-width: 476px) {
+    .blog-infos__title {
+        font-size: 2rem;
+    }
+
+    .blog-infos__declare>p {
+        font-size: 1.1rem;
+    }
+    .blog-infos__declare-icon {
+        font-size: 1.5rem !important;
+    }
+}
+
+@media screen and (max-width: 376px) {
+    
+    .blog-infos__title {
+        font-size: 1.7rem;
+    }
+
+    .blog-infos__declare>p {
+        font-size: 1rem;
+    }
+
+    .blog-infos__declare-icon {
+        font-size: 1.2rem !important;
+    }
+
+    .blog-infos__declare {
+        margin: 0;
+        margin-right: .5rem;
+    }
+}

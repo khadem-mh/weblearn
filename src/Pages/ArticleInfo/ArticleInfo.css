@@ -32,12 +32,6 @@
     align-items: center;
 }
 
-.blog-infos__details {
-    justify-content: flex-start;
-    box-shadow: 0 0 20px rgba(153, 153, 153, 0.4) inset;
-    border-radius: 1.5rem;
-}
-
 .blog-infos__declare {
     margin: 1rem;
     justify-content: space-between;
@@ -67,4 +61,8 @@
 
 .blog-infos__share-icon {
     font-size: 2.2rem;
+}
+
+.blog-infos__share>.parent-copy-text {
+    margin-top: 0;
 }
