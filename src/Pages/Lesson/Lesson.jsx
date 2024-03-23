@@ -7,6 +7,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 //components
 import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb'
+import ReapondComment from '../../Components/Comment/RespondComment/ReapondComment';
 //icons
 import { FaRegCommentDots } from "react-icons/fa6";
 import { IoPersonCircleOutline } from "react-icons/io5";
@@ -67,6 +68,7 @@ export default function Lesson() {
             </div>
 
             <section className='container-details-lesson'>
+                
                 <section className='details-lesson__right'>
                     <div className='details-lesson__right-header'>
 
@@ -138,10 +140,20 @@ export default function Lesson() {
                         </section>
 
                         <div className='details-lesson__right-comment-footer'>
-                            <MdOutlineFileUpload className='details-lesson__right-comment-footer-icon' />
-                            <p>اگر فایل ضمیمه ای دارید لطفا آپلود کنید</p>
+                            <div>
+                                <MdOutlineFileUpload className='details-lesson__right-comment-footer-icon' />
+                                <p>اگر فایل ضمیمه ای دارید لطفا آپلود کنید</p>
+                            </div>
+                            <button className='details-lesson__right-comment-footer-btnsend'>ارسال</button>
                         </div>
 
+                        <ReapondComment
+                            bgAnswer={'var(--blue-lighter-color)'}
+                            bgComment={'var(--blue-lighter-hight-color)'}
+                            bgParent={'transparent'}
+                            showCommentHeader={false}
+                            textNoQues={"هنوز برای این جلسه سوالی نپرسیده‌اید!"}
+                        />
 
                     </div>
 

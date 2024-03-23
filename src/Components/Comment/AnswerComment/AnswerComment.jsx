@@ -2,9 +2,9 @@ import React from 'react'
 import './AnswerComment.css'
 import { LiaReplySolid } from "react-icons/lia";
 
-export default function AnswerComment({ respondCreatorName, respondCreatorRole, respondCreatorDate, respondCreatorContent, yourstyle, setFunc}) {
+export default function AnswerComment({ respondCreatorName, respondCreatorRole, respondCreatorDate, respondCreatorContent, yourstyle, setFunc, bgAnswer }) {
     return (
-        <div className={`comments__ansewr ${yourstyle}`}>
+        <div className={`comments__ansewr ${yourstyle}`} style={{ backgroundColor: bgAnswer }}>
 
             <div className="comments__ansewr-header">
 
@@ -19,10 +19,12 @@ export default function AnswerComment({ respondCreatorName, respondCreatorRole, 
                     </div>
                     <p className="comments__ansewr-date comment-date">{respondCreatorDate}</p>
                 </div>
-
-                <div className="comments__ansewr-header-left">
-                    <button className="comments__ansewr-header-link comment-link" onClick={() => setFunc(true)}><LiaReplySolid /></button>
-                </div>
+                {
+                    !bgAnswer &&
+                    <div className="comments__ansewr-header-left">
+                        <button className="comments__ansewr-header-link comment-link" onClick={() => setFunc(true)}><LiaReplySolid /></button>
+                    </div>
+                }
             </div>
 
             <div className="comments__ansewr-text">

@@ -118,7 +118,6 @@
     margin: 0 1rem;
 }
 
-
 .comment-date {
     font-size: 1.1rem;
     color: var(--white-color);
@@ -146,27 +145,11 @@
     line-height: 2.3em;
 }
 
-.parent-comment__answer {
-    background-color: var(--blue-lighter-color);
-    border-radius: 1.5rem;
-    padding: 1rem;
-    margin-top: 1.5rem;
-    position: relative;
-    overflow: hidden;
-}
-
-.comments__ansewr {
-    background-color: var(--blue-lighter-hight-color);
-    border-radius: 1.5rem;
-    margin: 1rem;
-    padding: 3rem;
-    position: relative;
-}
 /* comment respond */
 
 
 /* comment genration line conect */
-.comments__ansewr::before,
+/* .comments__ansewr::before,
 .comments__item::before {
     content: "";
     width: 16px;
@@ -216,7 +199,7 @@
     right: 7px;
     z-index: 1;
     background-color: gray;
-}
+} */
 /* comment genration line conect */
 
 .no-comment {

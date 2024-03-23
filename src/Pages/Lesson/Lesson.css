@@ -116,7 +116,7 @@
     margin-top: 1.5rem;
     background-color: var(--blue-light-color);
     border-radius: 1.5rem;
-    padding: 1.5rem 2.5rem;
+    padding: 2rem 2.5rem;
 }
 
 .details-lesson__right-comment-header {
@@ -140,7 +140,6 @@
 /* start section comment header */
 
 /* start section comment */
-.details-lesson__right-comment-body {}
 
 .details-lesson__right-comment-body__header {
     display: flex;
@@ -166,11 +165,33 @@
 
 /* start section comment footer */
 .details-lesson__right-comment-footer {
+    margin-bottom: 3.5rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-top: 2.5rem;
+}
+
+.details-lesson__right-comment-footer > div {
+    display: flex;
+    align-items: center;
     margin-bottom: 1rem;
     cursor: pointer;
+}
+
+.details-lesson__right-comment-footer-btnsend {
+    border: 0;
+    border-radius: 50rem;
+    padding: .9rem 4.4rem;
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    transition: all 400ms;
+}
+
+.details-lesson__right-comment-footer-btnsend:hover {
+    background-color: var(--primary-color);
+    color: white;
 }
 
 .details-lesson__right-comment-footer>svg {
