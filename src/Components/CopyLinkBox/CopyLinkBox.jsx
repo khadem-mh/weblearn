@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useRef, Children } from 'react'
+import React, { useState, useLayoutEffect, useRef } from 'react'
 import ReactDOM from 'react-dom';
 import './CopyLinkBox.css'
 import { RiFileCopy2Line } from "react-icons/ri";

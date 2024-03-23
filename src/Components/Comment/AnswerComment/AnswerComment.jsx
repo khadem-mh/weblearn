@@ -2,9 +2,9 @@ import React from 'react'
 import './AnswerComment.css'
 import { LiaReplySolid } from "react-icons/lia";
 
-export default function AnswerComment({ respondCreatorName, respondCreatorRole, respondCreatorDate, respondCreatorContent, style, setFunc}) {
+export default function AnswerComment({ respondCreatorName, respondCreatorRole, respondCreatorDate, respondCreatorContent, yourstyle, setFunc}) {
     return (
-        <div className={`comments__ansewr ${style}`}>
+        <div className={`comments__ansewr ${yourstyle}`}>
 
             <div className="comments__ansewr-header">
 

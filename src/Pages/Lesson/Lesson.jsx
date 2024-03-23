@@ -129,10 +129,10 @@ export default function Lesson() {
                                     }}
                                     onReady={(editor) => {
                                         console.log('این CKEditor آماده‌ی استفاده است!', editor);
-                                    }}
+                                    }}/* 
                                     onChange={(event, editor) => {
                                         const data = editor.getData();
-                                    }}
+                                    }} */
                                 />
                             </div>
                         </section>

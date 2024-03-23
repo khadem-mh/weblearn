@@ -174,7 +174,7 @@ export default function ReapondComment({ commentCreatorName, commentCreatorRole,
                                         :
                                         <div >
                                             < AnswerComment
-                                                style={"mt-4 mx-0 bg-transparent"}
+                                                yourstyle={"mt-4 mx-0 bg-transparent"}
                                                 respondCreatorContent={comment.comment}
                                                 respondCreatorDate={comment.date}
                                                 respondCreatorName={comment.name}
