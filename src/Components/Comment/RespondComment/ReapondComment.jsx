@@ -21,7 +21,7 @@ export default function ReapondComment({ commentCreatorName, commentCreatorRole,
                 }
             }
         }
-    }, [submitCommetnUser])
+    })
 
     return (
         <section className={`${bgParent && bgParent.length > 1 ? '' : 'whole-comments-users'} `} style={{ backgroundColor: bgParent }}>
@@ -169,8 +169,8 @@ export default function ReapondComment({ commentCreatorName, commentCreatorRole,
                         :
                         <div className='no-comment'>
                             <p>☻</p>
-                            <p>{textNoQues.length ? textNoQues : 'هنوز هیچ نظری ثبت نشده'}</p>
-                            <p>{!textNoQues.length && "تو اولین نفر باش"}</p>
+                            <p>{textNoQues ? textNoQues : 'هنوز هیچ نظری ثبت نشده'}</p>
+                            <p>{!textNoQues && "تو اولین نفر باش"}</p>
                         </div>
                 }
 
