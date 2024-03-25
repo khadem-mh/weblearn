@@ -148,6 +148,7 @@
     color: var(--white-color);
     font-size: 14px;
     text-align: justify;
+    line-height: 2.4rem;
 }
 
 /* Finish Teacher Details Styles */

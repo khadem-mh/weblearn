@@ -181,16 +181,16 @@ export default function CourseInfo() {
                     <AccordionListVideo
                       obj={{
                         'carousel - 1': [
-                          { textBody: "اوزش js", hasPriceText: 'نقدی', isFree: false, time: '05:56', to: 'js' },
-                          { textBody: "اوزش react", hasPriceText: 'نقدی', isFree: false, time: '15:06', to: 'react' },
-                          { textBody: "اوزش css", hasPriceText: 'رایگان', isFree: true, time: '8:10', to: 'css' },
+                          { textBody: "اوزش js", isFree: false, time: '05:56', to: 'js' },
+                          { textBody: "اوزش react", isFree: false, time: '15:06', to: 'react' },
+                          { textBody: "اوزش css", isFree: true, time: '08:10', to: 'css' },
                         ],
                         'carousel - 2': [
-                          { textBody: "اوزش nextJS", hasPriceText: 'نقدی', isFree: false, time: '02:36', to: 'next' },
+                          { textBody: "اوزش nextJS", isFree: false, time: '02:36', to: 'next' },
                         ],
                         'carousel - 3': [
-                          { textBody: "اوزش js", hasPriceText: 'نقدی', isFree: false, time: '05:56', to: 'js' },
-                          { textBody: "اوزش react", hasPriceText: 'نقدی', isFree: false, time: '15:06', to: 'react' },
+                          { textBody: "اوزش js", isFree: false, time: '05:56', to: 'js' },
+                          { textBody: "اوزش react", isFree: false, time: '15:06', to: 'react' },
                         ],
                         'carousel-feature': []
                       }}
@@ -208,26 +208,7 @@ export default function CourseInfo() {
                         commentBody={'سلام آقای سعیدی راد از دوره ای که برگزار کردید بسیار سپاس گزارم'}
 
                         responds={[
-                          {
-                            name: 'محمد امین سعیدی راد', role: 'teachr', date: '1402/12/10', comment: "خیلی خوشحالم محمدحسین جانم که از این دوره راضی بودی موفق باشی☻", responds: [
-                              { name: 'علی مرادی', role: 'user', date: '1402/12/10', comment: 'استاد چه زمانی این دوره به پایان میرسه' },
-                              { name: 'محمد امین سعیدی راد', role: 'teacher', date: '1402/12/12', comment: 'مردای جان به شما هیچ ربطی نداره' },
-                              { name: 'علی مرادی', role: 'user', date: '1402/12/13', comment: 'استاد من گزارش بد اخلاقیتون رو به مدیر دادم' },
-                              { name: 'یاسین فراز دل', role: 'user', date: '1402/12/14', comment: 'انقدر شما دوتا بجه بازی در نیارین خجالت بکشین از سنتون با هردو تونم' },
-                            ]
-                          },
-
                           { name: 'عباس پور', role: 'user', date: '1402/12/29', comment: 'من با نظرت موافقم  خادم المهدی دمت گرم ♥' },
-
-                          {
-                            name: 'محمد امین سعیدی راد', role: 'teachr', date: '1402/12/10', comment: "خیلی خوشحالم محمدحسین جانم که از این دوره راضی بودی موفق باشی☻", responds: [
-                              { name: 'علی مرادی', role: 'user', date: '1402/12/10', comment: 'خیلی ممنون بابت زحماتتون' },
-                              { name: 'محمد امین سعیدی راد', role: 'teacher', date: '1402/12/12', comment: 'خواهش می کنم' }
-                            ]
-                          },
-
-                          { name: 'محمد امین سعیدی راد', role: 'teacher', date: '1403/01/01', comment: 'من به عنوان بزرگترتون حق درام به گردنتون پس لطفا دهناتون رو ببندید' },
-
                         ]}
                       />
 
@@ -296,9 +277,9 @@ export default function CourseInfo() {
                   <CopyLinkBox textForCopy={'https://sabzlearn.ir/?p=117472'} titleBox={'لینک کوتاه'} yourStyle={'d-none d-lg-block'} children={<i className="fas fa-link short-url-icon"></i>} />
 
                   <CategoryBox title={'دوره های مرتبط'} yourStyle={'d-none d-lg-block'}>
-                        <CourseCoverAside teacher={'سید محمد حسین خادم المهدی'} pathImg={'Courses/PWA-min.jpg'} link={'pwa'} title={'دوره آموزشی Pwa'} />
-                      <CourseCoverAside teacher={'محمد امین سعیدی راد'} pathImg={'Courses/TypeScript-min-2.jpg'} link={'typescript'} title={'دوره آموزشی TypeScript'} />
-                      <CourseCoverAside teacher={'قدیر یلمه'} pathImg={'Courses/BJS-852x479-1.png'} link={'blackjs'} title={'دوره آموزشی هک و امنیت جاوااسکریپت سیاه'} />
+                    <CourseCoverAside teacher={'سید محمد حسین خادم المهدی'} pathImg={'Courses/PWA-min.jpg'} link={'pwa'} title={'دوره آموزشی Pwa'} />
+                    <CourseCoverAside teacher={'محمد امین سعیدی راد'} pathImg={'Courses/TypeScript-min-2.jpg'} link={'typescript'} title={'دوره آموزشی TypeScript'} />
+                    <CourseCoverAside teacher={'قدیر یلمه'} pathImg={'Courses/BJS-852x479-1.png'} link={'blackjs'} title={'دوره آموزشی هک و امنیت جاوااسکریپت سیاه'} />
                   </CategoryBox>
 
                 </div>

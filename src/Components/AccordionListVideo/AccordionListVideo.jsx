@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import Accordion from 'react-bootstrap/Accordion';
 import { MdOutlinePlayCircle } from "react-icons/md";
 import { GoLock } from "react-icons/go";
+import faNumber from '../../Functions/FaNumber/FaNumber';
 
 export default function AccordionListVideo({ obj }) {
 
     const keyObj = Object.keys(obj)
-    console.log(keyObj);
     return (
         <Accordion>
 
@@ -32,12 +32,11 @@ export default function AccordionListVideo({ obj }) {
                                                         <p className="introduction__accordion-link">{item.textBody}</p>
 
                                                     </div>
-                                                    <p className='introduction__accordion-price'>{item.hasPriceText}</p>
                                                 </div>
 
                                                 <div className="introduction__accordion-left">
                                                     <span className="introduction__accordion-time">
-                                                        <span>{item.time}</span>
+                                                        <span>{faNumber(item.time.slice(0, 2), item.time.slice(3))}</span>
                                                         {
                                                             item.isFree ?
                                                                 <MdOutlinePlayCircle className='introduction__accordion-icon mb-1' />

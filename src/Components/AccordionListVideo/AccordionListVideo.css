@@ -15,26 +15,11 @@
 }
 
 .introduction__accordion-body:hover .introduction__accordion-count {
-    background-color: rgba(6, 160, 6, 0.5) !important;
+    background-color: var(--primary-color);
 }
 
 .introduction__accordion-body:hover .introduction__accordion-icon {
     color: var(--primary-color) !important;
-}
-
-.introduction__accordion-body:hover .introduction__accordion-price {
-    background-color: rgba(6, 160, 6, 0.5) !important;
-    color: rgb(18, 255, 18) !important;
-}
-
-.introduction__accordion-price {
-    color: lightgray;
-    padding: .5rem 1rem;
-    background-color: rgba(84, 85, 119, 1);
-    border-radius: .4rem;
-    font-size: .9rem;
-    margin-top: 1rem;
-    transition: all 200ms;
 }
 
 .introduction__accordion-right {
@@ -149,7 +134,7 @@
     margin-bottom: -1rem !important;
 }
 
-.container-accordion-body:not(:last-child) .accordion-body  {
+.container-accordion-body:not(:last-child) .accordion-body {
     border-bottom: 1px solid gray !important;
 }
 
