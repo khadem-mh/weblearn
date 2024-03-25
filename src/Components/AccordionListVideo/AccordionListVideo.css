@@ -77,12 +77,17 @@
 
 .accordion-button::after {
     position: absolute;
-    left: 1.5rem;
-    width: 2rem;
-    height: 2rem;
-    background-position: center;
-    background-color: var(--white-color);
-    border-radius: 50%;
+    left: 0.5rem;
+    width: 1.8rem !important;
+    height: 1.8rem !important;
+    border-radius: 0.4rem;
+    background-size: auto !important;
+    background-blend-mode: color-burn !important;
+    background-color: rgb(76, 101, 122);
+}
+
+.accordion-button:focus {
+    box-shadow: none !important;
 }
 
 .collapsed {
@@ -91,7 +96,7 @@
 }
 
 .accordion-button {
-    border-radius: 1.5rem !important;
+    border-radius: .5rem !important;
 }
 
 .accordion-button:not(.collapsed) {
@@ -104,7 +109,7 @@
 }
 
 .accordion-item:last-of-type {
-    border-radius: 1.5rem !important;
+    border-radius: 1rem !important;
 }
 
 .parent-accordion-header button {
@@ -117,8 +122,8 @@
 .parent-accordion-item {
     background-color: var(--blue-lighter-hight-color) !important;
     margin-bottom: 1rem;
-    padding: 1rem;
-    border-radius: 1.5rem !important;
+    padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+    border-radius: 1rem !important;
     border: 0 !important;
 }
 
