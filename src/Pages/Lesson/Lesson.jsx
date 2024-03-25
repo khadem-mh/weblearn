@@ -10,7 +10,7 @@ import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb'
 import ReapondComment from '../../Components/Comment/RespondComment/ReapondComment';
 import AccordionListVideo from '../../Components/AccordionListVideo/AccordionListVideo';
 //icons
-import { FaRegCommentDots } from "react-icons/fa6";
+import { FaRegCommentDots, FaRegFileLines } from "react-icons/fa6";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { MdOutlineFileUpload } from "react-icons/md";
 
@@ -162,23 +162,30 @@ export default function Lesson() {
 
                 <section className='details-lesson__left'>
 
-                    <AccordionListVideo
-                        obj={{
-                            'carousel - 1': [
-                                { textBody: "اوزش js", isFree: false, time: '05:56', to: 'js' },
-                                { textBody: "اوزش react", isFree: false, time: '15:06', to: 'react' },
-                                { textBody: "اوزش css", isFree: true, time: '08:10', to: 'css' },
-                            ],
-                            'carousel - 2': [
-                                { textBody: "اوزش nextJS", isFree: false, time: '02:36', to: 'next' },
-                            ],
-                            'carousel - 3': [
-                                { textBody: "اوزش js", isFree: false, time: '05:56', to: 'js' },
-                                { textBody: "اوزش react", isFree: false, time: '15:06', to: 'react' },
-                            ],
-                            'carousel-feature': []
-                        }}
-                    />
+                    <div className='details-lesson__left-container-listvideo'>
+                        <div className='details-lesson__left-header'>
+                            <FaRegFileLines />
+                            <p>سرفصل های دوره</p>
+                        </div>
+                        <AccordionListVideo
+                            obj={{
+                                'carousel - 1': [
+                                    { textBody: "اوزش js", isFree: false, time: '05:56', to: 'js' },
+                                    { textBody: "اوزش react", isFree: false, time: '15:06', to: 'react' },
+                                    { textBody: "اوزش css", isFree: true, time: '08:10', to: 'css' },
+                                ],
+                                'carousel - 2': [
+                                    { textBody: "اوزش nextJS", isFree: false, time: '02:36', to: 'next' },
+                                ],
+                                'carousel - 3': [
+                                    { textBody: "اوزش js", isFree: false, time: '05:56', to: 'js' },
+                                    { textBody: "اوزش react", isFree: false, time: '15:06', to: 'react' },
+                                ],
+                                'carousel-feature': []
+                            }}
+                        />
+                    </div>
+
 
                 </section>
 

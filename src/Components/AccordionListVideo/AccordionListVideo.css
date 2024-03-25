@@ -83,7 +83,7 @@
     border-radius: 0.4rem;
     background-size: auto !important;
     background-blend-mode: color-burn !important;
-    background-color: rgb(76, 101, 122);
+    background-color: lightgray;
 }
 
 .accordion-button:focus {
@@ -101,7 +101,7 @@
 
 .accordion-button:not(.collapsed) {
     color: var(--white-color) !important;
-    background-color: #4A4B6D !important;
+    background-color: var(--primary-color) !important;
 }
 
 .accordion {

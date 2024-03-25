@@ -1,6 +1,6 @@
 body::-webkit-scrollbar {
     background-color: #fff;
-    width: 16px;   
+    width: 16px !important;   
 }
 
 /* background of the scrollbar except button or resizer */
@@ -19,6 +19,7 @@ body::-webkit-scrollbar-thumb {
 
 ::-webkit-scrollbar {
     height: 5px !important;   
+    width: 6px;
 }
 
 /* background of the scrollbar except button or resizer */

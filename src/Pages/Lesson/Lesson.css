@@ -30,18 +30,23 @@
 
 .container-details-lesson {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: space-between !important;
     color: whitesmoke;
     margin-top: 3.5rem;
 }
 
 .details-lesson__right {
-    width: 74%;
+    width: 66%;
 }
 
 .details-lesson__left {
-    width: 29%;
+    width: 32%;
+    height: fit-content;
+    position: sticky !important;
+    top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 /* start header box  */
@@ -172,7 +177,7 @@
     margin-top: 2.5rem;
 }
 
-.details-lesson__right-comment-footer > div {
+.details-lesson__right-comment-footer>div {
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
@@ -221,3 +226,34 @@
     border: 1px solid var(--blue-lighter-hight-color);
     height: 50px;
 }
+
+/* start section left page */
+
+.details-lesson__left-container-listvideo {
+    background-color: var(--blue-light-color);
+    border-radius: 1.5rem;
+    padding: 1.5rem 1.2rem 0.8rem 1.2rem;
+    max-height: 50rem;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.details-lesson__left-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid gray;
+    margin-bottom: 1.8rem;
+    padding-bottom: 2rem;
+    font-family: Lalezar;
+    font-size: 2rem;
+}
+
+.details-lesson__left-header>p {
+    margin-right: 1rem;
+}
+
+.details-lesson__left-header>svg {
+    font-size: 2.5rem;
+}
+
+/* end section left page */

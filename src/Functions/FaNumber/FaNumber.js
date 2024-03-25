@@ -17,7 +17,6 @@ const faNumber = (num1, num2, num3, dotte = false) => {
         }
 
         if (num1.length > 1 && num2.length > 1) {
-            console.log(number1, number2);
             return number1 + ':' + number2
         }
 
