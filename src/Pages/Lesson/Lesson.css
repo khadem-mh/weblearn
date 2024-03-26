@@ -36,11 +36,11 @@
 }
 
 .details-lesson__right {
-    width: 66%;
+    width: 61%;
 }
 
 .details-lesson__left {
-    width: 32%;
+    width: 37%;
     height: fit-content;
     position: sticky !important;
     top: 0.5rem;
@@ -89,7 +89,8 @@
 }
 
 .details-lesson__right-header-btn-ques,
-.details-lesson__right-header-btn-downlod {
+.details-lesson__right-header-btn-downlod,
+.details-lesson__right-header-btn-file {
     border: 0;
     padding: 1rem 2.4rem;
     border-radius: 50rem;
@@ -99,6 +100,15 @@
 
 .details-lesson__right-header-btn-ques {
     background-color: var(--blue-lighter-hight-color);
+}
+
+.details-lesson__right-header-btn-file {
+    background-color: var(--skyblue-color);
+    margin-left: .7rem;
+}
+
+.details-lesson__right-header-btn-file:hover{
+    background-color: #2692b9;
 }
 
 .details-lesson__right-header-btn-downlod {
@@ -257,3 +267,24 @@
 }
 
 /* end section left page */
+
+.box-tiny-status {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: fit-content;
+    text-align: center;
+    margin-right: 0;
+    width: 100%;
+}
+
+.parent-box-status-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.parent-box-status-details>.parent-status-box {
+    min-width: 31% !important;
+}

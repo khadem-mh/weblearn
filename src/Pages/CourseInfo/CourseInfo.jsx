@@ -8,7 +8,7 @@ import { MdOutlineAccessTime, MdOutlineDateRange } from "react-icons/md";
 import { FaUserFriends, FaUsers, FaRedRiver } from "react-icons/fa";
 import { GiHandBag } from "react-icons/gi";
 import { CiVideoOn } from "react-icons/ci";
-import { FaStar, FaArrowRightFromBracket } from "react-icons/fa6";
+import { FaStar } from "react-icons/fa6";
 //components
 import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb'
 import StatusBox from '../../Components/StatusBox/StatusBox';
@@ -19,6 +19,7 @@ import ShowMoreDetails from '../../Components/ShowMoreDetails/ShowMoreDetails';
 import ReapondComment from '../../Components/Comment/RespondComment/ReapondComment';
 import CopyLinkBox from '../../Components/CopyLinkBox/CopyLinkBox';
 import CategoryBox from '../../Components/CategoryBox/CategoryBox';
+import DetailsTeacher from '../../Components/DetailsTeacher/DetailsTeacher';
 //Funcs
 import faNumber from '../../Functions/FaNumber/FaNumber';
 
@@ -250,27 +251,13 @@ export default function CourseInfo() {
                       </div>
                     </div>
 
-                    <div className='course-info course-box-details'>
+                    <DetailsTeacher
+                      nameTeacher={'محمد امین سعیدی راد'}
+                      imgTeacher={"images/info/teacher.png"}
+                      textBio={` اولین کدم رو 14 سالگی زدم، حدود 9 سال پیش که با زبان ویژوال بیسیک بود و بعد حدودا 2 سال تو فیلد برنامه نویسی موبایل با زبان جاوا کار کردم و در نهایت با عشقی به اسم جاوا اسکریپت آشنا شدم و حدودا یه 7 سالی هست جاوا اسکریپت کد می‌زنم و به صورت Mern Stack فعالیت می‌کنم.`}
+                      to={'/'}
+                    />
 
-                      <div className="techer-details__header">
-
-                        <div className="techer-details__header-right">
-                          <img src="images/info/teacher.png" alt="Teacher Profile" className="techer-details__header-img" />
-                          <a href="/" className="techer-details__header-link">محمدامین سعیدی راد</a>
-                        </div>
-
-                        <div className="techer-details__header-left">
-                          <span className="techer-details__header-name">مدرس دوره</span>
-                          <FaArrowRightFromBracket className='techer-details__header-icon' />
-                        </div>
-
-                      </div>
-
-                      <p className="techer-details__footer">
-                        اولین کدم رو 14 سالگی زدم، حدود 9 سال پیش که با زبان ویژوال بیسیک بود و بعد حدودا 2 سال تو فیلد برنامه نویسی موبایل با زبان جاوا کار کردم و در نهایت با عشقی به اسم جاوا اسکریپت آشنا شدم و حدودا یه 7 سالی هست جاوا اسکریپت کد می‌زنم و به صورت Mern Stack فعالیت می‌کنم.
-                      </p>
-
-                    </div>
                   </section>
 
 

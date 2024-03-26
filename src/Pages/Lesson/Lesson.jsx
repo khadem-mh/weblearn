@@ -9,10 +9,16 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb'
 import ReapondComment from '../../Components/Comment/RespondComment/ReapondComment';
 import AccordionListVideo from '../../Components/AccordionListVideo/AccordionListVideo';
+import StatusBox from '../../Components/StatusBox/StatusBox';
+import faNumber from '../../Functions/FaNumber/FaNumber';
+import DetailsTeacher from '../../Components/DetailsTeacher/DetailsTeacher';
 //icons
 import { FaRegCommentDots, FaRegFileLines } from "react-icons/fa6";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { MdOutlineFileUpload } from "react-icons/md";
+import { HiOutlineInformationCircle } from "react-icons/hi";
+import { RiTimeLine } from "react-icons/ri";
+import { IoVideocamOutline } from "react-icons/io5";
 
 export default function Lesson() {
 
@@ -87,7 +93,10 @@ export default function Lesson() {
 
                         <div className='details-lesson__right-bottom-parent'>
                             <button className='details-lesson__right-header-btn-ques'>سوال دارم!</button>
+                            <div>
+                            <button className='details-lesson__right-header-btn-file'>دانلود پیوست</button>
                             <button className='details-lesson__right-header-btn-downlod'>دانلود ویدیو</button>
+                            </div>
                         </div>
 
                     </div>
@@ -186,6 +195,17 @@ export default function Lesson() {
                         />
                     </div>
 
+                    <div className='parent-box-status-details'>
+                        <StatusBox fzTitle='1.3rem' fzSubTitle='1.3rem' classBox={'box-tiny-status'} title={'وضعیت دوره'} subTitle={'تکمیل شده'} icon={<HiOutlineInformationCircle />} />
+                        <StatusBox fzTitle='1.3rem' fzSubTitle='1.3rem' classBox={'box-tiny-status'} title={'زمان دوره'} subTitle={'تکمیل شده'} icon={<RiTimeLine />} />
+                        <StatusBox fzTitle='1.3rem' fzSubTitle='1.3rem' classBox={'box-tiny-status'} title={'جلسات دوره'} subTitle={faNumber(45)} icon={<IoVideocamOutline />} />
+                    </div>
+
+                    <DetailsTeacher
+                        nameTeacher={'محمدحسین'}
+                        imgTeacher={"images/info/teacher.png"}
+                        to={'/'}
+                    />
 
                 </section>
 
