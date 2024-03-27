@@ -12,25 +12,32 @@ export default function App() {
 
   return (
     <main>
-      <header className="header">
-        {
-          routes[0].path === location.pathname ?
-            (
-              <>
-                <div className="hty"></div>
-                <Navbar />
-                <Landing />
-              </>
-            )
-            : <Navbar />
-        }
-      </header>
+      {
+        location.pathname !== '/register' && location.pathname !== '/login' &&
+        <header className="header">
+          {
+            routes[0].path === location.pathname ?
+              (
+                <>
+                  <div className="hty"></div>
+                  <Navbar />
+                  <Landing />
+                </>
+              )
+              : <Navbar />
+          }
+        </header>
+      }
+
 
       <section className={location.pathname === '/' && `app`}>
         {router}
       </section>
 
-      <Footer />
+      {
+        location.pathname !== '/register' && location.pathname !== '/login' &&
+        < Footer />
+      }
 
     </main>
   )
