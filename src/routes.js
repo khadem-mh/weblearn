@@ -4,6 +4,8 @@ import CategoryArticles from "./Pages/CategoryArticles/CategoryArticles"
 import CourseInfo from "./Pages/CourseInfo/CourseInfo"
 import ArticleInfo from "./Pages/ArticleInfo/ArticleInfo"
 import Lesson from "./Pages/Lesson/Lesson"
+import Login from "./Pages/Login/Login"
+import Register from "./Pages/Register/Register"
 import Page404 from "./Pages/Page404/Page404"
 
 const routes = [
@@ -13,6 +15,8 @@ const routes = [
     { path: '/category-articles', element: <CategoryArticles/>},
     { path: '/category-courses', element: <CategoryCourses/>},
     { path: '/lesson', element: <Lesson/>},
+    { path: '/login', element: <Login/>},
+    { path: '/register', element: <Register/>},
     { path: '/*', element: <Page404/>},
 ]
 
