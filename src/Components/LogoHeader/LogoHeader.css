@@ -1,0 +1,24 @@
+.logo-header-site {
+    width: 111px;
+}
+
+.logo-header {
+    display: flex;
+    align-items: center;
+    color: whitesmoke;
+}
+
+.logo-header__text-logo {
+    margin-right: 1rem;
+}
+
+.logo-header__text-logo h2 {
+    font-size: 5.1rem;
+    font-family: Lalezar;
+}
+
+.logo-header__text-logo h3 {
+    font-size: 1.3rem;
+    letter-spacing: .5rem;
+    margin-top: -1rem;
+}
