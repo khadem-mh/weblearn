@@ -1,5 +1,6 @@
 import React from 'react'
 import './Lesson.css'
+import './media.css'
 //package
 import Plyr from "plyr-react"
 import "plyr-react/plyr.css"
@@ -29,7 +30,7 @@ export default function Lesson() {
     };
 
     return (
-        <section className='page'>
+        <section className='page-lesson page'>
 
             <BreadCrumb
                 links={
@@ -94,8 +95,8 @@ export default function Lesson() {
                         <div className='details-lesson__right-bottom-parent'>
                             <button className='details-lesson__right-header-btn-ques'>سوال دارم!</button>
                             <div>
-                            <button className='details-lesson__right-header-btn-file'>دانلود پیوست</button>
-                            <button className='details-lesson__right-header-btn-downlod'>دانلود ویدیو</button>
+                                <button className='details-lesson__right-header-btn-file'>دانلود پیوست</button>
+                                <button className='details-lesson__right-header-btn-downlod'>دانلود ویدیو</button>
                             </div>
                         </div>
 
@@ -150,7 +151,7 @@ export default function Lesson() {
                         </section>
 
                         <div className='details-lesson__right-comment-footer'>
-                            <div>
+                            <div className='mb-0'>
                                 <MdOutlineFileUpload className='details-lesson__right-comment-footer-icon' />
                                 <p>اگر فایل ضمیمه ای دارید لطفا آپلود کنید</p>
                             </div>
@@ -196,9 +197,9 @@ export default function Lesson() {
                     </div>
 
                     <div className='parent-box-status-details'>
-                        <StatusBox fzTitle='1.3rem' fzSubTitle='1.3rem' classBox={'box-tiny-status'} title={'وضعیت دوره'} subTitle={'تکمیل شده'} icon={<HiOutlineInformationCircle />} />
-                        <StatusBox fzTitle='1.3rem' fzSubTitle='1.3rem' classBox={'box-tiny-status'} title={'زمان دوره'} subTitle={'تکمیل شده'} icon={<RiTimeLine />} />
-                        <StatusBox fzTitle='1.3rem' fzSubTitle='1.3rem' classBox={'box-tiny-status'} title={'جلسات دوره'} subTitle={faNumber(45)} icon={<IoVideocamOutline />} />
+                        <StatusBox fzTitle='1.5rem' fzSubTitle='1.3rem' classBox={'box-tiny-status mt-2'} title={'وضعیت دوره'} subTitle={'تکمیل شده'} icon={<HiOutlineInformationCircle />} />
+                        <StatusBox fzTitle='1.5rem' fzSubTitle='1.3rem' classBox={'box-tiny-status mt-2'} title={'زمان دوره'} subTitle={'تکمیل شده'} icon={<RiTimeLine />} />
+                        <StatusBox fzTitle='1.5rem' fzSubTitle='1.3rem' classBox={'box-tiny-status mt-2'} title={'جلسات دوره'} subTitle={faNumber(45)} icon={<IoVideocamOutline />} />
                     </div>
 
                     <DetailsTeacher

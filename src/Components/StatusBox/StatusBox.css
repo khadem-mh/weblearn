@@ -41,6 +41,8 @@
 
 .course-boxes__box-left--subtitle {
     color: var(--whitedie-color);
+    font-family: IRANSans;
+    font-weight: bold;
 }
 
 /* Finish Course boxes styles */
