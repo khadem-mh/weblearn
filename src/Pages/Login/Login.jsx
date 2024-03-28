@@ -1,8 +1,22 @@
 import React from 'react'
-import './Login.css'
+import FormGetData from '../../Components/FormGetData/FormGetData';
+//icons
+import { MdOutlineAttachEmail } from "react-icons/md";
+import { RiLockPasswordLine } from "react-icons/ri";
 
 export default function Login() {
   return (
-    <div>Login</div>
+    <section className='page-register'>
+      <FormGetData
+        title={"ورود با ایمیل"}
+        subTitle={" حساب کاربری ندارید؟ "}
+        subTitleTextLink={"ثبت نام کنید"}
+        subTitleLink={"/register"}
+        inputsValue={[
+          { placeholder: 'آدرس ایمیل', icon: <MdOutlineAttachEmail /> },
+          { placeholder: 'رمز عبور', icon: <RiLockPasswordLine /> },
+        ]}
+      />
+    </section>
   )
 }
