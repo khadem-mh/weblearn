@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import './Navbar.css'
 import './media.css'
+import { Link } from 'react-router-dom';
 import SearchInput from '../SearchInput/SearchInput';
 //icons
 import { IoCloseOutline } from "react-icons/io5";
@@ -114,9 +115,9 @@ export default function Navbar() {
 
                         <div className='logo-sabzlearn__link'>
                             <div className='logo-sabzlearn'>
-                                <a href="/">
+                                <Link to="/">
                                     <img src="./Images/Logos/Logo-site/logo-one-copy.png" className="main-header__logo" alt="logo-sabzlearn" />
-                                </a>
+                                </Link>
                             </div>
                         </div>
 
@@ -237,7 +238,7 @@ export default function Navbar() {
 
                             <a href="/" className="main-header__profile">
                                 <div className='d-none d-sm-block'>
-                                    <p className='main-header__profile-text'> ورود |  عضویت</p>
+                                    <Link to={'/register'} className='main-header__profile-text'> ورود |  عضویت</Link>
                                 </div>
                                 <div className='main-header__profile-icon'>
                                     <HiOutlineUser className='main-header__icon-user' />
