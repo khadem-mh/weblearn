@@ -14,7 +14,7 @@ export default function Index() {
       <article id="courses" style={{marginTop: '13rem'}}>
         <div className="container">
 
-          <HeaderTitle routeUrl={'/'} title={'جدیدترین دوره ها'} subTitle={'سکوی پرتاپ شما به سمت موفقیت'} textBtn={'تمامی دوره ها'} />
+          <HeaderTitle routeUrl={'/category-courses'} title={'جدیدترین دوره ها'} subTitle={'سکوی پرتاپ شما به سمت موفقیت'} textBtn={'تمامی دوره ها'} />
 
           <div className="courses-content">
             <div className="container">
@@ -99,7 +99,7 @@ export default function Index() {
       <article className="article">
         <div className="container">
 
-        <HeaderTitle routeUrl={'/'} title={'جدیدترین مقاله ها'} subTitle={'پیش به سوی ارتقای دانش'} textBtn={'تمامی مقاله ها'} />
+        <HeaderTitle routeUrl={'/category-articles'} title={'جدیدترین مقاله ها'} subTitle={'پیش به سوی ارتقای دانش'} textBtn={'تمامی مقاله ها'} />
 
           <div className="article__content">
             <div className="row row-cols-sm-2 row-cols-md-3 row-cols-xl-4 d-flex justify-content-center justify-content-sm-start" id="articles-wrapper">

@@ -1,5 +1,6 @@
 import React from 'react'
 import './HeaderTitle.css'
+import { Link } from 'react-router-dom'
 
 export default function HeaderTitle({ title, subTitle, textBtn, routeUrl }) {
     return (
@@ -11,10 +12,10 @@ export default function HeaderTitle({ title, subTitle, textBtn, routeUrl }) {
             {
                 textBtn &&
                 <div className="courses-header__left">
-                    <a href={routeUrl} className="courses-header__link button">
+                    <Link to={routeUrl} className="courses-header__link button">
                         {textBtn}
                         <i className="fas fa-arrow-left courses-header__icon"></i>
-                    </a>
+                    </Link>
                 </div>
             }
         </div>

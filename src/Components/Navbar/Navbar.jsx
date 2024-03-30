@@ -127,9 +127,9 @@ export default function Navbar() {
                                 <IoCloseOutline className='main-header__icon-close' />
                             </div>
 
-                            <a href="/">
+                            <Link to="/">
                                 <img src="./Images/Logos/Logo-site/logo-one-copy.png" className="main-header__logo" alt="logo-sabzlearn" />
-                            </a>
+                            </Link>
 
                             <div className='main-header__text-logo'>
                                 <p className='sub-text-logo text-center'>SabzLearn.ir</p>
@@ -236,14 +236,14 @@ export default function Navbar() {
                                 <SearchInput w={'24rem'} h={'3.9rem'} fz={'.8em'} iconFz={'1em'} />
                             </div>
 
-                            <a href="/" className="main-header__profile">
+                            <Link to="/register" className="main-header__profile">
                                 <div className='d-none d-sm-block'>
-                                    <Link to={'/register'} className='main-header__profile-text'> ورود |  عضویت</Link>
+                                    <p className='main-header__profile-text'> ورود |  عضویت</p>
                                 </div>
                                 <div className='main-header__profile-icon'>
                                     <HiOutlineUser className='main-header__icon-user' />
                                 </div>
-                            </a>
+                            </Link>
 
                         </div>
 
