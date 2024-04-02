@@ -4,7 +4,6 @@
     border-radius: 1rem;
     overflow: hidden;
     box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.5);
-    height: 460px;
 }
 
 .article__card:hover {
@@ -48,8 +47,7 @@
 }
 
 .article-card__content {
-    padding: 1rem 2rem 3rem 2rem;
-    height: 150px;
+    padding: 1rem 2rem 2rem 2rem;
     display: block;
     margin: 0rem auto;
 }
@@ -67,11 +65,12 @@
 }
 
 .article-card__link-btn {
+    border-top: 1px solid gray;
     text-align: center !important;
     transition: all 400ms;
     cursor: pointer;
     margin-top: 1rem;
-    padding: .3rem 0;
+    padding: 1rem 0;
     font-size: 1.3rem;
 }
 

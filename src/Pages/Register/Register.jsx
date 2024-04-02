@@ -1,5 +1,6 @@
 import React from 'react'
 import FormGetData from '../../Components/FormGetData/FormGetData';
+import Input from '../../Components/Input/Input';
 //icons
 import { HiOutlineUser, HiOutlinePhone } from "react-icons/hi2";
 import { MdOutlineAttachEmail } from "react-icons/md";
@@ -13,14 +14,15 @@ export default function Register() {
                 subTitle={"قبلا ثبت نام کرده اید؟ "}
                 subTitleTextLink={"وارد شوید "}
                 subTitleLink={"/login"}
-                inputsValue={[
-                    { placeholder: 'نام و نام خوانوادگی', icon: <HiOutlineUser /> },
-                    { placeholder: 'نام کاربری ', icon: <HiOutlineUser /> },
-                    { placeholder: 'شماره تلفن', icon: <HiOutlinePhone /> },
-                    { placeholder: 'آدرس ایمیل', icon: <MdOutlineAttachEmail /> },
-                    { placeholder: 'رمز عبور', icon: <RiLockPasswordLine /> },
-                ]}
-            />
+            >
+
+                <Input inpPlaceholder={'نام و نام خوانوادگی'} inpIcon={<HiOutlineUser />} />
+                <Input inpPlaceholder={'نام کاربری '} inpIcon={<HiOutlineUser />} />
+                <Input inpPlaceholder={'شماره تلفن'} inpIcon={<HiOutlinePhone />} />
+                <Input inpPlaceholder={'آدرس ایمیل'} inpIcon={<MdOutlineAttachEmail />} />
+                <Input inpPlaceholder={'رمز عبور'} inpIcon={<RiLockPasswordLine />} />
+
+            </FormGetData>
         </section>
     )
 }

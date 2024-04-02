@@ -30,7 +30,7 @@ export default function App() {
       }
 
 
-      <section className={location.pathname === '/' && `app`}>
+      <section className={location.pathname === '/' ? 'app' : ''}>
         {router}
       </section>
 

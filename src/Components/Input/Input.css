@@ -1,0 +1,25 @@
+.user-datas__parent-input {
+    width: 100%;
+    height: 52px;
+    margin: 1rem 0;
+    color: var(--secondary-light-color) !important;
+    border-radius: 1rem;
+    padding: 1rem;
+    background-color: var(--blue-lighter-color);
+}
+
+.user-datas__parent-input svg {
+    font-size: 1.7rem !important;
+}
+
+.user-datas__parent-input input {
+    color: var(--secondary-light-color) !important;
+    border: 0;
+    border-radius: 1rem;
+    background-color: transparent;
+}
+
+.user-datas__parent-input input::placeholder {
+    color: var(--secondary-light-color);
+    font-size: 1.2rem !important;
+}

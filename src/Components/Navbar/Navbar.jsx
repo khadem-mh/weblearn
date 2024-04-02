@@ -143,57 +143,57 @@ export default function Navbar() {
                                     <li className="main-header__item">
                                         <a href="/" className="main-header__link">فرانت اند
                                             <i className="fas fa-angle-down main-header__link-icon"></i>
-                                            <ul className="main-header__dropdown">
-                                                <li className="main-header__dropdown-item"><a href="/"
-                                                    className="main-header__dropdown-link">آموزش HTML</a></li>
-                                                <li className="main-header__dropdown-item"><a href="/"
-                                                    className="main-header__dropdown-link">آموزش CSS</a></li>
-                                            </ul>
                                         </a>
+                                        <ul className="main-header__dropdown">
+                                            <li className="main-header__dropdown-item"><a href="/"
+                                                className="main-header__dropdown-link">آموزش HTML</a></li>
+                                            <li className="main-header__dropdown-item"><a href="/"
+                                                className="main-header__dropdown-link">آموزش CSS</a></li>
+                                        </ul>
                                     </li>
                                     <li className="main-header__item">
                                         <a href="/" className="main-header__link">بک اند
                                             <i className="fas fa-angle-down main-header__link-icon"></i>
-                                            <ul className="main-header__dropdown">
-                                                <li className="main-header__dropdown-item"><a href="/"
-                                                    className="main-header__dropdown-link">آموزش HTML</a></li>
-                                                <li className="main-header__dropdown-item"><a href="/"
-                                                    className="main-header__dropdown-link">آموزش CSS</a></li>
-                                            </ul>
                                         </a>
+                                        <ul className="main-header__dropdown">
+                                            <li className="main-header__dropdown-item"><a href="/"
+                                                className="main-header__dropdown-link">آموزش HTML</a></li>
+                                            <li className="main-header__dropdown-item"><a href="/"
+                                                className="main-header__dropdown-link">آموزش CSS</a></li>
+                                        </ul>
                                     </li>
                                     <li className="main-header__item">
                                         <a href="/" className="main-header__link"> پایتون
                                             <i className="fas fa-angle-down main-header__link-icon"></i>
-                                            <ul className="main-header__dropdown">
-                                                <li className="main-header__dropdown-item"><a href="/"
-                                                    className="main-header__dropdown-link">آموزش HTML</a></li>
-                                                <li className="main-header__dropdown-item"><a href="/"
-                                                    className="main-header__dropdown-link">آموزش CSS</a></li>
-                                            </ul>
                                         </a>
+                                        <ul className="main-header__dropdown">
+                                            <li className="main-header__dropdown-item"><a href="/"
+                                                className="main-header__dropdown-link">آموزش HTML</a></li>
+                                            <li className="main-header__dropdown-item"><a href="/"
+                                                className="main-header__dropdown-link">آموزش CSS</a></li>
+                                        </ul>
                                     </li>
                                     <li className="main-header__item">
-                                        <a href="/" className="main-header__link"> پایتون
+                                        <a href="/" className="main-header__link"> مهارت های نرم
                                             <i className="fas fa-angle-down main-header__link-icon"></i>
-                                            <ul className="main-header__dropdown">
-                                                <li className="main-header__dropdown-item"><a href="/"
-                                                    className="main-header__dropdown-link">آموزش HTML</a></li>
-                                                <li className="main-header__dropdown-item"><a href="/"
-                                                    className="main-header__dropdown-link">آموزش CSS</a></li>
-                                            </ul>
                                         </a>
+                                        <ul className="main-header__dropdown">
+                                            <li className="main-header__dropdown-item"><a href="/"
+                                                className="main-header__dropdown-link">آموزش HTML</a></li>
+                                            <li className="main-header__dropdown-item"><a href="/"
+                                                className="main-header__dropdown-link">آموزش CSS</a></li>
+                                        </ul>
                                     </li>
                                     <li className="main-header__item">
-                                        <a href="/" className="main-header__link"> پایتون
+                                        <a href="/" className="main-header__link"> دسکتاپ
                                             <i className="fas fa-angle-down main-header__link-icon"></i>
-                                            <ul className="main-header__dropdown">
-                                                <li className="main-header__dropdown-item"><a href="/"
-                                                    className="main-header__dropdown-link">آموزش HTML</a></li>
-                                                <li className="main-header__dropdown-item"><a href="/"
-                                                    className="main-header__dropdown-link">آموزش CSS</a></li>
-                                            </ul>
                                         </a>
+                                        <ul className="main-header__dropdown">
+                                            <li className="main-header__dropdown-item"><a href="/"
+                                                className="main-header__dropdown-link">آموزش HTML</a></li>
+                                            <li className="main-header__dropdown-item"><a href="/"
+                                                className="main-header__dropdown-link">آموزش CSS</a></li>
+                                        </ul>
                                     </li>
 
                                 </ul>

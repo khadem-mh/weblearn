@@ -3,7 +3,8 @@ import './FormGetData.css'
 import { Link } from 'react-router-dom'
 import LogoHeader from '../../Components/LogoHeader/LogoHeader'
 
-export default function FormGetData({ title, subTitle, subTitleLink, subTitleTextLink, inputsValue }) {
+export default function FormGetData({ title, subTitle, subTitleLink, subTitleTextLink, children }) {
+
     return (
         <section className='register'>
             <div className='backgroundImageLogin'></div>
@@ -15,21 +16,8 @@ export default function FormGetData({ title, subTitle, subTitleLink, subTitleTex
                     <h4 className='form-register__title'>{title}</h4>
                     <p className='form-register__subtitle'> {subTitle} <Link to={subTitleLink}> {subTitleTextLink} </Link></p>
                     <form className='user-datas' autoComplete='on'>
-
                         {
-                            inputsValue.length > 1
-                                ?
-                                inputsValue.map(input => (
-                                    <div className='user-datas__parent-input'>
-                                        <input type="text" placeholder={input.placeholder} />
-                                        {input.icon}
-                                    </div>
-                                ))
-                                :
-                                <div className='user-datas__parent-input'>
-                                    <input type="text" placeholder={inputsValue.placeholder} />
-                                    {inputsValue.icon}
-                                </div>
+                            children
                         }
                         <button className='btn-form-register'>ادامه</button>
                     </form>

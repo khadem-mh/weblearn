@@ -38,7 +38,6 @@ export default function Article({ srcImg, titleArticle, detailsArticle }) {
                 </div>
 
                 <p className="article-card__link-btn">
-                    <hr />
                     <Link to="/article-info" className='read-article'>مطالعه مقاله</Link>
                     <FaArrowCircleLeft className='article-card__icon-arrow' />
                 </p>
