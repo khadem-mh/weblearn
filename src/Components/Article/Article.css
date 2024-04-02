@@ -11,6 +11,10 @@
     transform: translateY(-0.6rem);
 }
 
+.blog__banner .parent-spinner {
+    top: 115px;
+}
+
 .article-card__img {
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
