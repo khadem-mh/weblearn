@@ -44,7 +44,19 @@
     user-select: none;
 }
 
+.parent-spinner {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 80px;
+    left: auto;
+    right: auto;
+}
+
 .course-box__img {
+    position: relative;
     transition: all 400ms ease;
     border-bottom-left-radius: 1.5rem;
     border-bottom-right-radius: 1.5rem;

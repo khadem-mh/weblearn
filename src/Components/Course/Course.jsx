@@ -1,15 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Course.css'
 import './media.css'
+import Spinner from 'react-bootstrap/Spinner';
+import { Link } from 'react-router-dom';
 
 export default function Course({ courseImg, coursePathImg, courseTitle, courseTeacher, courseCountUsers, coursePrice, courseScore, courseDetails, courseSector, courseBadg }) {
+
+    const [imageLoaded, setImageLoaded] = useState(false)
+
+    const onImageLoaded = () => setImageLoaded(true)
+
     return (
         <div className="col-12 parent-course-box">
             <div className="course-box">
 
-                <a href="/">
-                    <img src={`${coursePathImg}Images/Courses/${courseImg}`} alt="course" className="course-box__img" />
-                </a>
+                <Link to="/course-info">
+                    <img
+                        src={`${coursePathImg}Images/Courses/${courseImg}`}
+                        alt="course"
+                        className="course-box__img"
+                        onLoad={onImageLoaded}
+                    />
+                    {
+                        !imageLoaded &&
+                        <div className='parent-spinner'>
+                            <Spinner animation="grow" variant="success" />
+                        </div>
+                    }
+                </Link>
 
                 <div className="course-box__main">
                     <span className='course-box__sector'>{courseSector}</span>
@@ -23,9 +41,9 @@ export default function Course({ courseImg, coursePathImg, courseTitle, courseTe
 
                         <div className="course-box__teacher">
                             <i className="fas fa-chalkboard-teacher course-box__teacher-icon"></i>
-                            <a href="/" className="course-box__teacher-link">
+                            <Link to="/" className="course-box__teacher-link">
                                 {courseTeacher}
-                            </a>
+                            </Link>
                         </div>
 
                         <div className="course-box__rating">
@@ -45,10 +63,10 @@ export default function Course({ courseImg, coursePathImg, courseTitle, courseTe
                 </div>
 
                 <div className="course-box__footer">
-                    <a href="/" className="course-box__footer-link">
+                    <Link to="/course-info" className="course-box__footer-link">
                         <p>مشاهده اطلاعات</p>
                         <i className="fas fa-arrow-left course-box__footer-icon"></i>
-                    </a>
+                    </Link>
                 </div>
 
             </div>
