@@ -34,7 +34,6 @@
 }
 
 .course-info__video {
-    border-radius: 1.5rem;
     max-width: 100%;
     min-width: 100%;
     object-fit: cover;

@@ -2,14 +2,17 @@ import React, { useRef } from 'react'
 import './CourseInfo.css'
 import './Comments.css'
 import './media.css'
-//icons
+//?package
+import Plyr from "plyr-react"
+import "plyr-react/plyr.css"
+//?icons
 import { GoShieldCheck } from "react-icons/go";
 import { MdOutlineAccessTime, MdOutlineDateRange } from "react-icons/md";
 import { FaUserFriends, FaUsers, FaRedRiver } from "react-icons/fa";
 import { GiHandBag } from "react-icons/gi";
 import { CiVideoOn } from "react-icons/ci";
 import { FaStar } from "react-icons/fa6";
-//components
+//!components
 import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb'
 import StatusBox from '../../Components/StatusBox/StatusBox';
 import CourseCoverAside from '../../Components/CourseCoverAside/CourseCoverAside';
@@ -20,7 +23,7 @@ import ReapondComment from '../../Components/Comment/RespondComment/ReapondComme
 import CopyLinkBox from '../../Components/CopyLinkBox/CopyLinkBox';
 import CategoryBox from '../../Components/CategoryBox/CategoryBox';
 import DetailsTeacher from '../../Components/DetailsTeacher/DetailsTeacher';
-//Funcs
+//?Funcs
 import faNumber from '../../Functions/FaNumber/FaNumber';
 
 export default function CourseInfo() {
@@ -72,12 +75,42 @@ export default function CourseInfo() {
 
               </div>
 
-              <div className="mt-4 mt-md-0 parent-video">
-                <video
-                  poster='/Images/Courses/Burp-852x479-1.png'
-                  src="https://tech.sabzlearn.ir/uploads/ce01010101it/js-expert-project/jsExPrjcts-59-blog-page-shared-components.mp4"
-                  className="course-info__video" controls></video>
+              <div className="mt-4 mt-md-0 parent-video">                         //!plyr
+                <div className='container-plyr course-info__video'>
+                  <Plyr
+                    source={{
+                      type: 'video',
+                      poster: '/Images/Courses/3.png',
+                      ratio: '16:9',
+                      sources: [
+                        {
+                          src: 'Images/video-1.mp4',
+                          type: 'video/mp4',
+                        },
+                      ],
+                    }}
+                    options={{
+                      controls: [
+                        'play-large',
+                        'play',
+                        'progress',
+                        'current-time',
+                        'mute',
+                        'volume',
+                        'captions',
+                        'settings',
+                        'pip',
+                        'airplay',
+                        'fullscreen'
+                      ],
+                      autoplay: false,
+                      volume: 0.5,
+                    }}
+                    /* style={playerStyle} */
+                  />
+                </div>
               </div>
+
             </div>
           </div>
         </section>
