@@ -35,9 +35,8 @@
 
 .course-info__video {
     max-width: 100%;
-    min-width: 100%;
     object-fit: cover;
-    max-height: 371px;
+
 }
 
 /* Finish Course Info Styles */
@@ -193,9 +192,7 @@
 
 /* course footer info */
 
-
 /* toast */
-
 .toast-text-copy {
     position: fixed;
     bottom: 3rem;
@@ -213,5 +210,4 @@
     font-size: 1.3rem !important;
     background-color: var(--bluedie-color);
 }
-
 /* toast */

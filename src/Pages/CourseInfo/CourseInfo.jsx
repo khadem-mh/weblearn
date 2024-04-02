@@ -75,7 +75,7 @@ export default function CourseInfo() {
 
               </div>
 
-              <div className="mt-4 mt-md-0 parent-video">                         //!plyr
+              <div className="mt-4 mt-md-0 parent-video">                      
                 <div className='container-plyr course-info__video'>
                   <Plyr
                     source={{
@@ -106,7 +106,6 @@ export default function CourseInfo() {
                       autoplay: false,
                       volume: 0.5,
                     }}
-                    /* style={playerStyle} */
                   />
                 </div>
               </div>
