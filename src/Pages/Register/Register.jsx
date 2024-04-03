@@ -5,6 +5,10 @@ import Input from '../../Components/Input/Input';
 import { HiOutlineUser, HiOutlinePhone } from "react-icons/hi2";
 import { MdOutlineAttachEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
+//types
+import {
+    inputFullName, inputUserName, inputPhoneNumber, inputEmail, inputPassword
+} from "../../Types/TypesInput.js"
 
 export default function Register() {
     return (
@@ -16,11 +20,11 @@ export default function Register() {
                 subTitleLink={"/login"}
             >
 
-                <Input inpPlaceholder={'نام و نام خوانوادگی'} inpIcon={<HiOutlineUser />} />
-                <Input inpPlaceholder={'نام کاربری '} inpIcon={<HiOutlineUser />} />
-                <Input inpPlaceholder={'شماره تلفن'} inpIcon={<HiOutlinePhone />} />
-                <Input inpPlaceholder={'آدرس ایمیل'} inpIcon={<MdOutlineAttachEmail />} />
-                <Input inpPlaceholder={'رمز عبور'} inpIcon={<RiLockPasswordLine />} />
+                <Input type={inputFullName} inpPlaceholder={'نام و نام خوانوادگی'} inpIcon={<HiOutlineUser />} />
+                <Input type={inputUserName} inpPlaceholder={'نام کاربری '} inpIcon={<HiOutlineUser />} />
+                <Input type={inputPhoneNumber} inpPlaceholder={'شماره تلفن'} inpIcon={<HiOutlinePhone />} />
+                <Input type={inputEmail} inpPlaceholder={'آدرس ایمیل'} inpIcon={<MdOutlineAttachEmail />} />
+                <Input type={inputPassword} inpPlaceholder={'رمز عبور'} inpIcon={<RiLockPasswordLine />} />
 
             </FormGetData>
         </section>

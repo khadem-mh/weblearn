@@ -50,7 +50,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     z-index: -1;
-    animation: moveRight 7s infinite alternate !important;
+  /*   animation: moveRight 7s infinite alternate !important; */
 }
 
 .form-register a,

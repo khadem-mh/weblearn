@@ -1,5 +1,8 @@
 import React, { useReducer } from 'react'
 import './Input.css'
+import {
+    inputFullName, inputUserName, inputPhoneNumber, inputEmail, inputPassword
+} from "../../Types/TypesInput.js"
 
 const inputReducer = (state, action) => {
     switch (action.type) {
@@ -16,7 +19,7 @@ const inputReducer = (state, action) => {
     }
 }
 
-export default function Input({ inpPlaceholder, inpIcon }) {
+export default function Input({ inpPlaceholder, inpIcon, type }) {
 
     const [state, dispatch] = useReducer(inputReducer, {
         value: '',
