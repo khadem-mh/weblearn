@@ -1,5 +1,6 @@
 import React from 'react'
 import FormGetData from '../../Components/FormGetData/FormGetData';
+import Input from '../../Components/Input/Input';
 //icons
 import { MdOutlineAttachEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
@@ -12,11 +13,10 @@ export default function Login() {
         subTitle={" حساب کاربری ندارید؟ "}
         subTitleTextLink={"ثبت نام کنید"}
         subTitleLink={"/register"}
-        inputsValue={[
-          { placeholder: 'آدرس ایمیل', icon: <MdOutlineAttachEmail /> },
-          { placeholder: 'رمز عبور', icon: <RiLockPasswordLine /> },
-        ]}
-      />
+      >
+        <Input inpPlaceholder={'آدرس ایمیل'} inpIcon={<MdOutlineAttachEmail />} />
+        <Input inpPlaceholder={'رمز عبور'} inpIcon={<RiLockPasswordLine />} />
+      </FormGetData>
     </section>
   )
 }
