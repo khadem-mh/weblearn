@@ -10,14 +10,14 @@ const inputReducer = (state, action) => {
             return {
                 ...state,
                 value: action.value,
-                isValid: action.value.length > 6 ? true : false
+                isValid: action.value.length > 5 ? true : false
             }
         }
         case inputPhoneNumber: {
             return {
                 ...state,
                 value: action.value,
-                isValid: action.value.length === 11 && action.value.slice(0, 2) === '09' ? true : false
+                isValid: action.value.length === 10 && action.value.slice(0, 2) === '09' ? true : false
             }
         }
         case inputEmail: {

@@ -6,6 +6,7 @@
     border-radius: 1rem;
     padding: 1rem;
     background-color: var(--blue-lighter-color);
+    transition: all 400ms ease;
 }
 
 .user-datas__parent-input svg {
@@ -22,4 +23,12 @@
 .user-datas__parent-input input::placeholder {
     color: var(--secondary-light-color);
     font-size: 1.2rem !important;
+}
+
+.valid-inp {
+    border: 1px solid greenyellow;
+}
+
+.not-valid-inp {
+    border: 1px solid rgb(212, 55, 55);
 }
