@@ -3,14 +3,38 @@ import './Input.css'
 import {
     inputFullName, inputUserName, inputPhoneNumber, inputEmail, inputPassword
 } from "../../Types/TypesInput.js"
+//func
+import validateEmail from '../../Functions/ValidateEmail/ValidateEmail.js'
 
 const inputReducer = (state, action) => {
     switch (action.type) {
-        case 'CHANGE-VALUE': {
+        case inputFullName: case inputUserName: {
             return {
                 ...state,
                 value: action.value,
-                isValid: action.isValid
+                isValid: action.value.length > 6 ? true : false
+            }
+        }
+        case inputPhoneNumber: {
+            return {
+                ...state,
+                value: action.value,
+                isValid: action.value.length === 11 && action.value.slice(0, 2) === '09' ? true : false
+            }
+        }
+        case inputEmail: {
+            let isValidateEmail = validateEmail(action.value)
+            return {
+                ...state,
+                value: action.value,
+                isValid: isValidateEmail ? true : false
+            }
+        }
+        case inputPassword: {
+            return {
+                ...state,
+                value: action.value,
+                isValid: action.value.length >= 8 ? true : false
             }
         }
         default: {
@@ -29,9 +53,8 @@ export default function Input({ inpPlaceholder, inpIcon, type }) {
     const inpChangeHandler = event => {
         let inpValue = event.target.value
         dispatch({
-            type: "CHANGE-VALUE",
+            type,
             value: inpValue,
-            isValid: true
         })
     }
 
