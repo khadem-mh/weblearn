@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import FormGetData from '../../Components/FormGetData/FormGetData';
 import Input from '../../Components/Input/Input';
 //icons
@@ -11,6 +11,28 @@ import {
 } from "../../Types/TypesInput.js"
 
 export default function Register() {
+
+    const [inpValid, setInpValid] = useState([])
+
+    useEffect(() => {
+        console.log(inpValid);
+    }, [inpValid])
+
+    const validRul = valid => {
+        setInpValid(state => {
+            if (state.length === 0) {
+                return [valid]
+            } else {
+                let isRepeat = state.filter(inp => inp.type !== valid.type && inp)
+                if (isRepeat) {
+                    return [...isRepeat, valid]
+                }
+              
+            }
+        })
+    }
+
+
     return (
         <section className='page-register'>
             <FormGetData
@@ -20,11 +42,11 @@ export default function Register() {
                 subTitleLink={"/login"}
             >
 
-                <Input type={inputFullName} inpPlaceholder={'نام و نام خوانوادگی'} inpIcon={<HiOutlineUser />} />
-                <Input type={inputUserName} inpPlaceholder={'نام کاربری '} inpIcon={<HiOutlineUser />} />
-                <Input type={inputPhoneNumber} inpPlaceholder={'شماره تلفن'} inpIcon={<HiOutlinePhone />} />
-                <Input type={inputEmail} inpPlaceholder={'آدرس ایمیل'} inpIcon={<MdOutlineAttachEmail />} />
-                <Input type={inputPassword} inpPlaceholder={'رمز عبور'} inpIcon={<RiLockPasswordLine />} />
+                <Input onValid={validRul} type={inputFullName} inpPlaceholder={'نام و نام خوانوادگی'} inpIcon={<HiOutlineUser />} />
+                <Input onValid={validRul} type={inputUserName} inpPlaceholder={'نام کاربری '} inpIcon={<HiOutlineUser />} />
+                <Input onValid={validRul} type={inputPhoneNumber} inpPlaceholder={'شماره تلفن'} inpIcon={<HiOutlinePhone />} />
+                <Input onValid={validRul} type={inputEmail} inpPlaceholder={'آدرس ایمیل'} inpIcon={<MdOutlineAttachEmail />} />
+                <Input onValid={validRul} type={inputPassword} inpPlaceholder={'رمز عبور'} inpIcon={<RiLockPasswordLine />} />
 
             </FormGetData>
         </section>

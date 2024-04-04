@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import LogoHeader from '../../Components/LogoHeader/LogoHeader'
 
 export default function FormGetData({ title, subTitle, subTitleLink, subTitleTextLink, children }) {
-
+    console.log(children);
     return (
         <section className='register'>
             <div className='backgroundImageLogin'></div>
@@ -19,7 +19,7 @@ export default function FormGetData({ title, subTitle, subTitleLink, subTitleTex
                         {
                             children
                         }
-                        <button className='btn-form-register'>ادامه</button>
+                        <button className='btn-form-register' disabled={true}>ادامه</button>
                     </form>
                 </div>
 

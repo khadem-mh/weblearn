@@ -96,6 +96,10 @@
     margin-top: 1.5rem;
 }
 
+button:disabled {
+    background-color: var(--blue-lighter-hight-color) !important;
+}
+
 .btn-form-register:hover {
     background-color: var(--primarydie-color);
 }
