@@ -17,7 +17,6 @@ const inputReducer = (state, action) => {
         }
         case inputPhoneNumber: {
             return {
-                ...state,
                 value: action.value,
                 isValid: action.value.length === 11 && action.value.slice(0, 2) === '09' ? true : false
             }
@@ -25,14 +24,12 @@ const inputReducer = (state, action) => {
         case inputEmail: {
             let isValidateEmail = validateEmail(action.value)
             return {
-                ...state,
                 value: action.value,
                 isValid: isValidateEmail ? true : false
             }
         }
         case inputPassword: {
             return {
-                ...state,
                 value: action.value,
                 isValid: action.value.length >= 8 ? true : false
             }

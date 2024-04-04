@@ -4,6 +4,9 @@ import Input from '../../Components/Input/Input';
 //icons
 import { MdOutlineAttachEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
+import {
+  inputEmail, inputPassword
+} from "../../Types/TypesInput.js"
 
 export default function Login() {
   return (
@@ -14,8 +17,8 @@ export default function Login() {
         subTitleTextLink={"ثبت نام کنید"}
         subTitleLink={"/register"}
       >
-        <Input inpPlaceholder={'آدرس ایمیل'} inpIcon={<MdOutlineAttachEmail />} />
-        <Input inpPlaceholder={'رمز عبور'} inpIcon={<RiLockPasswordLine />} />
+        <Input type={inputEmail} inpPlaceholder={'آدرس ایمیل'} inpIcon={<MdOutlineAttachEmail />} />
+        <Input type={inputPassword} inpPlaceholder={'رمز عبور'} inpIcon={<RiLockPasswordLine />} />
       </FormGetData>
     </section>
   )
