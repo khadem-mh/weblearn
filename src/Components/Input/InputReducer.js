@@ -7,17 +7,19 @@ import validateEmail from '../../Functions/ValidateEmail/ValidateEmail.js'
 const inputReducer = (state, action) => {
     switch (action.type) {
         case inputFullName: case inputUserName: {
+            let isRightVal = null
+            action.value.length >= 6 && (isRightVal = true)
+            action.value.length < 6 && (isRightVal = false)
             return {
-                ...state,
                 value: action.value,
-                isValid: action.value.length > 5 ? true : false
+                isValid: isRightVal
             }
         }
         case inputPhoneNumber: {
             return {
                 ...state,
                 value: action.value,
-                isValid: action.value.length === 10 && action.value.slice(0, 2) === '09' ? true : false
+                isValid: action.value.length === 11 && action.value.slice(0, 2) === '09' ? true : false
             }
         }
         case inputEmail: {
