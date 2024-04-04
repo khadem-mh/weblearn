@@ -9,10 +9,8 @@ export default function Input({ inpPlaceholder, inpIcon, type, onValid }) {
     const [state, dispatch] = useReducer(inputReducer, { value: '', isValid: false })
 
     useEffect(() => {
-        if (state.isValid && isBlurInput) {
-            onValid({ type, valid: true, value: state.value })
-            setIsBlurInput(false)
-        }
+        if (isBlurInput && state.value.length> 0) onValid({ type, valid: state.isValid, value: state.value })
+        setIsBlurInput(false)
     }, [isBlurInput])
 
     //funcs
@@ -20,7 +18,7 @@ export default function Input({ inpPlaceholder, inpIcon, type, onValid }) {
 
     return (
         <div className={`user-datas__parent-input ${state.isValid ? 'valid-inp' : state.value.length !== 0 ? 'not-valid-inp' : ''} `} ref={validRef}>
-            <input type="text" placeholder={inpPlaceholder} value={state.value} onChange={event => inpChangeHandler(event)} onBlur={() => setIsBlurInput(true)}/>
+            <input type="text" placeholder={inpPlaceholder} value={state.value} onChange={event => inpChangeHandler(event)} onBlur={() => setIsBlurInput(true)} />
             {inpIcon}
         </div>
     )

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import FormGetData from '../../Components/FormGetData/FormGetData';
 import Input from '../../Components/Input/Input';
 //icons
@@ -12,10 +12,18 @@ import {
 
 export default function Register() {
 
+    const formRef = useRef()
     const [inpValid, setInpValid] = useState([])
 
     useEffect(() => {
         console.log(inpValid);
+        let formRefChildren = Array.from(formRef.current.children)
+        let btnForm = formRef.current.lastElementChild
+
+        if (inpValid.length === formRefChildren.length - 1) {
+            let isInpValid = inpValid.every(inp => !inp.valid ? false : true)
+            !isInpValid ? btnForm.setAttribute('disabled', true) : btnForm.removeAttribute('disabled')  
+        }
     }, [inpValid])
 
     const validRul = valid => {
@@ -27,15 +35,14 @@ export default function Register() {
                 if (isRepeat) {
                     return [...isRepeat, valid]
                 }
-              
             }
         })
     }
 
-
     return (
         <section className='page-register'>
             <FormGetData
+                ref={formRef}
                 title={"عضویت"}
                 subTitle={"قبلا ثبت نام کرده اید؟ "}
                 subTitleTextLink={"وارد شوید "}
