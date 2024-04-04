@@ -16,25 +16,20 @@ export default function Register() {
     const [inpValid, setInpValid] = useState([])
 
     useEffect(() => {
-        console.log(inpValid);
-        let formRefChildren = Array.from(formRef.current.children)
         let btnForm = formRef.current.lastElementChild
 
-        if (inpValid.length === formRefChildren.length - 1) {
+        if (inpValid.length === formRef.current.children.length - 1) {
             let isInpValid = inpValid.every(inp => !inp.valid ? false : true)
-            !isInpValid ? btnForm.setAttribute('disabled', true) : btnForm.removeAttribute('disabled')  
+            !isInpValid ? btnForm.setAttribute('disabled', true) : btnForm.removeAttribute('disabled')
         }
     }, [inpValid])
 
     const validRul = valid => {
         setInpValid(state => {
-            if (state.length === 0) {
-                return [valid]
-            } else {
+            if (state.length === 0) return [valid]
+            else {
                 let isRepeat = state.filter(inp => inp.type !== valid.type && inp)
-                if (isRepeat) {
-                    return [...isRepeat, valid]
-                }
+                if (isRepeat) return [...isRepeat, valid]
             }
         })
     }
