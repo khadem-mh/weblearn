@@ -1,6 +1,6 @@
 import {
     inputFullName, inputUserName, inputPhoneNumber, inputEmail, inputPassword
-} from "../../Types/TypesInput.js"
+} from "../../Validators/RulesInput.js"
 //func
 import { validateEmail, validatePhone } from '../../Validators/Regex.js'
 

@@ -8,7 +8,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 //types
 import {
     inputFullName, inputUserName, inputPhoneNumber, inputEmail, inputPassword
-} from "../../Types/TypesInput.js"
+} from "../../Validators/RulesInput.js"
 
 export default function FormPage({ nameFormPage }) {
 
