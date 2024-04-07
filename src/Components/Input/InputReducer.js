@@ -2,7 +2,7 @@ import {
     inputFullName, inputUserName, inputPhoneNumber, inputEmail, inputPassword
 } from "../../Types/TypesInput.js"
 //func
-import validateEmail from '../../Functions/ValidateEmail/ValidateEmail.js'
+import { validateEmail, validatePhone } from '../../Validators/Regex.js'
 
 const inputReducer = (state, action) => {
     switch (action.type) {
@@ -16,9 +16,10 @@ const inputReducer = (state, action) => {
             }
         }
         case inputPhoneNumber: {
+            let isValidatePhone = validatePhone(action.value)
             return {
                 value: action.value,
-                isValid: action.value.length === 11 && action.value.slice(0, 2) === '09' ? true : false
+                isValid: isValidatePhone ? true : false
             }
         }
         case inputEmail: {
