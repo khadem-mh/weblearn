@@ -15,7 +15,7 @@ export default function App() {
   return (
     <main>
       {
-        location.pathname !== '/register' && location.pathname !== '/login' &&
+        location.pathname !== '/register' && location.pathname !== '/login' && location.pathname !== '/my-account' &&
         <header className="header">
           {
             routes[0].path === location.pathname ?
@@ -38,7 +38,7 @@ export default function App() {
       </section>
 
       {
-        location.pathname !== '/register' && location.pathname !== '/login' &&
+        location.pathname !== '/register' && location.pathname !== '/login' && location.pathname !== '/my-account' &&
         < Footer />
       }
 

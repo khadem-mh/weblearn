@@ -1,10 +1,7 @@
-import React, { Children } from 'react'
+import React from 'react'
 import './MyAccount.css'
-import { useRoutes } from 'react-router-dom'
-import routes from './routes'
 
 export default function MyAccount({ children }) {
-
 
     return (
         <div>
