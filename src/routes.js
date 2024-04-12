@@ -6,6 +6,7 @@ import ArticleInfo from "./Pages/ArticleInfo/ArticleInfo"
 import Lesson from "./Pages/Lesson/Lesson"
 import Login from "./Pages/Login/Login"
 import Register from "./Pages/Register/Register"
+import MyAccount from "./Pages/MyAccount/MyAccount"
 import Page404 from "./Pages/Page404/Page404"
 
 const routes = [
@@ -17,6 +18,7 @@ const routes = [
     { path: '/lesson', element: <Lesson/>},
     { path: '/login', element: <Login/>},
     { path: '/register', element: <Register/>},
+    { path: '/my-account', element: <MyAccount/>},
     { path: '/*', element: <Page404/>},
 ]
 
