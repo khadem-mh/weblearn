@@ -1,0 +1,56 @@
+.page-account {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #28293D;
+    padding: 28px 100px;
+    display: flex;
+}
+
+.account-sidbar {
+    min-width: 230px;
+    background-color: transparent;
+    margin-left: 56px;
+}
+
+.account-sidbar__parent {
+    margin-top: 4rem;
+}
+
+/* .account-sidbar__menu {} */
+
+.account-sidbar__li {
+    margin: 25px 0;
+    width: 100%;
+}
+
+.account-sidbar__link {
+    width: 100%;
+    display: block;
+    border-radius: .5rem;
+    padding: .6rem 1rem;
+    transition: all 400ms;
+}
+
+.account-sidbar__active {
+    background-color: var(--primary-color);
+}
+
+.account-sidbar__link:not(.account-sidbar__active):hover {
+    background-color: #3c4075;
+}
+
+.account-sidbar__link svg {
+    font-size: 2.3rem;
+}
+
+.account-sidbar__link span {
+    margin-right: 14px;
+    font-size: 1.4rem;
+    font-weight: lighter;
+}
+
+.account-content {
+    width: 100%;
+    background-color: #1C1C28;
+    border-radius: 1.5rem;
+}

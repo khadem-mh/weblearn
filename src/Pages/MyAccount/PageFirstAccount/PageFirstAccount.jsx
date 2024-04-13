@@ -1,11 +1,11 @@
 import React from 'react'
 import MyAccount from '../Components/Account/MyAccount'
 
-export default function MyCourses() {
+export default function PageFirstAccount() {
   return (
     <MyAccount>
       <div>
-        My Courses
+        Page first me
       </div>
     </MyAccount>
   )
