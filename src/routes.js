@@ -8,6 +8,7 @@ import Login from "./Pages/Login/Login"
 import Register from "./Pages/Register/Register"
 import Page404 from "./Pages/Page404/Page404"
 //import pages my account
+import MyAccount from "./Pages/MyAccount/Components/Account/MyAccount"
 import PageFirstAccount from "./Pages/MyAccount/PageFirstAccount/PageFirstAccount";
 import MyCourses from "./Pages/MyAccount/MyCourses/MyCourses";
 import DetailsAccount from "./Pages/MyAccount/DetailsAccount/DetailsAccount";
@@ -26,15 +27,14 @@ const routes = [
     { path: 'register', element: <Register /> },
     //Route Account
     {
-        path: 'my-account/*', element: < PageFirstAccount />, children: [
-            { path: 'my-courses', element: < MyCourses /> },
-            { path: 'details-account', element: < DetailsAccount /> },
-            { path: 'tickets', element: < Tickets /> },
+        path: 'my-account/*', element: <MyAccount children={< PageFirstAccount />} />, children: [
+            { path: 'my-courses', element: <MyAccount children={< MyCourses />} /> },
+            { path: 'details-account', element: <MyAccount children={< DetailsAccount />} /> },
+            { path: 'tickets', element: <MyAccount children={< Tickets />} /> },
             { path: '*', element: < Page404 /> },
         ]
     },
     { path: '/*', element: <Page404 /> },
 ]
-
 
 export default routes

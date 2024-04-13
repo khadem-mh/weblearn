@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './MyAccount.css'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 //Components
 import LogoHeader from '../../../../Components/LogoHeader/LogoHeader'
 //icons
@@ -12,6 +12,8 @@ import { GrLogout } from "react-icons/gr";
 
 export default function MyAccount({ children }) {
 
+    const location = useLocation()
+
     return (
         <div className='page-account'>
 
@@ -20,7 +22,7 @@ export default function MyAccount({ children }) {
                 <aside className='account-sidbar__parent'>
                     <ul className='account-sidbar__menu'>
                         <li className='account-sidbar__li'>
-                            <NavLink to={'/my-account'} className={link => link.isActive ? 'account-sidbar__link account-sidbar__active' : 'account-sidbar__link'}>
+                            <NavLink to={'/my-account'} className={location.pathname === '/my-account' || location.pathname === '/my-account/' ? 'account-sidbar__link account-sidbar__active' : 'account-sidbar__link'}>
                                 <AiOutlineHome />
                                 <span>پیشخوان</span>
                             </NavLink>

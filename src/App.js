@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useRoutes, useLocation } from "react-router-dom"
 import routes from "./routes"
 //components
@@ -6,9 +6,16 @@ import Navbar from "./Components/Navbar/Navbar"
 import Landing from "./Section/Landing/Landing"
 import Footer from "./Components/Footer/Footer"
 
+import MyAccount from "./Pages/MyAccount/Components/Account/MyAccount"
+import PageFirstAccount from "./Pages/MyAccount/PageFirstAccount/PageFirstAccount";
+
 export default function App() {
   const location = useLocation()
+  if (location.pathname === '/my-account' || location.pathname === '/my-account/') routes[8].element = <MyAccount children={<PageFirstAccount />} />
+  else routes[8].element = null
   const router = useRoutes(routes)
+
+
   return (
     <main>
       {
@@ -37,7 +44,6 @@ export default function App() {
         location.pathname !== '/register' && location.pathname !== '/login' && !location.pathname.includes('/my-account') &&
         < Footer />
       }
-
     </main>
   )
 }
