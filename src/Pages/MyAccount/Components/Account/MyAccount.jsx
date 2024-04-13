@@ -18,7 +18,7 @@ export default function MyAccount({ children }) {
         <div className='page-account'>
 
             <section className='account-sidbar'>
-                <LogoHeader srcLogo={'Images/Logos/Logo-site/logo-one-copy.png'} imgW={'93px'} titleFz={'4.3rem'} subTitleFz={'1rem'} />
+                <LogoHeader srcLogo={'/Images/Logos/Logo-site/logo-one-copy.png'} imgW={'93px'} titleFz={'4.3rem'} subTitleFz={'1rem'} />
                 <aside className='account-sidbar__parent'>
                     <ul className='account-sidbar__menu'>
                         <li className='account-sidbar__li'>
