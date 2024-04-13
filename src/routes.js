@@ -17,16 +17,16 @@ import Tickets from "./Pages/MyAccount/Tickets/Tickets";
 const routes = [
     //Routes Main
     { path: '/', element: <Index /> },
-    { path: '/course-info', element: <CourseInfo /> },
-    { path: '/article-info', element: <ArticleInfo /> },
-    { path: '/category-articles', element: <CategoryArticles /> },
-    { path: '/category-courses', element: <CategoryCourses /> },
-    { path: '/lesson', element: <Lesson /> },
-    { path: '/login', element: <Login /> },
-    { path: '/register', element: <Register /> },
+    { path: 'course-info', element: <CourseInfo /> },
+    { path: 'article-info', element: <ArticleInfo /> },
+    { path: 'category-articles', element: <CategoryArticles /> },
+    { path: 'category-courses', element: <CategoryCourses /> },
+    { path: 'lesson', element: <Lesson /> },
+    { path: 'login', element: <Login /> },
+    { path: 'register', element: <Register /> },
     //Route Account
     {
-        path: '/my-account/*', element: < PageFirstAccount />, children: [
+        path: 'my-account/*', element: < PageFirstAccount />, children: [
             { path: 'my-courses', element: < MyCourses /> },
             { path: 'details-account', element: < DetailsAccount /> },
             { path: 'tickets', element: < Tickets /> },

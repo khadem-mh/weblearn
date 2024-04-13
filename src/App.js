@@ -9,11 +9,10 @@ import Footer from "./Components/Footer/Footer"
 export default function App() {
   const location = useLocation()
   const router = useRoutes(routes)
-
   return (
     <main>
       {
-        location.pathname !== '/register' && location.pathname !== '/login' &&
+        location.pathname !== '/register' && location.pathname !== '/login' && !location.pathname.includes('/my-account') &&
         <header className="header">
           {
             routes[0].path === location.pathname ?
@@ -35,7 +34,7 @@ export default function App() {
       </section>
 
       {
-        location.pathname !== '/register' && location.pathname !== '/login' &&
+        location.pathname !== '/register' && location.pathname !== '/login' && !location.pathname.includes('/my-account') &&
         < Footer />
       }
 
