@@ -9,6 +9,7 @@ import { VscFolderLibrary } from "react-icons/vsc";
 import { GoCommentDiscussion } from "react-icons/go";
 import { HiOutlineUser } from "react-icons/hi2";
 import { GrLogout } from "react-icons/gr";
+import { IoNotificationsOutline } from "react-icons/io5";
 
 export default function MyAccount({ children }) {
 
@@ -56,7 +57,17 @@ export default function MyAccount({ children }) {
             </section>
 
             <section className='account-content'>
-                <section></section>
+                <section className='account-content__header'>
+                    <div>
+                        <h2 className='account-content__title'>محمدحسین عزیز؛ خوش اومدی 🙌</h2>
+                    </div>
+                    <div className='account-content__header-left'>
+                        <div className='account-content__parent-notif'>
+                            <IoNotificationsOutline className='account-content__notif' />
+                        </div>
+                        <img src="/Images/Logos/Logo-account/logoAccount.png" alt="logo-account" className='account-content__prof' />
+                    </div>
+                </section>
                 <section>
                     {children}
                 </section>
