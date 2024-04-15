@@ -4,6 +4,7 @@
     background-color: #28293D;
     padding: 28px 100px;
     display: flex;
+/*     filter: blur(8px); */
 }
 
 .account-sidbar {
@@ -69,8 +70,10 @@
 }
 
 .account-content__header-left {
+    position: relative;
     display: flex;
     align-items: center;
+    user-select: none;
 }
 
 .account-content__prof,
@@ -95,3 +98,45 @@
 }
 
 /*? End Account Content Header   */
+
+/*! start Modal Notification */
+.modal-notif-account {
+    position: absolute;
+    top: 70px;
+    left: 85px;
+    width: 383px;
+    background-color: #28293D;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    transition: all 400ms;
+    color: white;
+}
+
+.modal-notif-account__title {
+    border-bottom: 1px solid gray;
+    padding-bottom: 1rem;
+    font-family: Lalezar;
+    font-size: 2.2rem;
+}
+
+.modal-notif-account__bottom .modal-notif-account__announse {
+    margin-top: 1.5rem;
+    background-color: #32334D;
+    border-radius: .8rem;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.modal-hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal-show {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/*! end Modal Notification */
