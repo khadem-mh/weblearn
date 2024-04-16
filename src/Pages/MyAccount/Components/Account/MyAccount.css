@@ -4,7 +4,7 @@
     background-color: #28293D;
     padding: 28px 100px;
     display: flex;
-/*     filter: blur(8px); */
+    /*     filter: blur(8px); */
 }
 
 .account-sidbar {
@@ -15,37 +15,6 @@
 
 .account-sidbar__parent {
     margin-top: 4rem;
-}
-
-.account-sidbar__li {
-    margin: 25px 0;
-    width: 100%;
-}
-
-.account-sidbar__link {
-    width: 100%;
-    display: block;
-    border-radius: .5rem;
-    padding: .6rem 1rem;
-    transition: all 400ms;
-}
-
-.account-sidbar__active {
-    background-color: var(--primary-color);
-}
-
-.account-sidbar__link:not(.account-sidbar__active):hover {
-    background-color: #3c4075;
-}
-
-.account-sidbar__link svg {
-    font-size: 2.3rem;
-}
-
-.account-sidbar__link span {
-    margin-right: 14px;
-    font-size: 1.4rem;
-    font-weight: lighter;
 }
 
 .account-content {
@@ -100,16 +69,24 @@
 /*? End Account Content Header   */
 
 /*! start Modal Notification */
-.modal-notif-account {
+.modal-account {
     position: absolute;
     top: 70px;
-    left: 85px;
-    width: 383px;
     background-color: #28293D;
     border-radius: 1.5rem;
     padding: 1.5rem;
     transition: all 400ms;
     color: white;
+}
+
+.modal-notif-account {
+    left: 85px;
+    width: 383px;
+}
+
+.modal-details-account {
+    width: 267px;
+    left: 0px;
 }
 
 .modal-notif-account__title {
@@ -127,6 +104,8 @@
     text-align: center;
     font-size: 1.3rem;
 }
+
+
 
 .modal-hide {
     opacity: 0;
