@@ -68,7 +68,7 @@
 
 /*? End Account Content Header   */
 
-/*! start Modal Notification */
+/*! start Modal*/
 .modal-account {
     position: absolute;
     top: 70px;
@@ -79,14 +79,10 @@
     color: white;
 }
 
+/* start style modal notification  */
 .modal-notif-account {
     left: 85px;
     width: 383px;
-}
-
-.modal-details-account {
-    width: 267px;
-    left: 0px;
 }
 
 .modal-notif-account__title {
@@ -104,8 +100,38 @@
     text-align: center;
     font-size: 1.3rem;
 }
+/* end style modal notification  */
 
+/* start style modal account user */
+.modal-details-account {
+    width: 267px;
+    left: 0px;
+}
 
+.header-modal-account {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-modal-account__right {}
+
+.header-modal-account__left {
+    margin-right: 1rem;
+}
+
+.header-modal-account__user-name {
+    font-size: 18px;
+    -webkit-line-clamp: 1 !important;
+    line-clamp: 1 !important;
+}
+
+.header-modal-account__user-money-bag {
+    font-size: 14px;
+    color: rgb(78, 129, 251);
+}
+
+/* end style modal account user */
 
 .modal-hide {
     opacity: 0;
@@ -117,5 +143,4 @@
     visibility: visible;
 }
 
-
-/*! end Modal Notification */
+/*! end Modal */

@@ -41,7 +41,16 @@ const MyAccount = ({ children }) => {
                         <img src="/Images/Logos/Logo-account/logoAccount.png" alt="logo-account" className='account-content__prof' onClick={e => clickHandlerAccount(e)} />
 
                         <div className='modal-account modal-details-account ' id='modalAccount'>
-                            <MenuAccount liM={'13px 0'} fzTitle={'1.3rem'} fzLogo={'1.8rem'}/>
+                            <section className='header-modal-account'>
+                                <div className='header-modal-account__right'>
+                                    <img src="/Images/Logos/Logo-account/logoAccount.png" alt="yourImage" className='account-content__prof' />
+                                </div>
+                                <div className='header-modal-account__left'>
+                                    <p className='header-modal-account__user-name line-clamp-2'>محمدحسین خادم المهدی</p>
+                                    <p className='header-modal-account__user-money-bag'>موجودی: 0 تومان</p>
+                                </div>
+                            </section>
+                            <MenuAccount liM={'13px 0'} fzTitle={'1.3rem'} fzLogo={'1.8rem'} />
                         </div>
 
                     </div>
