@@ -41,7 +41,7 @@ const MyAccount = ({ children }) => {
                         <img src="/Images/Logos/Logo-account/logoAccount.png" alt="logo-account" className='account-content__prof' onClick={e => clickHandlerAccount(e)} />
 
                         <div className='modal-account modal-details-account ' id='modalAccount'>
-                            <MenuAccount />
+                            <MenuAccount liM={'13px 0'} fzTitle={'1.3rem'} fzLogo={'1.8rem'}/>
                         </div>
 
                     </div>
