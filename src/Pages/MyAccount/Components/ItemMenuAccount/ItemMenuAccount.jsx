@@ -18,7 +18,7 @@ export default function ItemMenuAccount({ logo, title, path, mainPath = false, l
                     </li>
                     :
                     <li className='account-sidbar__li' style={{ margin: liMargin }}>
-                        <NavLink to={`/${path}`} className={link => link.isActive ? 'account-sidbar__link account-sidbar__active' : 'account-sidbar__link'}>
+                        <NavLink to={`${path}`} className={link => link.isActive ? 'account-sidbar__link account-sidbar__active' : 'account-sidbar__link'}>
                             {logo}
                             <span style={{ fontSize: fzTitle }}>{title}</span>
                         </NavLink>
