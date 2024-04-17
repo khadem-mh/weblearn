@@ -9,3 +9,54 @@
 .account-page-first__header .status-box-account:not(:first-child) {
     margin-right: 40px !important;
 }
+
+/*? start coding right page */
+
+/* start coding right page header */
+.account-page-first__content {
+    margin-top: 40px;
+}
+
+.account-page-first__content-top {
+    width: 50%;
+    background-color: var(--skyblue-light);
+    color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    border-radius: 1.5rem;
+}
+
+.account-page-first__content-top p {
+    font-size: 19px;
+}
+
+.account-page-first__content-top-left {
+    background-color: var(--skyblue-low);
+    color: var(--skyblue-main);
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+}
+
+.account-page-first__content-top-left svg {
+    margin-right: .8rem;
+    font-size: 1.3rem;
+}
+
+/* end coding right page header */
+
+/** Next Task _2 */
+
+/* start coding right page bottom */
+
+/* end coding right page bottom */
+
+/*? end coding right page header */
+
+/*! Next Section start ♥  */
+
+/* start coding left page */
+
+/* end coding left page */

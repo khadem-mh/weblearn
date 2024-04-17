@@ -17,4 +17,9 @@
     --dark-alpha-color: rgba(50,50,66,1);
     --bluedie-color: #f0f2f7;
     --green-die-color: rgba(113, 175, 111, 0.1);
+
+    --skyblue-light: #28293D;
+    --skyblue-die: #1C1C28;
+    --skyblue-main: rgb(78, 129, 251);
+    --skyblue-low: #2C3251;
 }

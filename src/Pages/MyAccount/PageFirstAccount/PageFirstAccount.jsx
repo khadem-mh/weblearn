@@ -22,13 +22,11 @@ export default function PageFirstAccount() {
 
       <section className='account-page-first__content'>
 
-        <div className='account-page-first__content-parent-top'>
-          <div className='account-page-first__content-top'>
-            <p>اخیرا مشاهده شده</p>
-            <div className='account-page-first__content-top-left'>
-              <p>همه دوره های ثبت نام شده</p>
-              <HiOutlineArrowLeft />
-            </div>
+        <div className='account-page-first__content-top'>
+          <p>اخیرا مشاهده شده</p>
+          <div className='account-page-first__content-top-left'>
+            <span>همه دوره های ثبت نام شده</span>
+            <HiOutlineArrowLeft />
           </div>
         </div>
 
