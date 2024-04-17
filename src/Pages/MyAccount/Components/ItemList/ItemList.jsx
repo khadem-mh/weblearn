@@ -6,23 +6,25 @@ import faNumber from '../../../../Functions/FaNumber/FaNumber.js';
 
 export default function ItemList({ urlDest, titleTicket, date3Section, textTypeSupport, textStatus, textEmpty }) {
     return (
-        <li>
+        <li className='li-item'>
             {
                 textEmpty
                     ?
                     <p className='text-empty-list'>{textEmpty}</p>
                     :
-                    <NavLink to={urlDest}>
-                        <p>{titleTicket}</p>
-                        <div>
-                            {faNumber(...date3Section)}
+                    <>
+                        <NavLink to={urlDest}>
+                            <p className='li-item__title'>{titleTicket}</p>
+                        </NavLink>
+                        <div className='li-item__list'>
+                            <p className='li-item__list-date'>{faNumber(...date3Section)}</p>
                             {
                                 textTypeSupport &&
-                                <span>{textTypeSupport}</span>
+                                <span className='li-item__status'>{textTypeSupport}</span>
                             }
-                            <span>{textStatus}</span>
+                            <span className={`li-item__status ${textStatus ? 'li-item__status-open' : 'li-item__status-close'}`}>{textStatus ? 'open ' : 'close'}</span>
                         </div>
-                    </NavLink>
+                    </>
             }
         </li>
     )

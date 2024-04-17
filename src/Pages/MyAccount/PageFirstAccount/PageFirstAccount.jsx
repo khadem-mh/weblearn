@@ -49,7 +49,10 @@ export default function PageFirstAccount() {
             </div>
 
             <ul className='content-left__list'>
-              <ItemList urlDest={'/'} textStatus={false} titleTicket={'گروه واتساپ'} date3Section={[1402, 10, 7]} />
+              <ItemList urlDest={'/'} textStatus={true} titleTicket={'گروه واتساپ'} date3Section={[1402, 10, 7]} />
+              <ItemList urlDest={'/'} textStatus={false} titleTicket={'گروه تلگرام'} date3Section={[1402, 10, 7]} />
+              <ItemList urlDest={'/'} textStatus={true} titleTicket={'گروه لینکدین برای چی این جا است'} date3Section={[1402, 10, 7]} />
+              <ItemList urlDest={'/'} textStatus={false} titleTicket={'دپارتمان 133 سبزلرن کجاست'} date3Section={[1402, 10, 7]} />
             </ul>
           </div>
 
