@@ -3,7 +3,6 @@
     color: whitesmoke;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     width: 238px;
     background-color: gray;
     border-radius: 1.5rem;
@@ -12,14 +11,14 @@
 .status-box-account__right svg {
     background-color: rgb(255 255 255 / 0.2);
     border-radius: 1rem;
-    padding: .8rem;
-    font-size: 5.5rem;
+    padding: 1rem;
+    font-size: 5rem;
     color: white;
 }
 
 .status-box-account__left {
     text-align: start;
-    margin-left: 2rem;
+    margin-right: 1.5rem;
 }
 
 .status-box-account__title {

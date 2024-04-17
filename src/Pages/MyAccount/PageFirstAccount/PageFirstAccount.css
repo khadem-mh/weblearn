@@ -1,0 +1,11 @@
+.account-page-first {
+    padding: 0 42px;
+}
+
+.account-page-first__header {
+    display: flex;
+}
+
+.account-page-first__header .status-box-account:not(:first-child) {
+    margin-right: 40px !important;
+}
