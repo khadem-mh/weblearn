@@ -1,0 +1,32 @@
+.status-box-account {
+    padding: .8rem 1rem;
+    color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 238px;
+    background-color: gray;
+    border-radius: 1.5rem;
+}
+
+.status-box-account__right svg {
+    background-color: rgb(255 255 255 / 0.2);
+    border-radius: 1rem;
+    padding: .8rem;
+    font-size: 5.5rem;
+    color: white;
+}
+
+.status-box-account__left {
+    text-align: start;
+    margin-left: 2rem;
+}
+
+.status-box-account__title {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.status-box-account__sub-title {
+    font-weight: bold;
+}
