@@ -71,6 +71,24 @@
     width: 49%;
 }
 
+.content-left__header {
+    border-bottom: 1px solid rgb(61, 61, 61);
+}
+
+.content-left__bottom, .content-left__top {
+    padding-bottom: 1.5rem;
+    background-color: var(--skyblue-light);
+    border-radius: 1.5rem;
+}
+
+.content-left__bottom {
+    margin-top: 2rem;
+}
+
+.content-left__list {
+    margin-top: 1.5rem;
+}
+
 /* end coding left page top */
 
 /*? end coding left page */

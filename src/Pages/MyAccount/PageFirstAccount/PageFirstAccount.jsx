@@ -2,10 +2,10 @@ import React from 'react'
 import './PageFirstAccount.css'
 import StatusBoxAccount from '../Components/StatusBoxAccount/StatusBoxAccount'
 //components
+import HeaderList from '../Components/HeaderList/HeaderList';
 import ItemList from '../Components/ItemList/ItemList';
 //icons
 import { HiOutlineCreditCard, HiOutlineRocketLaunch, HiOutlineTicket } from "react-icons/hi2";
-import { HiOutlineArrowLeft } from "react-icons/hi";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 //Funcs
 import faNumber from '../../../Functions/FaNumber/FaNumber';
@@ -13,6 +13,7 @@ import faNumber from '../../../Functions/FaNumber/FaNumber';
 export default function PageFirstAccount() {
   return (
     <div className='account-page-first'>
+
       <section className='account-page-first__header'>
         <StatusBoxAccount bgColorBox={'#FACC15'} logo={<HiOutlineCreditCard />} title={'مجموع پرداخت ها'} subTitle={` ${faNumber(1165500)} تومان`} />
         <StatusBoxAccount bgColorBox={'#4E81FB'} logo={<HiOutlineRocketLaunch />} title={'دوره های من'} subTitle={` ${faNumber(10)} دوره`} />
@@ -23,14 +24,7 @@ export default function PageFirstAccount() {
       <section className='account-page-first__content'>
 
         <section className='account-page-first__content-right'>
-          <div className='content-right__top'>
-            <p>اخیرا مشاهده شده</p>
-
-            <div>
-              <span>همه دوره های ثبت نام شده</span>
-              <HiOutlineArrowLeft />
-            </div>
-          </div>
+          <HeaderList textLink={'همه دوره های ثبت نام شده'} title={'اخیرا مشاهده شده'} urlDest={'/my-account/my-courses'} />
 
           <div className='content-right__bottom'>
 
@@ -39,30 +33,24 @@ export default function PageFirstAccount() {
 
         <section className='account-page-first__content-left'>
 
-          <div className='account-page-first__content-tickets'>
-            <div className='account-page-first__content-tickets-header'>
-              <p>تیکت های اخیر</p>
-              <div>
-                <p>همه تیکت ها</p>
-                <HiOutlineArrowLeft />
-              </div>
+          <div className='content-left__top'>
+            <div className='content-left__header'>
+              <HeaderList textLink={'همه تیکت ها'} title={'تیکت های اخیر'} urlDest={'/my-account/tickets'} />
             </div>
 
-            <div className='account-page-first__content-tickets-body'>
-              <ul className='account-page-first__content-tickets-list'>
-                <ItemList urlDest={'/'} textStatus={false} titleTicket={'گروه تلگرام'} date3Section={[1402, 10, 5]} />
-              </ul>
-            </div>
+            <ul className='content-left__list'>
+              <ItemList textEmpty={'تا به الان تیکتی ارسال نکرده‌اید!'} />
+            </ul>
           </div>
 
-          <div className='account-page-first__content-queses'>
-            <p>پرسش های اخیر</p>
-
-            <div className='account-page-first__content-queses-body'>
-              <ul className='account-page-first__content-queses-list'>
-                <ItemList urlDest={'/'} textStatus={false} titleTicket={'گروه واتساپ'} date3Section={[1402, 10, 7]} />
-              </ul>
+          <div className='content-left__bottom'>
+            <div className='content-left__header'>
+              <HeaderList title={'پرسش های اخیر'} linkActive={false} />
             </div>
+
+            <ul className='content-left__list'>
+              <ItemList urlDest={'/'} textStatus={false} titleTicket={'گروه واتساپ'} date3Section={[1402, 10, 7]} />
+            </ul>
           </div>
 
         </section>
