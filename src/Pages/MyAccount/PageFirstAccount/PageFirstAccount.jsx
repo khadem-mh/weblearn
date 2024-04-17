@@ -22,15 +22,22 @@ export default function PageFirstAccount() {
 
       <section className='account-page-first__content'>
 
-        <div className='account-page-first__content-top'>
-          <p>اخیرا مشاهده شده</p>
-          <div className='account-page-first__content-top-left'>
-            <span>همه دوره های ثبت نام شده</span>
-            <HiOutlineArrowLeft />
-          </div>
-        </div>
+        <section className='account-page-first__content-right'>
+          <div className='content-right__top'>
+            <p>اخیرا مشاهده شده</p>
 
-        <div className='account-page-first__content-bottom'>
+            <div>
+              <span>همه دوره های ثبت نام شده</span>
+              <HiOutlineArrowLeft />
+            </div>
+          </div>
+
+          <div className='content-right__bottom'>
+
+          </div>
+        </section>
+
+        <section className='account-page-first__content-left'>
 
           <div className='account-page-first__content-tickets'>
             <div className='account-page-first__content-tickets-header'>
@@ -58,7 +65,7 @@ export default function PageFirstAccount() {
             </div>
           </div>
 
-        </div>
+        </section>
 
       </section>
 
