@@ -4,6 +4,7 @@ import StatusBoxAccount from '../Components/StatusBoxAccount/StatusBoxAccount'
 //components
 import HeaderList from '../Components/HeaderList/HeaderList';
 import ItemList from '../Components/ItemList/ItemList';
+import BoxcourseImg from '../Components/BoxcourseImg/BoxcourseImg';
 //icons
 import { HiOutlineCreditCard, HiOutlineRocketLaunch, HiOutlineTicket } from "react-icons/hi2";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
@@ -27,7 +28,10 @@ export default function PageFirstAccount() {
           <HeaderList textLink={'همه دوره های ثبت نام شده'} title={'اخیرا مشاهده شده'} urlDest={'/my-account/my-courses'} />
 
           <div className='content-right__bottom'>
-
+            <BoxcourseImg text={'پروژه های تخصصی با جاوا اسکریپت برای بازار کار'} imgSrc={'/Images/Courses/1.png'} />
+            <BoxcourseImg text={'پروژه های تخصصی با جاوا اسکریپت برای بازار کار'} imgSrc={'/Images/Courses/2.png'} />
+            <BoxcourseImg text={'پروژه های تخصصی با جاوا اسکریپت برای بازار کار'} imgSrc={'/Images/Courses/3.png'} />
+            <BoxcourseImg text={'پروژه های تخصصی با جاوا اسکریپت برای بازار کار'} imgSrc={'/Images/Courses/4.png'} />
           </div>
         </section>
 
