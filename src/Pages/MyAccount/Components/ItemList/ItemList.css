@@ -21,7 +21,6 @@
 .li-item__title {
     color: lightgrey;
     font-size: 1.4rem;
-    width: 36rem;
     display: -webkit-box;
     overflow: hidden;
     -webkit-box-orient: vertical;

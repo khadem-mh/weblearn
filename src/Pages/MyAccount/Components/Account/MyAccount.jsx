@@ -1,5 +1,6 @@
 import React from 'react'
 import './MyAccount.css'
+import './media.css'
 //Components
 import LogoHeader from '../../../../Components/LogoHeader/LogoHeader'
 import MenuAccount from '../MenuAccount/MenuAccount';
