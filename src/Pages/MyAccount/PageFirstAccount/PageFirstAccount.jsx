@@ -1,5 +1,6 @@
 import React from 'react'
 import './PageFirstAccount.css'
+import './media.css'
 import StatusBoxAccount from '../Components/StatusBoxAccount/StatusBoxAccount'
 //components
 import HeaderList from '../Components/HeaderList/HeaderList';
@@ -16,10 +17,10 @@ export default function PageFirstAccount() {
     <div className='account-page-first'>
 
       <section className='account-page-first__header'>
-        <StatusBoxAccount bgColorBox={'#FACC15'} logo={<HiOutlineCreditCard />} title={'مجموع پرداخت ها'} subTitle={` ${faNumber(1165500)} تومان`} />
-        <StatusBoxAccount bgColorBox={'#4E81FB'} logo={<HiOutlineRocketLaunch />} title={'دوره های من'} subTitle={` ${faNumber(10)} دوره`} />
-        <StatusBoxAccount bgColorBox={'#F43F5E'} logo={<HiOutlineTicket />} title={'مجموع تیکت ها'} subTitle={` ${faNumber(3)} تیکت`} />
-        <StatusBoxAccount bgColorBox={'#2ED573'} logo={<FaMoneyBillTrendUp />} title={'موجودی حساب'} subTitle={` 0 تومان`} />
+        <StatusBoxAccount bgColorBox={'rgba(255, 225, 0, .8)'} logo={<HiOutlineCreditCard />} title={'مجموع پرداخت ها'} subTitle={` ${faNumber(1165500)} تومان`} />
+        <StatusBoxAccount bgColorBox={'rgba(78, 129, 251, .8)'} logo={<HiOutlineRocketLaunch />} title={'دوره های من'} subTitle={` ${faNumber(10)} دوره`} />
+        <StatusBoxAccount bgColorBox={'rgba(244, 63, 94, .8)'} logo={<HiOutlineTicket />} title={'مجموع تیکت ها'} subTitle={` ${faNumber(3)} تیکت`} />
+        <StatusBoxAccount bgColorBox={'rgba(46, 213, 115, .8)'} logo={<FaMoneyBillTrendUp />} title={'موجودی حساب'} subTitle={` 0 تومان`} />
       </section>
 
       <section className='account-page-first__content'>

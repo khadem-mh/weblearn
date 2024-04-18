@@ -3,7 +3,8 @@
     color: whitesmoke;
     display: flex;
     align-items: center;
-    width: 238px;
+    width: 240px;
+    height: 84px;
     background-color: gray;
     border-radius: 1.5rem;
 }
@@ -23,7 +24,7 @@
 
 .status-box-account__title {
     margin-bottom: .6rem;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .status-box-account__sub-title {

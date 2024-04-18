@@ -1,14 +1,19 @@
 .account-page-first {
+    width: 100%;
+    max-width: 100%;
     padding: 0 42px;
 }
 
 .account-page-first__header {
+    width: inherit;
     display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-.account-page-first__header .status-box-account:not(:first-child) {
-    margin-right: 40px !important;
-}
+.account-page-first__header .status-box-account {}
 
 /*? start coding right page */
 

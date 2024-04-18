@@ -1,5 +1,6 @@
 import React from 'react'
 import './StatusBoxAccount.css'
+import './media.css'
 
 export default function StatusBoxAccount({ logo, title, subTitle, bgColorBox, bgColorLogo }) {
     return (
