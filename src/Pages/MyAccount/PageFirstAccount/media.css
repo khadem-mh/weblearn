@@ -19,13 +19,17 @@
     }
 
     .content-right__bottom {
-        margin-bottom: 2rem;
+        grid-template-columns: repeat(3, 1fr);
     }
+
 }
 
 @media screen and (max-width:768px) {
     .account-page-first {
         padding: 0 10px;
+    }
+    .content-right__bottom {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -36,10 +40,6 @@
         grid-template-rows: repeat(2, 1fr);
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
-    }
-
-    .content-right__bottom {
-        justify-content: center;
     }
 }
 
@@ -55,5 +55,9 @@
 
     .content-left__top-header p {
         margin-bottom: 1rem;
+    }
+
+    .content-right__bottom {
+        grid-template-columns: repeat(1, 1fr);
     }
 }

@@ -64,15 +64,10 @@
 
 /* start coding right page bottom */
 .content-right__bottom {
-    width: 100%;
     margin-top: 1.5rem !important;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.row {
-    --bs-gutter-x: 0rem !important;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 14px;
 }
 
 /* end coding right page bottom */

@@ -28,7 +28,7 @@ export default function PageFirstAccount() {
         <section className='account-page-first__content-right'>
           <HeaderList textLink={'همه دوره های ثبت نام شده'} title={'اخیرا مشاهده شده'} urlDest={'/my-account/my-courses'} />
 
-          <div className='row content-right__bottom'>
+          <div className='content-right__bottom'>
 
             <BoxcourseImg text={'پروژه های تخصصی با جاوا اسکریپت برای بازار کار'} imgSrc={'/Images/Courses/1.png'} />
             <BoxcourseImg text={'پروژه های تخصصی با جاوا اسکریپت برای بازار کار'} imgSrc={'/Images/Courses/2.png'} />
