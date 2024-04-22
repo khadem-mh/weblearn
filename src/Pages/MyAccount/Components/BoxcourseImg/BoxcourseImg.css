@@ -1,21 +1,24 @@
 .box-course-img {
     background-color: var(--skyblue-light);
-    border-radius: 5rem 5rem 2rem 2rem;
+    border-radius: 2rem;
     overflow: hidden;
     border: 2px solid var(--skyblue-light);
-    margin: 1rem 0;
-    width: 319px;
-    
+    margin: 1rem 0 !important;
+    padding: 0 !important;
+    width: auto ;
+    max-width: 319px;
 }
 
 .box-course-img img {
-    width: inherit;
+    width: 100% !important;
     border-radius: 2rem;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .box-course-img p {
     color: whitesmoke;
     padding: 1rem 2rem 2.3rem 2rem;
     font-size: 1.3rem;
+    cursor: pointer;
 }

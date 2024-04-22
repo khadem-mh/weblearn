@@ -1,10 +1,35 @@
+@media screen and (max-width: 1400px) {
+    .account-page-first__content-right {
+        width: 59%;
+    }
+
+    .account-page-first__content-left {
+        width: 39% !important;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .account-page-first__content {
+        flex-direction: column;
+    }
+
+    .account-page-first__content-right,
+    .account-page-first__content-left {
+        width: 100% !important;
+    }
+
+    .content-right__bottom {
+        margin-bottom: 2rem;
+    }
+}
+
 @media screen and (max-width:768px) {
     .account-page-first {
         padding: 0 10px;
     }
 }
 
-@media screen and (max-width: 583px) {
+@media screen and (max-width: 576px) {
     .account-page-first__header {
         width: inherit;
         display: grid;
@@ -12,11 +37,23 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
     }
+
+    .content-right__bottom {
+        justify-content: center;
+    }
 }
 
 @media screen and (max-width: 410px) {
     .account-page-first__header {
         grid-template-rows: repeat(1, 1fr);
         grid-template-columns: repeat(1, 1fr);
+    }
+
+    .content-left__top-header {
+        flex-direction: column;
+    }
+
+    .content-left__top-header p {
+        margin-bottom: 1rem;
     }
 }

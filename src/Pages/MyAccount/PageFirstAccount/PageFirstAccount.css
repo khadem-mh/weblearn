@@ -19,6 +19,7 @@
 .account-page-first__content {
     width: 100%;
     margin-top: 40px;
+    padding-bottom: 40px;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -63,12 +64,15 @@
 
 /* start coding right page bottom */
 .content-right__bottom {
+    width: 100%;
+    margin-top: 1.5rem !important;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-top: 1.3rem;
-    margin-bottom: 40px;
+    justify-content: space-around;
+}
+
+.row {
+    --bs-gutter-x: 0rem !important;
 }
 
 /* end coding right page bottom */

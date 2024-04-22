@@ -8,7 +8,7 @@
 .li-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;   
+    justify-content: space-between;
     width: 100%;
     padding: .9rem 3rem;
     transition: all 200ms;
@@ -53,4 +53,22 @@
     padding: .3rem .7rem;
     font-size: 1rem;
     margin-right: 1rem;
+}
+
+@media screen and (max-width: 1400px) {
+    .li-item__title {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .li-item__title {
+        font-size: 1.4rem;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .li-item {
+        padding: .9rem 1.5rem;
+    }
 }
