@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { useRoutes, useLocation } from "react-router-dom"
 import routes from "./routes"
 //components
@@ -7,7 +7,7 @@ import Landing from "./Section/Landing/Landing"
 import Footer from "./Components/Footer/Footer"
 
 import MyAccount from "./Pages/MyAccount/Components/Account/MyAccount"
-import PageFirstAccount from "./Pages/MyAccount/PageFirstAccount/PageFirstAccount";
+import PageFirstAccount from "./Pages/MyAccount/Pages/PageFirstAccount/PageFirstAccount";
 
 export default function App() {
   const location = useLocation()

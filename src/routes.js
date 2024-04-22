@@ -9,10 +9,10 @@ import Register from "./Pages/Register/Register"
 import Page404 from "./Pages/Page404/Page404"
 //import pages my account
 import MyAccount from "./Pages/MyAccount/Components/Account/MyAccount"
-import PageFirstAccount from "./Pages/MyAccount/PageFirstAccount/PageFirstAccount";
-import MyCourses from "./Pages/MyAccount/MyCourses/MyCourses";
-import DetailsAccount from "./Pages/MyAccount/DetailsAccount/DetailsAccount";
-import Tickets from "./Pages/MyAccount/Tickets/Tickets";
+import PageFirstAccount from "./Pages/MyAccount/Pages/PageFirstAccount/PageFirstAccount";
+import MyCourses from "./Pages/MyAccount/Pages/MyCourses/MyCourses";
+import DetailsAccount from "./Pages/MyAccount/Pages/DetailsAccount/DetailsAccount";
+import Tickets from "./Pages/MyAccount/Pages/Tickets/Tickets";
 
 
 const routes = [

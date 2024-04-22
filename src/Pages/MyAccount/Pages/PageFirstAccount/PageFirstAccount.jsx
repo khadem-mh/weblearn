@@ -1,16 +1,16 @@
 import React from 'react'
 import './PageFirstAccount.css'
 import './media.css'
-import StatusBoxAccount from '../Components/StatusBoxAccount/StatusBoxAccount'
+import StatusBoxAccount from '../../Components/StatusBoxAccount/StatusBoxAccount'
 //components
-import HeaderList from '../Components/HeaderList/HeaderList';
-import ItemList from '../Components/ItemList/ItemList';
-import BoxcourseImg from '../Components/BoxcourseImg/BoxcourseImg';
+import HeaderList from '../../Components/HeaderList/HeaderList';
+import ItemList from '../../Components/ItemList/ItemList';
+import BoxcourseImg from '../../Components/BoxcourseImg/BoxcourseImg.jsx';
 //icons
 import { HiOutlineCreditCard, HiOutlineRocketLaunch, HiOutlineTicket } from "react-icons/hi2";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 //Funcs
-import faNumber from '../../../Functions/FaNumber/FaNumber';
+import faNumber from '../../../../Functions/FaNumber/FaNumber.js';
 
 export default function PageFirstAccount() {
   return (
