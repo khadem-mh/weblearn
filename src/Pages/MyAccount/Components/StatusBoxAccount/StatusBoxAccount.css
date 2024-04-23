@@ -3,7 +3,7 @@
     color: whitesmoke;
     display: flex;
     align-items: center;
-    width: 240px;
+    flex-basis: 230px;
     height: 84px;
     background-color: gray;
     border-radius: 1.5rem;

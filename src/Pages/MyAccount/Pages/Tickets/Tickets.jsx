@@ -12,16 +12,16 @@ import faNumber from '../../../../Functions/FaNumber/FaNumber.js';
 
 export default function Tickets() {
   return (
-    <div>
+    <div className='account-page-my-courses'>
 
-      <section className='account-page-first__header'>
-        <div>
+      <section className='statusbox-page-tickets'>
+        <div className='account-page-first__header'>
           <StatusBoxAccount bgColorBox={'rgba(255, 225, 0, .9)'} logo={<HiOutlineTicket />} title={'همه تیکت ها'} subTitle={` ${faNumber(10)} دوره`} />
           <StatusBoxAccount bgColorBox={'rgba(78, 129, 251, .9)'} logo={< HiOutlineMailOpen />} title={'تیکت های باز'} subTitle={` ${faNumber(3)} دوره`} />
           <StatusBoxAccount bgColorBox={'rgba(46, 213, 115, .9)'} logo={<TfiComments />} title={'بسته شده'} subTitle={`${faNumber(7)} دوره`} />
         </div>
 
-        <div>
+        <div className='statusbox-page-tickets__left'>
           <StatusBoxAccount bgColorBox={'#4E81FB'} logo={<BsPlusCircle />} subTitle={'تیکت جدید'} />
         </div>
       </section>

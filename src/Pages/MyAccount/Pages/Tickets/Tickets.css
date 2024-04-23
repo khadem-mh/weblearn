@@ -1,0 +1,19 @@
+.account-page-my-courses {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 42px 42px 42px;
+}
+
+.statusbox-page-tickets {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 17px;
+}
+
+@media screen and (max-width: 576px) {
+    .account-page-my-courses {
+        padding: 0 12px 42px 12px;
+    }
+}

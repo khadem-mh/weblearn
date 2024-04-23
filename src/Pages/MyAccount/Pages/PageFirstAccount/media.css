@@ -37,22 +37,7 @@
     }
 }
 
-@media screen and (max-width: 576px) {
-    .account-page-first__header {
-        width: inherit;
-        display: grid;
-        grid-template-rows: repeat(2, 1fr);
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-    }
-}
-
 @media screen and (max-width: 410px) {
-    .account-page-first__header {
-        grid-template-rows: repeat(1, 1fr);
-        grid-template-columns: repeat(1, 1fr);
-    }
-
     .content-left__top-header {
         flex-direction: column;
     }

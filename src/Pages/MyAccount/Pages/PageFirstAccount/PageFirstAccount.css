@@ -5,10 +5,8 @@
 }
 
 .account-page-first__header {
-    width: inherit;
+    width: auto;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
     flex-wrap: wrap;
     gap: 20px;
 }
