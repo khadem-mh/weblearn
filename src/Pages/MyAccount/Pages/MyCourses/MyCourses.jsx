@@ -2,7 +2,7 @@ import React from 'react'
 import './MyCourses.css'
 import './media.css'
 //Icons
-import { HiOutlineCreditCard, HiOutlineRocketLaunch, HiOutlineTicket } from "react-icons/hi2";
+import { HiOutlineCreditCard, HiOutlineRocketLaunch } from "react-icons/hi2";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 //Components
 import StatusBoxAccount from '../../Components/StatusBoxAccount/StatusBoxAccount'
@@ -16,8 +16,8 @@ export default function MyCourses() {
 
       <section className='account-page-first__header'>
         <StatusBoxAccount bgColorBox={'rgba(255, 225, 0, .9)'} logo={<HiOutlineCreditCard />} title={'دوره های ثبت نام شده'} subTitle={` ${faNumber(10)} دوره`} />
-        <StatusBoxAccount bgColorBox={'rgba(78, 129, 251, .9)'} logo={<HiOutlineRocketLaunch />} title={'دوره های نقدی'} subTitle={` ${faNumber(3)} دوره`} />
-        <StatusBoxAccount bgColorBox={'rgba(46, 213, 115, .9)'} logo={<FaMoneyBillTrendUp />} title={'دوره های رایگان'} subTitle={`${faNumber(7)} دوره`} />
+        <StatusBoxAccount bgColorBox={'rgba(78, 129, 251, .9)'} logo={< FaMoneyBillTrendUp />} title={'دوره های نقدی'} subTitle={` ${faNumber(3)} دوره`} />
+        <StatusBoxAccount bgColorBox={'rgba(46, 213, 115, .9)'} logo={<HiOutlineRocketLaunch />} title={'دوره های رایگان'} subTitle={`${faNumber(7)} دوره`} />
       </section>
 
       <div className='my-courses__parent-courses'>
