@@ -15,7 +15,7 @@ export default function MenuAccount({ liM, fzTitle, fzLogo }) {
             <ItemMenuAccount fzTitle={fzTitle} liMargin={liM} logo={<VscFolderLibrary className='logo-menu-account' style={{ fontSize: fzLogo }} />} title={'دوره های من'} path={'/my-account/my-courses'} />
             <ItemMenuAccount fzTitle={fzTitle} liMargin={liM} logo={<GoCommentDiscussion className='logo-menu-account' style={{ fontSize: fzLogo }} />} title={'تیکت ها'} path={'/my-account/tickets'} />
             <ItemMenuAccount fzTitle={fzTitle} liMargin={liM} logo={<HiOutlineUser className='logo-menu-account' style={{ fontSize: fzLogo }} />} title={'جزئیات حساب'} path={'/my-account/details-account'} />
-            <ItemMenuAccount fzTitle={fzTitle} liMargin={liM} logo={<IoLogOutOutline className='logo-menu-account' style={{ fontSize: fzLogo }} />} title={'خروج'} path={'/'}/>
+            <ItemMenuAccount fzTitle={fzTitle} liMargin={liM} logo={<IoLogOutOutline className='logo-menu-account' style={{ fontSize: fzLogo }} />} title={'خروج'} path={'/'} />
         </ul>
     )
 }

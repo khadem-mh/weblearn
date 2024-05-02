@@ -13,6 +13,7 @@ import PageFirstAccount from "./Pages/MyAccount/Pages/PageFirstAccount/PageFirst
 import MyCourses from "./Pages/MyAccount/Pages/MyCourses/MyCourses";
 import DetailsAccount from "./Pages/MyAccount/Pages/DetailsAccount/DetailsAccount";
 import Tickets from "./Pages/MyAccount/Pages/Tickets/Tickets";
+import AddTicket from "./Pages/MyAccount/Pages/AddTicket/AddTicket";
 
 
 const routes = [
@@ -31,6 +32,7 @@ const routes = [
             { path: 'my-courses', element: <MyAccount children={< MyCourses />} /> },
             { path: 'details-account', element: <MyAccount children={< DetailsAccount />} /> },
             { path: 'tickets', element: <MyAccount children={< Tickets />} /> },
+            { path: 'add-ticket', element: <MyAccount children={< AddTicket />} /> },
             { path: '*', element: < Page404 /> },
         ]
     },

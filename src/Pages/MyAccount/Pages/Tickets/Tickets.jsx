@@ -1,5 +1,6 @@
 import React from 'react'
 import './Tickets.css'
+import { Link } from 'react-router-dom';
 //components
 import HeaderList from '../../Components/HeaderList/HeaderList';
 import ItemList from '../../Components/ItemList/ItemList';
@@ -14,10 +15,6 @@ import faNumber from '../../../../Functions/FaNumber/FaNumber.js';
 
 export default function Tickets() {
 
-  const addTicketHandler = () => {
-    console.log('ok');
-  }
-
   return (
     <div className='account-page-my-courses'>
 
@@ -28,8 +25,8 @@ export default function Tickets() {
           <StatusBoxAccount bgColorBox={'rgba(46, 213, 115, .9)'} logo={<TfiComments />} title={'بسته شده'} subTitle={`${faNumber(7)} دوره`} />
         </div>
 
-        <div className='statusbox-page-tickets__left' onClick={addTicketHandler}>
-          <StatusBoxAccount bgColorBox={'#4E81FB'} logo={<BsPlusCircle />} subTitle={'تیکت جدید'}/>
+        <div className='statusbox-page-tickets__left' >
+          <Link to={'/my-account/add-ticket'}> <StatusBoxAccount bgColorBox={'#4E81FB'} logo={<BsPlusCircle />} subTitle={'تیکت جدید'} /></Link>
         </div>
       </section>
 
@@ -39,10 +36,10 @@ export default function Tickets() {
         </div>
 
         <ul className='content-left__list'>
-          <ItemList urlDest={'/'} textStatus={true} titleTicket={'گروه واتساپ'} date3Section={[1402, 10, 7]} statusQues={'پشتیبانی'}/>
-          <ItemList urlDest={'/'} textStatus={false} titleTicket={'گروه تلگرام'} date3Section={[1402, 10, 7]} statusQues={'پشتیبانی'}/>
-          <ItemList urlDest={'/'} textStatus={true} titleTicket={'گروه لینکدین برای چی این جا است'} date3Section={[1402, 10, 7]} statusQues={'پشتیبانی'}/>
-          <ItemList urlDest={'/'} textStatus={false} titleTicket={'دپارتمان 133 سبزلرن کجاست'} date3Section={[1402, 10, 7]} statusQues={'پشتیبانی'}/>
+          <ItemList urlDest={'/'} textStatus={true} titleTicket={'گروه واتساپ'} date3Section={[1402, 10, 7]} statusQues={'پشتیبانی'} />
+          <ItemList urlDest={'/'} textStatus={false} titleTicket={'گروه تلگرام'} date3Section={[1402, 10, 7]} statusQues={'پشتیبانی'} />
+          <ItemList urlDest={'/'} textStatus={true} titleTicket={'گروه لینکدین برای چی این جا است'} date3Section={[1402, 10, 7]} statusQues={'پشتیبانی'} />
+          <ItemList urlDest={'/'} textStatus={false} titleTicket={'دپارتمان 133 سبزلرن کجاست'} date3Section={[1402, 10, 7]} statusQues={'پشتیبانی'} />
         </ul>
       </div>
 
