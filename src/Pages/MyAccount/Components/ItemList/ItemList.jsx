@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 //Funcs
 import faNumber from '../../../../Functions/FaNumber/FaNumber.js';
 
-export default function ItemList({ urlDest, titleTicket, date3Section, textTypeSupport, textStatus, textEmpty }) {
+export default function ItemList({ urlDest, titleTicket, date3Section, textTypeSupport, textStatus, textEmpty, statusQues }) {
     return (
         <li className='li-item'>
             {
@@ -21,6 +21,10 @@ export default function ItemList({ urlDest, titleTicket, date3Section, textTypeS
                             {
                                 textTypeSupport &&
                                 <span className='li-item__status'>{textTypeSupport}</span>
+                            }
+                            {
+                                statusQues && statusQues.length &&
+                                <span className={`li-item__status li-item__status-close`}>{statusQues}</span>
                             }
                             <span className={`li-item__status ${textStatus ? 'li-item__status-open' : 'li-item__status-close'}`}>{textStatus ? 'open ' : 'close'}</span>
                         </div>
