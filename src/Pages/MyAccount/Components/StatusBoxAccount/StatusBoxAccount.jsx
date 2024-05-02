@@ -2,7 +2,7 @@ import React from 'react'
 import './StatusBoxAccount.css'
 import './media.css'
 
-export default function StatusBoxAccount({ logo, title, subTitle, bgColorBox, bgColorLogo }) {
+export default function StatusBoxAccount({ logo, title, subTitle, bgColorBox }) {
     return (
         <div className='status-box-account' style={{ backgroundColor: bgColorBox }}>
             <div className='status-box-account__right'>

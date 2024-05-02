@@ -18,6 +18,10 @@
     flex-basis: auto;
 }
 
+.statusbox-page-tickets__left div {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 576px) {
 
     .statusbox-page-tickets__left {
