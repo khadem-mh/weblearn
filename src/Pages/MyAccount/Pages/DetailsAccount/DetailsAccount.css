@@ -1,13 +1,23 @@
 .details-account {
     margin: 0 29px 42px 29px !important;
-    gap: 15px;
+    gap: 45px;
     color: white;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
 }
 
 /* start right */
-.details-account__right-box {}
+.details-account__right-box {
+    flex-grow: 2;
+}
 
-.details-account__right-box h2, .details-account__left h2 {
+.details-account__left {
+    flex-grow: 1;
+}
+
+.details-account__right-box h2,
+.details-account__left h2 {
     font-family: Lalezar;
     font-size: 2.1rem;
 }
@@ -30,9 +40,25 @@
     padding: 1.5rem 2rem !important;
 }
 
+.btn-details-account-parent {
+    width: 100%;
+    text-align: end;
+}
+
+.btn-details-account {
+    margin: 2.5rem 0 1rem 0;
+}
+
 .forget-password-details-account {
     font-size: 1.1rem;
     color: gray;
+    cursor: pointer;
+    transition: all 300ms;
+    margin-top: 1.5rem;
+}
+
+.forget-password-details-account:hover {
+    color: lightgray;
 }
 
 .input-details-account {

@@ -1,13 +1,12 @@
 import React from 'react'
 import './DetailsAccount.css'
 import { VscGitPullRequestGoToChanges } from "react-icons/vsc";
-import { Row, Col } from 'react-bootstrap'
 
 export default function DetailsAccount() {
   return (
-    <Row className='details-account'>
+    <section className='details-account'>
 
-      <Col className='details-account__right-box'>
+      <section className='details-account__right-box'>
 
         <h2>جزئیات حساب کاربری</h2>
         <hr />
@@ -37,21 +36,25 @@ export default function DetailsAccount() {
           </div>
         </section>
 
-        <button className='btn-details-account'>ثبت اطلاعات</button>
+        <div className='btn-details-account-parent'>
+          <button className='btn-details-account'>ثبت اطلاعات</button>
+        </div>
+        
+      </section>
 
-      </Col>
-
-      <Col className='details-account__left'>
+      <section className='details-account__left'>
         <h2>تغیر رمز عبور</h2>
         <hr />
         <p className='lable-task'>رمز عبور فعلی</p>
         <input type="text" placeholder='رمز فعلی را وارد کنید' className='input-details-account' />
-        <small className='forget-password-details-account'>رمز عبور را فراموش کرده اید؟</small>
+        <p className='forget-password-details-account'>رمز عبور را فراموش کرده اید؟</p>
         <p className='lable-task'>رمز عبور جدید</p>
         <input type="text" placeholder='رمز جدید را وارد کنید' className='input-details-account' />
-        <button className='btn-details-account'>تغیر رمز</button>
-      </Col>
+        <div className='btn-details-account-parent'>
+          <button className='btn-details-account'>تغیر رمز</button>
+        </div>
+      </section>
 
-    </Row>
+    </section>
   )
 }
