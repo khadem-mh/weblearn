@@ -26,9 +26,11 @@ const MyAccount = ({ children }) => {
 
             <section className='account-content'>
                 <section className='account-content__header'>
-                    <div>
+
+                    <div className='d-none d-md-flex'>
                         <h2 className='account-content__title'>محمدحسین عزیز؛ خوش اومدی 🙌</h2>
                     </div>
+
                     <div className='account-content__header-left'>
                         <div className='account-content__parent-notif' onClick={e => clickHandlerNotif(e)}>
                             <IoNotificationsOutline className='account-content__notif' />
@@ -39,6 +41,7 @@ const MyAccount = ({ children }) => {
                                 <p className='modal-notif-account__announse'>اعلان جدیدی وجود ندارد.</p>
                             </div>
                         </div>
+
                         <img src="/Images/Logos/Logo-account/logoAccount.png" alt="logo-account" className='account-content__prof' onClick={e => clickHandlerAccount(e)} />
 
                         <div className='modal-account modal-details-account ' id='modalAccount'>
@@ -56,7 +59,12 @@ const MyAccount = ({ children }) => {
 
                     </div>
                 </section>
+
                 <section>
+                    <div className='d-flex d-md-none'>
+                        <h2 className='account-content__title'>محمدحسین عزیز؛ خوش اومدی 🙌</h2>
+                    </div>
+
                     {children}
                 </section>
             </section>

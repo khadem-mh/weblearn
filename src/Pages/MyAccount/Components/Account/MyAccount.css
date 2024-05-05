@@ -143,3 +143,12 @@
 }
 
 /*! end Modal */
+
+@media screen and (max-width: 768px) {
+    .account-content__title {
+        font-size: 23px;
+        margin-bottom: 2rem;
+        margin-right: 12px;
+        color: whitesmoke;
+    }
+}
