@@ -14,9 +14,11 @@ export default function DetailsAccount() {
         <section className='details-account__parent'>
           <div className='right-box__right'>
 
-            <div>
-              <img src="/Images/Logos/Logo-account/logoAccount.png" alt="yourImage" className='account-content__prof' />
-              <VscGitPullRequestGoToChanges />
+            <div className='right-box__right-prof'>
+              <img src="/Images/Logos/Logo-account/logoAccount.png" alt="yourImage" className='account-content__prof prof-details-account' />
+              <div className='right-box__right-prof-parent-icon'>
+                <VscGitPullRequestGoToChanges className='right-box__right-prof-icon' />
+              </div>
             </div>
 
             <p className='lable-task'>شماره موبایل</p>
@@ -39,7 +41,7 @@ export default function DetailsAccount() {
         <div className='btn-details-account-parent'>
           <button className='btn-details-account'>ثبت اطلاعات</button>
         </div>
-        
+
       </section>
 
       <section className='details-account__left'>
