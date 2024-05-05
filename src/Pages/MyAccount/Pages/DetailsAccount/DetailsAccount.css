@@ -1,5 +1,5 @@
 .details-account {
-    margin: 0 29px 42px 29px !important;
+    margin: 0 42px 42px 42px !important;
     gap: 45px;
     color: white;
     display: flex;
@@ -24,15 +24,18 @@
 
 .details-account__parent {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .right-box__right {
-    width: 50%;
+    width: 48.5%;
 }
 
 .right-box__left {
-    width: 50%;
+    width: 48.5%;
+    height: 100%;
 }
 
 .right-box__right-prof {
@@ -103,6 +106,7 @@
 }
 
 .input-details-account {
+    width: 100%;
     padding: 1.2rem 1rem;
     background-color: #32334D;
     border-radius: .8rem;
@@ -127,4 +131,34 @@
 
 .btn-details-account:hover {
     background-color: var(--primarydie-color);
+}
+
+@media screen and (max-width: 576px) {
+
+    .details-account {
+        margin: 0 12px 12px 12px !important;
+        gap: 20px;
+        color: white;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+    }
+
+    .details-account__parent {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .right-box__right {
+        width: 100%;
+    }
+
+    .right-box__left {
+        width: 100%;
+    }
+    .btn-details-account {
+        width: 100%;
+    }
 }
