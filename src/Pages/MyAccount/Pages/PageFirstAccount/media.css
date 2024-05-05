@@ -30,10 +30,15 @@
 
 @media screen and (max-width:768px) {
     .account-page-first {
-        padding: 0 10px;
+        padding: 0 42px !important;
     }
     .content-right__bottom {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (max-width:576px) {
+    .account-page-first {
+        padding: 0 12px !important;
     }
 }
 

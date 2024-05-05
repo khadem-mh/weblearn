@@ -6,6 +6,7 @@ import LogoHeader from '../../../../Components/LogoHeader/LogoHeader'
 import MenuAccount from '../MenuAccount/MenuAccount';
 //icons
 import { IoNotificationsOutline } from "react-icons/io5";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
 //hook
 import useModalLogic from '../../../../Hooks/useModalLogic';
 
@@ -26,6 +27,11 @@ const MyAccount = ({ children }) => {
 
             <section className='account-content'>
                 <section className='account-content__header'>
+
+                    <div className='d-flex d-md-none menu-account-parent' >
+                        <HiOutlineMenuAlt3 className='menu-account' />
+                        <p className='me-2'>جزئیات حساب</p>
+                    </div>
 
                     <div className='d-none d-md-flex'>
                         <h2 className='account-content__title'>محمدحسین عزیز؛ خوش اومدی 🙌</h2>
