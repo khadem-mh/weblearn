@@ -7,6 +7,17 @@
     /*     filter: blur(8px); */
 }
 
+.icon-close-menu-account {
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 300ms;
+}
+
+.icon-close-menu-account:hover {
+    color: lightgray;
+}
+
 .account-sidbar {
     min-width: 230px;
     background-color: transparent;
@@ -186,7 +197,7 @@
     }
 
     .account-content__header {
-        margin: 40px 15px 57px 15px;
+        margin: 20px 15px 57px 15px;
     }
     
 }

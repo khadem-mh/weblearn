@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './MyAccount.css'
 import './media.css'
 //Components
@@ -7,19 +7,41 @@ import MenuAccount from '../MenuAccount/MenuAccount';
 //icons
 import { IoNotificationsOutline } from "react-icons/io5";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { VscChromeClose } from "react-icons/vsc";
 //hook
 import useModalLogic from '../../../../Hooks/useModalLogic';
 
 const MyAccount = ({ children }) => {
 
+    const [arrivewidth, setArrivewidth] = useState(false)
+
     const clickHandlerNotif = useModalLogic('#modalNotif')
     const clickHandlerAccount = useModalLogic('#modalAccount')
+
+    useEffect(() => {
+        const resizeController = e => {
+            if (e.srcElement.visualViewport.width === 1050) setArrivewidth(true)
+            else setArrivewidth(false)
+        }
+        window.addEventListener('resize', (e) => resizeController(e))
+    })
 
     return (
         <div className='page-account'>
 
-            <section className='account-sidbar'>
-                <LogoHeader srcLogo={'/Images/Logos/Logo-site/logo-one-copy.png'} imgW={'93px'} titleFz={'4.3rem'} subTitleFz={'1rem'} />
+            <section className={`account-sidbar ${!arrivewidth ? 'sidebar-close' : 'sidebar-open'}`}>
+                <div className='d-flex align-items-center justify-content-between'>
+                    {
+                        arrivewidth
+                            ?
+                            <>
+                                <LogoHeader srcLogo={'/Images/Logos/Logo-site/logo-one-copy.png'} imgW={'93px'} titleFz={'4.3rem'} subTitleFz={'1rem'} />
+                                <VscChromeClose className='icon-close-menu-account' onClick={() => setArrivewidth(false)} />
+                            </>
+                            :
+                            <LogoHeader srcLogo={'/Images/Logos/Logo-site/logo-one-copy.png'} imgW={'93px'} titleFz={'4.3rem'} subTitleFz={'1rem'} />
+                    }
+                </div>
                 <aside className='account-sidbar__parent'>
                     <MenuAccount />
                 </aside>
@@ -28,7 +50,7 @@ const MyAccount = ({ children }) => {
             <section className='account-content'>
                 <section className='account-content__header'>
 
-                    <div className='d-flex d-md-none menu-account-parent' >
+                    <div className='d-flex d-md-none menu-account-parent' onClick={() => setArrivewidth(true)}>
                         <HiOutlineMenuAlt3 className='menu-account' />
                         <p className='me-2'>جزئیات حساب</p>
                     </div>
