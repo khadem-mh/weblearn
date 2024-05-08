@@ -1,0 +1,116 @@
+@media screen and (max-width:1250px) {
+    .page-lesson.page {
+        padding: 0 4.5rem;
+    }
+
+    .details-lesson__right-header-title {
+        font-size: 2.1rem;
+    }
+}
+
+@media screen and (max-width:992px) {
+    .page-lesson.page {
+        padding: 0 3.5rem;
+    }
+
+    .parent-box-status-details .course-boxes__box-right svg {
+        font-size: 3.5rem !important;
+    }
+
+    .parent-box-status-details .course-boxes__box-left-title {
+        font-size: 1.6rem !important;
+    }
+
+    .parent-box-status-details .course-boxes__box-left--subtitle {
+        font-size: 1.4rem !important;
+    }
+}
+
+@media screen and (max-width: 892px) {
+    .container-details-lesson {
+        flex-direction: column;
+        justify-content: space-between !important;
+    }
+
+    .details-lesson__right {
+        width: 100%;
+    }
+
+    .details-lesson__left {
+        width: 100%;
+        margin-top: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .details-lesson__right-header-title {
+        font-size: 1.8rem;
+    }
+
+    .details-lesson__right-header-btn-ques,
+    .details-lesson__right-header-btn-downlod,
+    .details-lesson__right-header-btn-file {
+        padding: .8rem 2rem;
+        font-size: 1.3rem;
+    }
+
+    .details-lesson__right-comment-footer-btnsend {
+        padding: .6rem 3.5rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .details-lesson__right-header-title {
+        font-size: 1.6rem;
+    }
+}
+
+@media screen and (max-width: 545px) {
+    .details-lesson__right-header-title {
+        font-size: 1.5rem;
+    }
+
+    .page-lesson.page {
+        padding: 0 1rem;
+    }
+
+    .details-lesson__right-comment-footer,
+    .details-lesson__right-bottom-parent,
+    .details-lesson__right-bottom-parent div {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .details-lesson__right-header-btn-file {
+        margin: 1rem 0 !important;
+    }
+
+
+    .details-lesson__right-header-btn-ques {
+        width: 100%;
+    }
+
+    .details-lesson__right-header-btn-file {
+        margin: 0;
+    }
+
+    .details-lesson__right-comment-footer-btnsend {
+        margin-top: 1.3rem;
+    }
+
+    .details-lesson__right-bottom-parent {}
+
+}
+
+@media screen and (max-width: 360px) {
+    .parent-box-status-details {
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .parent-box-status-details div {
+        width: 100%;
+    }
+
+}

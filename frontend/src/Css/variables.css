@@ -1,0 +1,26 @@
+:root {
+    --primary-font: 'IRANSans';
+    --font-size-text: 1.7rem;
+    --skyblue-color: #19b2ea;
+    --primary-color: rgb(43, 203, 86);
+    --primarydie-color: rgb(43, 166, 86);
+    --white-color: #fff;
+    --whitedie-color: rgba(221, 221, 221, 0.8);
+    --dark-color: #464749;
+    --black-color: rgb(27, 27, 40);
+    --blue-dark-color: rgb(37, 37, 60);
+    --blue-light-color: #2a2c46;
+    --blue-lighter-color: #32334D;
+    --blue-lighter-hight-color: rgb(60, 61, 88);
+    --secondary-color: hsla(0,0%,100%,.2);
+    --secondary-light-color: rgb(100, 116, 139);
+    --dark-alpha-color: rgba(50,50,66,1);
+    --bluedie-color: #f0f2f7;
+    --green-die-color: rgba(113, 175, 111, 0.1);
+
+    --skyblue-light: #28293D;
+    --skyblue-very-light: #32334D;
+    --skyblue-die: #1C1C28;
+    --skyblue-main: rgb(78, 129, 251);
+    --skyblue-low: #2C3251;
+}

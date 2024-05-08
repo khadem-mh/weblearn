@@ -1,0 +1,28 @@
+@media screen and (max-width: 992px) {
+    .course-box__img {
+        height: 130px;
+    }
+}
+
+@media screen and (max-width: 578px) {
+    .courses-header {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .courses-header__left {
+        margin-top: 1.4rem;
+        margin-bottom: 1.6rem;
+    }
+
+    .parent-course-box {
+        width: 313px !important;
+        display: block;
+        margin: auto;
+    }
+
+    .course-box__img {
+        height: 160px;
+    }
+
+}

@@ -1,0 +1,26 @@
+.account-sidbar__li {
+    margin: 25px 0;
+    width: 100%;
+}
+
+.account-sidbar__link {
+    width: 100%;
+    display: block;
+    border-radius: .5rem;
+    padding: .6rem 1rem;
+    transition: all 400ms;
+}
+
+.account-sidbar__active {
+    background-color: var(--primary-color);
+}
+
+.account-sidbar__link:not(.account-sidbar__active):hover {
+    background-color: #343658;
+}
+
+.account-sidbar__link span {
+    margin-right: 14px;
+    font-size: 1.4rem;
+    font-weight: lighter;
+}

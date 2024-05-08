@@ -1,0 +1,146 @@
+@media screen and (min-width: 892px) {
+    .search-input-menu-tower {
+        display: none;
+    }
+
+    .search-input-menu-desk {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 892px) {
+
+    .main-header__profile-icon {
+        margin-left: .5rem;
+    }
+
+    .main-header__content {
+        padding: 1rem 1rem;
+    }
+
+    .search-input-menu-tower {
+        display: block;
+    }
+
+    .search-input-menu-desk {
+        display: none;
+    }
+
+    .top-bar {
+        display: none;
+    }
+
+    .menu-mobile {
+        display: block !important;
+    }
+
+    .menu-wide {
+        display: none !important;
+    }
+
+    .main-header__content {
+        justify-content: space-between;
+        margin-top: 0;
+        padding-top: .7rem;
+    }
+
+    .logo-sabzlearn {
+        display: flex;
+        justify-content: center;
+    }
+
+    .main-header__icon-user {
+        padding-left: 0;
+    }
+
+    .main-header__parent-icon-list {
+        z-index: 1;
+        display: block;
+        margin-top: 1rem;
+    }
+
+    .logo-sabzlearn__link {
+        display: block;
+        position: absolute;
+        top: 7px;
+        left: 0;
+        width: 100%;
+        right: 0;
+    }
+
+    .main-header__right {
+        padding-top: 2rem;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 260px;
+        z-index: 1000;
+        background-color: var(--dark-alpha-color);
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        right: 0;
+    }
+
+    .main-header__menu {
+        margin-top: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .main-header__dropdown {
+        overflow-y: auto;
+    }
+
+    .main-header__item {
+        width: inherit;
+        margin: 1.5rem 0;
+    }
+
+    .main-header__link {
+        justify-content: space-between;
+        width: 80%;
+    }
+
+    .main-header__parent-search-input {
+        align-items: center;
+        justify-content: center;
+        width: 95% !important;
+        margin-top: 2rem;
+    }
+
+    .main-header__search-input {
+        font-size: 1.1rem;
+        height: 3.5rem;
+        width: 95%;
+        border-radius: 1rem;
+    }
+
+    .icon-nav-res {
+        margin-left: 0.9rem;
+        margin-top: 0.2rem;
+    }
+
+    .main-header__mob {
+        flex-direction: column-reverse;
+    }
+
+    .main-header__text-logo {
+        display: block;
+    }
+
+    .main-header__icon-close {
+        display: block;
+    }
+
+}
+
+@media screen and (max-width: 576px) {
+    .main-header__profile {
+        padding: 0.4rem .8rem;
+    }
+
+    .main-header__profile-icon {
+        margin-left: 0;
+    }
+}

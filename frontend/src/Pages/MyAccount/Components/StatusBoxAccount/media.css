@@ -1,0 +1,8 @@
+@media screen and (max-width: 583px) {
+    .status-box-account {
+        flex-basis: auto;
+        flex-grow: 1;
+        flex-shrink: 0;
+        height: fit-content;
+    }
+}

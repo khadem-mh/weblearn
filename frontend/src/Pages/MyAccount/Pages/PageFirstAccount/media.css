@@ -1,0 +1,57 @@
+@media screen and (max-width: 1400px) {
+    .account-page-first__content-right {
+        width: 59%;
+    }
+
+    .account-page-first__content-left {
+        width: 39% !important;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .account-page-first__content {
+        flex-direction: column;
+    }
+
+    .account-page-first__content-right,
+    .account-page-first__content-left {
+        width: 100% !important;
+    }
+
+    .content-right__bottom {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .account-page-first__content-left {
+        margin-top: 2rem;
+    }
+
+}
+
+@media screen and (max-width:768px) {
+    .account-page-first {
+        padding: 0 42px !important;
+    }
+    .content-right__bottom {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (max-width:576px) {
+    .account-page-first {
+        padding: 0 12px !important;
+    }
+}
+
+@media screen and (max-width: 410px) {
+    .content-left__top-header {
+        flex-direction: column;
+    }
+
+    .content-left__top-header p {
+        margin-bottom: 1rem;
+    }
+
+    .content-right__bottom {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

@@ -1,0 +1,36 @@
+/* Start search input styles */
+
+.parent-searchbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.searchbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    width: 100%;
+    height: 100%;
+    font-weight: bold;
+    background-color: rgba(128, 128, 128, .3);
+    color: var(--bluedie-color);
+    font: inherit;
+    padding: 0.8rem 1.6rem;
+    transition: all 400ms ease;
+    border: none;
+    border-radius: 50rem;
+}
+
+.search-icon {
+    color: var(--bluedie-color);
+    cursor: pointer;
+    position: absolute;
+    left: 15px;
+    z-index: 1;
+}
+
+/* Finish search input styles */

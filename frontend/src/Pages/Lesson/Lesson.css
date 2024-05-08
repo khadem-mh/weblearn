@@ -1,0 +1,263 @@
+
+/* bottom section */
+
+.container-details-lesson {
+    display: flex;
+    justify-content: space-between !important;
+    color: whitesmoke;
+    margin-top: 3.5rem;
+}
+
+.details-lesson__right {
+    width: 61%;
+}
+
+.details-lesson__left {
+    width: 37%;
+    height: fit-content;
+    position: sticky !important;
+    top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* start header box  */
+.details-lesson__right-header {
+    background-color: var(--blue-light-color);
+    border-radius: 1.5rem;
+    padding: 1.5rem 2.5rem;
+}
+
+.details-lesson__right-header-title {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1.5rem;
+    font-family: Lalezar;
+    font-size: 2.2rem;
+}
+
+.details-lesson__right-header-name {
+    margin-bottom: 2rem;
+}
+
+.details-lesson__right-header-number {
+    background-color: rgba(100, 116, 139, .7);
+    border-radius: .4rem;
+    padding: .3rem;
+    margin-left: .6rem;
+    color: rgb(36, 193, 255);
+}
+
+.details-lesson__right-header-name-video {
+    color: rgb(233, 233, 233);
+}
+
+.details-lesson__right-bottom-parent {
+    margin-top: 1.5rem;
+    margin-bottom: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.details-lesson__right-header-btn-ques,
+.details-lesson__right-header-btn-downlod,
+.details-lesson__right-header-btn-file {
+    border: 0;
+    padding: 1rem 2.4rem;
+    border-radius: 50rem;
+    color: whitesmoke;
+    transition: all 400ms;
+}
+
+.details-lesson__right-header-btn-ques {
+    background-color: var(--blue-lighter-hight-color);
+}
+
+.details-lesson__right-header-btn-file {
+    background-color: var(--skyblue-color);
+    margin-left: .7rem;
+}
+
+.details-lesson__right-header-btn-file:hover{
+    background-color: #2692b9;
+}
+
+.details-lesson__right-header-btn-downlod {
+    background-color: var(--primary-color);
+}
+
+.details-lesson__right-header-btn-downlod:hover {
+    background-color: var(--primarydie-color);
+}
+
+.details-lesson__right-header-btn-ques:hover {
+    color: skyblue;
+}
+
+/* end header box */
+
+
+/* start section comment header */
+.details-lesson__right-comment {
+    margin-top: 1.5rem;
+    background-color: var(--blue-light-color);
+    border-radius: 1.5rem;
+    padding: 2rem 2.5rem;
+}
+
+.details-lesson__right-comment-header {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.details-lesson__right-comment-header>p {
+    font-family: Lalezar;
+    font-size: 2rem;
+}
+
+
+.details-lesson__right-comment-header-icon {
+    font-size: 3rem;
+    margin-left: 1rem;
+}
+
+/* start section comment header */
+
+/* start section comment */
+
+.details-lesson__right-comment-body__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.details-lesson__right-comment-body__icon {
+    color: rgb(215, 215, 215);
+    font-size: 4rem;
+    border: 1px solid gray;
+    padding: .5rem;
+    border-radius: 50rem;
+    margin-left: 1rem;
+}
+
+.details-lesson__right-comment-body__sub-p {
+    font-size: 1.1rem;
+    color: rgb(211, 211, 211);
+}
+
+/* start section comment */
+
+/* start section comment footer */
+.details-lesson__right-comment-footer {
+    margin-bottom: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2.5rem;
+}
+
+.details-lesson__right-comment-footer>div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.details-lesson__right-comment-footer-btnsend {
+    border: 0;
+    border-radius: 50rem;
+    padding: .9rem 4.4rem;
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    transition: all 400ms;
+}
+
+.details-lesson__right-comment-footer-btnsend:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.details-lesson__right-comment-footer>svg {
+    margin-top: 0;
+}
+
+.details-lesson__right-comment-footer-icon {
+    font-size: 2.4rem;
+    margin-left: .8rem;
+}
+
+/* end section comment footer */
+
+.ck.ck-editor__main>.ck-editor__editable {
+    background-color: var(--blue-lighter-hight-color) !important;
+    border: 1px solid var(--blue-lighter-hight-color) !important;
+    border-bottom-left-radius: 1.5rem !important;
+    border-bottom-right-radius: 1.5rem !important;
+    height: 200px;
+    direction: rtl !important;
+}
+
+.ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar,
+.ck.ck-editor__top .ck-sticky-panel .ck-toolbar.ck-rounded-corners {
+    border-top-left-radius: 1.5rem !important;
+    border-top-right-radius: 1.5rem !important;
+    border: 1px solid var(--blue-lighter-hight-color);
+    height: 50px;
+}
+
+/* start section left page */
+
+.details-lesson__left-container-listvideo {
+    background-color: var(--blue-light-color);
+    border-radius: 1.5rem;
+    padding: 1.5rem 1.2rem 0.8rem 1.2rem;
+    max-height: 60rem;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.details-lesson__left-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid gray;
+    margin-bottom: 1.8rem;
+    padding-bottom: 2rem;
+    font-family: Lalezar;
+    font-size: 2rem;
+}
+
+.details-lesson__left-header>p {
+    margin-right: 1rem;
+}
+
+.details-lesson__left-header>svg {
+    font-size: 2.5rem;
+}
+
+/* end section left page */
+
+.box-tiny-status {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: fit-content;
+    text-align: center;
+    margin-right: 0;
+    width: 100%;
+}
+
+.parent-box-status-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.parent-box-status-details>.parent-status-box {
+    min-width: 31% !important;
+}
