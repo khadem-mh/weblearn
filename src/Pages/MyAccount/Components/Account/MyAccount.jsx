@@ -15,8 +15,8 @@ const MyAccount = ({ children }) => {
 
     const [arrivewidth, setArrivewidth] = useState(false)
 
-    const clickHandlerNotif = useModalLogic('#modalNotif')
-    const clickHandlerAccount = useModalLogic('#modalAccount')
+    const [isShowModalNotif, clickHandlerNotif] = useModalLogic('#modalNotif')
+    const [isShowModalAccount, clickHandlerAccount] = useModalLogic('#modalAccount')
 
     useEffect(() => {
         const resizeController = e => {
@@ -47,7 +47,7 @@ const MyAccount = ({ children }) => {
                 </aside>
             </section>
 
-            <section className='account-content'>
+            <section className={`account-content ${arrivewidth ? 'blur' : 'unblur'}`}>
                 <section className='account-content__header'>
 
                     <div className='d-flex d-md-none menu-account-parent' onClick={() => setArrivewidth(true)}>
@@ -88,7 +88,7 @@ const MyAccount = ({ children }) => {
                     </div>
                 </section>
 
-                <section>
+                <section className={`account-content ${isShowModalNotif || isShowModalAccount ? 'blur' : 'unblur'}`}>
                     <div className='d-flex d-md-none'>
                         <h2 className='account-content__title'>محمدحسین عزیز؛ خوش اومدی 🙌</h2>
                     </div>

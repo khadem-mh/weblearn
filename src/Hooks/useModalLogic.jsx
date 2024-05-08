@@ -39,7 +39,7 @@ const useModalLogic = (modalRef) => {
     setIsShowModalBox(prev => !prev)
   }
 
-  return clickHandlerNotif
+  return [isShowModalBox, clickHandlerNotif]
 
 }
 
