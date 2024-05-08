@@ -3,7 +3,7 @@ import { useRoutes, useLocation } from "react-router-dom"
 import routes from "./routes"
 //components
 import Navbar from "./Components/Navbar/Navbar"
-import Landing from "./Section/Landing/Landing"
+import Landing from "./Components/Landing/Landing"
 import Footer from "./Components/Footer/Footer"
 
 import MyAccount from "./Pages/MyAccount/Components/Account/MyAccount"
