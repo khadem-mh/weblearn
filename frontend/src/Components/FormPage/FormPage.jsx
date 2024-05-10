@@ -24,8 +24,10 @@ export default function FormPage({ nameFormPage }) {
                 btnForm.setAttribute('disabled', true)
             } else {
                 btnForm.removeAttribute('disabled')
+
                 btnForm.addEventListener('click', e => {
                     e.preventDefault()
+
                     const newUser = {
                         username: null,
                         email: null,
@@ -35,29 +37,25 @@ export default function FormPage({ nameFormPage }) {
                         phone: null,
                     }
 
-                    let newUserCopy = newUser
-
                     inpValid.map(item => {
-                        /*  item.type === inputFullName && (newUser.name = item.value) */
-                        Reflect.ownKeys(newUserCopy).map(itemObj => {
-                            console.log(itemObj, item.type);
-                            if (item.type.split('_').join('').toLowerCase().includes(itemObj)) {
-                                Reflect.deleteProperty(newUser, itemObj)
-                                Reflect.set(newUser, itemObj, item.value)
-                                itemObj === 'password' && (newUser.confirmPassword = item.value)
-                            }
-                        })
+                        item.type === inputFullName && (newUser.name = item.value)
+                        item.type === inputUserName && (newUser.username = item.value)
+                        item.type === inputPhoneNumber && (newUser.phone = item.value)
+                        item.type === inputEmail && (newUser.email = item.value)
+                        item.type === inputPassword && (newUser.password = item.value) && (newUser.confirmPassword = item.value)
+                        return true
                     })
 
-                    console.log(newUser);
+                    fetch(`http://localhost:4000/v1/auth/register`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(newUser)
+                    })
+                        .then(res => console.log(res))
+                        .catch(err => console.log(err))
 
-                    /*    fetch('http://localhost:4000/v1/auth/register', {
-                           method: 'POST',
-                           headers: {
-   
-                           },
-                           body: JSON.stringify()
-                       }) */
                 })
             }
         }
