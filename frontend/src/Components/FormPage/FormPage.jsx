@@ -20,7 +20,48 @@ export default function FormPage({ nameFormPage }) {
 
         if (inpValid.length === formRef.current.children.length - 1) {
             let isInpValid = inpValid.every(inp => !inp.valid ? false : true)
-            !isInpValid ? btnForm.setAttribute('disabled', true) : btnForm.removeAttribute('disabled')
+            if (!isInpValid) {
+                btnForm.setAttribute('disabled', true)
+            } else {
+                btnForm.removeAttribute('disabled')
+                btnForm.addEventListener('click', e => {
+                    e.preventDefault()
+                    const newUser = {
+                        username: null,
+                        email: null,
+                        password: null,
+                        confirmPassword: null,
+                        name: null,
+                        phone: null,
+                    }
+
+                    let newUserCopy = newUser
+                    console.log(newUserCopy);
+
+                    inpValid.map(item => {
+                        /*  item.type === inputFullName && (newUser.name = item.value) */
+                        Reflect.ownKeys(newUserCopy).map(itemObj => {
+                            if (item.type.toLocaleLowerCase().includes(itemObj)) {
+                                Reflect.deleteProperty(newUser, itemObj)
+                                console.log('delete => ', newUser);
+                                Reflect.set(newUser, itemObj, item.value)
+                            }
+                        })
+
+
+                    })
+
+                    console.log(newUser);
+
+                    /*    fetch('http://localhost:4000/v1/auth/register', {
+                           method: 'POST',
+                           headers: {
+   
+                           },
+                           body: JSON.stringify()
+                       }) */
+                })
+            }
         }
     }, [inpValid])
 
