@@ -9,9 +9,8 @@ export default function Input({ inpPlaceholder, inpIcon, type, onValid }) {
     const [state, dispatch] = useReducer(inputReducer, { value: '', isValid: false })
 
     useEffect(() => {
-        if (isBlurInput && state.value.length> 0) onValid({ type, valid: state.isValid, value: state.value })
-        setIsBlurInput(false)
-    }, [isBlurInput])
+        if (isBlurInput && state.value.length > 0) onValid({ type, valid: state.isValid, value: state.value })
+    })
 
     //funcs
     const inpChangeHandler = event => dispatch({ type, value: event.target.value })
