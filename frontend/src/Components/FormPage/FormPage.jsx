@@ -36,19 +36,17 @@ export default function FormPage({ nameFormPage }) {
                     }
 
                     let newUserCopy = newUser
-                    console.log(newUserCopy);
 
                     inpValid.map(item => {
                         /*  item.type === inputFullName && (newUser.name = item.value) */
                         Reflect.ownKeys(newUserCopy).map(itemObj => {
-                            if (item.type.toLocaleLowerCase().includes(itemObj)) {
+                            console.log(itemObj, item.type);
+                            if (item.type.split('_').join('').toLowerCase().includes(itemObj)) {
                                 Reflect.deleteProperty(newUser, itemObj)
-                                console.log('delete => ', newUser);
                                 Reflect.set(newUser, itemObj, item.value)
+                                itemObj === 'password' && (newUser.confirmPassword = item.value)
                             }
                         })
-
-
                     })
 
                     console.log(newUser);
