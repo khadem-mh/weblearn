@@ -8,24 +8,27 @@ export const AuthContext = createContext({
     logout: () => { },
 })
 
-export const AuthProvider = ({children}) => {
+export const AuthProvider = ({ children }) => {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [token, setToken] = useState(null)
     const [userInfos, setUserInfos] = useState({})
 
-    const login = () => {
-
+    const login = token => {
+        setToken(token)
+        localStorage.setItem('user', JSON.stringify({ token }))
     }
 
     const logout = () => {
-
+        setToken(null)
+        setUserInfos({})
+        localStorage.removeItem('user')
     }
 
     const ContextValue = {
-        isLogin: isLoggedIn,
-        userToken: token,
-        userInformation: userInfos,
+        isLoggedIn,
+        token,
+        userInfos,
         login,
         logout
     }
