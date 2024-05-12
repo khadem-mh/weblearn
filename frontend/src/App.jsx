@@ -5,9 +5,10 @@ import routes from "./routes"
 import Navbar from "./Components/Navbar/Navbar"
 import Landing from "./Components/Landing/Landing"
 import Footer from "./Components/Footer/Footer"
-
 import MyAccount from "./Pages/MyAccount/Components/Account/MyAccount"
 import PageFirstAccount from "./Pages/MyAccount/Pages/PageFirstAccount/PageFirstAccount";
+// Contexts
+import { AuthProvider } from "./Contexts/AuthContext"
 
 export default function App() {
   const location = useLocation()
@@ -18,32 +19,34 @@ export default function App() {
 
   return (
     <main>
-      {
-        location.pathname !== '/register' && location.pathname !== '/login' && !location.pathname.includes('/my-account') &&
-        <header className="header">
-          {
-            routes[0].path === location.pathname ?
-              (
-                <>
-                  <div className="hty"></div>
-                  <Navbar />
-                  <Landing />
-                </>
-              )
-              : <Navbar />
-          }
-        </header>
-      }
+      <AuthProvider>
+        {
+          location.pathname !== '/register' && location.pathname !== '/login' && !location.pathname.includes('/my-account') &&
+          <header className="header">
+            {
+              routes[0].path === location.pathname ?
+                (
+                  <>
+                    <div className="hty"></div>
+                    <Navbar />
+                    <Landing />
+                  </>
+                )
+                : <Navbar />
+            }
+          </header>
+        }
 
 
-      <section className={location.pathname === '/' ? 'app' : ''}>
-        {router}
-      </section>
+        <section className={location.pathname === '/' ? 'app' : ''}>
+          {router}
+        </section>
 
-      {
-        location.pathname !== '/register' && location.pathname !== '/login' && !location.pathname.includes('/my-account') &&
-        < Footer />
-      }
+        {
+          location.pathname !== '/register' && location.pathname !== '/login' && !location.pathname.includes('/my-account') &&
+          < Footer />
+        }
+      </AuthProvider>
     </main>
   )
 }
