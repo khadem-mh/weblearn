@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import FormGetData from '../FormGetData/FormGetData.jsx';
 import Input from '../Input/Input.jsx';
 //icons
@@ -9,11 +9,13 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import {
     inputFullName, inputUserName, inputPhoneNumber, inputEmail, inputPassword
 } from "../../Validators/RulesInput.js"
+import { AuthContext } from '../../Contexts/AuthContext.js'
 
 export default function FormPage({ nameFormPage }) {
 
     const formRef = useRef()
     const [inpValid, setInpValid] = useState([])
+    const authContext = useContext(AuthContext)
 
     useEffect(() => {
         let btnForm = formRef.current.lastElementChild
@@ -53,9 +55,19 @@ export default function FormPage({ nameFormPage }) {
                         },
                         body: JSON.stringify(newUser)
                     })
-                        .then(res => console.log(res))
+                        .then(res => {
+                            if (res.ok) return res.json()
+                            else return false
+                        })
+                        .then(result => {
+                            if (result) {
+                                authContext.login(result.user, result.accessToken)
+                                window.location = '/'
+                            } else {
+                                console.log('error');
+                            }
+                        })
                         .catch(err => console.log(err))
-
                 })
             }
         }

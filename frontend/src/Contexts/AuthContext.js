@@ -14,13 +14,16 @@ export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(null)
     const [userInfos, setUserInfos] = useState({})
 
-    const login = token => {
+    const login = (userInfo, token) => {
         setToken(token)
+        setUserInfos(userInfo)
+        setIsLoggedIn(true)
         localStorage.setItem('user', JSON.stringify({ token }))
     }
 
     const logout = () => {
         setToken(null)
+        setIsLoggedIn(false)
         setUserInfos({})
         localStorage.removeItem('user')
     }
