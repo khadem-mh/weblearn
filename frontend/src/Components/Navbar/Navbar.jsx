@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import './Navbar.css'
 import './media.css'
 import { Link } from 'react-router-dom';
 import SearchInput from '../SearchInput/SearchInput';
+import { AuthContext } from '../../Contexts/AuthContext';
 //icons
 import { IoCloseOutline } from "react-icons/io5";
 import { HiOutlineUser } from "react-icons/hi2";
@@ -10,29 +11,18 @@ import { HiOutlineUser } from "react-icons/hi2";
 export default function Navbar() {
 
     const menuRef = useRef()
+    const authContext = useContext(AuthContext)
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     useEffect(() => {
-
         const handleResize = () => {
             setWindowWidth(window.innerWidth)
-            if (window.innerWidth < 893 && !menuRef.current.classList.contains('menu-show')) {
-                menuRef.current.classList.add('menu-hidden')
-            } else {
-                menuRef.current.classList.remove('menu-hidden')
-            }
+            if (window.innerWidth < 893 && !menuRef.current.classList.contains('menu-show')) menuRef.current.classList.add('menu-hidden')
+            else menuRef.current.classList.remove('menu-hidden')
         }
-
         window.addEventListener('resize', handleResize)
-
-        if (window.innerWidth < 893) {
-            menuRef.current.classList.add('menu-hidden')
-        }
-
-        return () => {
-            window.removeEventListener('resize', handleResize)
-        }
-
+        window.innerWidth < 893 && menuRef.current.classList.add('menu-hidden')
+        return () => window.removeEventListener('resize', handleResize)
     }, [windowWidth])
 
     const closeNavbar = () => {
@@ -236,9 +226,9 @@ export default function Navbar() {
                                 <SearchInput w={'24rem'} h={'3.9rem'} fz={'.8em'} iconFz={'1em'} />
                             </div>
 
-                            <Link to="/register" className="main-header__profile">
+                            <Link to={authContext.isLoggedIn ? '/my-account' : '/register'} className="main-header__profile">
                                 <div className='d-none d-sm-block'>
-                                    <p className='main-header__profile-text'> ورود |  عضویت</p>
+                                    <p className='main-header__profile-text'>{authContext.isLoggedIn ? authContext.userInfos.name : 'ورود |  عضویت'}</p>
                                 </div>
                                 <div className='main-header__profile-icon'>
                                     <HiOutlineUser className='main-header__icon-user' />

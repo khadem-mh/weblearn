@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './PageFirstAccount.css'
 import './media.css'
 import StatusBoxAccount from '../../Components/StatusBoxAccount/StatusBoxAccount'
@@ -11,14 +11,18 @@ import { HiOutlineCreditCard, HiOutlineRocketLaunch, HiOutlineTicket } from "rea
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 //Funcs
 import faNumber from '../../../../Functions/FaNumber/FaNumber.js';
+import { AuthContext } from '../../../../Contexts/AuthContext.js';
 
 export default function PageFirstAccount() {
+
+  const authContext = useContext(AuthContext)
+
   return (
     <div className='account-page-first'>
 
       <section className='account-page-first__header'>
         <StatusBoxAccount bgColorBox={'rgba(255, 225, 0, .9)'} logo={<HiOutlineCreditCard />} title={'مجموع پرداخت ها'} subTitle={` ${faNumber(1165500)} تومان`} />
-        <StatusBoxAccount bgColorBox={'rgba(78, 129, 251, .9)'} logo={<HiOutlineRocketLaunch />} title={'دوره های من'} subTitle={` ${faNumber(10)} دوره`} />
+        <StatusBoxAccount bgColorBox={'rgba(78, 129, 251, .9)'} logo={<HiOutlineRocketLaunch />} title={'دوره های من'} subTitle={` ${authContext.userInfos.courses && authContext.userInfos.courses.length} دوره`} />
         <StatusBoxAccount bgColorBox={'rgba(244, 63, 94, .9)'} logo={<HiOutlineTicket />} title={'مجموع تیکت ها'} subTitle={` ${faNumber(3)} تیکت`} />
         <StatusBoxAccount bgColorBox={'rgba(46, 213, 115, .9)'} logo={<FaMoneyBillTrendUp />} title={'موجودی حساب'} subTitle={` 0 تومان`} />
       </section>
@@ -26,16 +30,21 @@ export default function PageFirstAccount() {
       <section className='account-page-first__content'>
 
         <section className='account-page-first__content-right'>
-          <HeaderList textLink={'همه دوره های ثبت نام شده'} title={'اخیرا مشاهده شده'} urlDest={'/my-account/my-courses'} />
+          <HeaderList textLink={'همه دوره های ثبت نام شده'} title={'اخیرا ثبت نام شده'} urlDest={'/my-account/my-courses'} />
 
           <div className='content-right__bottom'>
 
-            <BoxcourseImg text={'پروژه های تخصصی با جاوا اسکریپت برای بازار کار'} imgSrc={'/Images/Courses/1.png'} />
-            <BoxcourseImg text={'پروژه های تخصصی با جاوا اسکریپت برای بازار کار'} imgSrc={'/Images/Courses/2.png'} />
-            <BoxcourseImg text={'پروژه های تخصصی با جاوا اسکریپت برای بازار کار'} imgSrc={'/Images/Courses/3.png'} />
-            <BoxcourseImg text={'پروژه های تخصصی با جاوا اسکریپت برای بازار کار'} imgSrc={'/Images/Courses/4.png'} />
+            {
+              authContext.userInfos.courses && authContext.userInfos.courses.length && authContext.userInfos.courses.map(course => (
+                <BoxcourseImg key={course.id} text={'پروژه های تخصصی با جاوا اسکریپت برای بازار کار'} imgSrc={'/Images/Courses/1.png'} />
+              ))
+            }
 
           </div>
+          {
+            authContext.userInfos.courses && !authContext.userInfos.courses.length &&
+            <p className='w-100 text-light h2 d-block text-center mt-5' style={{ fontFamily: 'Lalezar' }}>هنوز هیچ دوره ای خریداری نشده است.</p>
+          }
         </section>
 
         <section className='account-page-first__content-left'>

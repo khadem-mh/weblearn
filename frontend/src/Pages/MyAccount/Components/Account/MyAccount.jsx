@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import './MyAccount.css'
 import './media.css'
 //Components
@@ -10,11 +10,12 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { VscChromeClose } from "react-icons/vsc";
 //hook
 import useModalLogic from '../../../../Hooks/useModalLogic';
+import { AuthContext } from '../../../../Contexts/AuthContext';
 
 const MyAccount = ({ children }) => {
 
     const [arrivewidth, setArrivewidth] = useState(false)
-
+    const authContext = useContext(AuthContext)
     const [isShowModalNotif, clickHandlerNotif] = useModalLogic('#modalNotif')
     const [isShowModalAccount, clickHandlerAccount] = useModalLogic('#modalAccount')
 
@@ -56,7 +57,7 @@ const MyAccount = ({ children }) => {
                     </div>
 
                     <div className='d-none d-md-flex'>
-                        <h2 className='account-content__title'>محمدحسین عزیز؛ خوش اومدی 🙌</h2>
+                        <h2 className='account-content__title'>{authContext.userInfos.name} عزیز؛ خوش اومدی 🙌</h2>
                     </div>
 
                     <div className='account-content__header-left'>
@@ -66,7 +67,15 @@ const MyAccount = ({ children }) => {
                         <div className='modal-account modal-notif-account' id='modalNotif'>
                             <p className='modal-notif-account__title'>اعلان ها</p>
                             <div className='modal-notif-account__bottom'>
-                                <p className='modal-notif-account__announse'>اعلان جدیدی وجود ندارد.</p>
+                                {
+                                    authContext.userInfos.notifications && authContext.userInfos.notifications.length
+                                        ?
+                                        authContext.userInfos.notifications.map(item => (
+                                            <p className='modal-notif-account__announse'>{item.title}</p>
+                                        ))
+                                        :
+                                        <p className='modal-notif-account__announse'>اعلان جدیدی وجود ندارد.</p>
+                                }
                             </div>
                         </div>
 
@@ -78,7 +87,7 @@ const MyAccount = ({ children }) => {
                                     <img src="/Images/Logos/Logo-account/logoAccount.png" alt="yourImage" className='account-content__prof' />
                                 </div>
                                 <div className='header-modal-account__left'>
-                                    <p className='header-modal-account__user-name line-clamp-2'>محمدحسین خادم المهدی</p>
+                                    <p className='header-modal-account__user-name line-clamp-2'>{authContext.userInfos.name}</p>
                                     <p className='header-modal-account__user-money-bag'>موجودی: 0 تومان</p>
                                 </div>
                             </section>
@@ -90,7 +99,7 @@ const MyAccount = ({ children }) => {
 
                 <section className={`account-content ${isShowModalNotif || isShowModalAccount ? 'blur' : 'unblur'}`}>
                     <div className='d-flex d-md-none'>
-                        <h2 className='account-content__title'>محمدحسین عزیز؛ خوش اومدی 🙌</h2>
+                        <h2 className='account-content__title'>{authContext.userInfos.name} عزیز؛ خوش اومدی 🙌</h2>
                     </div>
 
                     {children}

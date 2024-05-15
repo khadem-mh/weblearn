@@ -8,14 +8,14 @@ import Footer from "./Components/Footer/Footer"
 import MyAccount from "./Pages/MyAccount/Components/Account/MyAccount"
 import PageFirstAccount from "./Pages/MyAccount/Pages/PageFirstAccount/PageFirstAccount";
 // Contexts
-import { AuthProvider } from "./Contexts/AuthContext"
+import { AuthProvider, AuthContext } from "./Contexts/AuthContext"
 
 export default function App() {
+
   const location = useLocation()
   if (location.pathname === '/my-account' || location.pathname === '/my-account/') routes[8].element = <MyAccount children={<PageFirstAccount />} />
   else routes[8].element = null
   const router = useRoutes(routes)
-
 
   return (
     <main>

@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './DetailsAccount.css'
 import { VscGitPullRequestGoToChanges } from "react-icons/vsc";
+import { AuthContext } from '../../../../Contexts/AuthContext';
 
 export default function DetailsAccount() {
+
+  const authContext = useContext(AuthContext)
+
   return (
     <section className='details-account'>
 
@@ -22,19 +26,19 @@ export default function DetailsAccount() {
             </div>
 
             <p className='lable-task'>شماره موبایل</p>
-            <input type="text" className='input-details-account' />
+            <input type="text" className='input-details-account' defaultValue={authContext.userInfos.phone} />
             <p className='lable-task'>نام</p>
-            <input type="text" className='input-details-account' />
+            <input type="text" className='input-details-account' defaultValue={authContext.userInfos.name} />
             <p className='lable-task'>نام کاربری</p>
-            <input type="text" className='input-details-account' />
+            <input type="text" className='input-details-account' defaultValue={authContext.userInfos.username} />
 
           </div>
 
           <div className='right-box__left'>
-            <p className='lable-task'>نام خوانوادگی</p>
-            <input type="text" className='input-details-account' />
+            <p className='lable-task'>تاریخ ثبت نام</p>
+            <input type="text" className='input-details-account' defaultValue={authContext.userInfos.createdAt && authContext.userInfos.createdAt.slice(0, 10)} />
             <p className='lable-task'>ایمیل</p>
-            <input type="text" className='input-details-account' />
+            <input type="text" className='input-details-account' defaultValue={authContext.userInfos.email} />
           </div>
         </section>
 

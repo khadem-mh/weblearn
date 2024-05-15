@@ -111,6 +111,7 @@
     background-color: #32334D;
     border-radius: .8rem;
     border: 0;
+    color: lightgray;
 }
 
 .input-details-account::placeholder {

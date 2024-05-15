@@ -138,7 +138,6 @@
 .header-modal-account {
     display: flex;
     align-items: center;
-    justify-content: space-between;
 }
 
 .header-modal-account__left {
