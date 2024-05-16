@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FormGetData from '../FormGetData/FormGetData.jsx';
 import Input from '../Input/Input.jsx';
+import ReCAPTCHA from "react-google-recaptcha";
 //icons
 import { HiOutlineUser, HiOutlinePhone } from "react-icons/hi2";
 import { MdOutlineAttachEmail } from "react-icons/md";
@@ -19,12 +20,14 @@ export default function FormPage({ nameFormPage }) {
     const navigate = useNavigate()
     const formRef = useRef()
     const [inpValid, setInpValid] = useState([])
+    const [recaptchaOk, setRecaptchaOk] = useState(false)
     const authContext = useContext(AuthContext)
 
     useEffect(() => {
         let btnForm = formRef.current.lastElementChild
 
-        if (inpValid.length === formRef.current.children.length - 1) {
+        !recaptchaOk &&  btnForm.setAttribute('disabled', true)
+        if (inpValid.length === formRef.current.children.length || recaptchaOk) {
             let isInpValid = inpValid.every(inp => !inp.valid ? false : true)
             if (!isInpValid) {
                 btnForm.setAttribute('disabled', true)
@@ -70,10 +73,11 @@ export default function FormPage({ nameFormPage }) {
                                 window.location = '/'
                             })
                             .catch(err => {
-
+                                console.error(err);
                             })
 
-                    } else {
+                    }
+                    else {
 
                         const loginUser = {
                             identifier: null,
@@ -115,10 +119,11 @@ export default function FormPage({ nameFormPage }) {
                                 })
                             })
                     }
+
                 })
             }
         }
-    }, [inpValid, authContext])
+    }, [inpValid, recaptchaOk, authContext])
 
     const validRul = valid => {
         setInpValid(state => {
@@ -130,6 +135,8 @@ export default function FormPage({ nameFormPage }) {
         })
     }
 
+    const onChangeHandler = () => setRecaptchaOk(prev => !prev)
+    
     return (
         <FormGetData
             ref={formRef}
@@ -152,6 +159,7 @@ export default function FormPage({ nameFormPage }) {
                     <>
                         <Input onValid={validRul} type={inputEmail} inpPlaceholder={'آدرس ایمیل'} inpIcon={<MdOutlineAttachEmail />} />
                         <Input onValid={validRul} type={inputPassword} inpPlaceholder={'رمز عبور'} inpIcon={<RiLockPasswordLine />} />
+                        <ReCAPTCHA sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" onChange={onChangeHandler}/>
                     </>
             }
         </FormGetData>
