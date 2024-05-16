@@ -228,7 +228,7 @@ export default function Navbar() {
 
                             <Link to={authContext.isLoggedIn ? '/my-account' : '/register'} className="main-header__profile">
                                 <div className='d-none d-sm-block'>
-                                    <p className='main-header__profile-text'>{authContext.isLoggedIn ? authContext.userInfos.name : 'ورود |  عضویت'}</p>
+                                    <p className='main-header__profile-text'>{authContext.token ? authContext.userInfos.name : 'ورود |  عضویت'}</p>
                                 </div>
                                 <div className='main-header__profile-icon'>
                                     <HiOutlineUser className='main-header__icon-user' />

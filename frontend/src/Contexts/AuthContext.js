@@ -17,18 +17,26 @@ export const AuthProvider = ({ children }) => {
     const [userInfos, setUserInfos] = useState({})
 
     useEffect(() => {
-        const localStorageToken = JSON.parse(localStorage.getItem('user')).token
+        const localStorageToken = JSON.parse(localStorage.getItem('user'))
+
+        if (location.pathname.includes('my-account') && !isLoggedIn) {
+            window.document.documentElement.style.backgroundColor = 'black'
+            window.document.documentElement.style.filter = 'blur(100px)'
+            window.document.documentElement.style.opacity = '0'
+            window.location.pathname = '/'
+        }
+
         if (localStorageToken) {
             fetch('http://localhost:4000/v1/auth/me', {
                 headers: {
-                    Authorization: `Bearer ${localStorageToken}`
+                    Authorization: `Bearer ${localStorageToken.token}`
                 }
             })
                 .then(res => res.json())
                 .then(data => {
                     setIsLoggedIn(true)
                     setUserInfos(data)
-                    setToken(localStorageToken)
+                    setToken(localStorageToken.token)
                     console.log(data);
                 })
         }
