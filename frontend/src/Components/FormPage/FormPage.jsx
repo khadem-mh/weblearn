@@ -71,7 +71,7 @@ export default function FormPage({ nameFormPage }) {
                 })
             }
         }
-    }, [inpValid])
+    }, [inpValid, authContext])
 
     const validRul = valid => {
         setInpValid(state => {

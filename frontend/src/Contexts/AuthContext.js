@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
                     console.log(data);
                 })
         }
-    }, [location])
+    }, [location, isLoggedIn])
 
     const login = (userInfo, token) => {
         setToken(token)
