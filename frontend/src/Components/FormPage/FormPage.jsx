@@ -30,44 +30,75 @@ export default function FormPage({ nameFormPage }) {
                 btnForm.addEventListener('click', e => {
                     e.preventDefault()
 
-                    const newUser = {
-                        username: null,
-                        email: null,
-                        password: null,
-                        confirmPassword: null,
-                        name: null,
-                        phone: null,
-                    }
+                    if (nameFormPage === 'register') {
 
-                    inpValid.map(item => {
-                        item.type === inputFullName && (newUser.name = item.value)
-                        item.type === inputUserName && (newUser.username = item.value)
-                        item.type === inputPhoneNumber && (newUser.phone = item.value)
-                        item.type === inputEmail && (newUser.email = item.value)
-                        item.type === inputPassword && (newUser.password = item.value) && (newUser.confirmPassword = item.value)
-                        return true
-                    })
+                        const newUser = {
+                            username: null,
+                            email: null,
+                            password: null,
+                            confirmPassword: null,
+                            name: null,
+                            phone: null,
+                        }
 
-                    fetch(`http://localhost:4000/v1/auth/register`, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify(newUser)
-                    })
-                        .then(res => {
-                            if (res.ok) return res.json()
-                            else return false
+                        inpValid.map(item => {
+                            item.type === inputFullName && (newUser.name = item.value)
+                            item.type === inputUserName && (newUser.username = item.value)
+                            item.type === inputPhoneNumber && (newUser.phone = item.value)
+                            item.type === inputEmail && (newUser.email = item.value)
+                            item.type === inputPassword && (newUser.password = item.value) && (newUser.confirmPassword = item.value)
+                            return true
                         })
-                        .then(result => {
-                            if (result) {
+
+                        fetch(`http://localhost:4000/v1/auth/register`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(newUser)
+                        })
+                            .then(res => {
+                                if (res.ok) return res.json()
+                                else return res.text().then(err => { throw new Error(err) })
+                            })
+                            .then(result => {
                                 authContext.login(result.user, result.accessToken)
                                 window.location = '/'
-                            } else {
-                                console.log('error');
-                            }
+                            })
+                            .catch(err => console.error(err))
+
+                    } else {
+
+                        const loginUser = {
+                            identifier: null,
+                            password: null
+                        }
+
+                        inpValid.map(item => {
+                            item.type === inputEmail && (loginUser.identifier = item.value)
+                            item.type === inputPassword && (loginUser.password = item.value)
+                            return true
                         })
-                        .catch(err => console.log(err))
+
+
+                        fetch(`http://localhost:4000/v1/auth/login`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(loginUser)
+                        })
+                            .then(res => {
+                                if (res.ok) return res.json()
+                                else return res.text().then(err => { throw new Error(err) })
+                            })
+                            .then(result => {
+                                authContext.login(result.user, result.accessToken)
+                                window.location = '/'
+                            })
+                            .catch(err => console.error(err))
+
+                    }
                 })
             }
         }
