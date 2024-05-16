@@ -13,6 +13,7 @@ export default function Navbar() {
     const menuRef = useRef()
     const authContext = useContext(AuthContext)
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [menus, setMenus] = useState([])
 
     useEffect(() => {
         const handleResize = () => {
@@ -24,6 +25,15 @@ export default function Navbar() {
         window.innerWidth < 893 && menuRef.current.classList.add('menu-hidden')
         return () => window.removeEventListener('resize', handleResize)
     }, [windowWidth])
+
+    useEffect(() => {
+        fetch(`http://localhost:4000/v1/menus`)
+            .then(res => res.json())
+            .then(menus => {
+                console.log(menus);
+                setMenus(menus)
+            })
+    }, [])
 
     const closeNavbar = () => {
         if (menuRef.current.classList.contains('menu-hidden')) {
@@ -129,63 +139,28 @@ export default function Navbar() {
                             <div className='main-header__mob'>
 
                                 <ul className="main-header__menu menu-wide">
-
-                                    <li className="main-header__item">
-                                        <a href="/" className="main-header__link">فرانت اند
-                                            <i className="fas fa-angle-down main-header__link-icon"></i>
-                                        </a>
-                                        <ul className="main-header__dropdown">
-                                            <li className="main-header__dropdown-item"><a href="/"
-                                                className="main-header__dropdown-link">آموزش HTML</a></li>
-                                            <li className="main-header__dropdown-item"><a href="/"
-                                                className="main-header__dropdown-link">آموزش CSS</a></li>
-                                        </ul>
-                                    </li>
-                                    <li className="main-header__item">
-                                        <a href="/" className="main-header__link">بک اند
-                                            <i className="fas fa-angle-down main-header__link-icon"></i>
-                                        </a>
-                                        <ul className="main-header__dropdown">
-                                            <li className="main-header__dropdown-item"><a href="/"
-                                                className="main-header__dropdown-link">آموزش HTML</a></li>
-                                            <li className="main-header__dropdown-item"><a href="/"
-                                                className="main-header__dropdown-link">آموزش CSS</a></li>
-                                        </ul>
-                                    </li>
-                                    <li className="main-header__item">
-                                        <a href="/" className="main-header__link"> پایتون
-                                            <i className="fas fa-angle-down main-header__link-icon"></i>
-                                        </a>
-                                        <ul className="main-header__dropdown">
-                                            <li className="main-header__dropdown-item"><a href="/"
-                                                className="main-header__dropdown-link">آموزش HTML</a></li>
-                                            <li className="main-header__dropdown-item"><a href="/"
-                                                className="main-header__dropdown-link">آموزش CSS</a></li>
-                                        </ul>
-                                    </li>
-                                    <li className="main-header__item">
-                                        <a href="/" className="main-header__link"> مهارت های نرم
-                                            <i className="fas fa-angle-down main-header__link-icon"></i>
-                                        </a>
-                                        <ul className="main-header__dropdown">
-                                            <li className="main-header__dropdown-item"><a href="/"
-                                                className="main-header__dropdown-link">آموزش HTML</a></li>
-                                            <li className="main-header__dropdown-item"><a href="/"
-                                                className="main-header__dropdown-link">آموزش CSS</a></li>
-                                        </ul>
-                                    </li>
-                                    <li className="main-header__item">
-                                        <a href="/" className="main-header__link"> دسکتاپ
-                                            <i className="fas fa-angle-down main-header__link-icon"></i>
-                                        </a>
-                                        <ul className="main-header__dropdown">
-                                            <li className="main-header__dropdown-item"><a href="/"
-                                                className="main-header__dropdown-link">آموزش HTML</a></li>
-                                            <li className="main-header__dropdown-item"><a href="/"
-                                                className="main-header__dropdown-link">آموزش CSS</a></li>
-                                        </ul>
-                                    </li>
-
+                                    {
+                                        menus && menus.map(item => (
+                                            <li className="main-header__item">
+                                                <Link to={`/${item.href}`} className="main-header__link"> {item.title}
+                                                    {item.submenus.length ? <i className="fas fa-angle-down main-header__link-icon"></i> : ''}
+                                                </Link>
+                                                {
+                                                    item.submenus && item.submenus.length ?
+                                                        <ul className="main-header__dropdown">
+                                                            {
+                                                                item.submenus.map(subMenu => (
+                                                                    <li className="main-header__dropdown-item">
+                                                                        <Link to={`${subMenu.href.includes('/') ? subMenu.href : `/course-info/${subMenu.href}`}`} className="main-header__dropdown-link">{subMenu.title}</Link>
+                                                                    </li>
+                                                                ))
+                                                            }
+                                                        </ul>
+                                                        : ''
+                                                }
+                                            </li>
+                                        ))
+                                    }
                                 </ul>
 
                                 <ul className="main-header__menu menu-mobile">

@@ -19,7 +19,7 @@ import AddTicket from "./Pages/MyAccount/Pages/AddTicket/AddTicket";
 const routes = [
     //Routes Main
     { path: '/', element: <Index /> },
-    { path: 'course-info', element: <CourseInfo /> },
+    { path: 'course-info/:name', element: <CourseInfo /> },
     { path: 'article-info', element: <ArticleInfo /> },
     { path: 'category-articles', element: <CategoryArticles /> },
     { path: 'category-courses', element: <CategoryCourses /> },
