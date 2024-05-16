@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import FormGetData from '../FormGetData/FormGetData.jsx';
 import Input from '../Input/Input.jsx';
 //icons
@@ -10,9 +11,12 @@ import {
     inputFullName, inputUserName, inputPhoneNumber, inputEmail, inputPassword
 } from "../../Validators/RulesInput.js"
 import { AuthContext } from '../../Contexts/AuthContext.js'
+//package
+import swal from 'sweetalert'
 
 export default function FormPage({ nameFormPage }) {
 
+    const navigate = useNavigate()
     const formRef = useRef()
     const [inpValid, setInpValid] = useState([])
     const authContext = useContext(AuthContext)
@@ -65,7 +69,9 @@ export default function FormPage({ nameFormPage }) {
                                 authContext.login(result.user, result.accessToken)
                                 window.location = '/'
                             })
-                            .catch(err => console.error(err))
+                            .catch(err => {
+
+                            })
 
                     } else {
 
@@ -80,7 +86,6 @@ export default function FormPage({ nameFormPage }) {
                             return true
                         })
 
-
                         fetch(`http://localhost:4000/v1/auth/login`, {
                             method: "POST",
                             headers: {
@@ -90,14 +95,25 @@ export default function FormPage({ nameFormPage }) {
                         })
                             .then(res => {
                                 if (res.ok) return res.json()
-                                else return res.text().then(err => { throw new Error(err) })
+                                else return res.text().then(textErr => { throw new Error(textErr) })
                             })
                             .then(result => {
+                                {
+                                    swal({
+                                        title: 'با موفقیت وارد شدید',
+                                        icon: 'success',
+                                        buttons: 'ورود به پنل'
+                                    }).then(val => navigate('/my-account'))
+                                }
                                 authContext.login(result.user, result.accessToken)
-                                window.location = '/'
                             })
-                            .catch(err => console.error(err))
-
+                            .catch(err => {
+                                swal({
+                                    title: 'همچین کاربری وجود ندارد',
+                                    icon: 'error',
+                                    buttons: 'تلاش دوباره'
+                                })
+                            })
                     }
                 })
             }
