@@ -1,4 +1,5 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { useParams, useLocation } from 'react-router-dom'
 import './CourseInfo.css'
 import './Comments.css'
 import './media.css'
@@ -28,7 +29,29 @@ import faNumber from '../../Functions/FaNumber/FaNumber';
 
 export default function CourseInfo() {
 
+  const [courseInfo, setCourseInfo] = useState([])
+  const location = useLocation()
   const introductionRef = useRef()
+  const params = useParams()
+
+  useEffect(() => {
+
+    const userToken = JSON.parse(localStorage.getItem('user'))
+
+    fetch(`http://localhost:4000/v1/courses/${params.course}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${userToken && userToken.token ? userToken.token : ''}`
+      }
+    })
+      .then(res => res.json())
+      .then(datas => setCourseInfo(datas))
+
+  }, [location])
+
+  useEffect(() => {
+    console.log(courseInfo);
+  }, [courseInfo])
 
   return (
     <>
@@ -37,8 +60,8 @@ export default function CourseInfo() {
         <BreadCrumb
           links={
             [
-              { to: 'category-info/frontend', title: 'برنامه نویسی فرانت اند', },
-              { to: '#', title: 'آموزش برنامه نویسی React Js', },
+              { to: `category-courses/${courseInfo.createdAt && courseInfo.categoryID.name}`, title: `${courseInfo.createdAt && courseInfo.categoryID.title}` },
+              { to: `course-info/${courseInfo.createdAt && courseInfo.shortName}`, title: `${courseInfo.createdAt && courseInfo.name}` },
             ]
           }
         />
@@ -50,11 +73,11 @@ export default function CourseInfo() {
 
                 <div className='course-info__header-top'>
                   <h1 className="course-info__title">
-                    آموزش ری اکت ( ReactJS ) در دنیای واقعی | از 0 تا استخدام [منتورشیپ]
+                    {courseInfo.createdAt && courseInfo.name}
                   </h1>
 
                   <p className="course-info__text">
-                    حدود 40 ساعت آموزش جامع و تخصصی ری اکت!  شما در دوره آموزش ری اکت ReactJS ، این کتابخانه قدرتمند و پر استفاده جاوا اسکریپت را به صورت کاملا پروژه محور و کاربردی یاد میگیرید! ری اکت گل سرسبد فرانت اند محسو
+                    {courseInfo.createdAt && courseInfo.description}
                   </p>
                 </div>
 
@@ -62,25 +85,25 @@ export default function CourseInfo() {
                   <div className='course-info__footer_right'>
                     <button className='course-info__footer_btn'>
                       <GoShieldCheck className='course-info__footer_icon' />
-                      <span className='course-info__footer_text-btn'>شرکت در دوره</span>
+                      <span className='course-info__footer_text-btn'>{courseInfo.createdAt && courseInfo.isUserRegisteredToThisCourse ? 'دانشجوی این دوره' : 'شرکت در دوره'}</span>
                     </button>
                   </div>
 
                   <div className='course-info__footer-left'>
-                    <span className='course-info__footer-left_price'>{faNumber(4800000)}</span>
-                    <span className='course-info__footer-left_toman'>تومان</span>
+                    <span className='course-info__footer-left_price'>{courseInfo.createdAt && !courseInfo.price ? 'رایگان' : faNumber(courseInfo.price)}</span>
+                    <span className='course-info__footer-left_toman'>{courseInfo.createdAt && courseInfo.price === 0 ? '' : 'تومان'}</span>
                   </div>
 
                 </div>
 
               </div>
 
-              <div className="mt-4 mt-md-0 parent-video">                      
+              <div className="mt-4 mt-md-0 parent-video">
                 <div className='container-plyr course-info__video'>
                   <Plyr
                     source={{
                       type: 'video',
-                      poster: '/Images/Courses/3.png',
+                      poster: '',
                       ratio: '16:9',
                       sources: [
                         {
@@ -261,39 +284,28 @@ export default function CourseInfo() {
                       <div className="course-info__total">
 
                         <div className="course-info__top">
-                          <StatusBox fzTitle='2rem' bgColor='var(--blue-lighter-color)' title={faNumber(1699)} subTitle={'دانشجو'} icon={<FaUsers />} />
+                          <StatusBox fzTitle='2rem' bgColor='var(--blue-lighter-color)' title={courseInfo.createdAt && courseInfo.courseStudentsCount !== 0 ? faNumber(courseInfo.courseStudentsCount) : '...؟!'} subTitle={'دانشجو'} icon={<FaUsers />} />
                           <StatusBox fzTitle='2rem' bgColor='var(--blue-lighter-color)' title={faNumber(5, 0, undefined, true)} subTitle={'رضایت'} icon={<FaStar style={{ color: 'gold' }} />} />
-                        </div>
-
-                        <div className="course-info__bottom">
-
-                          <div className='course-info__bottom-header'>
-                            <p>درصد تکمیل دوره</p>
-                            <p>{faNumber(75)}%</p>
-                          </div>
-
-                          <div className='course-info__bottom-footer w-100'>
-                            <div className="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                              <div className="progress-bar progress-bar-striped progress-bar-animated" style={{ width: '75%' }}></div>
-                            </div>
-                          </div>
-
                         </div>
 
                       </div>
                     </div>
 
-                    <DetailsTeacher
-                      nameTeacher={'محمد امین سعیدی راد'}
-                      imgTeacher={"images/info/teacher.png"}
-                      textBio={` اولین کدم رو 14 سالگی زدم، حدود 9 سال پیش که با زبان ویژوال بیسیک بود و بعد حدودا 2 سال تو فیلد برنامه نویسی موبایل با زبان جاوا کار کردم و در نهایت با عشقی به اسم جاوا اسکریپت آشنا شدم و حدودا یه 7 سالی هست جاوا اسکریپت کد می‌زنم و به صورت Mern Stack فعالیت می‌کنم.`}
-                      to={'/'}
-                    />
+                    {
+                      courseInfo.createdAt &&
+                      <DetailsTeacher
+                        nameTeacher={courseInfo.creator.name}
+                        imgTeacher={courseInfo.creator.profile}
+                        textBio={` اولین کدم رو 14 سالگی زدم، حدود 9 سال پیش که با زبان ویژوال بیسیک بود و بعد حدودا 2 سال تو فیلد برنامه نویسی موبایل با زبان جاوا کار کردم و در نهایت با عشقی به اسم جاوا اسکریپت آشنا شدم و حدودا یه 7 سالی هست جاوا اسکریپت کد می‌زنم و به صورت Mern Stack فعالیت می‌کنم.`}
+                        to={'/'}
+                      />
+                    }
+
 
                   </section>
 
 
-                  <CopyLinkBox textForCopy={'https://sabzlearn.ir/?p=117472'} titleBox={'لینک کوتاه'} yourStyle={'d-none d-lg-block'} children={<i className="fas fa-link short-url-icon"></i>} />
+                  <CopyLinkBox textForCopy={`https://weblearn.ir/course-info/${params.course}`} titleBox={'لینک کوتاه'} yourStyle={'d-none d-lg-block'} children={<i className="fas fa-link short-url-icon"></i>} />
 
                   <CategoryBox title={'دوره های مرتبط'} yourStyle={'d-none d-lg-block'}>
                     <CourseCoverAside teacher={'سید محمد حسین خادم المهدی'} pathImg={'Courses/PWA-min.jpg'} link={'pwa'} title={'دوره آموزشی Pwa'} />
