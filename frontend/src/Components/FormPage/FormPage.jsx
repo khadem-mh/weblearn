@@ -26,7 +26,7 @@ export default function FormPage({ nameFormPage }) {
     useEffect(() => {
         let btnForm = formRef.current.lastElementChild
 
-        !recaptchaOk &&  btnForm.setAttribute('disabled', true)
+        !recaptchaOk && btnForm.setAttribute('disabled', true)
         if (inpValid.length === formRef.current.children.length || recaptchaOk) {
             let isInpValid = inpValid.every(inp => !inp.valid ? false : true)
             if (!isInpValid) {
@@ -136,7 +136,7 @@ export default function FormPage({ nameFormPage }) {
     }
 
     const onChangeHandler = () => setRecaptchaOk(prev => !prev)
-    
+
     return (
         <FormGetData
             ref={formRef}
@@ -159,7 +159,9 @@ export default function FormPage({ nameFormPage }) {
                     <>
                         <Input onValid={validRul} type={inputEmail} inpPlaceholder={'آدرس ایمیل'} inpIcon={<MdOutlineAttachEmail />} />
                         <Input onValid={validRul} type={inputPassword} inpPlaceholder={'رمز عبور'} inpIcon={<RiLockPasswordLine />} />
-                        <ReCAPTCHA sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" onChange={onChangeHandler}/>
+                        <div className='parent-recaptcha'>
+                            <ReCAPTCHA sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" onChange={onChangeHandler} theme="dark" />
+                        </div>
                     </>
             }
         </FormGetData>

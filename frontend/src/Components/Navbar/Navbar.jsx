@@ -142,7 +142,7 @@ export default function Navbar() {
                                     {
                                         menus && menus.map(item => (
                                             <li className="main-header__item">
-                                                <Link to={`/${item.href}`} className="main-header__link"> {item.title}
+                                                <Link to={`/category-courses/${item.href}`} className="main-header__link"> {item.title}
                                                     {item.submenus.length ? <i className="fas fa-angle-down main-header__link-icon"></i> : ''}
                                                 </Link>
                                                 {

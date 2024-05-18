@@ -43,6 +43,13 @@ body {
     background: linear-gradient(0, rgba(27, 27, 40, 1) 0%, rgba(27, 27, 40, 0) 90%);
 }
 
+.parent-recaptcha {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
 /*? category title page */
 .category-h2 {
     color: whitesmoke;
@@ -218,6 +225,7 @@ address {
     -webkit-line-clamp: 2;
     line-clamp: 2;
 }
+
 /*? Finish helper class */
 
 /*! start style component Plyr */
@@ -248,4 +256,5 @@ address {
 .plyr__poster {
     border-radius: 2rem !important;
 }
+
 /*! end style component Plyr */
