@@ -14,6 +14,7 @@ export default function Navbar() {
     const authContext = useContext(AuthContext)
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [menus, setMenus] = useState([])
+    const [topBar, setTopBar] = useState([])
 
     useEffect(() => {
         const handleResize = () => {
@@ -27,13 +28,19 @@ export default function Navbar() {
     }, [windowWidth])
 
     useEffect(() => {
+        fetch(`http://localhost:4000/v1/menus/topbar`)
+            .then(res => res.json())
+            .then(items => setTopBar(items))
+
         fetch(`http://localhost:4000/v1/menus`)
             .then(res => res.json())
-            .then(menus => {
-                console.log(menus);
-                setMenus(menus)
-            })
+            .then(menus => setMenus(menus))
     }, [])
+
+    const grtRandomItemsFromArray = (arr, randomCount) => {
+        const shuffled = arr.sort(() => 0.5 - Math.random())
+        return shuffled.slice(0, randomCount)
+    }
 
     const closeNavbar = () => {
         if (menuRef.current.classList.contains('menu-hidden')) {
@@ -71,12 +78,13 @@ export default function Navbar() {
                             </div>
 
                             <ul className="top-bar__menu">
-                                <li className="top-bar__item"><a href="/" className="top-bar__link">آموزش HTML</a></li>
-                                <li className="top-bar__item"><a href="/" className="top-bar__link">آموزش CSS</a></li>
-                                <li className="top-bar__item"><a href="/" className="top-bar__link">آموزش JS</a></li>
-                                <li className="top-bar__item"><a href="/" className="top-bar__link">آموزش BOOTSTRAP</a></li>
-                                <li className="top-bar__item"><a href="/" className="top-bar__link">آموزش PYTHON</a></li>
-                                <li className="top-bar__item"><a href="/" className="top-bar__link">آموزش REACT</a></li>
+                                {
+                                    topBar && topBar.length && grtRandomItemsFromArray(topBar, 5).map((item, index) => (
+                                        <li key={index} className="top-bar__item">
+                                            <Link to={`/course-info/${item.href}`} className="top-bar__link">{item.title}</Link>
+                                        </li>
+                                    ))
+                                }
                             </ul>
 
                         </div>
@@ -140,8 +148,8 @@ export default function Navbar() {
 
                                 <ul className="main-header__menu menu-wide">
                                     {
-                                        menus && menus.map(item => (
-                                            <li className="main-header__item">
+                                        menus && menus.map((item, index) => (
+                                            <li key={index} className="main-header__item">
                                                 <Link to={`/category-courses/${item.href}`} className="main-header__link"> {item.title}
                                                     {item.submenus.length ? <i className="fas fa-angle-down main-header__link-icon"></i> : ''}
                                                 </Link>
@@ -149,8 +157,8 @@ export default function Navbar() {
                                                     item.submenus && item.submenus.length ?
                                                         <ul className="main-header__dropdown">
                                                             {
-                                                                item.submenus.map(subMenu => (
-                                                                    <li className="main-header__dropdown-item">
+                                                                item.submenus.map((subMenu, index) => (
+                                                                    <li key={index} className="main-header__dropdown-item">
                                                                         <Link to={`${subMenu.href.includes('/') ? subMenu.href : `/course-info/${subMenu.href}`}`} className="main-header__dropdown-link">{subMenu.title}</Link>
                                                                     </li>
                                                                 ))
