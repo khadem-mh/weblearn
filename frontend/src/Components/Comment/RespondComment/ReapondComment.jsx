@@ -6,10 +6,12 @@ import { GoCommentDiscussion } from "react-icons/go";
 import { LiaComment, LiaReplySolid } from "react-icons/lia";
 
 
-export default function ReapondComment({ commentCreatorName, commentCreatorRole, commentCreatorDate, commentBody, responds, showCommentHeader = true, bgParent, bgComment, bgAnswer, textNoQues }) {
+export default function ReapondComment({ showCommentHeader = true, commentsArr}) {
 
     const showNewComment = useRef()
     const [submitCommetnUser, setSubmitCommetnUser] = useState(false)
+
+    console.log(commentsArr);
 
     useEffect(() => {
         if (showCommentHeader) {
@@ -28,6 +30,7 @@ export default function ReapondComment({ commentCreatorName, commentCreatorRole,
             {
                 showCommentHeader &&
                 <section>
+
                     <section className='header-title-comment'>
 
                         <div className="comments__header">
@@ -120,10 +123,10 @@ export default function ReapondComment({ commentCreatorName, commentCreatorRole,
             }
 
 
-            <section className="comments__item" style={{ backgroundColor: bgComment }}>
+            <section className="comments__item">
 
                 {
-                    (commentCreatorName && commentCreatorRole && commentBody) ?
+                    commentsArr.length ?
                         <>
                             <div className="comments__question">
                                 <div className="comments__question-header">
@@ -169,8 +172,8 @@ export default function ReapondComment({ commentCreatorName, commentCreatorRole,
                         :
                         <div className='no-comment'>
                             <p>☻</p>
-                            <p>{textNoQues ? textNoQues : 'هنوز هیچ نظری ثبت نشده'}</p>
-                            <p>{!textNoQues && "تو اولین نفر باش"}</p>
+                            <p>هنوز هیچ نظری ثبت نشده</p>
+                            <p>تو اولین نفر باش</p>
                         </div>
                 }
 
