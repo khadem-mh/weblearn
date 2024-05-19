@@ -1,3 +1,9 @@
+.parent-comments {
+    background-color: var(--blue-light-color);
+    padding: 2.5rem 1.5rem;
+    border-radius: 1.5rem;
+}
+
 .whole-comments-users {
     padding: 2.5rem 1.5rem;
     background-color: var(--blue-dark-color);
@@ -59,15 +65,21 @@
     font-size: 2.7rem;
     font-family: Lalezar;
 }
+
 /* comment title */
 
 
 /* comment respond */
 .comments__item {
-    background-color: var(--blue-light-color);
+    background-color: var(--blue-lighter-color);
     border-radius: 1.5rem;
     padding: 2rem;
     position: relative;
+}
+
+.comments__question {
+    position: relative;
+    padding-top: 2rem;
 }
 
 .comments__question-text {
@@ -108,7 +120,7 @@
 }
 
 .comment-status-admin {
-    background-color: black!important;
+    background-color: black !important;
 }
 
 .comment-status {
@@ -153,8 +165,8 @@
 
 
 /* comment genration line conect */
-/* .comments__ansewr::before,
-.comments__item::before {
+.comments__ansewr::before,
+.comments__question::before {
     content: "";
     width: 16px;
     height: 16px;
@@ -163,8 +175,8 @@
     position: absolute;
 }
 
-.comments__item::before {
-    right: 0px;
+.comments__question::before {
+    right: -23px;
     top: 58px;
     background-color: var(--primarydie-color);
     z-index: 2;
@@ -188,30 +200,26 @@
     top: 77px;
 }
 
-.comments__item::after {
-    right: 1px;
-    top: 57px;
-}
-
 .parent-comment__answer::before,
-.comments__item::after {
+.comments__question::after {
     content: '';
     width: 2px;
-    height: 100%;
+    height: 50%;
     position: absolute;
-    top: 0;
-    right: 7px;
+    top: 67px;
+    right: -16px;
     z-index: 1;
     background-color: gray;
-} */
+}
 /* comment genration line conect */
 
 .no-comment {
     font-family: Lalezar;
     font-size: 1.8rem;
     text-align: center;
+    color: white;
 }
 
-.no-comment > p:first-child {
+.no-comment>p:first-child {
     font-size: 4rem !important;
 }

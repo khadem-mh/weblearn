@@ -25,8 +25,8 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
         }
     })
     //whole-comments-users
-    return ( 
-        <section>
+    return (
+        <section className='parent-comments'>
             {
                 showCommentHeader &&
                 <section>
@@ -126,44 +126,44 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
             <section className="comments__item">
 
                 {
-                    commentsArr.length ? commentsArr.map((item, index) => (
-                        <div key={index}>
-                            <div className="comments__question">
-                                <div className="comments__question-header">
+                    commentsArr && commentsArr.length ? commentsArr.map((item, index) => (
+                        <div key={index} className={'comments__question'} style={{borderTop: index === 0 ? 0 : '1px solid rgb(85, 85, 85)', marginTop: index === 0 ? '0' : '3rem'}}>
+                            <div className="comments__question-header">
 
-                                    <div className="comments__question-header-right">
-                                        <div>
-                                            <p className="comments__question-name comment-name">{item.creator.name}</p>
-                                            <p className={`comments__question-status comment-status ${item.creator.role === 'USER' ? 'comment-status-user ' : item.creator.role === 'ADMIN' ? 'comment-status-admin' : ''}`}>
-                                                {
-                                                    item.creator.role === 'ADMIN' ? 'مدیر' : item.creator.role === 'TEACHER' ? 'مدرس' : 'دانشجو'
-                                                }
-                                            </p>
-                                        </div>
-                                        <p className="comments__question-date comment-date">{item.createdAt.slice(0, 10).split('-').join('/')}</p>
+                                <div className="comments__question-header-right">
+                                    <div>
+                                        <p className="comments__question-name comment-name">{item.creator.name}</p>
+                                        <p className={`comments__question-status comment-status ${item.creator.role === 'USER' ? 'comment-status-user ' : item.creator.role === 'ADMIN' ? 'comment-status-admin' : ''}`}>
+                                            {
+                                                item.creator.role === 'ADMIN' ? 'مدیر' : item.creator.role === 'TEACHER' ? 'مدرس' : 'دانشجو'
+                                            }
+                                        </p>
                                     </div>
-
-                                    {showCommentHeader &&
-                                        <div className="comments__question-header-left">
-                                            <button className="comments__question-header-link comment-link" onClick={() => setSubmitCommetnUser(true)}><LiaReplySolid /></button>
-                                        </div>
-                                    }
+                                    <p className="comments__question-date comment-date">{item.createdAt.slice(0, 10).split('-').join('/')}</p>
                                 </div>
 
-                                <div className="comments__question-text">
-                                    <p className="comments__question-paragraph comment-paragraph">{item.body}</p>
-                                </div>
+                                {showCommentHeader &&
+                                    <div className="comments__question-header-left">
+                                        <button className="comments__question-header-link comment-link" onClick={() => setSubmitCommetnUser(true)}><LiaReplySolid /></button>
+                                    </div>
+                                }
                             </div>
 
-                            < AnswerComment
-                                yourstyle={"mt-4 mx-0"}
-                                respondCreatorContent={item.answerContent.body}
-                                respondCreatorDate={item.answerContent.createdAt.slice(0, 10).split('-').join('/')}
-                                respondCreatorName={item.answerContent.creator.name}
-                                respondCreatorRole={item.answerContent.creator.role}
-                                setFunc={setSubmitCommetnUser}
-                            />
+                            <div className="comments__question-text">
+                                <p className="comments__question-paragraph comment-paragraph">{item.body}</p>
+                            </div>
 
+                            {
+                                item.answerContent !== null &&
+                                < AnswerComment
+                                    yourstyle={"mt-4 mx-0"}
+                                    respondCreatorContent={item.answerContent.body}
+                                    respondCreatorDate={item.answerContent.createdAt.slice(0, 10).split('-').join('/')}
+                                    respondCreatorName={item.answerContent.creator.name}
+                                    respondCreatorRole={item.answerContent.creator.role}
+                                    setFunc={setSubmitCommetnUser}
+                                />
+                            }
                         </div>
                     ))
 
