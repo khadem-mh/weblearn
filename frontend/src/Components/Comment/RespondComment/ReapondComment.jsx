@@ -6,7 +6,7 @@ import { GoCommentDiscussion } from "react-icons/go";
 import { LiaComment, LiaReplySolid } from "react-icons/lia";
 
 
-export default function ReapondComment({ showCommentHeader = true, commentsArr}) {
+export default function ReapondComment({ showCommentHeader = true, commentsArr }) {
 
     const showNewComment = useRef()
     const [submitCommetnUser, setSubmitCommetnUser] = useState(false)
@@ -24,9 +24,9 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr})
             }
         }
     })
-
-    return (
-        <section className={`${bgParent && bgParent.length > 1 ? '' : 'whole-comments-users'} `} style={{ backgroundColor: bgParent }}>
+    //whole-comments-users
+    return ( 
+        <section>
             {
                 showCommentHeader &&
                 <section>
@@ -126,21 +126,21 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr})
             <section className="comments__item">
 
                 {
-                    commentsArr.length ?
-                        <>
+                    commentsArr.length ? commentsArr.map((item, index) => (
+                        <div key={index}>
                             <div className="comments__question">
                                 <div className="comments__question-header">
 
                                     <div className="comments__question-header-right">
                                         <div>
-                                            <p className="comments__question-name comment-name">{commentCreatorName}</p>
-                                            <p className={`comments__question-status comment-status ${commentCreatorRole === 'user' ? 'comment-status-user ' : ''}`}>
+                                            <p className="comments__question-name comment-name">{item.creator.name}</p>
+                                            <p className={`comments__question-status comment-status ${item.creator.role === 'USER' ? 'comment-status-user ' : item.creator.role === 'ADMIN' ? 'comment-status-admin' : ''}`}>
                                                 {
-                                                    commentCreatorRole === 'user' ? 'دانشجو' : 'مدرس'
+                                                    item.creator.role === 'ADMIN' ? 'مدیر' : item.creator.role === 'TEACHER' ? 'مدرس' : 'دانشجو'
                                                 }
                                             </p>
                                         </div>
-                                        <p className="comments__question-date comment-date">{commentCreatorDate}</p>
+                                        <p className="comments__question-date comment-date">{item.createdAt.slice(0, 10).split('-').join('/')}</p>
                                     </div>
 
                                     {showCommentHeader &&
@@ -151,24 +151,22 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr})
                                 </div>
 
                                 <div className="comments__question-text">
-                                    <p className="comments__question-paragraph comment-paragraph">{commentBody}</p>
+                                    <p className="comments__question-paragraph comment-paragraph">{item.body}</p>
                                 </div>
                             </div>
 
-                            {
-                                responds.map(comment => (
-                                    < AnswerComment
-                                        bgAnswer={bgAnswer}
-                                        yourstyle={"mt-4 mx-0"}
-                                        respondCreatorContent={comment.comment}
-                                        respondCreatorDate={comment.date}
-                                        respondCreatorName={comment.name}
-                                        respondCreatorRole={comment.role}
-                                        setFunc={setSubmitCommetnUser}
-                                    />
-                                ))
-                            }
-                        </>
+                            < AnswerComment
+                                yourstyle={"mt-4 mx-0"}
+                                respondCreatorContent={item.answerContent.body}
+                                respondCreatorDate={item.answerContent.createdAt.slice(0, 10).split('-').join('/')}
+                                respondCreatorName={item.answerContent.creator.name}
+                                respondCreatorRole={item.answerContent.creator.role}
+                                setFunc={setSubmitCommetnUser}
+                            />
+
+                        </div>
+                    ))
+
                         :
                         <div className='no-comment'>
                             <p>☻</p>

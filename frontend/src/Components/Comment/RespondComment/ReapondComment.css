@@ -107,6 +107,10 @@
     background-color: var(--primarydie-color) !important;
 }
 
+.comment-status-admin {
+    background-color: black!important;
+}
+
 .comment-status {
     display: flex;
     align-items: center;
