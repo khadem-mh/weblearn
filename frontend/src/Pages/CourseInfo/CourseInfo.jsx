@@ -29,7 +29,9 @@ import faNumber from '../../Functions/FaNumber/FaNumber';
 
 export default function CourseInfo() {
 
-  const [courseInfo, setCourseInfo] = useState([])
+  const [courseInfo, setCourseInfo] = useState({})
+  const [comments, setComments] = useState([])
+  const [sessions, setSessions] = useState([])
   const location = useLocation()
   const introductionRef = useRef()
   const params = useParams()
@@ -45,7 +47,11 @@ export default function CourseInfo() {
       }
     })
       .then(res => res.json())
-      .then(datas => setCourseInfo(datas))
+      .then(datas => {
+        setCourseInfo(datas)
+        setComments(datas.comments)
+        setSessions(datas.sessions)
+      })
 
   }, [location])
 
@@ -150,7 +156,7 @@ export default function CourseInfo() {
                       <div className="row row-cols-3">
 
                         <StatusBox classParentBox={'col-12 col-sm-6 col-lg-4'} title={'وضعیت دوره'} subTitle={courseInfo.isComplete === 1 ? 'تکمیل شده' : 'در حال برگزاری'} icon={<FaRedRiver />} />
-                        <StatusBox classParentBox={'col-12 col-sm-6 col-lg-4'} title={'مدت زمان دوره'} subTitle={`${faNumber(99)} ساعت`} icon={<MdOutlineAccessTime />} />
+                        <StatusBox classParentBox={'col-12 col-sm-6 col-lg-4'} title={'مدت زمان دوره'} subTitle={''} icon={<MdOutlineAccessTime />} />
                         <StatusBox classParentBox={'col-12 col-sm-6 col-lg-4'} title={'آخرین بروزرسانی'} subTitle={courseInfo.updatedAt.slice(0, 10).split('-').join('/')} icon={<MdOutlineDateRange />} />
                         <StatusBox classParentBox={'col-12 col-sm-6 col-lg-4'} title={'روش پشتیبانی'} subTitle={courseInfo.support} icon={<FaUserFriends />} />
                         <StatusBox classParentBox={'col-12 col-sm-6 col-lg-4'} title={'پیش نیاز'} subTitle={'HTML & CSS & JS'} icon={<GiHandBag />} />
@@ -236,34 +242,18 @@ export default function CourseInfo() {
                         <TilteHeadeer title={'سرفصل های دوره'} yourStyle={'mt-0'} />
                         <p>{faNumber(99, 26)}</p>
                       </div>
-                      <AccordionListVideo
-                        obj={{
-                          'carousel - 1': [
-                            { textBody: "اوزش js", isFree: false, time: '05:56', to: 'js' },
-                            { textBody: "اوزش react", isFree: false, time: '15:06', to: 'react' },
-                            { textBody: "اوزش css", isFree: true, time: '08:10', to: 'css' },
-                          ],
-                          'carousel - 2': [
-                            { textBody: "اوزش nextJS", isFree: false, time: '02:36', to: 'next' },
-                          ],
-                          'carousel - 3': [
-                            { textBody: "اوزش js", isFree: false, time: '05:56', to: 'js' },
-                            { textBody: "اوزش react", isFree: false, time: '15:06', to: 'react' },
-                          ],
-                          'carousel-feature': []
-                        }}
-                      />
+                      <AccordionListVideo sessionsList={sessions}/>
                     </div>
 
                     <div className="comments">
 
                       <div className="comments__content">
                         {
-                          courseInfo.comments.length === 0
+                          comments.length === 0
                             ?
                             <ReapondComment />
                             :
-                            <ReapondComment commentsArr={courseInfo.comments}/>
+                            <ReapondComment commentsArr={comments}/>
                         }
 
                       </div>
