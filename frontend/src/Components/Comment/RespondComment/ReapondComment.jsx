@@ -1,17 +1,17 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, useContext } from 'react'
 import './ReapondComment.css'
 import AnswerComment from '../AnswerComment/AnswerComment'
 //icons
 import { GoCommentDiscussion } from "react-icons/go";
 import { LiaComment, LiaReplySolid } from "react-icons/lia";
-
+import { AuthContext } from '../../../Contexts/AuthContext';
 
 export default function ReapondComment({ showCommentHeader = true, commentsArr }) {
 
     const showNewComment = useRef()
     const [submitCommetnUser, setSubmitCommetnUser] = useState(false)
 
-    console.log(commentsArr);
+    const authContext = useContext(AuthContext)
 
     useEffect(() => {
         if (showCommentHeader) {
@@ -24,7 +24,8 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
             }
         }
     })
-    //whole-comments-users
+    
+
     return (
         <section className='parent-comments'>
             {

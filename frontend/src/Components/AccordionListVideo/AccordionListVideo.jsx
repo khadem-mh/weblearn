@@ -4,11 +4,8 @@ import { Link } from 'react-router-dom';
 import Accordion from 'react-bootstrap/Accordion';
 import { MdOutlinePlayCircle } from "react-icons/md";
 import { GoLock } from "react-icons/go";
-import faNumber from '../../Functions/FaNumber/FaNumber';
 
 export default function AccordionListVideo({ sessionsList }) {
-
-    console.log(sessionsList);
 
     return (
         <Accordion>

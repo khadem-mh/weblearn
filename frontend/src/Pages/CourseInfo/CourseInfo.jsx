@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import './CourseInfo.css'
 import './Comments.css'
@@ -26,9 +26,11 @@ import CategoryBox from '../../Components/CategoryBox/CategoryBox';
 import DetailsTeacher from '../../Components/DetailsTeacher/DetailsTeacher';
 //?Funcs
 import faNumber from '../../Functions/FaNumber/FaNumber';
+import { AuthContext } from '../../Contexts/AuthContext'
 
 export default function CourseInfo() {
 
+  const authContext = useContext(AuthContext)
   const [courseInfo, setCourseInfo] = useState({})
   const [comments, setComments] = useState([])
   const [sessions, setSessions] = useState([])
@@ -253,7 +255,7 @@ export default function CourseInfo() {
                             ?
                             <ReapondComment />
                             :
-                            <ReapondComment commentsArr={comments}/>
+                            <ReapondComment commentsArr={comments} showCommentHeader={authContext.isLoggedIn}/>
                         }
 
                       </div>
