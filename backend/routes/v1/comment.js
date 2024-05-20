@@ -17,13 +17,13 @@ router
 
 router
   .route("/answer/:id")
-  .post(authenticatedMiddleware, commentController.answer);
+  .post(authenticatedMiddleware, isAdminMiddleware, commentController.answer);
 
 router
   .route("/accept/:id")
   .put(authenticatedMiddleware, isAdminMiddleware, commentController.accept);
 
-  router
+router
   .route("/reject/:id")
   .put(authenticatedMiddleware, isAdminMiddleware, commentController.reject);
 
