@@ -30,8 +30,10 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
 
 
     useEffect(() => {
-        if (submitAnswerComment ? answerDetailsSubmit.body.length > 6 : commentDetailsSubmit.body.length > 6 && commentDetailsSubmit.score != -1) document.querySelector('#btnSendComment').disabled = false
-        else document.querySelector('#btnSendComment').disabled = true
+        if (showCommentHeader) {
+            if (submitAnswerComment ? answerDetailsSubmit.body.length > 6 : commentDetailsSubmit.body.length > 6 && commentDetailsSubmit.score != -1) document.querySelector('#btnSendComment').disabled = false
+            else document.querySelector('#btnSendComment').disabled = true
+        }
     }, [commentDetailsSubmit, answerDetailsSubmit])
 
     useEffect(() => {

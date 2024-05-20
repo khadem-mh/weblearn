@@ -17,7 +17,7 @@ router
 
 router
   .route("/answer/:id")
-  .post(authenticatedMiddleware, isAdminMiddleware, commentController.answer);
+  .post(authenticatedMiddleware, commentController.answer);
 
 router
   .route("/accept/:id")
