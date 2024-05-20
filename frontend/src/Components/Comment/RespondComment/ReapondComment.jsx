@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, useContext } from 'react'
+import { Link } from 'react-router-dom';
 import './ReapondComment.css'
 import AnswerComment from '../AnswerComment/AnswerComment'
 //icons
@@ -29,7 +30,7 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
     return (
         <section className='parent-comments'>
             {
-                showCommentHeader &&
+                showCommentHeader ?
                 <section>
 
                     <section className='header-title-comment'>
@@ -121,6 +122,7 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
                     </section>
 
                 </section>
+                :  <p className='error-login'>برای ثبت کامنت ابتدا باید <Link to={'/login'}>لاگین</Link> کنید</p>
             }
 
 
