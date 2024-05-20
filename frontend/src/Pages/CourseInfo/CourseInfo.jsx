@@ -35,6 +35,8 @@ export default function CourseInfo() {
   const [comments, setComments] = useState([])
   const [maxScore, setMaxScore] = useState(0)
   const [sessions, setSessions] = useState([])
+  const [durationTimeMinuteCourses, setDurationTimeMinuteCourses] = useState(null)
+  const [durationTimeHoursCourses, setDurationTimeHoursCourses] = useState(null)
   const location = useLocation()
   const introductionRef = useRef()
   const params = useParams()
@@ -58,6 +60,12 @@ export default function CourseInfo() {
       })
 
   }, [location])
+
+  useEffect(() => {
+    let sessionMinuteTime = 0
+    sessions.map(session => sessionMinuteTime += +session.time.split(':')[0])
+    sessionMinuteTime >= 60 ? setDurationTimeHoursCourses(Math.floor(sessionMinuteTime / 60)) : setDurationTimeMinuteCourses(sessionMinuteTime)
+  }, [sessions])
 
   useEffect(() => {
     let commentScore = []
@@ -165,7 +173,7 @@ export default function CourseInfo() {
                       <div className="row row-cols-3">
 
                         <StatusBox classParentBox={'col-12 col-sm-6 col-lg-4'} title={'وضعیت دوره'} subTitle={courseInfo.isComplete === 1 ? 'تکمیل شده' : 'در حال برگزاری'} icon={<FaRedRiver />} />
-                        <StatusBox classParentBox={'col-12 col-sm-6 col-lg-4'} title={'مدت زمان دوره'} subTitle={''} icon={<MdOutlineAccessTime />} />
+                        <StatusBox classParentBox={'col-12 col-sm-6 col-lg-4'} title={'مدت زمان دوره'} subTitle={sessions.length ? `${durationTimeHoursCourses ? `${durationTimeHoursCourses} ساعت` : `${durationTimeMinuteCourses} دقیقه`}` : 'در حال ظبط'} icon={<MdOutlineAccessTime />} />
                         <StatusBox classParentBox={'col-12 col-sm-6 col-lg-4'} title={'آخرین بروزرسانی'} subTitle={courseInfo.updatedAt.slice(0, 10).split('-').join('/')} icon={<MdOutlineDateRange />} />
                         <StatusBox classParentBox={'col-12 col-sm-6 col-lg-4'} title={'روش پشتیبانی'} subTitle={courseInfo.support} icon={<FaUserFriends />} />
                         <StatusBox classParentBox={'col-12 col-sm-6 col-lg-4'} title={'پیش نیاز'} subTitle={'HTML & CSS & JS'} icon={<GiHandBag />} />
