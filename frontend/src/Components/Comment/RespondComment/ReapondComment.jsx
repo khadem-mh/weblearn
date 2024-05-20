@@ -15,6 +15,7 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
     const params = useParams()
     const showNewComment = useRef()
     const [submitCommetnUser, setSubmitCommetnUser] = useState(false)
+    const [submitAnswerComment, setSubmitAnswerComment] = useState(false)
     const [commentDetailsSubmit, setCommentDetailsSubmit] = useState({
         body: '',
         courseShortName: params.course,
@@ -40,7 +41,18 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
         }
     })
 
+    const answerToComment = () => {
+        setSubmitAnswerComment(true)
+        setSubmitCommetnUser(true)
+    }
+
+    const submitNewComment = () => {
+        setSubmitCommetnUser(true)
+        setSubmitAnswerComment(false)
+    }
+
     const cancelCommentSend = () => {
+        setSubmitAnswerComment(false)
         setSubmitCommetnUser(false)
         setCommentDetailsSubmit(prev => {
             return {
@@ -84,7 +96,7 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
 
     }
 
-    const commetnScoreHandler = scoreNum => {
+    const commetntScoreHandler = scoreNum => {
         setCommentDetailsSubmit(prev => {
             return {
                 ...prev,
@@ -118,7 +130,7 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
                             </div>
 
                             <div>
-                                <button className='header-title-comment_btn' onClick={() => setSubmitCommetnUser(true)}>
+                                <button className='header-title-comment_btn' onClick={submitNewComment}>
                                     <div>
                                         <span>ایجاد نظر جدید</span>
                                     </div>
@@ -133,46 +145,53 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
                         <section className='new-comment-user' >
 
                             <section className='container-submit-coment' ref={showNewComment}>
-                                <div className="comments__rules">
-                                    <span className="comments__rules-title">قوانین ثبت دیدگاه</span>
 
-                                    <div className='comments__rules-box'>
-                                        <i className="fas fa-check comments__rules-icon"></i>
-                                        <p className="comments__rules-item">
-                                            اگر نیاز به پشتیبانی دوره دارید از قسمت پرسش سوال در قسمت نمایش انلاین استفاده
-                                            نمایید و سوالات مربوط به رفع اشکال تایید نخواهند شد
-                                        </p>
-                                    </div>
+                                {
+                                    !submitAnswerComment
+                                        ?
+                                        <div className="comments__rules">
+                                            <span className="comments__rules-title">قوانین ثبت دیدگاه</span>
 
-                                    <div className='comments__rules-box'>
-                                        <i className="fas fa-check comments__rules-icon"></i>
-                                        <p className="comments__rules-item">
-                                            دیدگاه های نامرتبط به دوره تایید نخواهد شد.
-                                        </p>
-                                    </div>
+                                            <div className='comments__rules-box'>
+                                                <i className="fas fa-check comments__rules-icon"></i>
+                                                <p className="comments__rules-item">
+                                                    اگر نیاز به پشتیبانی دوره دارید از قسمت پرسش سوال در قسمت نمایش انلاین استفاده
+                                                    نمایید و سوالات مربوط به رفع اشکال تایید نخواهند شد
+                                                </p>
+                                            </div>
 
-                                    <div className='comments__rules-box'>
-                                        <i className="fas fa-check comments__rules-icon"></i>
-                                        <p className="comments__rules-item">
-                                            سوالات مرتبط با رفع اشکال در این بخش تایید نخواهد شد.
-                                        </p>
-                                    </div>
+                                            <div className='comments__rules-box'>
+                                                <i className="fas fa-check comments__rules-icon"></i>
+                                                <p className="comments__rules-item">
+                                                    دیدگاه های نامرتبط به دوره تایید نخواهد شد.
+                                                </p>
+                                            </div>
 
-                                    <div className='comments__rules-box'>
-                                        <i className="fas fa-check comments__rules-icon"></i>
-                                        <p className="comments__rules-item">
-                                            از درج دیدگاه های تکراری پرهیز نمایید.
-                                        </p>
-                                    </div>
+                                            <div className='comments__rules-box'>
+                                                <i className="fas fa-check comments__rules-icon"></i>
+                                                <p className="comments__rules-item">
+                                                    سوالات مرتبط با رفع اشکال در این بخش تایید نخواهد شد.
+                                                </p>
+                                            </div>
 
-                                </div>
+                                            <div className='comments__rules-box'>
+                                                <i className="fas fa-check comments__rules-icon"></i>
+                                                <p className="comments__rules-item">
+                                                    از درج دیدگاه های تکراری پرهیز نمایید.
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                        :
+                                        ''
+                                }
 
                                 <div className="comments__respond">
-                                    <div className="comments__score">
+                                    <div className="comments__score" style={{ display: submitAnswerComment ? 'none' : 'block' }}>
                                         <span className="comments__score-title">امتیاز شما</span>
 
                                         <div className="col-12">
-                                            <select id="comment-score" className="comments__score-input w-100" onChange={e => commetnScoreHandler(e.target.value)} value={commentDetailsSubmit.score}>
+                                            <select id="comment-score" className="comments__score-input w-100" onChange={e => commetntScoreHandler(e.target.value)} value={commentDetailsSubmit.score}>
                                                 <option value="-1">به دوره امتیاز دهید</option>
                                                 <option value="5">عالی</option>
                                                 <option value="4">خیلی خوب</option>
@@ -184,7 +203,7 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
                                     </div>
 
                                     <div className="comments__respond-content">
-                                        <div className="comments__respond-title">دیدگاه شما *</div>
+                                        <div className="comments__respond-title">{submitAnswerComment ? 'پاسخ شما به دیدگاه *' : 'دیدگاه شما *'}</div>
                                         <textarea className="comments__score-input-respond" onChange={e => commentBodyHandler(e.target.value)} value={commentDetailsSubmit.body}></textarea>
                                     </div>
                                     <div className='parent-comment-btns'>
@@ -222,7 +241,7 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
 
                                 {showCommentHeader &&
                                     <div className="comments__question-header-left">
-                                        <button className="comments__question-header-link comment-link" onClick={() => setSubmitCommetnUser(true)}><LiaReplySolid /></button>
+                                        <button className="comments__question-header-link comment-link" onClick={answerToComment}><LiaReplySolid /></button>
                                     </div>
                                 }
                             </div>
