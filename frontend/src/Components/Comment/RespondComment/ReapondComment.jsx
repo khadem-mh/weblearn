@@ -12,36 +12,37 @@ import swal from 'sweetalert'
 export default function ReapondComment({ showCommentHeader = true, commentsArr }) {
 
     console.log(commentsArr);
+    const authContext = useContext(AuthContext)
     const params = useParams()
     const showNewComment = useRef()
+    //
     const [submitCommetnUser, setSubmitCommetnUser] = useState(false)
     const [submitAnswerComment, setSubmitAnswerComment] = useState(false)
+    const [replyCommentId, setReplyCommentId] = useState(null)
     const [commentDetailsSubmit, setCommentDetailsSubmit] = useState({
         body: '',
         courseShortName: params.course,
         score: -1
     })
+    const [answerDetailsSubmit, setAnswerDetailsSubmit] = useState({
+        body: ''
+    })
 
-    const authContext = useContext(AuthContext)
 
     useEffect(() => {
-        if (commentDetailsSubmit.body.length > 6 && commentDetailsSubmit.score != -1) document.querySelector('#btnSendComment').disabled = false
+        if (submitAnswerComment ? answerDetailsSubmit.body.length > 6 : commentDetailsSubmit.body.length > 6 && commentDetailsSubmit.score != -1) document.querySelector('#btnSendComment').disabled = false
         else document.querySelector('#btnSendComment').disabled = true
-    }, [commentDetailsSubmit])
+    }, [commentDetailsSubmit, answerDetailsSubmit])
 
     useEffect(() => {
         if (showCommentHeader) {
-            if (submitCommetnUser) {
-                showNewComment.current.classList.add('box-comment-show')
-            } else {
-                if (showNewComment.current.classList.contains('box-comment-show')) {
-                    showNewComment.current.classList.remove('box-comment-show')
-                }
-            }
+            if (submitCommetnUser) showNewComment.current.classList.add('box-comment-show')
+            else showNewComment.current.classList.contains('box-comment-show') && showNewComment.current.classList.remove('box-comment-show')
         }
     })
 
-    const answerToComment = () => {
+    const answerToComment = (commentId) => {
+        setReplyCommentId(commentId)
         setSubmitAnswerComment(true)
         setSubmitCommetnUser(true)
     }
@@ -52,6 +53,7 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
     }
 
     const cancelCommentSend = () => {
+        setReplyCommentId(null)
         setSubmitAnswerComment(false)
         setSubmitCommetnUser(false)
         setCommentDetailsSubmit(prev => {
@@ -63,36 +65,69 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
     }
 
     const submitCommentHandler = () => {
-        console.log(commentDetailsSubmit);
-        fetch(`http://localhost:4000/v1/comments`, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(commentDetailsSubmit)
-        })
-            .then(res => {
-                if (res.ok) return res.json()
-                else return res.text().then(err => { throw new Error(err) })
+        if (submitAnswerComment) {
+            console.log(replyCommentId);
+            fetch(`http://localhost:4000/v1/comments/answer/${replyCommentId}`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(answerDetailsSubmit)
             })
-            .then(datas => {
-                console.log(datas);
-                swal({
-                    title: 'نظر شما با موفقیت ثبت شد و پس از بررسی در سایت قرار می گیرد',
-                    icon: 'success',
-                    buttons: 'باشه',
-                }).then(() => {
-                    window.location.reload()
+                .then(res => {
+                    console.log(res);
+                    if (res.ok) return res.json()
+                    else return res.text().then(err => { throw new Error(err) })
                 })
-            })
-            .catch(err => {
-                swal({
-                    title: 'خیلی متاسفیم مشکلی پیش اومده لطفا دوباره سعی کنید',
-                    icon: 'error',
-                    buttons: 'امتحان مجدد',
+                .then(datas => {
+                    console.log(datas);
+                    swal({
+                        title: 'پاسخ شما با موفقیت ثبت شد و پس از بررسی در سایت قرار می گیرد',
+                        icon: 'success',
+                        buttons: 'باشه',
+                    }).then(() => {
+                        window.location.reload()
+                    })
                 })
+                .catch(err => {
+                    swal({
+                        title: 'خیلی متاسفیم مشکلی پیش اومده لطفا دوباره سعی کنید',
+                        icon: 'error',
+                        buttons: 'امتحان مجدد',
+                    })
+                })
+        } else {
+            fetch(`http://localhost:4000/v1/comments`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(commentDetailsSubmit)
             })
+                .then(res => {
+                    if (res.ok) return res.json()
+                    else return res.text().then(err => { throw new Error(err) })
+                })
+                .then(datas => {
+                    console.log(datas);
+                    swal({
+                        title: 'نظر شما با موفقیت ثبت شد و پس از بررسی در سایت قرار می گیرد',
+                        icon: 'success',
+                        buttons: 'باشه',
+                    }).then(() => {
+                        window.location.reload()
+                    })
+                })
+                .catch(err => {
+                    swal({
+                        title: 'خیلی متاسفیم مشکلی پیش اومده لطفا دوباره سعی کنید',
+                        icon: 'error',
+                        buttons: 'امتحان مجدد',
+                    })
+                })
+        }
 
     }
 
@@ -106,12 +141,18 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
     }
 
     const commentBodyHandler = val => {
-        setCommentDetailsSubmit(prev => {
-            return {
-                ...prev,
-                body: val
-            }
-        })
+        if (submitAnswerComment) {
+            setAnswerDetailsSubmit(() => {
+                return { body: val }
+            })
+        } else {
+            setCommentDetailsSubmit(prev => {
+                return {
+                    ...prev,
+                    body: val
+                }
+            })
+        }
     }
 
     return (
@@ -204,7 +245,7 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
 
                                     <div className="comments__respond-content">
                                         <div className="comments__respond-title">{submitAnswerComment ? 'پاسخ شما به دیدگاه *' : 'دیدگاه شما *'}</div>
-                                        <textarea className="comments__score-input-respond" onChange={e => commentBodyHandler(e.target.value)} value={commentDetailsSubmit.body}></textarea>
+                                        <textarea className="comments__score-input-respond" onChange={e => commentBodyHandler(e.target.value)} value={!submitAnswerComment ? commentDetailsSubmit.body : answerDetailsSubmit.body}></textarea>
                                     </div>
                                     <div className='parent-comment-btns'>
                                         <button className="comments__respond-btn-cancle" onClick={() => cancelCommentSend()}>لغو</button>
@@ -241,7 +282,7 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
 
                                 {showCommentHeader &&
                                     <div className="comments__question-header-left">
-                                        <button className="comments__question-header-link comment-link" onClick={answerToComment}><LiaReplySolid /></button>
+                                        <button className="comments__question-header-link comment-link" onClick={e => answerToComment(item._id)}><LiaReplySolid /></button>
                                     </div>
                                 }
                             </div>
@@ -258,7 +299,6 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
                                     respondCreatorDate={item.answerContent.createdAt.slice(0, 10).split('-').join('/')}
                                     respondCreatorName={item.answerContent.creator.name}
                                     respondCreatorRole={item.answerContent.creator.role}
-                                    setFunc={setSubmitCommetnUser}
                                 />
                             }
                         </div>
