@@ -51,6 +51,7 @@ export default function CourseInfo() {
     })
       .then(res => res.json())
       .then(datas => {
+        console.log(datas);
         setCourseInfo(datas)
         setComments(datas.comments)
         setSessions(datas.sessions)

@@ -6,6 +6,8 @@ import AnswerComment from '../AnswerComment/AnswerComment'
 import { GoCommentDiscussion } from "react-icons/go";
 import { LiaComment, LiaReplySolid } from "react-icons/lia";
 import { AuthContext } from '../../../Contexts/AuthContext';
+//swal
+import swal from 'sweetalert'
 
 export default function ReapondComment({ showCommentHeader = true, commentsArr }) {
 
@@ -64,8 +66,21 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
             })
             .then(datas => {
                 console.log(datas);
+                swal({
+                    title: 'نظر شما با موفقیت ثبت شد و پس از بررسی در سایت قرار می گیرد',
+                    icon: 'success',
+                    buttons: 'باشه',
+                }).then(() => {
+                    window.location.reload()
+                })
             })
-            .catch(err => console.log('no connect'))
+            .catch(err => {
+                swal({
+                    title: 'خیلی متاسفیم مشکلی پیش اومده لطفا دوباره سعی کنید',
+                    icon: 'error',
+                    buttons: 'امتحان مجدد',
+                })
+            })
 
     }
 
