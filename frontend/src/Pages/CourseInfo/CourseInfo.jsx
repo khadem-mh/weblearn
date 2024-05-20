@@ -33,6 +33,7 @@ export default function CourseInfo() {
   const authContext = useContext(AuthContext)
   const [courseInfo, setCourseInfo] = useState({})
   const [comments, setComments] = useState([])
+  const [maxScore, setMaxScore] = useState(0)
   const [sessions, setSessions] = useState([])
   const location = useLocation()
   const introductionRef = useRef()
@@ -58,8 +59,13 @@ export default function CourseInfo() {
   }, [location])
 
   useEffect(() => {
-    console.log(courseInfo);
-  }, [courseInfo])
+    let commentScore = []
+    if (comments && comments.length) {
+      comments.map(comment => commentScore.push(comment.score))
+      let maxScore = commentScore.reduce((prevNum, currentNum) => prevNum < currentNum ? currentNum : prevNum, 0)
+      setMaxScore(maxScore)
+    }
+  }, [comments])
 
   return (
     <>
@@ -244,7 +250,7 @@ export default function CourseInfo() {
                         <TilteHeadeer title={'سرفصل های دوره'} yourStyle={'mt-0'} />
                         <p>{faNumber(99, 26)}</p>
                       </div>
-                      <AccordionListVideo sessionsList={sessions}/>
+                      <AccordionListVideo sessionsList={sessions} />
                     </div>
 
                     <div className="comments">
@@ -255,7 +261,7 @@ export default function CourseInfo() {
                             ?
                             <ReapondComment />
                             :
-                            <ReapondComment commentsArr={comments} showCommentHeader={authContext.isLoggedIn}/>
+                            <ReapondComment commentsArr={comments} showCommentHeader={authContext.isLoggedIn} />
                         }
 
                       </div>
@@ -275,7 +281,7 @@ export default function CourseInfo() {
 
                           <div className="course-info__top">
                             <StatusBox fzTitle='2rem' bgColor='var(--blue-lighter-color)' title={courseInfo.courseStudentsCount !== 0 ? faNumber(courseInfo.courseStudentsCount) : '0'} subTitle={'دانشجو'} icon={<FaUsers />} />
-                            <StatusBox fzTitle='2rem' bgColor='var(--blue-lighter-color)' title={faNumber(5, 0, undefined, true)} subTitle={'رضایت'} icon={<FaStar style={{ color: 'gold' }} />} />
+                            <StatusBox fzTitle='2rem' bgColor='var(--blue-lighter-color)' title={`0.${maxScore ? maxScore : 5}`} subTitle={'رضایت'} icon={<FaStar style={{ color: 'gold' }} />} />
                           </div>
 
                         </div>
