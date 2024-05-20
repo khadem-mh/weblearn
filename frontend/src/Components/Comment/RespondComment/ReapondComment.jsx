@@ -4,7 +4,7 @@ import './ReapondComment.css'
 import AnswerComment from '../AnswerComment/AnswerComment'
 //icons
 import { GoCommentDiscussion } from "react-icons/go";
-import { LiaComment, LiaReplySolid } from "react-icons/lia";
+import { LiaComment } from "react-icons/lia";
 import { AuthContext } from '../../../Contexts/AuthContext';
 //swal
 import swal from 'sweetalert'
@@ -17,24 +17,19 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
     const showNewComment = useRef()
     //
     const [submitCommetnUser, setSubmitCommetnUser] = useState(false)
-    const [submitAnswerComment, setSubmitAnswerComment] = useState(false)
-    const [replyCommentId, setReplyCommentId] = useState(null)
     const [commentDetailsSubmit, setCommentDetailsSubmit] = useState({
         body: '',
         courseShortName: params.course,
         score: -1
     })
-    const [answerDetailsSubmit, setAnswerDetailsSubmit] = useState({
-        body: ''
-    })
 
 
     useEffect(() => {
         if (showCommentHeader) {
-            if (submitAnswerComment ? answerDetailsSubmit.body.length > 6 : commentDetailsSubmit.body.length > 6 && commentDetailsSubmit.score != -1) document.querySelector('#btnSendComment').disabled = false
+            if (commentDetailsSubmit.body.length > 6 && commentDetailsSubmit.score != -1) document.querySelector('#btnSendComment').disabled = false
             else document.querySelector('#btnSendComment').disabled = true
         }
-    }, [commentDetailsSubmit, answerDetailsSubmit])
+    }, [commentDetailsSubmit])
 
     useEffect(() => {
         if (showCommentHeader) {
@@ -43,20 +38,9 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
         }
     })
 
-    const answerToComment = (commentId) => {
-        setReplyCommentId(commentId)
-        setSubmitAnswerComment(true)
-        setSubmitCommetnUser(true)
-    }
-
-    const submitNewComment = () => {
-        setSubmitCommetnUser(true)
-        setSubmitAnswerComment(false)
-    }
+    const submitNewComment = () => setSubmitCommetnUser(true)
 
     const cancelCommentSend = () => {
-        setReplyCommentId(null)
-        setSubmitAnswerComment(false)
         setSubmitCommetnUser(false)
         setCommentDetailsSubmit(prev => {
             return {
@@ -67,70 +51,35 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
     }
 
     const submitCommentHandler = () => {
-        if (submitAnswerComment) {
-            console.log(replyCommentId);
-            fetch(`http://localhost:4000/v1/comments/answer/${replyCommentId}`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(answerDetailsSubmit)
+        fetch(`http://localhost:4000/v1/comments`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(commentDetailsSubmit)
+        })
+            .then(res => {
+                if (res.ok) return res.json()
+                else return res.text().then(err => { throw new Error(err) })
             })
-                .then(res => {
-                    console.log(res);
-                    if (res.ok) return res.json()
-                    else return res.text().then(err => { throw new Error(err) })
+            .then(datas => {
+                console.log(datas);
+                swal({
+                    title: 'نظر شما با موفقیت ثبت شد و پس از بررسی در سایت قرار می گیرد',
+                    icon: 'success',
+                    buttons: 'باشه',
+                }).then(() => {
+                    window.location.reload()
                 })
-                .then(datas => {
-                    console.log(datas);
-                    swal({
-                        title: 'پاسخ شما با موفقیت ثبت شد و پس از بررسی در سایت قرار می گیرد',
-                        icon: 'success',
-                        buttons: 'باشه',
-                    }).then(() => {
-                        window.location.reload()
-                    })
-                })
-                .catch(err => {
-                    swal({
-                        title: 'خیلی متاسفیم مشکلی پیش اومده لطفا دوباره سعی کنید',
-                        icon: 'error',
-                        buttons: 'امتحان مجدد',
-                    })
-                })
-        } else {
-            fetch(`http://localhost:4000/v1/comments`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(commentDetailsSubmit)
             })
-                .then(res => {
-                    if (res.ok) return res.json()
-                    else return res.text().then(err => { throw new Error(err) })
+            .catch(err => {
+                swal({
+                    title: 'خیلی متاسفیم مشکلی پیش اومده لطفا دوباره سعی کنید',
+                    icon: 'error',
+                    buttons: 'امتحان مجدد',
                 })
-                .then(datas => {
-                    console.log(datas);
-                    swal({
-                        title: 'نظر شما با موفقیت ثبت شد و پس از بررسی در سایت قرار می گیرد',
-                        icon: 'success',
-                        buttons: 'باشه',
-                    }).then(() => {
-                        window.location.reload()
-                    })
-                })
-                .catch(err => {
-                    swal({
-                        title: 'خیلی متاسفیم مشکلی پیش اومده لطفا دوباره سعی کنید',
-                        icon: 'error',
-                        buttons: 'امتحان مجدد',
-                    })
-                })
-        }
-
+            })
     }
 
     const commetntScoreHandler = scoreNum => {
@@ -143,18 +92,12 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
     }
 
     const commentBodyHandler = val => {
-        if (submitAnswerComment) {
-            setAnswerDetailsSubmit(() => {
-                return { body: val }
-            })
-        } else {
-            setCommentDetailsSubmit(prev => {
-                return {
-                    ...prev,
-                    body: val
-                }
-            })
-        }
+        setCommentDetailsSubmit(prev => {
+            return {
+                ...prev,
+                body: val
+            }
+        })
     }
 
     return (
@@ -189,48 +132,42 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
 
                             <section className='container-submit-coment' ref={showNewComment}>
 
-                                {
-                                    !submitAnswerComment
-                                        ?
-                                        <div className="comments__rules">
-                                            <span className="comments__rules-title">قوانین ثبت دیدگاه</span>
+                                <div className="comments__rules">
+                                    <span className="comments__rules-title">قوانین ثبت دیدگاه</span>
 
-                                            <div className='comments__rules-box'>
-                                                <i className="fas fa-check comments__rules-icon"></i>
-                                                <p className="comments__rules-item">
-                                                    اگر نیاز به پشتیبانی دوره دارید از قسمت پرسش سوال در قسمت نمایش انلاین استفاده
-                                                    نمایید و سوالات مربوط به رفع اشکال تایید نخواهند شد
-                                                </p>
-                                            </div>
+                                    <div className='comments__rules-box'>
+                                        <i className="fas fa-check comments__rules-icon"></i>
+                                        <p className="comments__rules-item">
+                                            اگر نیاز به پشتیبانی دوره دارید از قسمت پرسش سوال در قسمت نمایش انلاین استفاده
+                                            نمایید و سوالات مربوط به رفع اشکال تایید نخواهند شد
+                                        </p>
+                                    </div>
 
-                                            <div className='comments__rules-box'>
-                                                <i className="fas fa-check comments__rules-icon"></i>
-                                                <p className="comments__rules-item">
-                                                    دیدگاه های نامرتبط به دوره تایید نخواهد شد.
-                                                </p>
-                                            </div>
+                                    <div className='comments__rules-box'>
+                                        <i className="fas fa-check comments__rules-icon"></i>
+                                        <p className="comments__rules-item">
+                                            دیدگاه های نامرتبط به دوره تایید نخواهد شد.
+                                        </p>
+                                    </div>
 
-                                            <div className='comments__rules-box'>
-                                                <i className="fas fa-check comments__rules-icon"></i>
-                                                <p className="comments__rules-item">
-                                                    سوالات مرتبط با رفع اشکال در این بخش تایید نخواهد شد.
-                                                </p>
-                                            </div>
+                                    <div className='comments__rules-box'>
+                                        <i className="fas fa-check comments__rules-icon"></i>
+                                        <p className="comments__rules-item">
+                                            سوالات مرتبط با رفع اشکال در این بخش تایید نخواهد شد.
+                                        </p>
+                                    </div>
 
-                                            <div className='comments__rules-box'>
-                                                <i className="fas fa-check comments__rules-icon"></i>
-                                                <p className="comments__rules-item">
-                                                    از درج دیدگاه های تکراری پرهیز نمایید.
-                                                </p>
-                                            </div>
+                                    <div className='comments__rules-box'>
+                                        <i className="fas fa-check comments__rules-icon"></i>
+                                        <p className="comments__rules-item">
+                                            از درج دیدگاه های تکراری پرهیز نمایید.
+                                        </p>
+                                    </div>
 
-                                        </div>
-                                        :
-                                        ''
-                                }
+                                </div>
 
                                 <div className="comments__respond">
-                                    <div className="comments__score" style={{ display: submitAnswerComment ? 'none' : 'block' }}>
+                                    <div className="comments__score">
                                         <span className="comments__score-title">امتیاز شما</span>
 
                                         <div className="col-12">
@@ -246,11 +183,11 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
                                     </div>
 
                                     <div className="comments__respond-content">
-                                        <div className="comments__respond-title">{submitAnswerComment ? 'پاسخ شما به دیدگاه *' : 'دیدگاه شما *'}</div>
-                                        <textarea className="comments__score-input-respond" onChange={e => commentBodyHandler(e.target.value)} value={!submitAnswerComment ? commentDetailsSubmit.body : answerDetailsSubmit.body}></textarea>
+                                        <div className="comments__respond-title">دیدگاه شما *</div>
+                                        <textarea className="comments__score-input-respond" onChange={e => commentBodyHandler(e.target.value)} value={commentDetailsSubmit.body}></textarea>
                                     </div>
                                     <div className='parent-comment-btns'>
-                                        <button className="comments__respond-btn-cancle" onClick={() => cancelCommentSend()}>لغو</button>
+                                        <button className="comments__respond-btn-cancle" onClick={cancelCommentSend}>لغو</button>
                                         <button className="comments__respond-btn" id='btnSendComment' onClick={submitCommentHandler}>ارسال</button>
                                     </div>
                                 </div>
@@ -281,12 +218,6 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
                                     </div>
                                     <p className="comments__question-date comment-date">{item.createdAt.slice(0, 10).split('-').join('/')}</p>
                                 </div>
-
-                                {showCommentHeader &&
-                                    <div className="comments__question-header-left">
-                                        <button className="comments__question-header-link comment-link" onClick={e => answerToComment(item._id)}><LiaReplySolid /></button>
-                                    </div>
-                                }
                             </div>
 
                             <div className="comments__question-text">
