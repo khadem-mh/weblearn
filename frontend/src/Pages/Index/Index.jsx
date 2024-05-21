@@ -19,10 +19,6 @@ export default function Index() {
       .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
   }, [])
 
-  useEffect(() => {
-    console.log(lastCourses);
-  }, [lastCourses])
-
   return (
     <section className="page">
 
@@ -36,18 +32,10 @@ export default function Index() {
 
               <div className="row row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4" id="courses-container">
                 {
-                  lastCourses.length >= 1 && lastCourses.map((course, index) => (
+                  lastCourses.length >= 1 && lastCourses.map((courseInformation, index) => (
                     <Course
                       key={index}
-                      shortNameCourse={course.shortName}
-                      coursePathImg={course.cover}
-                      courseTitle={course.name}
-                      courseTeacher={course.creator}
-                      courseCountUsers={course.registers}
-                      coursePrice={course.price}
-                      courseScore={course.courseAverageScore}
-                      courseDetails={course.description}
-                      courseSector={course.categoryID.name}
+                      {...courseInformation}
                     />
                   ))
                 }
