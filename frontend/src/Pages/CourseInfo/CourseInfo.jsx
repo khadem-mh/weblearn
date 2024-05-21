@@ -62,9 +62,11 @@ export default function CourseInfo() {
   }, [location])
 
   useEffect(() => {
-    let sessionMinuteTime = 0
-    sessions.map(session => sessionMinuteTime += +session.time.split(':')[0])
-    sessionMinuteTime >= 60 ? setDurationTimeHoursCourses(Math.floor(sessionMinuteTime / 60)) : setDurationTimeMinuteCourses(sessionMinuteTime)
+    if (sessions) {
+      let sessionMinuteTime = 0
+      sessions.map(session => sessionMinuteTime += +session.time.split(':')[0])
+      sessionMinuteTime >= 60 ? setDurationTimeHoursCourses(Math.floor(sessionMinuteTime / 60)) : setDurationTimeMinuteCourses(sessionMinuteTime)
+    }
   }, [sessions])
 
   useEffect(() => {
@@ -128,7 +130,7 @@ export default function CourseInfo() {
                     <Plyr
                       source={{
                         type: 'video',
-                        poster: '',
+                        poster: `/images/courses/${courseInfo.cover}`,
                         ratio: '16:9',
                         sources: [
                           {
@@ -196,7 +198,7 @@ export default function CourseInfo() {
                               اگر بدون بلد بودن این کتابخانه ها وارد بازار کار شوید، خیلی اذیت خواهید شد و حتی
                               ممکن است ناامید شوید!
                             </p>
-                            <img src="images/info/1.png" alt="course-info"
+                            <img src={`/images/courses/${courseInfo.cover}`} alt="course-info"
                               className="introduction__img img-fluid" />
                             <p className="introduction__text">
                               در این دوره نحوه کار با 20 مورد از پر استفاده ترین کتابخانه های جاوا اسکریپت به
@@ -208,7 +210,7 @@ export default function CourseInfo() {
 
                           <div className="introduction__item">
                             <TilteHeadeer title={'هدف از این دوره چیست'} />
-                            <img src="images/info/2.jpg" alt="course-info"
+                            <img src="/images/info/2.jpg" alt="course-info"
                               className="introduction__img img-fluid" />
                             <p className="introduction__text">
                               وقتی برای اولین بار وارد یکی از شرکت های برنامه نویسی شدم، از کتابخانه هایی به
@@ -257,7 +259,11 @@ export default function CourseInfo() {
                     <div className="introduction__topic">
                       <div className='introduction__header'>
                         <TilteHeadeer title={'سرفصل های دوره'} yourStyle={'mt-0'} />
-                        <p>{faNumber(99, 26)}</p>
+                        <p>
+                          {
+                            sessions.length ? durationTimeHoursCourses ? `+${durationTimeHoursCourses} ساعت` : `+${durationTimeMinuteCourses} دقیقه` : 'در حال ظبط'
+                          }
+                        </p>
                       </div>
                       <AccordionListVideo sessionsList={sessions} />
                     </div>
@@ -301,7 +307,7 @@ export default function CourseInfo() {
                         <DetailsTeacher
                           nameTeacher={courseInfo.creator.name}
                           imgTeacher={courseInfo.creator.profile}
-                          textBio={` اولین کدم رو 14 سالگی زدم، حدود 9 سال پیش که با زبان ویژوال بیسیک بود و بعد حدودا 2 سال تو فیلد برنامه نویسی موبایل با زبان جاوا کار کردم و در نهایت با عشقی به اسم جاوا اسکریپت آشنا شدم و حدودا یه 7 سالی هست جاوا اسکریپت کد می‌زنم و به صورت Mern Stack فعالیت می‌کنم.`}
+                          textBio={''}
                           to={'/'}
                         />
                       }
@@ -310,12 +316,12 @@ export default function CourseInfo() {
                     </section>
 
 
-                    <CopyLinkBox textForCopy={`https://weblearn.ir/course-info/${params.course}`} titleBox={'لینک کوتاه'} yourStyle={'d-none d-lg-block'} children={<i className="fas fa-link short-url-icon"></i>} />
+                    <CopyLinkBox textForCopy={`http://localhost:3000/course-info/${params.course}`} titleBox={'لینک کوتاه'} yourStyle={'d-none d-lg-block'} children={<i className="fas fa-link short-url-icon"></i>} />
 
                     <CategoryBox title={'دوره های مرتبط'} yourStyle={'d-none d-lg-block'}>
-                      <CourseCoverAside teacher={'سید محمد حسین خادم المهدی'} pathImg={'Courses/PWA-min.jpg'} link={'pwa'} title={'دوره آموزشی Pwa'} />
-                      <CourseCoverAside teacher={'محمد امین سعیدی راد'} pathImg={'Courses/TypeScript-min-2.jpg'} link={'typescript'} title={'دوره آموزشی TypeScript'} />
-                      <CourseCoverAside teacher={'قدیر یلمه'} pathImg={'Courses/BJS-852x479-1.png'} link={'blackjs'} title={'دوره آموزشی هک و امنیت جاوااسکریپت سیاه'} />
+                      <CourseCoverAside teacher={'سید محمد حسین خادم المهدی'} pathImg={'/Images/Courses/regex.png'} link={'pwa'} title={'دوره آموزشی Pwa'} />
+                      <CourseCoverAside teacher={'محمد امین سعیدی راد'} pathImg={'/Images/Courses/ts.png'} link={'typescript'} title={'دوره آموزشی TypeScript'} />
+                      <CourseCoverAside teacher={'قدیر یلمه'} pathImg={'/Images/Courses/next.png'} link={'blackjs'} title={'دوره آموزشی هک و امنیت جاوااسکریپت سیاه'} />
                     </CategoryBox>
 
                   </div>

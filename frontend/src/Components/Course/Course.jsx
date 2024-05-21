@@ -4,7 +4,7 @@ import './media.css'
 import Spinner from 'react-bootstrap/Spinner';
 import { Link } from 'react-router-dom';
 
-export default function Course({ courseImg, coursePathImg, courseTitle, courseTeacher, courseCountUsers, coursePrice, courseScore, courseDetails, courseSector, courseBadg }) {
+export default function Course({ shortNameCourse, coursePathImg, courseTitle, courseTeacher, courseCountUsers, coursePrice, courseScore, courseDetails, courseSector, courseBadg }) {
 
     const [imageLoaded, setImageLoaded] = useState(false)
 
@@ -14,9 +14,9 @@ export default function Course({ courseImg, coursePathImg, courseTitle, courseTe
         <div className="col-12 parent-course-box">
             <div className="course-box">
 
-                <Link to="/course-info">
+                <Link to={`/course-info/${shortNameCourse}`}>
                     <img
-                        src={`${coursePathImg}Images/Courses/${courseImg}`}
+                        src={`/images/courses/${coursePathImg}`}
                         alt="course"
                         className="course-box__img"
                         onLoad={onImageLoaded}
@@ -47,7 +47,7 @@ export default function Course({ courseImg, coursePathImg, courseTitle, courseTe
                         </div>
 
                         <div className="course-box__rating">
-                            <small className='course-box__rating-score'>{`${courseScore.toLocaleString()}.${(0).toLocaleString()}`}</small>
+                            <small className='course-box__rating-score'>{`0.${courseScore}`}</small>
                             <img src="./Images/svgs/star_fill.svg" alt="star" className="course-box__star" />
                         </div>
 
@@ -56,14 +56,14 @@ export default function Course({ courseImg, coursePathImg, courseTitle, courseTe
                     <div className="course-box__status">
                         <div className="course-box__users">
                             <i className="fas fa-users course-box__users-icon"></i>
-                            <span className="course-box__user-text">{courseCountUsers.toLocaleString()}</span>
+                            <span className="course-box__user-text">{courseCountUsers}</span>
                         </div>
-                        <span className="course-box__price">{coursePrice.toLocaleString()} <small>تومان</small> </span>
+                        <span className="course-box__price">{coursePrice === 0 ? 'رایگان' : coursePrice.toLocaleString()} {coursePrice !== 0 && <small>تومان</small>}  </span>
                     </div>
                 </div>
 
                 <div className="course-box__footer">
-                    <Link to="/course-info" className="course-box__footer-link">
+                    <Link to={`/course-info/${shortNameCourse}`} className="course-box__footer-link">
                         <p>مشاهده اطلاعات</p>
                         <i className="fas fa-arrow-left course-box__footer-icon"></i>
                     </Link>

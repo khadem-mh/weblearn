@@ -21,15 +21,16 @@ export default function CopyLinkBox({ yourStyle, titleBox, textForCopy, children
     }, [showCopyText])
 
     const clickHandleCopy = (text) => {
+        console.log(text);
         setShowCopyText('')
         if (toastRef.current) {
             if (toastRef.current.classList.contains('hide')) {
                 toastRef.current.classList.replace('hide', 'show')
             }
         }
-        navigator.clipboard.writeText(text)
+        navigator.clipboard.writeText(text.textForCopy)
             .then(() => {
-                setShowCopyText('متن با موفقیت به کلیپ‌بورد کپی شد! 📋')
+                setShowCopyText('متن با موفقیت در کلیپ‌بورد کپی شد! 📋')
             })
             .catch(err => {
                 setShowCopyText('مشکلی در کپی کردن متن به وجود آمده است')

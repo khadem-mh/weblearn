@@ -5,6 +5,10 @@
     font-family: Lalezar;
 }
 
+.toast-text-copy {
+    z-index:  1000 !important;
+}
+
 .short-url-icon {
     font-size: 1.7rem;
 }
@@ -46,6 +50,7 @@
 }
 
 .parent-copy-text {
+    z-index: 10000 !important;
     margin-bottom: 0;
     border-radius: 1.5rem;
     margin-top: 1rem;

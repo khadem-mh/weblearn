@@ -232,6 +232,7 @@ address {
 .container-plyr {
     border-radius: 2rem;
     overflow: hidden;
+    width: 100%;
 }
 
 .plyr__poster {

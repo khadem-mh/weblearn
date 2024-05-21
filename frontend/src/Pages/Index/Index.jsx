@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Index.css'
 //components
 import Course from '../../Components/Course/Course'
@@ -6,12 +6,27 @@ import AboutUsBox from '../../Components/AboutUsBox/AboutUsBox'
 import SwiperComponent from '../../Components/Swiper/Swiper'
 import Article from '../../Components/Article/Article'
 import HeaderTitle from '../../Components/HeaderTitle/HeaderTitle'
+import swal from 'sweetalert'
 
 export default function Index() {
+
+  const [lastCourses, setLastCourses] = useState([])
+
+  useEffect(() => {
+    fetch(`http://localhost:4000/v1/courses`)
+      .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
+      .then(allCourses => setLastCourses(allCourses.reverse().splice(0, 8)))
+      .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
+  }, [])
+
+  useEffect(() => {
+    console.log(lastCourses);
+  }, [lastCourses])
+
   return (
     <section className="page">
 
-      <article id="courses" style={{marginTop: '13rem'}}>
+      <article id="courses" style={{ marginTop: '13rem' }}>
         <div className="container">
 
           <HeaderTitle routeUrl={'/category-courses'} title={'جدیدترین دوره ها'} subTitle={'سکوی پرتاپ شما به سمت موفقیت'} textBtn={'تمامی دوره ها'} />
@@ -20,15 +35,22 @@ export default function Index() {
             <div className="container">
 
               <div className="row row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4" id="courses-container">
-
-                <Course coursePathImg={'./'} courseImg={'1.png'} courseTitle={'آموزش پروژه محور PWA'} courseTeacher={'سید محمدحسین خادم المهدی'} courseCountUsers={800} coursePrice={1000_000} courseScore={5} courseDetails={' عنوان دوره گویای همه چی هست اما نیازه برخی موارد گفته بشه تا بتونید با دید بهتری تو این دوره شرکت کنید'} courseSector={'فرانت اند'} />
-                <Course coursePathImg={'./'} courseImg={'2.png'} courseTitle={'آموزش پروژه محور node js'} courseTeacher={'سید محمدحسین خادم المهدی'} courseCountUsers={800} coursePrice={1000_000} courseScore={5} courseDetails={' عنوان دوره گویای همه چی هست اما نیازه برخی موارد گفته بشه تا بتونید با دید بهتری تو این دوره شرکت کنید'} courseSector={'فرانت اند'} />
-                <Course coursePathImg={'./'} courseImg={'3.png'} courseTitle={'آموزش پروژه محور type script'} courseTeacher={'سید محمدحسین خادم المهدی'} courseCountUsers={800} coursePrice={1000_000} courseScore={5} courseDetails={' عنوان دوره گویای همه چی هست اما نیازه برخی موارد گفته بشه تا بتونید با دید بهتری تو این دوره شرکت کنید'} courseSector={'فرانت اند'} />
-                <Course coursePathImg={'./'} courseImg={'4.png'} courseTitle={'آموزش پروژه محور jango'} courseTeacher={'سید محمدحسین خادم المهدی'} courseCountUsers={800} coursePrice={1000_000} courseScore={5} courseDetails={' عنوان دوره گویای همه چی هست اما نیازه برخی موارد گفته بشه تا بتونید با دید بهتری تو این دوره شرکت کنید'} courseSector={'فرانت اند'} />
-                <Course coursePathImg={'./'} courseImg={'5.png'} courseTitle={'آموزش پروژه محور JavaScript'} courseTeacher={'محمد امین سعیدی راد'} courseCountUsers={23000} coursePrice={1000_000} courseScore={5} courseDetails={' عنوان دوره گویای همه چی هست اما نیازه برخی موارد گفته بشه تا بتونید با دید بهتری تو این دوره شرکت کنید'} courseSector={'فرانت اند'} />
-                <Course coursePathImg={'./'} courseImg={'6.png'} courseTitle={'آموزش پروژه محور React'} courseTeacher={'محمدامین سعیدی راد'} courseCountUsers={80} coursePrice={1000_000} courseScore={5} courseDetails={' عنوان دوره گویای همه چی هست اما نیازه برخی موارد گفته بشه تا بتونید با دید بهتری تو این دوره شرکت کنید'} courseSector={'فرانت اند'} />
-                <Course coursePathImg={'./'} courseImg={'7.png'} courseTitle={'آموزش پروژه محور clas'} courseTeacher={'محمدامین سعیدی راد'} courseCountUsers={80} coursePrice={1000_000} courseScore={5} courseDetails={' عنوان دوره گویای همه چی هست اما نیازه برخی موارد گفته بشه تا بتونید با دید بهتری تو این دوره شرکت کنید'} courseSector={'فرانت اند'} />
-                <Course coursePathImg={'./'} courseImg={'8.png'} courseTitle={'آموزش پروژه محور graph ql'} courseTeacher={'محمدامین سعیدی راد'} courseCountUsers={80} coursePrice={1000_000} courseScore={5} courseDetails={' عنوان دوره گویای همه چی هست اما نیازه برخی موارد گفته بشه تا بتونید با دید بهتری تو این دوره شرکت کنید'} courseSector={'فرانت اند'} />
+                {
+                  lastCourses.length >= 1 && lastCourses.map((course, index) => (
+                    <Course
+                      key={index}
+                      shortNameCourse={course.shortName}
+                      coursePathImg={course.cover}
+                      courseTitle={course.name}
+                      courseTeacher={course.creator}
+                      courseCountUsers={course.registers}
+                      coursePrice={course.price}
+                      courseScore={course.courseAverageScore}
+                      courseDetails={course.description}
+                      courseSector={course.categoryID.name}
+                    />
+                  ))
+                }
 
               </div>
 
@@ -103,7 +125,7 @@ export default function Index() {
       <article className="article">
         <div className="container">
 
-        <HeaderTitle routeUrl={'/category-articles'} title={'جدیدترین مقاله ها'} subTitle={'پیش به سوی ارتقای دانش'} textBtn={'تمامی مقاله ها'} />
+          <HeaderTitle routeUrl={'/category-articles'} title={'جدیدترین مقاله ها'} subTitle={'پیش به سوی ارتقای دانش'} textBtn={'تمامی مقاله ها'} />
 
           <div className="article__content">
             <div className="row row-cols-sm-2 row-cols-md-3 row-cols-xl-4 d-flex justify-content-center justify-content-sm-start" id="articles-wrapper">
