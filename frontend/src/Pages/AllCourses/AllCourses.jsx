@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import '../../Css/categories.css'
-import './media.css'
 //components
 import Course from '../../Components/Course/Course'
 import OffCanvasBottom from '../../Components/OffCanvasesMenu/OffCanvasBottom/OffCanvasBottom';
@@ -26,8 +25,8 @@ export default function AllCourses() {
     }, [location])
 
     useEffect(() => {
-        console.log(categoryCourses);
-    }, [categoryCourses])
+    
+    }, [allCourses])
 
     return (
         <section className='page category-page'>
@@ -67,7 +66,7 @@ export default function AllCourses() {
                                 <div className="row row-cols-sm-2 row-cols-md-2 row-cols-xl-3" id="courses-container">
 
                                     {
-                                        categoryCourses.map((courseInfo, index) => (
+                                        allCourses.map((courseInfo, index) => (
                                             <Course key={index} {...courseInfo} />
                                         ))
                                     }

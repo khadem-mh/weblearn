@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import '../../Css/categories.css'
-import './media.css'
 //components
 import Course from '../../Components/Course/Course'
 import OffCanvasBottom from '../../Components/OffCanvasesMenu/OffCanvasBottom/OffCanvasBottom';

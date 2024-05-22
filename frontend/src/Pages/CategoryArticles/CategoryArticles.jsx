@@ -1,5 +1,5 @@
 import React from 'react'
-import './CategoryArticles.css'
+import './media.css'
 import '../../Css/categories.css'
 //icons
 import { RiSearchLine } from "react-icons/ri";
