@@ -21,11 +21,14 @@ export default function AllCourses() {
     const [allCourses, setAllCourses] = useState([])
 
     useEffect(() => {
-       
+        fetch(`http://localhost:4000/v1/courses`)
+            .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
+            .then(allCourses => setAllCourses(allCourses))
+            .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
     }, [location])
 
     useEffect(() => {
-    
+        console.log(allCourses);
     }, [allCourses])
 
     return (
@@ -37,6 +40,7 @@ export default function AllCourses() {
                 ?
                 <>
                     <h2 className='category-h2'>تمامی دوره ها</h2>
+                    <p className='text-light me-3 mb-2'>{allCourses.length} عنوان آموزشی</p>
 
                     <div className='category-filters'>
 
