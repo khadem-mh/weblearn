@@ -22,7 +22,7 @@ export default function AllCourses() {
     const [allCourses, setAllCourses] = useState([])
 
     useEffect(() => {
-        if (isNaN(location.pathname.slice(18)) || location.pathname.slice(18) === '0') setPageUrlCorrect(false)
+        if (isNaN(location.pathname.slice(18)) || location.pathname.slice(18) <= '0') setPageUrlCorrect(false)
         else setPageUrlCorrect(true)
     }, [location])
 
@@ -86,7 +86,7 @@ export default function AllCourses() {
 
                     </div>
 
-                    <Pagination arrCourses={allCourses} count={6} />
+                    <Pagination arrCourses={allCourses} count={1} />
                 </>
                 :
                 !pageUrlCorrect

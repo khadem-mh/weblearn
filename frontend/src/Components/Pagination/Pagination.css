@@ -3,6 +3,16 @@
     justify-content: center;
 }
 
+.pagination-item {
+    color: lightgrey;
+    cursor: pointer;
+}
+
+.page-num-active {
+    background-color: var(--primary-color) !important;
+    color: white;
+}
+
 .pagination-list {
     display: flex;
     align-items: center;
