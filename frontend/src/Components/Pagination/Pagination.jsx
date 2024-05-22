@@ -51,8 +51,8 @@ export default function Pagination({ arrCourses, count }) {
                                 </p>
                             </li>
                             {
-                                arrHelp.slice(arrHelp.length - 4 < pageActive - 1 ? arrHelp.length - 4 : arrHelp.length - 3 === pageActive ? pageActive - 2 : pageActive - 1, arrHelp.length).map(item => (
-                                    (item < pageActive + 2 && arrHelp.length - 3 !== pageActive)
+                                arrHelp.slice(pageActive - 2 === -1 ? pageActive - 1 : (arrHelp.length - 3) < pageActive ? arrHelp.length - 4 : pageActive - 2, arrHelp.length).map(item => (
+                                    (item < pageActive + 1 && pageActive - 2 !== -1)
                                         ?
                                         <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
                                             <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
@@ -60,7 +60,7 @@ export default function Pagination({ arrCourses, count }) {
                                             </p>
                                         </li>
                                         :
-                                        arrHelp.length - (arrHelp.length - pageActive) === pageActive && item < pageActive + 1
+                                        pageActive - 2 === -1 && item < pageActive + 2
                                             ?
                                             <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
                                                 <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
