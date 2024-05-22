@@ -23,12 +23,16 @@
     cursor: auto;
 }
 
-.pagination-item-disable {
+.pagination-link-disable {
     opacity: .5;
     cursor: auto;
 }
 
-.pagination-item-disable:hover {
+.pagination-item-disable {
+    cursor: auto;
+}
+
+.pagination-link-disable:hover {
     background-color: #323242 !important;
     color: lightgray !important;
 }

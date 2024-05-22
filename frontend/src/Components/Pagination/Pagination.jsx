@@ -26,6 +26,10 @@ export default function Pagination({ arrCourses, count }) {
         }
     }, [])
 
+    useEffect(() => {
+
+    }, [pageActive])
+
     const clickHandlerPagination = pageNum => {
         if (window.location.pathname.slice(18) != pageNum) {
             window.history.pushState({}, '', `/all-courses/page/${pageNum}`)
@@ -41,14 +45,14 @@ export default function Pagination({ arrCourses, count }) {
                     arrHelp.length > 4
                         ?
                         <>
-                            <li className='pagination-item'>
-                                <p className={`pagination-link ${pageActive === 1 ? 'pagination-item-disable' : ''}`}>
+                            <li className={`pagination-item ${pageActive === 1 ? 'pagination-item-disable' : ''}`} onClick={() => pageActive !== 1 && clickHandlerPagination(pageActive - 1)}>
+                                <p className={`pagination-link ${pageActive === 1 ? 'pagination-link-disable' : ''}`}>
                                     <i className="fas fa-long-arrow-alt-right pagination-icon"></i>
                                 </p>
                             </li>
                             {
-                                arrHelp.map(item => (
-                                    (item < 3)
+                                arrHelp.slice(pageActive - 1, arrHelp.length).map(item => (
+                                    (item < pageActive + 2)
                                         ?
                                         <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
                                             <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
@@ -72,8 +76,8 @@ export default function Pagination({ arrCourses, count }) {
                                 ))
 
                             }
-                            <li className="pagination-item">
-                                <p className={`pagination-link ${pageActive === arrHelp.length ? 'pagination-item-disable' : ''}`}>
+                            <li className="pagination-item" onClick={() => clickHandlerPagination(pageActive + 1)}>
+                                <p className={`pagination-link ${pageActive === arrHelp.length ? 'pagination-link-disable' : ''}`}>
                                     <i className="fas fa-long-arrow-alt-left pagination-icon"></i>
                                 </p>
                             </li>
