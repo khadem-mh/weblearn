@@ -20,6 +20,7 @@ export default function AllCourses() {
     const location = useLocation()
     const [pageUrlCorrect, setPageUrlCorrect] = useState(false)
     const [allCourses, setAllCourses] = useState([])
+    const [filterCoursesPage, setFilterCoursesPage] = useState([])
 
     useEffect(() => {
         if (isNaN(location.pathname.slice(18)) || location.pathname.slice(18) <= '0') setPageUrlCorrect(false)
@@ -34,6 +35,9 @@ export default function AllCourses() {
                 .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
         }
     }, [pageUrlCorrect])
+
+    const handleFilterCourses = datas => setFilterCoursesPage(datas)
+
 
     return (
         <section className='page category-page'>
@@ -74,7 +78,7 @@ export default function AllCourses() {
                                 <div className="row row-cols-sm-2 row-cols-md-2 row-cols-xl-3" id="courses-container">
 
                                     {
-                                        allCourses.map((courseInfo, index) => (
+                                        filterCoursesPage.map((courseInfo, index) => (
                                             <Course key={index} {...courseInfo} />
                                         ))
                                     }
@@ -85,8 +89,10 @@ export default function AllCourses() {
                         </div>
 
                     </div>
-
-                    <Pagination arrCourses={allCourses} count={1} />
+                    {
+                        allCourses.length > 6 &&
+                        <Pagination arrCourses={allCourses} count={6} onFilterCourses={handleFilterCourses} />
+                    }
                 </>
                 :
                 !pageUrlCorrect

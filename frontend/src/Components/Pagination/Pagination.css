@@ -6,6 +6,7 @@
 .pagination-item {
     color: lightgrey;
     cursor: pointer;
+    user-select: none;
 }
 
 .page-num-active {

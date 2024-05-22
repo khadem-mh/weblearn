@@ -1,22 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import './Pagination.css'
-import { useLocation } from 'react-router-dom'
 
-export default function Pagination({ arrCourses, count }) {
-
-    const location = useLocation()
+export default function Pagination({ arrCourses, count, onFilterCourses }) {
 
     const [arrHelp, setArrHelp] = useState([])
     const [pageActive, setPageActive] = useState(+window.location.pathname.slice(18))
 
     useEffect(() => {
-        console.log(arrCourses);
-        console.log(count);
-
         let page = (arrCourses.length % count) === 0 ? (arrCourses.length / count) : (parseInt(arrCourses.length / count) + 1)
-
-        let endIndex = page * count
-        let startIndex = endIndex - count
 
         for (let i = 0; i < page; i++) setArrHelp(prev => [...prev, i])
 
@@ -24,14 +15,16 @@ export default function Pagination({ arrCourses, count }) {
             window.history.pushState({}, '', `/all-courses/page/1`)
             setPageActive(1)
         }
-    }, [])
+    }, [arrCourses.length, count])
 
     useEffect(() => {
-
-    }, [pageActive])
+        let endIndex = pageActive * count
+        let startIndex = endIndex - count
+        onFilterCourses(arrCourses.slice(startIndex, endIndex))
+    }, [pageActive, arrCourses, count, onFilterCourses])
 
     const clickHandlerPagination = pageNum => {
-        if (window.location.pathname.slice(18) != pageNum) {
+        if (window.location.pathname.slice(18) !== pageNum) {
             window.history.pushState({}, '', `/all-courses/page/${pageNum}`)
             setPageActive(pageNum)
         }
@@ -40,7 +33,6 @@ export default function Pagination({ arrCourses, count }) {
     return (
         <div className="pagination">
             <ul className="pagination-list">
-
                 {
                     arrHelp.length > 4
                         ?
@@ -99,9 +91,6 @@ export default function Pagination({ arrCourses, count }) {
                             </li>
                         ))
                 }
-
-
-
             </ul>
         </div>
     )
