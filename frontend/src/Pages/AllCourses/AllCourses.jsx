@@ -18,25 +18,29 @@ import swal from 'sweetalert'
 export default function AllCourses() {
 
     const location = useLocation()
+    const [pageUrlCorrect, setPageUrlCorrect] = useState(false)
     const [allCourses, setAllCourses] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:4000/v1/courses`)
-            .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
-            .then(allCourses => setAllCourses(allCourses))
-            .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
+        if (isNaN(location.pathname.slice(18)) || location.pathname.slice(18) === '0') setPageUrlCorrect(false)
+        else setPageUrlCorrect(true)
     }, [location])
 
     useEffect(() => {
-        console.log(allCourses);
-    }, [allCourses])
+        if (pageUrlCorrect) {
+            fetch(`http://localhost:4000/v1/courses`)
+                .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
+                .then(allCourses => setAllCourses(allCourses))
+                .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
+        }
+    }, [pageUrlCorrect])
 
     return (
         <section className='page category-page'>
 
 
 
-            {allCourses.length
+            {pageUrlCorrect && allCourses.length
                 ?
                 <>
                     <h2 className='category-h2'>تمامی دوره ها</h2>
@@ -82,15 +86,18 @@ export default function AllCourses() {
 
                     </div>
 
-                    <Pagination />
+                    <Pagination arrCourses={allCourses} count={6} />
                 </>
                 :
-                <div style={{ height: '40vh', textAlign: 'center', marginTop: '15rem' }}>
-                    <h2 className='category-h2 mb-0'>هنوز هیچ دوره ای روی وبسایت قرار نگرفته است</h2>
-                    <h3 className='text-success display-1'>⌡☻⌠</h3>
-                </div>
+                !pageUrlCorrect
+                    ?
+                    <p>404</p>
+                    :
+                    <div style={{ height: '40vh', textAlign: 'center', marginTop: '15rem' }}>
+                        <h2 className='category-h2 mb-0'>هنوز هیچ دوره ای روی وبسایت قرار نگرفته است</h2>
+                        <h3 className='text-success display-1'>⌡☻⌠</h3>
+                    </div>
             }
-
         </section>
     )
 }

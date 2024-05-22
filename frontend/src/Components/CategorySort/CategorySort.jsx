@@ -28,7 +28,7 @@ export default function CategorySort({ namesList }) {
                         ?
                         (
                             namesList.map((item, index) => (
-                                <p className={`category-sort__item ${index === 0 ? "select-item-sort" : ''}`} data-value={index} onClick={(e) => clickHandlerSelectItem(e)}>{item}</p>
+                                <p key={index} className={`category-sort__item ${index === 0 ? "select-item-sort" : ''}`} data-value={index} onClick={(e) => clickHandlerSelectItem(e)}>{item}</p>
                             ))
                         )
                         :

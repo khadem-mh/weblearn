@@ -25,7 +25,7 @@ export default function Index() {
       <article id="courses" style={{ marginTop: '13rem' }}>
         <div className="container">
 
-          <HeaderTitle routeUrl={'/all-courses'} title={'جدیدترین دوره ها'} subTitle={'سکوی پرتاپ شما به سمت موفقیت'} textBtn={'تمامی دوره ها'} />
+          <HeaderTitle routeUrl={'/all-courses/page/1'} title={'جدیدترین دوره ها'} subTitle={'سکوی پرتاپ شما به سمت موفقیت'} textBtn={'تمامی دوره ها'} />
 
           <div className="courses-content">
             <div className="container">
