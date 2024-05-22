@@ -1,6 +1,7 @@
 import Index from "./Pages/Index/Index"
 import CategoryCourses from "./Pages/CategoryCourses/CategoryCourses"
 import CategoryArticles from "./Pages/CategoryArticles/CategoryArticles"
+import AllCourses from "./Pages/AllCourses/AllCourses"
 import CourseInfo from "./Pages/CourseInfo/CourseInfo"
 import ArticleInfo from "./Pages/ArticleInfo/ArticleInfo"
 import Lesson from "./Pages/Lesson/Lesson"
@@ -23,6 +24,7 @@ const routes = [
     { path: 'article-info', element: <ArticleInfo /> },
     { path: 'category-articles', element: <CategoryArticles /> },
     { path: 'category-courses/:category', element: <CategoryCourses /> },
+    { path: 'all-courses/', element: <AllCourses /> },
     { path: 'lesson', element: <Lesson /> },
     { path: 'login', element: <Login /> },
     { path: 'register', element: <Register /> },
