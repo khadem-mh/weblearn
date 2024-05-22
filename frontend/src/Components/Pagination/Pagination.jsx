@@ -51,7 +51,7 @@ export default function Pagination({ arrCourses, count }) {
                                 </p>
                             </li>
                             {
-                                arrHelp.slice(pageActive - 1, arrHelp.length).map(item => (
+                                arrHelp.slice(arrHelp.length - 4 < pageActive - 1 ? arrHelp.length - 4 : pageActive - 1, arrHelp.length).map(item => (
                                     (item < pageActive + 2)
                                         ?
                                         <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
@@ -76,7 +76,7 @@ export default function Pagination({ arrCourses, count }) {
                                 ))
 
                             }
-                            <li className="pagination-item" onClick={() => clickHandlerPagination(pageActive + 1)}>
+                            <li className={`pagination-item ${pageActive === arrHelp.length ? 'pagination-item-disable' : ''}`} onClick={() => pageActive !== arrHelp.length && clickHandlerPagination(pageActive + 1)}>
                                 <p className={`pagination-link ${pageActive === arrHelp.length ? 'pagination-link-disable' : ''}`}>
                                     <i className="fas fa-long-arrow-alt-left pagination-icon"></i>
                                 </p>
