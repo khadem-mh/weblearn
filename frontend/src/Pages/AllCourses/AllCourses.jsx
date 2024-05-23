@@ -91,7 +91,7 @@ export default function AllCourses() {
                     </div>
                     {
                         allCourses.length > 6 &&
-                        <Pagination arrCourses={allCourses} count={6} onFilterCourses={handleFilterCourses} />
+                        <Pagination arrDatas={allCourses} countDataPerPage={1} pathName={'/all-courses/page/'} onFilterDatas={handleFilterCourses}/>
                     }
                 </>
                 :

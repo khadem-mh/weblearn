@@ -1,47 +1,72 @@
 import React, { useEffect, useState } from 'react'
 import './Pagination.css'
+import { number } from 'prop-types'
 
-export default function Pagination({ arrCourses, count, onFilterCourses }) {
+export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, pathName, isArrowsShow = true }) {
 
+    const pathLocation = window.location.pathname
+    const [pageActive, setPageActive] = useState(+pathLocation.slice(+pathLocation.lastIndexOf('/') + 1))
     const [arrHelp, setArrHelp] = useState([])
-    const [pageActive, setPageActive] = useState(+window.location.pathname.slice(18))
+    const [countPage, setCountPage] = useState(null)
 
     useEffect(() => {
-        let page = (arrCourses.length % count) === 0 ? (arrCourses.length / count) : (parseInt(arrCourses.length / count) + 1)
+        //? Handle Errors
+        if (typeof isArrowsShow !== 'boolean') throw new TypeError('typeof isArrowsShow not Boolean')
+        if (typeof countDataPerPage !== 'number') throw new TypeError('typeof countDataPerPage not Number')
+        if (arrDatas.constructor !== Array) throw new TypeError('typeof arrDatas not Array')
+        if (typeof pathName !== 'string') throw new TypeError('typeof pathName not string')
+        if (countDataPerPage <= 0) throw new TypeError('The lowest number must be at least 1')
+        typeof pathName === 'string' && (pathName = pathName.trim())
+        pathName[pathName.length - 1] !== '/' && (pathName = `${pathName}/`)
+        pathName[0] !== '/' && (pathName = `/${pathName}`)
 
+        //? Find Count Page
+        let page = (arrDatas.length % countDataPerPage) === 0 ? (arrDatas.length / countDataPerPage) : (parseInt(arrDatas.length / countDataPerPage) + 1)
+        setCountPage(page)
+
+        //? Creat Array Help
         for (let i = 0; i < page; i++) setArrHelp(prev => [...prev, i])
 
-        if (+window.location.pathname.slice(18) > page) {
-            window.history.pushState({}, '', `/all-courses/page/1`)
+        //? Redirect Count Mistake To Url Correct 
+        if (+pathLocation.slice(+pathLocation.lastIndexOf('/') + 1) > page) {
+            window.history.pushState({}, '', `${pathName}1`)
             setPageActive(1)
         }
-    }, [arrCourses.length, count])
+    }, [arrDatas.length, countDataPerPage, pathName])
 
     useEffect(() => {
-        let endIndex = pageActive * count
-        let startIndex = endIndex - count
-        onFilterCourses(arrCourses.slice(startIndex, endIndex))
-    }, [pageActive, arrCourses, count, onFilterCourses])
+        let endIndex = pageActive * countDataPerPage
+        let startIndex = endIndex - countDataPerPage
+        onFilterDatas(arrDatas.slice(startIndex, endIndex))
+    }, [pageActive, arrDatas, countDataPerPage])
 
     const clickHandlerPagination = pageNum => {
-        if (window.location.pathname.slice(18) !== pageNum) {
-            window.history.pushState({}, '', `/all-courses/page/${pageNum}`)
+        if (+pathLocation.slice(+pathLocation.lastIndexOf('/') + 1) !== pageNum) {
+            window.history.pushState({}, '', `${pathName}${pageNum}`)
             setPageActive(pageNum)
         }
     }
 
     return (
-        <div className="pagination">
+        <section className="pagination-container">
             <ul className="pagination-list">
                 {
                     arrHelp.length > 4
                         ?
                         <>
-                            <li className={`pagination-item ${pageActive === 1 ? 'pagination-item-disable' : ''}`} onClick={() => pageActive !== 1 && clickHandlerPagination(pageActive - 1)}>
-                                <p className={`pagination-link ${pageActive === 1 ? 'pagination-link-disable' : ''}`}>
-                                    <i className="fas fa-long-arrow-alt-right pagination-icon"></i>
-                                </p>
-                            </li>
+                            {
+                                isArrowsShow &&
+                                <li className={`pagination-item ${pageActive === 1 ? 'pagination-item-disable' : ''}`} onClick={() => pageActive !== 1 && clickHandlerPagination(pageActive - 1)}>
+                                    <p className={`pagination-link ${pageActive === 1 ? 'pagination-link-disable' : ''}`}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-arrow-right-short pagination-icon" viewBox="0 0 16 16">
+                                            <path
+                                                fillRule="evenodd"
+                                                d="M4 8a.5.5 0 01.5-.5h5.793L8.146 5.354a.5.5 0 11.708-.708l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L10.293 8.5H4.5A.5.5 0 014 8"
+                                            ></path>
+                                        </svg>
+                                    </p>
+                                </li>
+                            }
                             {
                                 arrHelp.slice(pageActive - 2 === -1 ? pageActive - 1 : (arrHelp.length - 3) < pageActive ? arrHelp.length - 4 : pageActive - 2, arrHelp.length).map(item => (
                                     (item < pageActive + 1 && pageActive - 2 !== -1)
@@ -76,11 +101,19 @@ export default function Pagination({ arrCourses, count, onFilterCourses }) {
                                 ))
 
                             }
-                            <li className={`pagination-item ${pageActive === arrHelp.length ? 'pagination-item-disable' : ''}`} onClick={() => pageActive !== arrHelp.length && clickHandlerPagination(pageActive + 1)}>
-                                <p className={`pagination-link ${pageActive === arrHelp.length ? 'pagination-link-disable' : ''}`}>
-                                    <i className="fas fa-long-arrow-alt-left pagination-icon"></i>
-                                </p>
-                            </li>
+                            {
+                                isArrowsShow &&
+                                <li className={`pagination-item ${pageActive === arrHelp.length ? 'pagination-item-disable' : ''}`} onClick={() => pageActive !== arrHelp.length && clickHandlerPagination(pageActive + 1)}>
+                                    <p className={`pagination-link ${pageActive === arrHelp.length ? 'pagination-link-disable' : ''}`}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-arrow-left-short pagination-icon" viewBox="0 0 16 16">
+                                            <path
+                                                fillRule="evenodd"
+                                                d="M12 8a.5.5 0 01-.5.5H5.707l2.147 2.146a.5.5 0 01-.708.708l-3-3a.5.5 0 010-.708l3-3a.5.5 0 11.708.708L5.707 7.5H11.5a.5.5 0 01.5.5"
+                                            ></path>
+                                        </svg>
+                                    </p>
+                                </li>
+                            }
                         </>
                         :
                         arrHelp.map(item => (
@@ -92,6 +125,6 @@ export default function Pagination({ arrCourses, count, onFilterCourses }) {
                         ))
                 }
             </ul>
-        </div>
+        </section>
     )
 }
