@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Pagination.css'
 
-export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, pathName, isArrowsShow = true }) {
+export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, pathName, isArrowsShow = true, separateBox = false, }) {
 
     const pathLocation = window.location.pathname
     const [pageActive, setPageActive] = useState(+pathLocation.slice(+pathLocation.lastIndexOf('/') + 1))
@@ -92,16 +92,23 @@ export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, 
                                                     </p>
                                                 </li>
                                                 : pageActive >= 4 && item + 1 === 1 ?
-                                                    <>
+                                                    separateBox ?
+                                                        <>
+                                                            <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
+                                                                <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
+                                                                    {item + 1}
+                                                                </p>
+                                                            </li>
+                                                            <li key={item} className='pagination-item'>
+                                                                <p className='pagination-link-dotted'>...</p>
+                                                            </li>
+                                                        </>
+                                                        : !separateBox &&
                                                         <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
                                                             <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
-                                                                {item + 1}
+                                                                {item + 1} ...
                                                             </p>
                                                         </li>
-                                                        <li key={item} className='pagination-item'>
-                                                            <p className='pagination-link-dotted'>...</p>
-                                                        </li>
-                                                    </>
                                                     : pageActive >= 4 && item + 1 !== 1 && item + 1 === pageActive + 1 || item + 1 === pageActive || item + 1 === pageActive - 1 ?
                                                         <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
                                                             <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
@@ -109,16 +116,23 @@ export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, 
                                                             </p>
                                                         </li>
                                                         : arrHelp.length - 1 === item && arrHelp.length - 2 !== pageActive ?
-                                                            <>
-                                                                <li key={item} className='pagination-item'>
-                                                                    <p className='pagination-link-dotted'>...</p>
-                                                                </li>
+                                                            separateBox ?
+                                                                <>
+                                                                    <li key={item} className='pagination-item'>
+                                                                        <p className='pagination-link-dotted'>...</p>
+                                                                    </li>
+                                                                    <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
+                                                                        <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
+                                                                            {item + 1}
+                                                                        </p>
+                                                                    </li>
+                                                                </>
+                                                                : !separateBox &&
                                                                 <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
                                                                     <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
-                                                                        {item + 1}
+                                                                        ... {item + 1}
                                                                     </p>
                                                                 </li>
-                                                            </>
                                                             : pageActive - 1 === arrHelp.length - 2 && item > arrHelp.length - 2 ?
                                                                 <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
                                                                     <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
