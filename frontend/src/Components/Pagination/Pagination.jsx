@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import './Pagination.css'
-import { number } from 'prop-types'
 
 export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, pathName, isArrowsShow = true }) {
 
