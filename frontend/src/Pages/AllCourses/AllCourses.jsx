@@ -18,23 +18,15 @@ import swal from 'sweetalert'
 export default function AllCourses() {
 
     const location = useLocation()
-    const [pageUrlCorrect, setPageUrlCorrect] = useState(false)
     const [allCourses, setAllCourses] = useState([])
     const [filterCoursesPage, setFilterCoursesPage] = useState([])
 
     useEffect(() => {
-        if (isNaN(location.pathname.slice(18)) || location.pathname.slice(18) <= '0') setPageUrlCorrect(false)
-        else setPageUrlCorrect(true)
-    }, [location])
-
-    useEffect(() => {
-        if (pageUrlCorrect) {
-            fetch(`http://localhost:4000/v1/courses`)
-                .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
-                .then(allCourses => setAllCourses(allCourses))
-                .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
-        }
-    }, [pageUrlCorrect])
+        fetch(`http://localhost:4000/v1/courses`)
+            .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
+            .then(allCourses => setAllCourses(allCourses))
+            .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
+    }, [])
 
     const handleFilterCourses = datas => setFilterCoursesPage(datas)
 
@@ -42,9 +34,7 @@ export default function AllCourses() {
     return (
         <section className='page category-page'>
 
-
-
-            {pageUrlCorrect && allCourses.length
+            {allCourses.length
                 ?
                 <>
                     <h2 className='category-h2'>تمامی دوره ها</h2>
@@ -91,18 +81,14 @@ export default function AllCourses() {
                     </div>
                     {
                         allCourses.length > 6 &&
-                        <Pagination arrDatas={allCourses} countDataPerPage={1} pathName={'/all-courses/page/'} onFilterDatas={handleFilterCourses}/>
+                        <Pagination arrDatas={allCourses} countDataPerPage={1} pathName={'/all-courses/page/'} onFilterDatas={handleFilterCourses} />
                     }
                 </>
                 :
-                !pageUrlCorrect
-                    ?
-                    <p>404</p>
-                    :
-                    <div style={{ height: '40vh', textAlign: 'center', marginTop: '15rem' }}>
-                        <h2 className='category-h2 mb-0'>هنوز هیچ دوره ای روی وبسایت قرار نگرفته است</h2>
-                        <h3 className='text-success display-1'>⌡☻⌠</h3>
-                    </div>
+                <div style={{ height: '40vh', textAlign: 'center', marginTop: '15rem' }}>
+                    <h2 className='category-h2 mb-0'>هنوز هیچ دوره ای روی وبسایت قرار نگرفته است</h2>
+                    <h3 className='text-success display-1'>⌡☻⌠</h3>
+                </div>
             }
         </section>
     )

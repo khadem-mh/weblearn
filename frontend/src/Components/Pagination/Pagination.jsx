@@ -27,7 +27,11 @@ export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, 
         for (let i = 0; i < page; i++) setArrHelp(prev => [...prev, i])
 
         //? Redirect Count Mistake To Url Correct 
-        if (+pathLocation.slice(+pathLocation.lastIndexOf('/') + 1) > page) {
+        if (
+            +pathLocation.slice(+pathLocation.lastIndexOf('/') + 1) > page ||
+            +pathLocation.slice(+pathLocation.lastIndexOf('/') + 1) <= 0 ||
+            isNaN(+pathLocation.slice(+pathLocation.lastIndexOf('/') + 1))
+        ) {
             window.history.pushState({}, '', `${pathName}1`)
             setPageActive(1)
         }
