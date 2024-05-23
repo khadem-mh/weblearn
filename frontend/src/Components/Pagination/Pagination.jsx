@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Pagination.css'
 
-export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, pathName, isArrowsShow = true, separateBox = false, }) {
+export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, pathName, isArrowsShow = true, separateBox = false, color = 'lightgray', bgColor = "#323242", colorActive = 'white', bgColorActive = "gray" }) {
 
     const pathLocation = window.location.pathname
     const [pageActive, setPageActive] = useState(+pathLocation.slice(+pathLocation.lastIndexOf('/') + 1))
@@ -59,8 +59,8 @@ export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, 
                         <>
                             {
                                 isArrowsShow &&
-                                <li className={`pagination-item ${pageActive === 1 ? 'pagination-item-disable' : ''}`} onClick={() => pageActive !== 1 && clickHandlerPagination(pageActive - 1)}>
-                                    <p className={`pagination-link ${pageActive === 1 ? 'pagination-link-disable' : ''}`}>
+                                <li className={`pagination-item ${pageActive === 1 ? 'pagination-link-disable ' : ''}`} style={{ color: color, backgroundColor: bgColor }} onClick={() => pageActive !== 1 && clickHandlerPagination(pageActive - 1)}>
+                                    <p className={`${pageActive === 1 ? 'pagination-link-disable' : ''}`}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-arrow-right-short pagination-icon" viewBox="0 0 16 16">
                                             <path
                                                 fillRule="evenodd"
@@ -73,84 +73,64 @@ export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, 
                             {
                                 arrHelp.map(item => (
                                     pageActive === 1 && item + 1 <= pageActive + 2 ?
-                                        <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
-                                            <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
-                                                {item + 1}
-                                            </p>
+                                        <li key={item} className={`pagination-item ${pageActive === item + 1 ? 'pagination-item-disable' : ''}`} style={{ color: pageActive === item + 1 ? colorActive : color, backgroundColor: pageActive === item + 1 ? bgColorActive : bgColor }} onClick={() => clickHandlerPagination(item + 1)}>
+                                            <p>{item + 1}</p>
                                         </li>
                                         :
                                         pageActive === 2 && item + 1 <= pageActive + 1 ?
-                                            <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
-                                                <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
-                                                    {item + 1}
-                                                </p>
+                                            <li key={item} className={`pagination-item ${pageActive === item + 1 ? 'pagination-item-disable' : ''}`} style={{ color: pageActive === item + 1 ? colorActive : color, backgroundColor: pageActive === item + 1 ? bgColorActive : bgColor }} onClick={() => clickHandlerPagination(item + 1)}>
+                                                <p>{item + 1}</p>
                                             </li>
                                             : pageActive >= 3 && item + 1 === pageActive + 1 || item + 1 === pageActive || item + 1 === pageActive - 1 ?
-                                                <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
-                                                    <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
-                                                        {item + 1}
-                                                    </p>
+                                                <li key={item} className={`pagination-item ${pageActive === item + 1 ? 'pagination-item-disable' : ''}`} style={{ color: pageActive === item + 1 ? colorActive : color, backgroundColor: pageActive === item + 1 ? bgColorActive : bgColor }} onClick={() => clickHandlerPagination(item + 1)}>
+                                                    <p>{item + 1}</p>
                                                 </li>
                                                 : pageActive >= 4 && item + 1 === 1 ?
                                                     separateBox ?
                                                         <>
-                                                            <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
-                                                                <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
-                                                                    {item + 1}
-                                                                </p>
+                                                            <li key={item} className={`pagination-item ${pageActive === item + 1 ? 'pagination-item-disable' : ''}`} style={{ color: pageActive === item + 1 ? colorActive : color, backgroundColor: pageActive === item + 1 ? bgColorActive : bgColor }} onClick={() => clickHandlerPagination(item + 1)}>
+                                                                <p>{item + 1}</p>
                                                             </li>
-                                                            <li key={item} className='pagination-item'>
-                                                                <p className='pagination-link-dotted'>...</p>
+                                                            <li key={item} className='pagination-item dotted-pagin' style={{ color: color, backgroundColor: bgColor}} >
+                                                                <p>...</p>
                                                             </li>
                                                         </>
                                                         : !separateBox &&
-                                                        <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
-                                                            <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
-                                                                {item + 1} ...
-                                                            </p>
+                                                        <li key={item} className={`pagination-item ${pageActive === item + 1 ? 'pagination-item-disable' : ''}`} style={{ color: pageActive === item + 1 ? colorActive : color, backgroundColor: pageActive === item + 1 ? bgColorActive : bgColor }} onClick={() => clickHandlerPagination(item + 1)}>
+                                                            <p>{item + 1} ...</p>
                                                         </li>
                                                     : pageActive >= 4 && item + 1 !== 1 && item + 1 === pageActive + 1 || item + 1 === pageActive || item + 1 === pageActive - 1 ?
-                                                        <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
-                                                            <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
-                                                                {item + 1}
-                                                            </p>
+                                                        <li key={item} className={`pagination-item ${pageActive === item + 1 ? 'pagination-item-disable' : ''}`} style={{ color: pageActive === item + 1 ? colorActive : color, backgroundColor: pageActive === item + 1 ? bgColorActive : bgColor }} onClick={() => clickHandlerPagination(item + 1)}>
+                                                            <p>{item + 1}</p>
                                                         </li>
                                                         : arrHelp.length - 1 === item && arrHelp.length - 2 !== pageActive ?
                                                             separateBox ?
                                                                 <>
-                                                                    <li key={item} className='pagination-item'>
-                                                                        <p className='pagination-link-dotted'>...</p>
+                                                                    <li key={item} className='pagination-item dotted-pagin' style={{ color: color, backgroundColor: bgColor }} >
+                                                                        <p>...</p>
                                                                     </li>
-                                                                    <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
-                                                                        <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
-                                                                            {item + 1}
-                                                                        </p>
+                                                                    <li key={item} className={`pagination-item ${pageActive === item + 1 ? 'pagination-item-disable' : ''}`} style={{ color: pageActive === item + 1 ? colorActive : color, backgroundColor: pageActive === item + 1 ? bgColorActive : bgColor }} onClick={() => clickHandlerPagination(item + 1)}>
+                                                                        <p>{item + 1}</p>
                                                                     </li>
                                                                 </>
                                                                 : !separateBox &&
-                                                                <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
-                                                                    <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
-                                                                        ... {item + 1}
-                                                                    </p>
+                                                                <li key={item} className={`pagination-item ${pageActive === item + 1 ? 'pagination-item-disable' : ''}`} style={{ color: pageActive === item + 1 ? colorActive : color, backgroundColor: pageActive === item + 1 ? bgColorActive : bgColor }} onClick={() => clickHandlerPagination(item + 1)}>
+                                                                    <p>... {item + 1}</p>
                                                                 </li>
                                                             : pageActive - 1 === arrHelp.length - 2 && item > arrHelp.length - 2 ?
-                                                                <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
-                                                                    <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
-                                                                        {item + 1}
-                                                                    </p>
+                                                                <li key={item} className={`pagination-item ${pageActive === item + 1 ? 'pagination-item-disable' : ''}`} style={{ color: pageActive === item + 1 ? colorActive : color, backgroundColor: pageActive === item + 1 ? bgColorActive : bgColor }} onClick={() => clickHandlerPagination(item + 1)}>
+                                                                    <p>{item + 1}</p>
                                                                 </li>
                                                                 : arrHelp.length === pageActive && item + 1 >= arrHelp.length - 2 ?
-                                                                    <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
-                                                                        <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
-                                                                            {item + 1}
-                                                                        </p>
+                                                                    <li key={item} className={`pagination-item ${pageActive === item + 1 ? 'pagination-item-disable' : ''}`} style={{ color: pageActive === item + 1 ? colorActive : color, backgroundColor: pageActive === item + 1 ? bgColorActive : bgColor }} onClick={() => clickHandlerPagination(item + 1)}>
+                                                                        <p>{item + 1}</p>
                                                                     </li> : ''
                                 ))
                             }
                             {
                                 isArrowsShow &&
-                                <li className={`pagination-item ${pageActive === arrHelp.length ? 'pagination-item-disable' : ''}`} onClick={() => pageActive !== arrHelp.length && clickHandlerPagination(pageActive + 1)}>
-                                    <p className={`pagination-link ${pageActive === arrHelp.length ? 'pagination-link-disable' : ''}`}>
+                                <li className={`pagination-item ${pageActive === arrHelp.length ? 'pagination-link-disable ' : ''}`} style={{ color: color, backgroundColor: bgColor }} onClick={() => pageActive !== arrHelp.length && clickHandlerPagination(pageActive + 1)}>
+                                    <p>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-arrow-left-short pagination-icon" viewBox="0 0 16 16">
                                             <path
                                                 fillRule="evenodd"

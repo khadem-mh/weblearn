@@ -3,15 +3,8 @@
     justify-content: center;
 }
 
-.pagination-item {
-    color: lightgrey;
-    cursor: pointer;
-    user-select: none;
-    transition: all 1s !important;
-}
-
 .page-num-active {
-    background-color: var(--primary-color) !important;
+    background-color: var(--primary-color);
     color: white;
 }
 
@@ -25,13 +18,14 @@
     cursor: auto;
 }
 
-.pagination-link-disable {
-    opacity: .5;
-    cursor: auto;
+.pagination-item-disable {
+    cursor: auto !important;
+    font-size: 2.5rem !important;
 }
 
-.pagination-item-disable {
-    cursor: auto;
+.pagination-link-disable {
+    opacity: .7;
+    cursor: auto !important;
 }
 
 .pagination-link-disable:hover {
@@ -39,7 +33,11 @@
     color: lightgray !important;
 }
 
-.pagination-link, .pagination-link-dotted {
+.pagination-item {
+    cursor: pointer;
+    user-select: none;
+    transition: all .4s !important;
+    color: lightgray;
     border-radius: 0.5rem;
     width: 4rem;
     height: 4rem;
@@ -48,13 +46,16 @@
     align-items: center;
     font-size: 1.5rem;
     font-weight: bold;
-    background-color: #323242;
     margin: 0 0.5rem;
 }
 
-.pagination-link:hover {
-    color: var(--white-color);
-    background-color: var(--primary-color);
+.dotted-pagin {
+    cursor: auto !important;
+}
+
+.pagination-item:not(.pagination-item-disable, .pagination-link-disable, .dotted-pagin):hover {
+    color: black !important;
+    background-color: lightgray !important;
 }
 
 .pagination-link--active {
