@@ -71,38 +71,67 @@ export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, 
                                 </li>
                             }
                             {
-                                arrHelp.slice(pageActive - 2 === -1 ? pageActive - 1 : (arrHelp.length - 3) < pageActive ? arrHelp.length - 4 : pageActive - 2, arrHelp.length).map(item => (
-                                    (item < pageActive + 1 && pageActive - 2 !== -1)
-                                        ?
+                                arrHelp.map(item => (
+                                    pageActive === 1 && item + 1 <= pageActive + 2 ?
                                         <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
                                             <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
                                                 {item + 1}
                                             </p>
                                         </li>
                                         :
-                                        pageActive - 2 === -1 && item < pageActive + 2
-                                            ?
+                                        pageActive === 2 && item + 1 <= pageActive + 1 ?
                                             <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
                                                 <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
                                                     {item + 1}
                                                 </p>
                                             </li>
-                                            :
-                                            item + 1 === arrHelp.length - 1
-                                                ?
-                                                <li key={item + 1} className='pagination-item'>
-                                                    <p className='pagination-link-dotted'>...</p>
-                                                </li>
-                                                :
-                                                item + 1 === arrHelp.length
-                                                &&
-                                                <li key={item + 1} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
+                                            : pageActive >= 3 && item + 1 === pageActive + 1 || item + 1 === pageActive || item + 1 === pageActive - 1 ?
+                                                <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
                                                     <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
                                                         {item + 1}
                                                     </p>
                                                 </li>
+                                                : pageActive >= 4 && item + 1 === 1 ?
+                                                    <>
+                                                        <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
+                                                            <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
+                                                                {item + 1}
+                                                            </p>
+                                                        </li>
+                                                        <li key={item} className='pagination-item'>
+                                                            <p className='pagination-link-dotted'>...</p>
+                                                        </li>
+                                                    </>
+                                                    : pageActive >= 4 && item + 1 !== 1 && item + 1 === pageActive + 1 || item + 1 === pageActive || item + 1 === pageActive - 1 ?
+                                                        <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
+                                                            <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
+                                                                {item + 1}
+                                                            </p>
+                                                        </li>
+                                                        : arrHelp.length - 1 === item && arrHelp.length - 2 !== pageActive ?
+                                                            <>
+                                                                <li key={item} className='pagination-item'>
+                                                                    <p className='pagination-link-dotted'>...</p>
+                                                                </li>
+                                                                <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
+                                                                    <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
+                                                                        {item + 1}
+                                                                    </p>
+                                                                </li>
+                                                            </>
+                                                            : pageActive - 1 === arrHelp.length - 2 && item > arrHelp.length - 2 ?
+                                                                <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
+                                                                    <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
+                                                                        {item + 1}
+                                                                    </p>
+                                                                </li>
+                                                                : arrHelp.length === pageActive && item + 1 >= arrHelp.length - 2 ?
+                                                                    <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
+                                                                        <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
+                                                                            {item + 1}
+                                                                        </p>
+                                                                    </li> : ''
                                 ))
-
                             }
                             {
                                 isArrowsShow &&
