@@ -1,8 +1,7 @@
-import React, { useEffect, useState, memo } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Pagination.css'
 
 export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, pathName, isArrowsShow = true, separateBox = false, color = 'lightgray', bgColor = "#323242", colorActive = 'white', bgColorActive = "gray" }) {
-
     const pathLocation = window.location.pathname
     const [pageActive, setPageActive] = useState(+pathLocation.slice(+pathLocation.lastIndexOf('/') + 1))
     const [arrHelp, setArrHelp] = useState([])
@@ -17,14 +16,11 @@ export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, 
         if (countDataPerPage <= 0) throw new TypeError('The lowest number must be at least 1')
         typeof pathName === 'string' && (pathName = pathName.trim())
         pathName[pathName.length - 1] !== '/' && (pathName = `${pathName}/`)
-        pathName[0] !== '/' && (pathName = `/${pathName}`) 
-
+        pathName[0] !== '/' && (pathName = `/${pathName}`)
         //? Find Count Page
         let page = (arrDatas.length % countDataPerPage) === 0 ? (arrDatas.length / countDataPerPage) : (parseInt(arrDatas.length / countDataPerPage) + 1)
-
         //? Creat Array Help
-        for (let i = 0; i < page; i++) setArrHelp(prev => [...prev, i])
-
+        if (arrHelp.length < 1) for (let i = 0; i < page; i++) setArrHelp(prev => [...prev, i])
         //? Redirect Count Mistake To Url Correct 
         if (
             +pathLocation.slice(+pathLocation.lastIndexOf('/') + 1) > page ||
@@ -34,7 +30,7 @@ export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, 
             window.history.pushState({}, '', `${pathName}1`)
             setPageActive(1)
         }
-    }, [arrDatas.length, countDataPerPage, pathName])
+    }, [])
 
     useEffect(() => {
         let endIndex = pageActive * countDataPerPage
@@ -68,8 +64,8 @@ export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, 
                                         </svg>
                                     </p>
                                 </li>
-                            } 
-                            { 
+                            }
+                            {
                                 arrHelp.map(item => (
                                     pageActive === 1 && item + 1 <= pageActive + 2 ?
                                         <li key={item} className={`pagination-item ${pageActive === item + 1 ? 'pagination-item-disable' : ''}`} style={{ color: pageActive === item + 1 ? colorActive : color, backgroundColor: pageActive === item + 1 ? bgColorActive : bgColor }} onClick={() => clickHandlerPagination(item + 1)}>

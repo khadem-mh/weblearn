@@ -80,7 +80,7 @@ export default function AllCourses() {
 
                     </div>
                     {
-                        allCourses.length > 6 &&
+                        allCourses.length > 6 && 
                         <Pagination
                             arrDatas={allCourses}
                             countDataPerPage={1}
