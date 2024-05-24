@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, memo } from 'react'
 import './Pagination.css'
 
 export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, pathName, isArrowsShow = true, separateBox = false, color = 'lightgray', bgColor = "#323242", colorActive = 'white', bgColorActive = "gray" }) {
@@ -6,10 +6,10 @@ export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, 
     const pathLocation = window.location.pathname
     const [pageActive, setPageActive] = useState(+pathLocation.slice(+pathLocation.lastIndexOf('/') + 1))
     const [arrHelp, setArrHelp] = useState([])
-    const [countPage, setCountPage] = useState(null)
 
     useEffect(() => {
-        //? Handle Errors
+        //? Handle Errors 
+        if (typeof color !== 'string' || typeof bgColor !== 'string' || typeof colorActive !== 'string' || typeof bgColorActive !== 'string') throw new TypeError('typeof color and bgColor not String')
         if (typeof isArrowsShow !== 'boolean') throw new TypeError('typeof isArrowsShow not Boolean')
         if (typeof countDataPerPage !== 'number') throw new TypeError('typeof countDataPerPage not Number')
         if (arrDatas.constructor !== Array) throw new TypeError('typeof arrDatas not Array')
@@ -17,11 +17,10 @@ export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, 
         if (countDataPerPage <= 0) throw new TypeError('The lowest number must be at least 1')
         typeof pathName === 'string' && (pathName = pathName.trim())
         pathName[pathName.length - 1] !== '/' && (pathName = `${pathName}/`)
-        pathName[0] !== '/' && (pathName = `/${pathName}`)
+        pathName[0] !== '/' && (pathName = `/${pathName}`) 
 
         //? Find Count Page
         let page = (arrDatas.length % countDataPerPage) === 0 ? (arrDatas.length / countDataPerPage) : (parseInt(arrDatas.length / countDataPerPage) + 1)
-        setCountPage(page)
 
         //? Creat Array Help
         for (let i = 0; i < page; i++) setArrHelp(prev => [...prev, i])
@@ -69,8 +68,8 @@ export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, 
                                         </svg>
                                     </p>
                                 </li>
-                            }
-                            {
+                            } 
+                            { 
                                 arrHelp.map(item => (
                                     pageActive === 1 && item + 1 <= pageActive + 2 ?
                                         <li key={item} className={`pagination-item ${pageActive === item + 1 ? 'pagination-item-disable' : ''}`} style={{ color: pageActive === item + 1 ? colorActive : color, backgroundColor: pageActive === item + 1 ? bgColorActive : bgColor }} onClick={() => clickHandlerPagination(item + 1)}>
@@ -91,7 +90,7 @@ export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, 
                                                             <li key={item} className={`pagination-item ${pageActive === item + 1 ? 'pagination-item-disable' : ''}`} style={{ color: pageActive === item + 1 ? colorActive : color, backgroundColor: pageActive === item + 1 ? bgColorActive : bgColor }} onClick={() => clickHandlerPagination(item + 1)}>
                                                                 <p>{item + 1}</p>
                                                             </li>
-                                                            <li key={item} className='pagination-item dotted-pagin' style={{ color: color, backgroundColor: bgColor}} >
+                                                            <li key={item} className='pagination-item dotted-pagin' style={{ color: color, backgroundColor: bgColor }} >
                                                                 <p>...</p>
                                                             </li>
                                                         </>
@@ -143,10 +142,8 @@ export default function Pagination({ arrDatas, countDataPerPage, onFilterDatas, 
                         </>
                         :
                         arrHelp.map(item => (
-                            <li key={item} className='pagination-item' onClick={() => clickHandlerPagination(item + 1)}>
-                                <p className={`pagination-link ${(item + 1 === pageActive) ? 'page-num-active' : ''}`}>
-                                    {item + 1}
-                                </p>
+                            <li key={item} className={`pagination-item ${pageActive === item + 1 ? 'pagination-item-disable' : ''}`} style={{ color: pageActive === item + 1 ? colorActive : color, backgroundColor: pageActive === item + 1 ? bgColorActive : bgColor }} onClick={() => clickHandlerPagination(item + 1)}>
+                                <p>{item + 1}</p>
                             </li>
                         ))
                 }
