@@ -80,8 +80,10 @@ export default function AllCourses() {
 
                     </div>
                     {
-                        allCourses.length > 6 && 
+                        allCourses.length > 6 &&
                         <Pagination
+                            bgColorActive='rgb(43, 203, 86)'
+                            colorActive='white'
                             arrDatas={allCourses}
                             countDataPerPage={1}
                             pathName={'/all-courses/page/'}
