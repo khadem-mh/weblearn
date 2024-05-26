@@ -11,13 +11,11 @@ import CategorySort from '../../Components/CategorySort/CategorySort';
 import { RiSearchLine } from "react-icons/ri";
 import { ImSortAmountDesc } from "react-icons/im";
 import { HiMiniAdjustmentsHorizontal } from "react-icons/hi2";
-import { useLocation } from 'react-router-dom';
 //
 import swal from 'sweetalert'
 
 export default function AllCourses() {
 
-    const location = useLocation()
     const [allCourses, setAllCourses] = useState([])
     const [filterCoursesPage, setFilterCoursesPage] = useState([])
 
