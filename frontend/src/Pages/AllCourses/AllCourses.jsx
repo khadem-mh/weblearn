@@ -22,7 +22,10 @@ export default function AllCourses() {
     useEffect(() => {
         fetch(`http://localhost:4000/v1/courses`)
             .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
-            .then(allCourses => setAllCourses(allCourses))
+            .then(allCourses => {
+                console.log(allCourses)
+                setAllCourses(allCourses)
+            })
             .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
     }, [])
 
@@ -78,12 +81,12 @@ export default function AllCourses() {
 
                     </div>
                     {
-                        allCourses.length > 6 &&
+                        allCourses.length && allCourses.length > 6 &&
                         <Pagination
                             bgColorActive='rgb(43, 203, 86)'
                             colorActive='white'
                             arrDatas={allCourses}
-                            countDataPerPage={1}
+                            countDataPerPage={6}
                             pathName={'/all-courses/page/'}
                             onFilterDatas={handleFilterCourses}
                         />

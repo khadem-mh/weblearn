@@ -24,7 +24,7 @@ const routes = [
     { path: 'article-info', element: <ArticleInfo /> },
     { path: 'category-articles', element: <CategoryArticles /> },
     { path: 'category-courses/:category', element: <CategoryCourses /> },
-    { path: 'all-courses/page/:1', element: <AllCourses /> },
+    { path: 'all-courses/page/:count', element: <AllCourses /> },
     { path: 'lesson', element: <Lesson /> },
     { path: 'login', element: <Login /> },
     { path: 'register', element: <Register /> },
