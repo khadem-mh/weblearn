@@ -21,7 +21,7 @@ export default function CategoryCourses() {
   const { category } = useParams()
   const [filterCoursesPage, setFilterCoursesPage] = useState([])
   const [categoryCourses, setCategoryCourses] = useState([])
-  console.log(category);
+
   useEffect(() => {
     fetch(`http://localhost:4000/v1/courses/category/${category}`)
       .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
@@ -86,7 +86,7 @@ export default function CategoryCourses() {
               bgColorActive='rgb(43, 203, 86)'
               colorActive='white'
               arrDatas={categoryCourses}
-              countDataPerPage={7}
+              countDataPerPage={6}
               pathName={`/${category}/page/`}
               onFilterDatas={handleFilterCourses}
             />

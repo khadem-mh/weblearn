@@ -8,7 +8,7 @@ import { ImSortAmountDesc } from "react-icons/im";
 import Article from '../../Components/Article/Article';
 import OffCanvasBottom from '../../Components/OffCanvasesMenu/OffCanvasBottom/OffCanvasBottom';
 import FilterCategory from '../../Components/FilterCategory/FilterCategory';
-import Pagination from '../../Components/Pagination/Pagination'
+import Pagination from "react-pagination-master"
 import CategorySort from '../../Components/CategorySort/CategorySort'
 
 export default function CategoryArticles() {
