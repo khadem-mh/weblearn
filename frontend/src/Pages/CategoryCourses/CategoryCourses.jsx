@@ -5,7 +5,7 @@ import Course from '../../Components/Course/Course'
 import OffCanvasBottom from '../../Components/OffCanvasesMenu/OffCanvasBottom/OffCanvasBottom';
 import OffCanvasRight from '../../Components/OffCanvasesMenu/OffCanvasRight/OffCanvasRight';
 import FilterCategory from '../../Components/FilterCategory/FilterCategory';
-import Pagination from '../../Components/Pagination/Pagination';
+import Pagination from "react-pagination-master"
 import CategorySort from '../../Components/CategorySort/CategorySort';
 //icons
 import { RiSearchLine } from "react-icons/ri";
