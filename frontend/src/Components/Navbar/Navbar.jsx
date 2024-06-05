@@ -150,7 +150,7 @@ export default function Navbar() {
                                     {
                                         menus && menus.map((item, index) => (
                                             <li key={index} className="main-header__item">
-                                                <Link to={`/category-courses/${item.href}`} className="main-header__link"> {item.title}
+                                                <Link to={`/${item.href}/page/1`} className="main-header__link"> {item.title}
                                                     {item.submenus.length ? <i className="fas fa-angle-down main-header__link-icon"></i> : ''}
                                                 </Link>
                                                 {

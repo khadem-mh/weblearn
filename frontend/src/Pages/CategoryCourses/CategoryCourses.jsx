@@ -19,8 +19,9 @@ export default function CategoryCourses() {
 
   const location = useLocation()
   const { category } = useParams()
+  const [filterCoursesPage, setFilterCoursesPage] = useState([])
   const [categoryCourses, setCategoryCourses] = useState([])
-
+  console.log(category);
   useEffect(() => {
     fetch(`http://localhost:4000/v1/courses/category/${category}`)
       .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
@@ -28,19 +29,16 @@ export default function CategoryCourses() {
       .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
   }, [location])
 
-  useEffect(() => {
-    console.log(categoryCourses);
-  }, [categoryCourses])
+  const handleFilterCourses = datas => setFilterCoursesPage(datas)
 
   return (
     <section className='page category-page'>
 
 
-
       {categoryCourses.length
         ?
         <>
-          <h2 className='category-h2'>دوره ها</h2>
+          <h2 className='category-h2'>دوره های {category}</h2>
 
           <div className='category-filters'>
 
@@ -70,7 +68,8 @@ export default function CategoryCourses() {
                 <div className="row row-cols-sm-2 row-cols-md-2 row-cols-xl-3" id="courses-container">
 
                   {
-                    categoryCourses.map((courseInfo, index) => (
+                    categoryCourses.length &&
+                    filterCoursesPage.map((courseInfo, index) => (
                       <Course key={index} {...courseInfo} />
                     ))
                   }
@@ -81,11 +80,20 @@ export default function CategoryCourses() {
             </div>
 
           </div>
-
-          <Pagination />
+          {
+            categoryCourses.length &&
+            <Pagination
+              bgColorActive='rgb(43, 203, 86)'
+              colorActive='white'
+              arrDatas={categoryCourses}
+              countDataPerPage={7}
+              pathName={`/${category}/page/`}
+              onFilterDatas={handleFilterCourses}
+            />
+          }
         </>
         :
-        <div style={{ height: '40vh', textAlign: 'center', marginTop: '15rem'}}>
+        <div style={{ height: '40vh', textAlign: 'center', marginTop: '15rem' }}>
           <h2 className='category-h2 mb-0'>هنوز برای این دسته بندی دوره ای قرار نگرفته است</h2>
           <h3 className='text-success display-1'>⌡☻⌠</h3>
         </div>

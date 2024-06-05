@@ -23,7 +23,7 @@ const routes = [
     { path: 'course-info/:course', element: <CourseInfo /> },
     { path: 'article-info', element: <ArticleInfo /> },
     { path: 'category-articles', element: <CategoryArticles /> },
-    { path: 'category-courses/:category', element: <CategoryCourses /> },
+    { path: ':category/page/:count', element: <CategoryCourses /> },
     { path: 'all-courses/page/:count', element: <AllCourses /> },
     { path: 'lesson', element: <Lesson /> },
     { path: 'login', element: <Login /> },
