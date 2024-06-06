@@ -20,7 +20,7 @@ export default function AllCourses() {
     const [allCourses, setAllCourses] = useState([])
     const [filterCoursesPage, setFilterCoursesPage] = useState([])
     const [categoryMenusCourses, setCategoryMenusCourses] = useState([])
-
+    const [filtersTypes, setFilterTypes] = useState([])
 
     useEffect(() => {
         fetch(`http://localhost:4000/v1/courses`)
@@ -34,11 +34,11 @@ export default function AllCourses() {
         fetch(`http://localhost:4000/v1/menus`)
             .then(res => res.json())
             .then(menus => setCategoryMenusCourses(menus))
-    }, [window.location.pathname])
+    }, [window.location.pathname, filtersTypes])
 
-    useEffect(() => {
-        console.log(categoryMenusCourses);
-    }, [categoryMenusCourses])
+    const showCategoriesCoursesHandler = filter => setFilterTypes(prev => [...prev, filter])
+
+    const removeCategoryHandler = nameCategory => setFilterTypes(filtersTypes.filter(name => name !== nameCategory))
 
     const handleFilterCourses = datas => setFilterCoursesPage(datas)
 
@@ -68,8 +68,7 @@ export default function AllCourses() {
                             <div className='d-none d-sm-block'>
                                 {
                                     categoryMenusCourses.length &&
-                                    <FilterCategory categorySwitch={true} titleCategory={'دسته بندی دوره ها'} category={categoryMenusCourses} />
-
+                                    <FilterCategory categorySwitch={true} titleCategory={'دسته بندی دوره ها'} category={categoryMenusCourses} onAddCategory={showCategoriesCoursesHandler} onRemoveCategory={removeCategoryHandler} />
                                 }
                             </div>
 

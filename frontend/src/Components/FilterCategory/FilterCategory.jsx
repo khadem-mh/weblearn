@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 
-export default function FilterCategory({ categorySwitch, titleCategory, category = null }) {
+export default function FilterCategory({ categorySwitch, titleCategory, category = null, onAddCategory, onRemoveCategory }) {
 
-    const categoryList = useParams()
-
-    useEffect(() => {
-        console.log('ok');
-    }, [window.location.pathname])
+    const getCategoryHandler = event => {
+        console.log(event);
+        if (event.target.checked) {
+            onAddCategory(event.target.dataset.category)
+        } else {
+            onRemoveCategory(event.target.dataset.category)
+        }
+    }
 
     return (
         <>
@@ -18,10 +20,10 @@ export default function FilterCategory({ categorySwitch, titleCategory, category
                     <ul className='category-list__ul'>
                         {
                             category.map((item, index) => (
-                                <li key={index} className='category-list' data-category={item.href}>
+                                <li key={index} className='category-list'>
 
                                     <div className='category-list__right'>
-                                        <input type="checkbox" className="form-check-input category-list__input" defaultChecked={item.href === categoryList.category && true} />
+                                        <input type="checkbox" className="form-check-input category-list__input" data-category={item.href} onChange={e => getCategoryHandler(e)} />
                                         <p className='category-list__name'>{item.title}</p>
                                     </div>
                                     <div className='category-list__left'>
