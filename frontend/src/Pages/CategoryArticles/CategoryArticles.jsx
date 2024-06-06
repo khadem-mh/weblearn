@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import './media.css'
 import '../../Css/categories.css'
 //icons
@@ -10,8 +10,23 @@ import OffCanvasBottom from '../../Components/OffCanvasesMenu/OffCanvasBottom/Of
 import FilterCategory from '../../Components/FilterCategory/FilterCategory';
 import Pagination from "react-pagination-master"
 import CategorySort from '../../Components/CategorySort/CategorySort'
+//
+import swal from 'sweetalert';
 
 export default function CategoryArticles() {
+
+  const [allArticles, setAllArticles] = useState([])
+  const [filterArticlesPage, setFilterArticlesPage] = useState([])
+
+  useEffect(() => {
+    fetch(`http://localhost:4000/v1/articles`)
+      .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
+      .then(allDatas => setAllArticles(allDatas))
+      .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
+  }, [])
+
+  const handleFilterArticles = datas => setFilterArticlesPage(datas)
+
   return (
     <section className='page category-page'>
 
@@ -31,24 +46,23 @@ export default function CategoryArticles() {
           </div>
 
           <div className='d-none d-sm-block'>
-            <FilterCategory categorySwitch={false} titleCategory={'دسته بندی مقالات'}/>
+            <FilterCategory categorySwitch={false} titleCategory={'دسته بندی مقالات'} />
           </div>
 
         </aside>
 
         <div className='category-courses-and-sort-parent'>
 
-          <CategorySort namesList={['عادی', 'قدیمی ترین', 'جدیدترین', 'پرمخاطب ترین']}/>
+          <CategorySort namesList={['عادی', 'قدیمی ترین', 'جدیدترین', 'پرمخاطب ترین']} />
 
           <section className='category-courses'>
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-3" id="courses-container">
 
-              <Article srcImg={'1.png'} titleArticle={"آیا زبان برنامه نویسی پایتون بهتر است یا جاوااسکریپت؟"} detailsArticle={"شاید این سوال برایتان پیش آمده است که برای شروع طراحی وبسایت از کدام زبان استفاده کنم ما در این مقاله کامل به شما توضیح می دهیم که چه معیار هایی برای شروع بهتر است"} />
-              <Article srcImg={'2.png'} titleArticle={"آیا زبان برنامه نویسی پایتون بهتر است یا جاوااسکریپت؟"} detailsArticle={"شاید این سوال برایتان پیش آمده است که برای شروع طراحی وبسایت از کدام زبان استفاده کنم ما در این مقاله کامل به شما توضیح می دهیم که چه معیار هایی برای شروع بهتر است"} />
-              <Article srcImg={'3.png'} titleArticle={"آیا زبان برنامه نویسی پایتون بهتر است یا جاوااسکریپت؟"} detailsArticle={"شاید این سوال برایتان پیش آمده است که برای شروع طراحی وبسایت از کدام زبان استفاده کنم ما در این مقاله کامل به شما توضیح می دهیم که چه معیار هایی برای شروع بهتر است"} />
-              <Article srcImg={'4.png'} titleArticle={"آیا زبان برنامه نویسی پایتون بهتر است یا جاوااسکریپت؟"} detailsArticle={"شاید این سوال برایتان پیش آمده است که برای شروع طراحی وبسایت از کدام زبان استفاده کنم ما در این مقاله کامل به شما توضیح می دهیم که چه معیار هایی برای شروع بهتر است"} />
-              <Article srcImg={'5.png'} titleArticle={"آیا زبان برنامه نویسی پایتون بهتر است یا جاوااسکریپت؟"} detailsArticle={"شاید این سوال برایتان پیش آمده است که برای شروع طراحی وبسایت از کدام زبان استفاده کنم ما در این مقاله کامل به شما توضیح می دهیم که چه معیار هایی برای شروع بهتر است"} />
-              <Article srcImg={'6.png'} titleArticle={"آیا زبان برنامه نویسی پایتون بهتر است یا جاوااسکریپت؟"} detailsArticle={"شاید این سوال برایتان پیش آمده است که برای شروع طراحی وبسایت از کدام زبان استفاده کنم ما در این مقاله کامل به شما توضیح می دهیم که چه معیار هایی برای شروع بهتر است"} />
+              {
+                filterArticlesPage.map((articleInfo, index) => (
+                  <Article key={index} {...articleInfo} />
+                ))
+              }
 
             </div>
           </section>
@@ -57,7 +71,17 @@ export default function CategoryArticles() {
 
       </div>
 
-      <Pagination />
+      {
+        allArticles.length && allArticles.length > 6 &&
+        <Pagination
+          bgColorActive='rgb(43, 203, 86)'
+          colorActive='white'
+          arrDatas={allArticles}
+          countDataPerPage={6}
+          pathName={'/all-articles/page/'}
+          onFilterDatas={handleFilterArticles}
+        />
+      }
     </section>
   )
 }

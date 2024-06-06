@@ -21,8 +21,8 @@ const routes = [
     //Routes Main
     { path: '/', element: <Index /> },
     { path: 'course-info/:course', element: <CourseInfo /> },
-    { path: 'article-info', element: <ArticleInfo /> },
-    { path: 'category-articles', element: <CategoryArticles /> },
+    { path: 'article-info/:name', element: <ArticleInfo /> },
+    { path: 'all-articles/page/:count', element: <CategoryArticles /> },
     { path: ':category/page/:count', element: <CategoryCourses /> },
     { path: 'all-courses/page/:count', element: <AllCourses /> },
     { path: 'lesson', element: <Lesson /> },

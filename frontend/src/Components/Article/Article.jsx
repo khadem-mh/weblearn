@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner';
 import { FaArrowCircleLeft } from "react-icons/fa";
 
-export default function Article({ srcImg, titleArticle, detailsArticle }) {
+export default function Article({ cover, title, description, shortName }) {
 
     const [imageLoaded, setImageLoaded] = useState(false)
     const onImageLoaded = () => setImageLoaded(true)
@@ -14,10 +14,10 @@ export default function Article({ srcImg, titleArticle, detailsArticle }) {
             <div className="article__card">
 
                 <div className="article-card__header">
-                    <Link to="/article-info" className="article-card__link-img">
+                    <Link to={`/article-info/${shortName}`} className="article-card__link-img">
                         <div className='blog__banner'>
                             <img
-                                src={`Images/Blogs/${srcImg}`}
+                                src={`Images/Blogs/${cover}`}
                                 alt="card"
                                 className="article-card__img"
                                 onLoad={onImageLoaded}
@@ -33,12 +33,12 @@ export default function Article({ srcImg, titleArticle, detailsArticle }) {
                 </div>
 
                 <div className="article-card__content">
-                    <a href="/" className="article-card__link">{titleArticle}</a>
-                    <p className="article-card__text line-clamp-article">{detailsArticle}</p>
+                    <a href="/" className="article-card__link">{title}</a>
+                    <p className="article-card__text line-clamp-article">{description}</p>
                 </div>
 
                 <p className="article-card__link-btn">
-                    <Link to="/article-info" className='read-article'>مطالعه مقاله</Link>
+                    <Link to={`/article-info/${shortName}`} className='read-article'>مطالعه مقاله</Link>
                     <FaArrowCircleLeft className='article-card__icon-arrow' />
                 </p>
 

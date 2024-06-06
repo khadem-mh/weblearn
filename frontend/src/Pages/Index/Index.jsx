@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useReducer } from 'react'
 import './Index.css'
 //components
 import Course from '../../Components/Course/Course'
@@ -8,16 +8,36 @@ import Article from '../../Components/Article/Article'
 import HeaderTitle from '../../Components/HeaderTitle/HeaderTitle'
 import swal from 'sweetalert'
 
+const reducerIndexPage = (state = {}, action) => {
+  switch (action.type) {
+    case 'LAST_COURSES': return { ...state, lastCourses: action.payload }
+    case 'LAST_ARTICLES': return { ...state, lastArticles: action.payload }
+    default: return state
+  }
+}
+
 export default function Index() {
 
-  const [lastCourses, setLastCourses] = useState([])
+  const [state, dispatch] = useReducer(reducerIndexPage, {
+    lastCourses: [],
+    lastArticles: [],
+  })
+
 
   useEffect(() => {
+
     fetch(`http://localhost:4000/v1/courses`)
       .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
-      .then(allCourses => setLastCourses(allCourses.reverse().splice(0, 8)))
+      .then(allCourses => dispatch({ type: 'LAST_COURSES', payload: allCourses.reverse().slice(0, 8) }))
       .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
+
+    fetch(`http://localhost:4000/v1/articles`)
+      .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
+      .then(allArticles => dispatch({ type: 'LAST_ARTICLES', payload: allArticles.reverse().slice(0, 8) }))
+      .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
+
   }, [])
+
 
   return (
     <section className="page">
@@ -32,7 +52,7 @@ export default function Index() {
 
               <div className="row row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4" id="courses-container">
                 {
-                  lastCourses.length >= 1 && lastCourses.map((courseInformation, index) => (
+                  state.lastCourses.length && state.lastCourses.map((courseInformation, index) => (
                     <Course
                       key={index}
                       {...courseInformation}
@@ -47,7 +67,6 @@ export default function Index() {
 
         </div>
       </article>
-
 
       <article>
         <div className="container">
@@ -90,7 +109,6 @@ export default function Index() {
         </div>
       </article>
 
-
       <article className="presell">
         <div className="container">
           <div className="presell__header">
@@ -109,22 +127,21 @@ export default function Index() {
         </div>
       </article>
 
-
       <article className="article">
         <div className="container">
 
-          <HeaderTitle routeUrl={'/category-articles'} title={'جدیدترین مقاله ها'} subTitle={'پیش به سوی ارتقای دانش'} textBtn={'تمامی مقاله ها'} />
+          <HeaderTitle routeUrl={'all-articles/page/1'} title={'جدیدترین مقاله ها'} subTitle={'پیش به سوی ارتقای دانش'} textBtn={'تمامی مقاله ها'} />
 
           <div className="article__content">
             <div className="row row-cols-sm-2 row-cols-md-3 row-cols-xl-4 d-flex justify-content-center justify-content-sm-start" id="articles-wrapper">
-
-              <Article srcImg={'1.png'} titleArticle={"آیا زبان برنامه نویسی پایتون بهتر است یا جاوااسکریپت؟"} detailsArticle={"شاید این سوال برایتان پیش آمده است که برای شروع طراحی وبسایت از کدام زبان استفاده کنم ما در این مقاله کامل به شما توضیح می دهیم که چه معیار هایی برای شروع بهتر است"} />
-              <Article srcImg={'2.png'} titleArticle={"آیا زبان برنامه نویسی پایتون بهتر است یا جاوااسکریپت؟"} detailsArticle={"شاید این سوال برایتان پیش آمده است که برای شروع طراحی وبسایت از کدام زبان استفاده کنم ما در این مقاله کامل به شما توضیح می دهیم که چه معیار هایی برای شروع بهتر است"} />
-              <Article srcImg={'3.png'} titleArticle={"آیا زبان برنامه نویسی پایتون بهتر است یا جاوااسکریپت؟"} detailsArticle={"شاید این سوال برایتان پیش آمده است که برای شروع طراحی وبسایت از کدام زبان استفاده کنم ما در این مقاله کامل به شما توضیح می دهیم که چه معیار هایی برای شروع بهتر است"} />
-              <Article srcImg={'4.png'} titleArticle={"آیا زبان برنامه نویسی پایتون بهتر است یا جاوااسکریپت؟"} detailsArticle={"شاید این سوال برایتان پیش آمده است که برای شروع طراحی وبسایت از کدام زبان استفاده کنم ما در این مقاله کامل به شما توضیح می دهیم که چه معیار هایی برای شروع بهتر است"} />
-              <Article srcImg={'5.png'} titleArticle={"آیا زبان برنامه نویسی پایتون بهتر است یا جاوااسکریپت؟"} detailsArticle={"شاید این سوال برایتان پیش آمده است که برای شروع طراحی وبسایت از کدام زبان استفاده کنم ما در این مقاله کامل به شما توضیح می دهیم که چه معیار هایی برای شروع بهتر است"} />
-              <Article srcImg={'6.png'} titleArticle={"آیا زبان برنامه نویسی پایتون بهتر است یا جاوااسکریپت؟"} detailsArticle={"شاید این سوال برایتان پیش آمده است که برای شروع طراحی وبسایت از کدام زبان استفاده کنم ما در این مقاله کامل به شما توضیح می دهیم که چه معیار هایی برای شروع بهتر است"} />
-
+              {
+                state.lastArticles.length && state.lastArticles.map((articleInformation, index) => (
+                  <Article
+                    key={index}
+                    {...articleInformation}
+                  />
+                ))
+              }
             </div>
           </div>
 
