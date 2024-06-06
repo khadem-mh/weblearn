@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import './Index.css'
 //components
 import Course from '../../Components/Course/Course'
@@ -12,6 +12,8 @@ const reducerIndexPage = (state = {}, action) => {
   switch (action.type) {
     case 'LAST_COURSES': return { ...state, lastCourses: action.payload }
     case 'LAST_ARTICLES': return { ...state, lastArticles: action.payload }
+    case 'PRESELL__COURSES': return { ...state, presellCourses: action.payload }
+    case 'POPULAR__COURSES': return { ...state, popularCourses: action.payload }
     default: return state
   }
 }
@@ -21,6 +23,8 @@ export default function Index() {
   const [state, dispatch] = useReducer(reducerIndexPage, {
     lastCourses: [],
     lastArticles: [],
+    presellCourses: [],
+    popularCourses: [],
   })
 
 
@@ -34,6 +38,16 @@ export default function Index() {
     fetch(`http://localhost:4000/v1/articles`)
       .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
       .then(allArticles => dispatch({ type: 'LAST_ARTICLES', payload: allArticles.reverse().slice(0, 8) }))
+      .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
+
+    fetch(`http://localhost:4000/v1/courses/presell`)
+      .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
+      .then(presell => dispatch({ type: 'PRESELL__COURSES', payload: presell.reverse().slice(0, 8) }))
+      .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
+
+    fetch(`http://localhost:4000/v1/courses/popular`)
+      .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
+      .then(popular => dispatch({ type: 'POPULAR__COURSES', payload: popular.reverse().slice(0, 8) }))
       .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
 
   }, [])
@@ -96,14 +110,16 @@ export default function Index() {
           <div className="popular__header">
             <span className="popular__title title">محبوب ترین دوره ها</span>
           </div>
-
           <SwiperComponent>
-            <Course coursePathImg={'./'} courseBadg={'پرطرفدارترین'} courseImg={'PWA-min.jpg'} courseTitle={'آموزش پروژه محور PWA'} courseTeacher={'سید محمدحسین خادم المهدی'} courseCountUsers={800} coursePrice={1000_000} courseScore={5} courseDetails={' عنوان دوره گویای همه چی هست اما نیازه برخی موارد گفته بشه تا بتونید با دید بهتری تو این دوره شرکت کنید'} courseSector={'فرانت اند'} />
-            <Course coursePathImg={'./'} courseBadg={'پرطرفدارترین'} courseImg={'nodejs.png'} courseTitle={'آموزش پروژه محور node js'} courseTeacher={'سید محمدحسین خادم المهدی'} courseCountUsers={800} coursePrice={1000_000} courseScore={5} courseDetails={' عنوان دوره گویای همه چی هست اما نیازه برخی موارد گفته بشه تا بتونید با دید بهتری تو این دوره شرکت کنید'} courseSector={'فرانت اند'} />
-            <Course coursePathImg={'./'} courseBadg={'پرطرفدارترین'} courseImg={'TypeScript-min-2.jpg'} courseTitle={'آموزش پروژه محور type script'} courseTeacher={'سید محمدحسین خادم المهدی'} courseCountUsers={800} coursePrice={1000_000} courseScore={5} courseDetails={' عنوان دوره گویای همه چی هست اما نیازه برخی موارد گفته بشه تا بتونید با دید بهتری تو این دوره شرکت کنید'} courseSector={'فرانت اند'} />
-            <Course coursePathImg={'./'} courseBadg={'پرطرفدارترین'} courseImg={'jango.png'} courseTitle={'آموزش پروژه محور jango'} courseTeacher={'سید محمدحسین خادم المهدی'} courseCountUsers={800} coursePrice={1000_000} courseScore={5} courseDetails={' عنوان دوره گویای همه چی هست اما نیازه برخی موارد گفته بشه تا بتونید با دید بهتری تو این دوره شرکت کنید'} courseSector={'فرانت اند'} />
-            <Course coursePathImg={'./'} courseBadg={'پرطرفدارترین'} courseImg={'jango.png'} courseTitle={'آموزش پروژه محور jango'} courseTeacher={'سید محمدحسین خادم المهدی'} courseCountUsers={800} coursePrice={1000_000} courseScore={5} courseDetails={' عنوان دوره گویای همه چی هست اما نیازه برخی موارد گفته بشه تا بتونید با دید بهتری تو این دوره شرکت کنید'} courseSector={'فرانت اند'} />
-            <Course coursePathImg={'./'} courseBadg={'پرطرفدارترین'} courseImg={'jango.png'} courseTitle={'آموزش پروژه محور jango'} courseTeacher={'سید محمدحسین خادم المهدی'} courseCountUsers={800} coursePrice={1000_000} courseScore={5} courseDetails={' عنوان دوره گویای همه چی هست اما نیازه برخی موارد گفته بشه تا بتونید با دید بهتری تو این دوره شرکت کنید'} courseSector={'فرانت اند'} />
+            {
+              state.popularCourses.length && state.popularCourses.map((courseInformation, index) => (
+                <Course
+                  key={index}
+                  {...courseInformation}
+                  courseBadg={'پرطرفدارترین'}
+                />
+              ))
+            }
           </SwiperComponent>
 
         </div>
@@ -116,12 +132,15 @@ export default function Index() {
           </div>
 
           <SwiperComponent>
-            <Course coursePathImg={'./'} courseBadg={'پیش فروش'} courseImg={'nodejs.png'} courseTitle={'آموزش پروژه محور node js'} courseTeacher={'سید محمدحسین خادم المهدی'} courseCountUsers={800} coursePrice={1000_000} courseScore={5} courseDetails={' عنوان دوره گویای همه چی هست اما نیازه برخی موارد گفته بشه تا بتونید با دید بهتری تو این دوره شرکت کنید'} courseSector={'فرانت اند'} />
-            <Course coursePathImg={'./'} courseBadg={'پیش فروش'} courseImg={'jango.png'} courseTitle={'آموزش پروژه محور jango'} courseTeacher={'سید محمدحسین خادم المهدی'} courseCountUsers={800} coursePrice={1000_000} courseScore={5} courseDetails={' عنوان دوره گویای همه چی هست اما نیازه برخی موارد گفته بشه تا بتونید با دید بهتری تو این دوره شرکت کنید'} courseSector={'فرانت اند'} />
-            <Course coursePathImg={'./'} courseBadg={'پیش فروش'} courseImg={'PWA-min.jpg'} courseTitle={'آموزش پروژه محور PWA'} courseTeacher={'سید محمدحسین خادم المهدی'} courseCountUsers={800} coursePrice={1000_000} courseScore={5} courseDetails={' عنوان دوره گویای همه چی هست اما نیازه برخی موارد گفته بشه تا بتونید با دید بهتری تو این دوره شرکت کنید'} courseSector={'فرانت اند'} />
-            <Course coursePathImg={'./'} courseBadg={'پیش فروش'} courseImg={'TypeScript-min-2.jpg'} courseTitle={'آموزش پروژه محور type script'} courseTeacher={'سید محمدحسین خادم المهدی'} courseCountUsers={800} coursePrice={1000_000} courseScore={5} courseDetails={' عنوان دوره گویای همه چی هست اما نیازه برخی موارد گفته بشه تا بتونید با دید بهتری تو این دوره شرکت کنید'} courseSector={'فرانت اند'} />
-            <Course coursePathImg={'./'} courseBadg={'پیش فروش'} courseImg={'jango.png'} courseTitle={'آموزش پروژه محور jango'} courseTeacher={'سید محمدحسین خادم المهدی'} courseCountUsers={800} coursePrice={1000_000} courseScore={5} courseDetails={' عنوان دوره گویای همه چی هست اما نیازه برخی موارد گفته بشه تا بتونید با دید بهتری تو این دوره شرکت کنید'} courseSector={'فرانت اند'} />
-            <Course coursePathImg={'./'} courseBadg={'پیش فروش'} courseImg={'jango.png'} courseTitle={'آموزش پروژه محور jango'} courseTeacher={'سید محمدحسین خادم المهدی'} courseCountUsers={800} coursePrice={1000_000} courseScore={5} courseDetails={' عنوان دوره گویای همه چی هست اما نیازه برخی موارد گفته بشه تا بتونید با دید بهتری تو این دوره شرکت کنید'} courseSector={'فرانت اند'} />
+              {
+                state.presellCourses.length && state.presellCourses.map((courseInformation, index) => (
+                  <Course
+                    key={index}
+                    {...courseInformation}
+                    courseBadg={'پیش فروش'}
+                  />
+                ))
+              }
           </SwiperComponent>
 
         </div>
