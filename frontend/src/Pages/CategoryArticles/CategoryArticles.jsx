@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import './media.css'
 import '../../Css/categories.css'
 //icons
@@ -60,7 +60,7 @@ export default function CategoryArticles() {
 
               {
                 filterArticlesPage.map((articleInfo, index) => (
-                  <Article key={index} {...articleInfo} />
+                  <Article key={index} {...articleInfo} pathCover={'public/Images/Blogs/'}/>
                 ))
               }
 

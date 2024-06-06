@@ -17,7 +17,7 @@ export default function Article({ cover, title, description, shortName }) {
                     <Link to={`/article-info/${shortName}`} className="article-card__link-img">
                         <div className='blog__banner'>
                             <img
-                                src={`Images/Blogs/${cover}`}
+                                src={`/Images/Blogs/${cover}`}
                                 alt="card"
                                 className="article-card__img"
                                 onLoad={onImageLoaded}
