@@ -47,10 +47,10 @@ export default function CopyLinkBox({ yourStyle, titleBox, textForCopy, children
                     </span>
                 </div>
                 <hr />
-                <p className="short-url">
+                <div className="short-url">
                     <p style={{ fontSize: fzCopyText }}>{textForCopy}</p>
                     <RiFileCopy2Line className='short-url-iconcopy' onClick={() => clickHandleCopy({ textForCopy })} />
-                </p>
+                </div>
             </div>
 
             {

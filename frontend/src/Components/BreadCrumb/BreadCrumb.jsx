@@ -4,7 +4,6 @@ import './BreadCrumb.css'
 import { HiOutlineHome } from "react-icons/hi2";
 
 export default function BreadCrumb({ links }) {
-    console.log(links);
     return (
         <div className="breadcrumb">
             <div className="breadcrumb__item">
