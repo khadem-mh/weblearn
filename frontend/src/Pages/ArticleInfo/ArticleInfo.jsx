@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './ArticleInfo.css'
 import './media.css'
 //components
@@ -11,8 +11,26 @@ import ReapondComment from '../../Components/Comment/RespondComment/ReapondComme
 import { BsCalendar2Date, BsEye, BsShare } from "react-icons/bs";
 import { IoPersonOutline } from "react-icons/io5";
 import CopyLinkBox from '../../Components/CopyLinkBox/CopyLinkBox';
+import { useParams } from 'react-router-dom'
+import swal from 'sweetalert'
 
 export default function ArticleInfo() {
+
+  const [articleInfo, setArticleInfo] = useState(null)
+  const {name} = useParams()
+
+  useEffect(() => {
+    fetch(`http://localhost:4000/v1/articles/${name}`)
+      .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
+      .then(datas => setArticleInfo(datas))
+      .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
+  }, [])
+
+  useEffect(() => {
+    console.log(articleInfo);
+    console.log(window.location);
+  }, [articleInfo])
+
   return (
     <section className="container-article-info page">
 
@@ -20,8 +38,8 @@ export default function ArticleInfo() {
       <BreadCrumb
         links={
           [
-            { to: 'category-articles', title: 'وبلاگ', },
-            { title: 'بهترین وبسایت های فریلنسری خارجی', },
+            { to: 'all-articles/page/1', title: 'وبلاگ', },
+            { title: 'بهترین وبسایت های فریلنسری خارجی', to: false},
           ]
         }
       />
