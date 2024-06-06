@@ -12,12 +12,15 @@ import { RiSearchLine } from "react-icons/ri";
 import { ImSortAmountDesc } from "react-icons/im";
 import { HiMiniAdjustmentsHorizontal } from "react-icons/hi2";
 //
+import { useParams, useLocation } from 'react-router-dom';
 import swal from 'sweetalert'
 
 export default function AllCourses() {
 
     const [allCourses, setAllCourses] = useState([])
     const [filterCoursesPage, setFilterCoursesPage] = useState([])
+    const [categoryMenusCourses, setCategoryMenusCourses] = useState([])
+
 
     useEffect(() => {
         fetch(`http://localhost:4000/v1/courses`)
@@ -27,10 +30,17 @@ export default function AllCourses() {
                 setAllCourses(allCourses)
             })
             .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
-    }, [])
+
+        fetch(`http://localhost:4000/v1/menus`)
+            .then(res => res.json())
+            .then(menus => setCategoryMenusCourses(menus))
+    }, [window.location.pathname])
+
+    useEffect(() => {
+        console.log(categoryMenusCourses);
+    }, [categoryMenusCourses])
 
     const handleFilterCourses = datas => setFilterCoursesPage(datas)
-
 
     return (
         <section className='page category-page'>
@@ -56,7 +66,11 @@ export default function AllCourses() {
                             </div>
 
                             <div className='d-none d-sm-block'>
-                                <FilterCategory categorySwitch={true} titleCategory={'دسته بندی دوره ها'} />
+                                {
+                                    categoryMenusCourses.length &&
+                                    <FilterCategory categorySwitch={true} titleCategory={'دسته بندی دوره ها'} category={categoryMenusCourses} />
+
+                                }
                             </div>
 
                         </aside>

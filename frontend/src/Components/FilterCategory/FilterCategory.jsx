@@ -1,68 +1,39 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 
-export default function FilterCategory({ categorySwitch , titleCategory}) {
+export default function FilterCategory({ categorySwitch, titleCategory, category = null }) {
+
+    const categoryList = useParams()
+
+    useEffect(() => {
+        console.log('ok');
+    }, [window.location.pathname])
+
     return (
         <>
-            <section className='category-list__parent'>
-                <p className='category-list__title'>{titleCategory}</p>
-                <ul className='category-list__ul'>
-                    <li className='category-list'>
+            {
+                category &&
+                <section className='category-list__parent'>
+                    <p className='category-list__title'>{titleCategory}</p>
+                    <ul className='category-list__ul'>
+                        {
+                            category.map((item, index) => (
+                                <li key={index} className='category-list' data-category={item.href}>
 
-                        <div className='category-list__right'>
-                            <input type="checkbox" className="form-check-input category-list__input" />
-                            <p className='category-list__name'>فرانت اند</p>
-                        </div>
-                        <div className='category-list__left'>
-                            <span className='category-list__count-course'>26</span>
-                        </div>
+                                    <div className='category-list__right'>
+                                        <input type="checkbox" className="form-check-input category-list__input" defaultChecked={item.href === categoryList.category && true} />
+                                        <p className='category-list__name'>{item.title}</p>
+                                    </div>
+                                    <div className='category-list__left'>
+                                        <span className='category-list__count-course'>{item.submenus.length}</span>
+                                    </div>
 
-                    </li>
-                    <li className='category-list'>
-
-                        <div className='category-list__right'>
-                            <input type="checkbox" className="form-check-input category-list__input" />
-                            <p className='category-list__name'>امنیت</p>
-                        </div>
-                        <div className='category-list__left'>
-                            <span className='category-list__count-course'>26</span>
-                        </div>
-
-                    </li>
-                    <li className='category-list'>
-
-                        <div className='category-list__right'>
-                            <input type="checkbox" className="form-check-input category-list__input" />
-                            <p className='category-list__name'>پایتون</p>
-                        </div>
-                        <div className='category-list__left'>
-                            <span className='category-list__count-course'>26</span>
-                        </div>
-
-                    </li>
-                    <li className='category-list'>
-
-                        <div className='category-list__right'>
-                            <input type="checkbox" className="form-check-input category-list__input" />
-                            <p className='category-list__name'>پی اچ پی</p>
-                        </div>
-                        <div className='category-list__left'>
-                            <span className='category-list__count-course'>26</span>
-                        </div>
-
-                    </li>
-                    <li className='category-list'>
-
-                        <div className='category-list__right'>
-                            <input type="checkbox" className="form-check-input category-list__input" />
-                            <p className='category-list__name'>ارتقای مهارت ها</p>
-                        </div>
-                        <div className='category-list__left'>
-                            <span className='category-list__count-course'>26</span>
-                        </div>
-
-                    </li>
-                </ul>
-            </section>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </section>
+            }
             {
                 categorySwitch &&
                 <section className='category-switch'>

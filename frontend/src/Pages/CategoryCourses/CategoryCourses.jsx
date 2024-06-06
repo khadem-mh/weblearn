@@ -17,16 +17,20 @@ import swal from 'sweetalert'
 
 export default function CategoryCourses() {
 
-  const location = useLocation()
   const { category } = useParams()
+  const location = useLocation()
   const [filterCoursesPage, setFilterCoursesPage] = useState([])
   const [categoryCourses, setCategoryCourses] = useState([])
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/courses/category/${category}`)
       .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
-      .then(allCourses => setCategoryCourses(allCourses))
+      .then(allCourses => {
+        console.log(allCourses);
+        setCategoryCourses(allCourses)
+      })
       .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
+
   }, [location])
 
   const handleFilterCourses = datas => setFilterCoursesPage(datas)
@@ -55,7 +59,7 @@ export default function CategoryCourses() {
               </div>
 
               <div className='d-none d-sm-block'>
-                <FilterCategory categorySwitch={true} titleCategory={'دسته بندی دوره ها'} />
+                  <FilterCategory categorySwitch={true}/>
               </div>
 
             </aside>
