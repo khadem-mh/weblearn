@@ -12,12 +12,12 @@ import { RiSearchLine } from "react-icons/ri";
 import { ImSortAmountDesc } from "react-icons/im";
 import { HiMiniAdjustmentsHorizontal } from "react-icons/hi2";
 //
-import { useParams, useLocation } from 'react-router-dom';
 import swal from 'sweetalert'
 
 export default function AllCourses() {
 
     const [allCourses, setAllCourses] = useState([])
+    const [categories, setCategories] = useState([])
     const [filterCoursesPage, setFilterCoursesPage] = useState([])
     const [categoryMenusCourses, setCategoryMenusCourses] = useState([])
     const [filtersTypes, setFilterTypes] = useState([])
@@ -26,15 +26,28 @@ export default function AllCourses() {
         fetch(`http://localhost:4000/v1/courses`)
             .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
             .then(allCourses => {
-                console.log(allCourses)
                 setAllCourses(allCourses)
+                setCategories(allCourses)
             })
             .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
 
         fetch(`http://localhost:4000/v1/menus`)
-            .then(res => res.json())
+            .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
             .then(menus => setCategoryMenusCourses(menus))
-    }, [window.location.pathname, filtersTypes])
+            .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
+    }, [])
+
+    useEffect(() => {
+        if (categories.length >= 1 && filtersTypes.length) {
+            let arrCategory = []
+            filtersTypes.map(name => {
+                arrCategory.push(...allCourses.filter(course => course.categoryID.name === name && course))
+            })
+            setCategories(arrCategory)
+        } else if (!filtersTypes.length) {
+            setCategories(allCourses)
+        }
+    }, [filtersTypes])
 
     const showCategoriesCoursesHandler = filter => setFilterTypes(prev => [...prev, filter])
 
@@ -93,17 +106,14 @@ export default function AllCourses() {
                         </div>
 
                     </div>
-                    {
-                        allCourses.length && allCourses.length > 6 &&
-                        <Pagination
-                            bgColorActive='rgb(43, 203, 86)'
-                            colorActive='white'
-                            arrDatas={allCourses}
-                            countDataPerPage={6}
-                            pathName={'/all-courses/page/'}
-                            onFilterDatas={handleFilterCourses}
-                        />
-                    }
+                    <Pagination
+                        bgColorActive='rgb(43, 203, 86)'
+                        colorActive='white'
+                        arrDatas={categories}
+                        countDataPerPage={6}
+                        pathName={'/all-courses/page/'}
+                        onFilterDatas={handleFilterCourses}
+                    />
                 </>
                 :
                 <div style={{ height: '40vh', textAlign: 'center', marginTop: '15rem' }}>

@@ -2,14 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 export default function FilterCategory({ categorySwitch, titleCategory, category = null, onAddCategory, onRemoveCategory }) {
 
-    const getCategoryHandler = event => {
-        console.log(event);
-        if (event.target.checked) {
-            onAddCategory(event.target.dataset.category)
-        } else {
-            onRemoveCategory(event.target.dataset.category)
-        }
-    }
+    const getCategoryHandler = event => event.target.checked ? onAddCategory(event.target.dataset.category) : onRemoveCategory(event.target.dataset.category)
 
     return (
         <>
