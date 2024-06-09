@@ -38,6 +38,11 @@ export default function AllCourses() {
     }, [])
 
     useEffect(() => {
+        console.log(allCourses);
+        console.log(categoryMenusCourses);
+    }, [allCourses, categoryMenusCourses])
+
+    useEffect(() => {
         if (categories.length >= 1 && filtersTypes.length) {
             let arrCategory = []
             filtersTypes.map(name => {
@@ -55,6 +60,10 @@ export default function AllCourses() {
 
     const handleFilterCourses = datas => setFilterCoursesPage(datas)
 
+    const filteredCoursesHandler = filterType => {
+        
+    }
+
     return (
         <section className='page category-page'>
 
@@ -62,7 +71,7 @@ export default function AllCourses() {
                 ?
                 <>
                     <h2 className='category-h2'>تمامی دوره ها</h2>
-                    <p className='text-light me-3 mb-2'>{allCourses.length} عنوان آموزشی</p>
+                    <p className='text-light me-3 mb-2'>{categories.length} عنوان آموزشی</p>
 
                     <div className='category-filters'>
 
@@ -81,7 +90,7 @@ export default function AllCourses() {
                             <div className='d-none d-sm-block'>
                                 {
                                     categoryMenusCourses.length &&
-                                    <FilterCategory categorySwitch={true} titleCategory={'دسته بندی دوره ها'} category={categoryMenusCourses} onAddCategory={showCategoriesCoursesHandler} onRemoveCategory={removeCategoryHandler} />
+                                    <FilterCategory categorySwitch={true} titleCategory={'دسته بندی دوره ها'} category={categoryMenusCourses} onAddCategory={showCategoriesCoursesHandler} onRemoveCategory={removeCategoryHandler} onFilteredOverCourses={filteredCoursesHandler} />
                                 }
                             </div>
 
