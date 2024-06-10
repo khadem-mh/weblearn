@@ -2,13 +2,14 @@ import React, { useState, useRef } from 'react'
 import './CategorySort.css'
 import { ImSortAmountDesc } from "react-icons/im";
 
-export default function CategorySort({ namesList }) {
+export default function CategorySort({ namesList, onSelectedItem }) {
 
     const refListSort = useRef()
     const [selectedItem, setSelectedItem] = useState(0)
 
     const clickHandlerSelectItem = (e) => {
         if (e.target.dataset.value !== selectedItem) {
+            onSelectedItem(e.target.dataset.name)
             const childrenListArray = Array.from(refListSort.current.children)
             childrenListArray.map(child => child.classList.contains('select-item-sort') && child.classList.remove('select-item-sort'))
         }
@@ -28,11 +29,20 @@ export default function CategorySort({ namesList }) {
                         ?
                         (
                             namesList.map((item, index) => (
-                                <p key={index} className={`category-sort__item ${index === 0 ? "select-item-sort" : ''}`} data-value={index} onClick={(e) => clickHandlerSelectItem(e)}>{item}</p>
+                                <p key={index} className={`category-sort__item ${index === 0 ? "select-item-sort" : ''}`} data-value={index} data-name={
+                                    index === 0
+                                        ? 'all'
+                                        :
+                                        index === 1
+                                            ? 'cheap'
+                                            : index === 2
+                                                ? 'expensive'
+                                                : 'personMore'
+                                } onClick={(e) => clickHandlerSelectItem(e)}>{item}</p>
                             ))
                         )
                         :
-                        <p className='category-sort__item select-item-sort' data-value="0" onClick={(e) => clickHandlerSelectItem(e)}>{namesList}</p>
+                        <p className='category-sort__item select-item-sort' data-value="0" data-name={'all'} onClick={(e) => clickHandlerSelectItem(e)}>{namesList}</p>
                 }
             </div>
         </section>
