@@ -56,23 +56,18 @@ export default function AllCourses() {
     }, [filterCategoryTypes, allCourses])
 
     useEffect(() => {
-        switch(filterCourseTypes) {
-            case 'popular' : {
-                
-            }
-            case 'cheap' : {
-
-            }
-            case 'expensive' : {
-
-            }
-            case 'free' : {
-
-            }
-            case 'personMore' : {
-
-            }
-            default: return 'popular'
+        switch (filterCourseTypes) {
+            case 'popular': setCategories([...allCourses].sort((first, second) => second.courseAverageScore - first.courseAverageScore))
+                break
+            case 'cheap': setCategories([...allCourses].sort((first, second) => first.price - second.price))
+                break
+            case 'expensive': setCategories([...allCourses].sort((first, second) => second.price - first.price))
+                break
+            case 'free': setCategories([...allCourses].filter(course => course.price === 0 && course))
+                break
+            case 'personMore': setCategories([...allCourses].sort((first, second) => second.registers - first.registers))
+                break
+            default: setCategories(allCourses)
         }
     }, [filterCourseTypes])
 
@@ -120,7 +115,7 @@ export default function AllCourses() {
 
                         <div className='category-courses-and-sort-parent'>
 
-                            <CategorySort namesList={['همه دور ها', 'ارزان ترین', 'گران ترین', 'پرمخاطب ترین']} onSelectedItem={filteredCoursesHandler}/>
+                            <CategorySort namesList={['همه دور ها', 'ارزان ترین', 'گران ترین', 'پرمخاطب ترین']} onSelectedItem={filteredCoursesHandler} />
 
                             <section className='category-courses'>
                                 <div className="row row-cols-sm-2 row-cols-md-2 row-cols-xl-3" id="courses-container">
