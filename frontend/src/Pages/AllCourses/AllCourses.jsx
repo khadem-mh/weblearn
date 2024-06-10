@@ -20,7 +20,8 @@ export default function AllCourses() {
     const [categories, setCategories] = useState([])
     const [filterCoursesPage, setFilterCoursesPage] = useState([])
     const [categoryMenusCourses, setCategoryMenusCourses] = useState([])
-    const [filtersTypes, setFilterTypes] = useState([])
+    const [filterCategoryTypes, setFilterCategoryTypes] = useState([])
+    const [filterCourseTypes, setFilterCourseTypes] = useState('')
 
     useEffect(() => {
         fetch(`http://localhost:4000/v1/courses`)
@@ -43,25 +44,25 @@ export default function AllCourses() {
     }, [allCourses, categoryMenusCourses])
 
     useEffect(() => {
-        if (categories.length >= 1 && filtersTypes.length) {
+        if (categories.length >= 1 && filterCategoryTypes.length) {
             let arrCategory = []
-            filtersTypes.map(name => {
+            filterCategoryTypes.map(name => {
                 arrCategory.push(...allCourses.filter(course => course.categoryID.name === name && course))
             })
             setCategories(arrCategory)
-        } else if (!filtersTypes.length) {
+        } else if (!filterCategoryTypes.length) {
             setCategories(allCourses)
         }
-    }, [filtersTypes])
+    }, [filterCategoryTypes])
 
-    const showCategoriesCoursesHandler = filter => setFilterTypes(prev => [...prev, filter])
+    const showCategoriesCoursesHandler = filter => setFilterCategoryTypes(prev => [...prev, filter])
 
-    const removeCategoryHandler = nameCategory => setFilterTypes(filtersTypes.filter(name => name !== nameCategory))
+    const removeCategoryHandler = nameCategory => setFilterCategoryTypes(filterCategoryTypes.filter(name => name !== nameCategory))
 
     const handleFilterCourses = datas => setFilterCoursesPage(datas)
 
     const filteredCoursesHandler = filterType => {
-        
+        setFilterCourseTypes(filterType)
     }
 
     return (

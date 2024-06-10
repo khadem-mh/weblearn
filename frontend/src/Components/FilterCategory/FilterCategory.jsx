@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
-export default function FilterCategory({ categorySwitch, titleCategory, category = null, onAddCategory, onRemoveCategory, onFilteredOverCourses}) {
+export default function FilterCategory({ categorySwitch, titleCategory, category = null, onAddCategory, onRemoveCategory, onFilteredOverCourses }) {
 
     const getCategoryHandler = event => event.target.checked ? onAddCategory(event.target.dataset.category) : onRemoveCategory(event.target.dataset.category)
 
-    const getFilterForCourses = event => {
-        if (event.target.checked) {
-            onFilteredOverCourses(event.target.dataset.filter)
-        }
-    }
+    const getFilterForCourses = event => event.target.checked && onFilteredOverCourses(event.target.dataset.filter)
 
     return (
         <>
