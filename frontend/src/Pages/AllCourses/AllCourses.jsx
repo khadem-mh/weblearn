@@ -28,7 +28,7 @@ export default function AllCourses() {
             .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
             .then(allCourses => {
                 setAllCourses(allCourses)
-                setCategories(allCourses)
+                //setCategories(allCourses)
             })
             .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
 
@@ -44,7 +44,7 @@ export default function AllCourses() {
     }, [allCourses, categoryMenusCourses])
 
     useEffect(() => {
-        if (categories.length >= 1 && filterCategoryTypes.length) {
+        if (allCourses.length >= 1 && filterCategoryTypes.length) {
             let arrCategory = []
             filterCategoryTypes.map(name => {
                 arrCategory.push(...allCourses.filter(course => course.categoryID.name === name && course))
@@ -53,7 +53,7 @@ export default function AllCourses() {
         } else if (!filterCategoryTypes.length) {
             setCategories(allCourses)
         }
-    }, [filterCategoryTypes])
+    }, [filterCategoryTypes, allCourses])
 
     const showCategoriesCoursesHandler = filter => setFilterCategoryTypes(prev => [...prev, filter])
 
@@ -72,7 +72,7 @@ export default function AllCourses() {
                 ?
                 <>
                     <h2 className='category-h2'>تمامی دوره ها</h2>
-                    <p className='text-light me-3 mb-2'>{categories.length} عنوان آموزشی</p>
+                    <p className='text-light me-3 mb-2'>{categories.length ? categories.length : allCourses.length} عنوان آموزشی</p>
 
                     <div className='category-filters'>
 
@@ -119,7 +119,7 @@ export default function AllCourses() {
                     <Pagination
                         bgColorActive='rgb(43, 203, 86)'
                         colorActive='white'
-                        arrDatas={categories}
+                        arrDatas={categories.length ? categories : allCourses}
                         countDataPerPage={6}
                         pathName={'/all-courses/page/'}
                         onFilterDatas={handleFilterCourses}
