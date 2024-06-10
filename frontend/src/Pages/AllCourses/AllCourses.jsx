@@ -55,6 +55,14 @@ export default function AllCourses() {
         }
     }, [filterCategoryTypes, allCourses])
 
+    useEffect(() => {
+        function resizeHandler() {
+            window.location.reload()
+        }
+        window.addEventListener('resize', resizeHandler)
+        return () => window.removeEventListener('resize', resizeHandler)
+    })
+
     const showCategoriesCoursesHandler = filter => setFilterCategoryTypes(prev => [...prev, filter])
 
     const removeCategoryHandler = nameCategory => setFilterCategoryTypes(filterCategoryTypes.filter(name => name !== nameCategory))
@@ -85,7 +93,7 @@ export default function AllCourses() {
 
                             <div className='d-flex align-items-center justify-content-between'>
                                 <OffCanvasBottom displayCanvas={'d-flex d-sm-none'} iconBtn={<ImSortAmountDesc />} titleHeader={'مرتب سازی بر اساس'} namesLi={['همه دوره ها', 'ارزان ترین', 'گران ترین', 'پرمخاطب ترین']} />
-                                <OffCanvasRight displayCanvas={'d-flex d-sm-none'} iconBtn={<HiMiniAdjustmentsHorizontal />} children={<FilterCategory categorySwitch={true} titleCategory={'دسته بندی دوره ها'} />} />
+                                <OffCanvasRight displayCanvas={'d-flex d-sm-none'} iconBtn={<HiMiniAdjustmentsHorizontal />} children={<FilterCategory categorySwitch={true} titleCategory={'دسته بندی دوره ها'} category={categoryMenusCourses} onAddCategory={showCategoriesCoursesHandler} onRemoveCategory={removeCategoryHandler} onFilteredOverCourses={filteredCoursesHandler} />} />
                             </div>
 
                             <div className='d-none d-sm-block'>
