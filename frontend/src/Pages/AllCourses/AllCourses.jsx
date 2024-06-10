@@ -56,12 +56,25 @@ export default function AllCourses() {
     }, [filterCategoryTypes, allCourses])
 
     useEffect(() => {
-        function resizeHandler() {
-            window.location.reload()
+        switch(filterCourseTypes) {
+            case 'popular' : {
+                
+            }
+            case 'cheap' : {
+
+            }
+            case 'expensive' : {
+
+            }
+            case 'free' : {
+
+            }
+            case 'personMore' : {
+
+            }
+            default: return 'popular'
         }
-        window.addEventListener('resize', resizeHandler)
-        return () => window.removeEventListener('resize', resizeHandler)
-    })
+    }, [filterCourseTypes])
 
     const showCategoriesCoursesHandler = filter => setFilterCategoryTypes(prev => [...prev, filter])
 

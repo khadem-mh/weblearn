@@ -31,7 +31,7 @@ export default function CategorySort({ namesList, onSelectedItem }) {
                             namesList.map((item, index) => (
                                 <p key={index} className={`category-sort__item ${index === 0 ? "select-item-sort" : ''}`} data-value={index} data-name={
                                     index === 0
-                                        ? 'all'
+                                        ? 'popular'
                                         :
                                         index === 1
                                             ? 'cheap'
