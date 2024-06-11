@@ -10,7 +10,7 @@ export default function CategorySort({ namesList, onSelectedItem, selectItem }) 
 
     useEffect(() => setCurrentChildActive(refListSort.current.children[0]), [])
 
-    useEffect(() => selectItem > 3 && currentChildActive.classList.remove('select-item-sort'), [selectItem])
+    useEffect(() => { selectItem > 3 && currentChildActive.classList.remove('select-item-sort') }, [selectItem])
 
     const clickHandlerSelectItem = (e) => {
         if (e.target.dataset.value !== selectedItem) {
@@ -43,7 +43,7 @@ export default function CategorySort({ namesList, onSelectedItem, selectItem }) 
                                             ? 'cheap'
                                             : index === 2
                                                 ? 'expensive'
-                                                : 'personMore'
+                                                : index === 3 && 'personMore'
                                 } onClick={(e) => clickHandlerSelectItem(e)}>{item}</p>
                             ))
                         )

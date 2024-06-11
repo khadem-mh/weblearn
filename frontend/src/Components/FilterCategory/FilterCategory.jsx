@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
-export default function FilterCategory({ categorySwitch, titleCategory, category = null, onAddCategory, onRemoveCategory, onFilteredOverCourses }) {
+export default function FilterCategory({ categorySwitch, titleCategory, category = null, onAddCategory, onRemoveCategory, onFilteredOverCourses, selectedItem }) {
 
-    const [textActiveFilter, setTextActiveFilter] = useState('all')
+    const [textActiveFilter, setTextActiveFilter] = useState(selectedItem)
+
+    useEffect(() => {
+        setTextActiveFilter(selectedItem)
+    }, [selectedItem])
 
     const getCategoryHandler = event => event.target.checked ? onAddCategory(event.target.dataset.category) : onRemoveCategory(event.target.dataset.category)
 
@@ -41,22 +45,19 @@ export default function FilterCategory({ categorySwitch, titleCategory, category
             {
                 categorySwitch &&
                 <section className='category-switch'>
-
                     <div className='category-switch__div'>
                         <div className="form-check form-switch">
-                            <input type="checkbox" className="form-check-input" data-filter={'popular'} checked={textActiveFilter === 'popular' ? true : false} onChange={e => getFilterForCourses(e)} />
+                            <input type="checkbox" className="form-check-input" data-filter={'popular'} checked={textActiveFilter === 4 ? true : false} onChange={e => getFilterForCourses(e)} />
                         </div>
                         <p className='category-switch__text'>محبوب ترین دوره ها</p>
                     </div>
                     
                     <div className='category-switch__div'>
                         <div className="form-check form-switch">
-                            <input type="checkbox" className="form-check-input" data-filter={'free'} checked={textActiveFilter === 'free' ? true : false} onChange={e => getFilterForCourses(e)} />
+                            <input type="checkbox" className="form-check-input" data-filter={'free'} checked={textActiveFilter === 5 ? true : false} onChange={e => getFilterForCourses(e)} />
                         </div>
                         <p className='category-switch__text'>فقط دوره های رایگان</p>
                     </div>
-
-
                 </section>
             }
 

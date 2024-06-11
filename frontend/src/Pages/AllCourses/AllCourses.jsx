@@ -119,7 +119,7 @@ export default function AllCourses() {
                             <div className='d-none d-sm-block'>
                                 {
                                     categoryMenusCourses.length &&
-                                    <FilterCategory categorySwitch={true} titleCategory={'دسته بندی دوره ها'} category={categoryMenusCourses} onAddCategory={showCategoriesCoursesHandler} onRemoveCategory={removeCategoryHandler} onFilteredOverCourses={filteredCoursesHandler} />
+                                    <FilterCategory categorySwitch={true} titleCategory={'دسته بندی دوره ها'} category={categoryMenusCourses} onAddCategory={showCategoriesCoursesHandler} onRemoveCategory={removeCategoryHandler} onFilteredOverCourses={filteredCoursesHandler} selectedItem={selectedItem}/>
                                 }
                             </div>
 
