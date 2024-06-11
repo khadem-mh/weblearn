@@ -21,15 +21,13 @@ export default function AllCourses() {
     const [filterCoursesPage, setFilterCoursesPage] = useState([])
     const [categoryMenusCourses, setCategoryMenusCourses] = useState([])
     const [filterCategoryTypes, setFilterCategoryTypes] = useState([])
-    const [filterCourseTypes, setFilterCourseTypes] = useState('')
+    const [filterCourseTypes, setFilterCourseTypes] = useState('all')
+    const [selectedItem, setSelectedItem] = useState(0)
 
     useEffect(() => {
         fetch(`http://localhost:4000/v1/courses`)
             .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
-            .then(allCourses => {
-                setAllCourses(allCourses)
-                //setCategories(allCourses)
-            })
+            .then(allCourses => setAllCourses(allCourses))
             .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
 
         fetch(`http://localhost:4000/v1/menus`)
@@ -37,11 +35,6 @@ export default function AllCourses() {
             .then(menus => setCategoryMenusCourses(menus))
             .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
     }, [])
-
-    useEffect(() => {
-        console.log(allCourses);
-        console.log(categoryMenusCourses);
-    }, [allCourses, categoryMenusCourses])
 
     useEffect(() => {
         if (allCourses.length >= 1 && filterCategoryTypes.length) {
@@ -55,16 +48,36 @@ export default function AllCourses() {
 
     useEffect(() => {
         switch (filterCourseTypes) {
-            case 'popular': setCategories([...allCourses].sort((first, second) => second.courseAverageScore - first.courseAverageScore))
+            case 'all': {
+                setCategories([...allCourses])
+                setSelectedItem(0)
                 break
-            case 'cheap': setCategories([...allCourses].sort((first, second) => first.price - second.price))
+            }
+            case 'popular': {
+                setCategories([...allCourses].sort((first, second) => second.courseAverageScore - first.courseAverageScore))
+                setSelectedItem(4)
                 break
-            case 'expensive': setCategories([...allCourses].sort((first, second) => second.price - first.price))
+            }
+            case 'cheap': {
+                setCategories([...allCourses].sort((first, second) => first.price - second.price))
+                setSelectedItem(1)
                 break
-            case 'free': setCategories([...allCourses].filter(course => course.price === 0 && course))
+            }
+            case 'expensive': {
+                setCategories([...allCourses].sort((first, second) => second.price - first.price))
+                setSelectedItem(2)
                 break
-            case 'personMore': setCategories([...allCourses].sort((first, second) => second.registers - first.registers))
+            }
+            case 'free': {
+                setCategories([...allCourses].filter(course => course.price === 0 && course))
+                setSelectedItem(5)
                 break
+            }
+            case 'personMore': {
+                setCategories([...allCourses].sort((first, second) => second.registers - first.registers))
+                setSelectedItem(3)
+                break
+            }
             default: setCategories(allCourses)
         }
     }, [filterCourseTypes])
@@ -76,6 +89,7 @@ export default function AllCourses() {
     const handleFilterCourses = datas => setFilterCoursesPage(datas)
 
     const filteredCoursesHandler = filterType => {
+        console.log(filterType);
         setFilterCourseTypes(filterType)
     }
 
@@ -113,7 +127,7 @@ export default function AllCourses() {
 
                         <div className='category-courses-and-sort-parent'>
 
-                            <CategorySort namesList={['همه دور ها', 'ارزان ترین', 'گران ترین', 'پرمخاطب ترین']} onSelectedItem={filteredCoursesHandler} />
+                            <CategorySort namesList={['همه دور ها', 'ارزان ترین', 'گران ترین', 'پرمخاطب ترین']} onSelectedItem={filteredCoursesHandler} selectItem={selectedItem} />
 
                             <section className='category-courses'>
                                 <div className="row row-cols-sm-2 row-cols-md-2 row-cols-xl-3" id="courses-container">

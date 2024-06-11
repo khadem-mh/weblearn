@@ -2,11 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 export default function FilterCategory({ categorySwitch, titleCategory, category = null, onAddCategory, onRemoveCategory, onFilteredOverCourses }) {
 
-    const [textActiveFilter, setTextActiveFilter] = useState('popular')
-
-    useEffect(() => {
-        onFilteredOverCourses && onFilteredOverCourses('popular')
-    }, [])
+    const [textActiveFilter, setTextActiveFilter] = useState('all')
 
     const getCategoryHandler = event => event.target.checked ? onAddCategory(event.target.dataset.category) : onRemoveCategory(event.target.dataset.category)
 
