@@ -1,18 +1,15 @@
-import React, { useEffect, useState, useRef, useContext } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import './ReapondComment.css'
 import AnswerComment from '../AnswerComment/AnswerComment'
 //icons
 import { GoCommentDiscussion } from "react-icons/go";
 import { LiaComment } from "react-icons/lia";
-import { AuthContext } from '../../../Contexts/AuthContext';
 //swal
 import swal from 'sweetalert'
 
 export default function ReapondComment({ showCommentHeader = true, commentsArr }) {
 
-    console.log(commentsArr);
-    const authContext = useContext(AuthContext)
     const params = useParams()
     const showNewComment = useRef()
     //
@@ -26,7 +23,7 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
 
     useEffect(() => {
         if (showCommentHeader) {
-            if (commentDetailsSubmit.body.length > 6 && commentDetailsSubmit.score != -1) document.querySelector('#btnSendComment').disabled = false
+            if (commentDetailsSubmit.body.length > 6 && commentDetailsSubmit.score !== -1) document.querySelector('#btnSendComment').disabled = false
             else document.querySelector('#btnSendComment').disabled = true
         }
     }, [commentDetailsSubmit])

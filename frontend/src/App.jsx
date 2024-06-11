@@ -8,7 +8,7 @@ import Footer from "./Components/Footer/Footer"
 import MyAccount from "./Pages/MyAccount/Components/Account/MyAccount"
 import PageFirstAccount from "./Pages/MyAccount/Pages/PageFirstAccount/PageFirstAccount";
 // Contexts
-import { AuthProvider, AuthContext } from "./Contexts/AuthContext"
+import { AuthProvider } from "./Contexts/AuthContext"
 
 export default function App() {
 

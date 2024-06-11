@@ -46,9 +46,7 @@ export default function AllCourses() {
     useEffect(() => {
         if (allCourses.length >= 1 && filterCategoryTypes.length) {
             let arrCategory = []
-            filterCategoryTypes.map(name => {
-                arrCategory.push(...allCourses.filter(course => course.categoryID.name === name && course))
-            })
+            filterCategoryTypes.map(name => arrCategory.push(...allCourses.filter(course => course.categoryID.name === name && course)))
             setCategories(arrCategory)
         } else if (!filterCategoryTypes.length) {
             setCategories(allCourses)
