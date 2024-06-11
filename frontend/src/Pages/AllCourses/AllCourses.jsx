@@ -18,6 +18,7 @@ export default function AllCourses() {
 
     const [allCourses, setAllCourses] = useState([])
     const [categories, setCategories] = useState([])
+    const [categoriesFilter, setCategoriesFilter] = useState([])
     const [filterCoursesPage, setFilterCoursesPage] = useState([])
     const [categoryMenusCourses, setCategoryMenusCourses] = useState([])
     const [filterCategoryTypes, setFilterCategoryTypes] = useState([])
@@ -47,34 +48,35 @@ export default function AllCourses() {
     }, [filterCategoryTypes, allCourses])
 
     useEffect(() => {
+
         switch (filterCourseTypes) {
             case 'all': {
-                setCategories([...allCourses])
+                setCategories(allCourses)
                 setSelectedItem(0)
                 break
             }
             case 'popular': {
-                setCategories([...allCourses].sort((first, second) => second.courseAverageScore - first.courseAverageScore))
+                setCategories([...categories].sort((first, second) => second.courseAverageScore - first.courseAverageScore))
                 setSelectedItem(4)
                 break
             }
             case 'cheap': {
-                setCategories([...allCourses].sort((first, second) => first.price - second.price))
+                setCategories([...categories].sort((first, second) => first.price - second.price))
                 setSelectedItem(1)
                 break
             }
             case 'expensive': {
-                setCategories([...allCourses].sort((first, second) => second.price - first.price))
+                setCategories([...categories].sort((first, second) => second.price - first.price))
                 setSelectedItem(2)
                 break
             }
             case 'free': {
-                setCategories([...allCourses].filter(course => course.price === 0 && course))
+                setCategoriesFilter([...categories].filter(course => course.price === 0 && course))
                 setSelectedItem(5)
                 break
             }
             case 'personMore': {
-                setCategories([...allCourses].sort((first, second) => second.registers - first.registers))
+                setCategories([...categories].sort((first, second) => second.registers - first.registers))
                 setSelectedItem(3)
                 break
             }
@@ -100,7 +102,7 @@ export default function AllCourses() {
                 ?
                 <>
                     <h2 className='category-h2'>تمامی دوره ها</h2>
-                    <p className='text-light me-3 mb-2'>{categories.length ? categories.length : allCourses.length} عنوان آموزشی</p>
+                    <p className='text-light me-3 mb-2'>{selectedItem === 5 ? categoriesFilter.length : categories.length} عنوان آموزشی</p>
 
                     <div className='category-filters'>
 
@@ -119,7 +121,7 @@ export default function AllCourses() {
                             <div className='d-none d-sm-block'>
                                 {
                                     categoryMenusCourses.length &&
-                                    <FilterCategory categorySwitch={true} titleCategory={'دسته بندی دوره ها'} category={categoryMenusCourses} onAddCategory={showCategoriesCoursesHandler} onRemoveCategory={removeCategoryHandler} onFilteredOverCourses={filteredCoursesHandler} selectedItem={selectedItem}/>
+                                    <FilterCategory categorySwitch={true} titleCategory={'دسته بندی دوره ها'} category={categoryMenusCourses} onAddCategory={showCategoriesCoursesHandler} onRemoveCategory={removeCategoryHandler} onFilteredOverCourses={filteredCoursesHandler} selectedItem={selectedItem} />
                                 }
                             </div>
 
@@ -147,7 +149,7 @@ export default function AllCourses() {
                     <Pagination
                         bgColorActive='rgb(43, 203, 86)'
                         colorActive='white'
-                        arrDatas={categories.length ? categories : allCourses}
+                        arrDatas={selectedItem === 5 ? categoriesFilter : categories}
                         countDataPerPage={6}
                         pathName={'/all-courses/page/'}
                         onFilterDatas={handleFilterCourses}
