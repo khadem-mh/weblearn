@@ -40,17 +40,13 @@ export default function AllCourses() {
     useEffect(() => {
         if (allCourses.length >= 1 && filterCategoryTypes.length) {
             let arrCategory = []
-            filterCategoryTypes.map(name => {
-                arrCategory.push(...allCourses.filter(course => course.categoryID.name === name && course))
-            })
-            console.log(arrCategory);
+            filterCategoryTypes.map(name => arrCategory.push(...allCourses.filter(course => course.categoryID.name === name && course)))
             setCategories(arrCategory)
             setFilterCourseTypes(prev => { return { newText: prev?.newText ? [...prev.newText].join('') : [...prev].join('') } })
         } else if (!filterCategoryTypes.length) {
-            setCategories(filterCategoryTypes.length ? categories : allCourses)
+            setCategories(allCourses)
+            setFilterCourseTypes(prev => { return { newText: prev?.newText ? [...prev.newText].join('') : [...prev].join('') } })
         }
-
-
     }, [filterCategoryTypes, allCourses])
 
     useEffect(() => {
