@@ -24,6 +24,8 @@ export default function AllCourses() {
     const [filterCategoryTypes, setFilterCategoryTypes] = useState([])
     const [filterCourseTypes, setFilterCourseTypes] = useState('all')
     const [selectedItem, setSelectedItem] = useState(0)
+    const [searchCourse, setSearchCourse] = useState('')
+    const [searchedCoursePrev, setSearchedCoursePrev] = useState([])
 
     useEffect(() => {
         fetch(`http://localhost:4000/v1/courses`)
@@ -50,8 +52,6 @@ export default function AllCourses() {
     }, [filterCategoryTypes, allCourses])
 
     useEffect(() => {
-        console.log('uuuuu');
-        console.log(filterCourseTypes);
         switch (filterCourseTypes.newText || filterCourseTypes) {
             case 'all': {
                 setCategories(filterCourseTypes.newText ? categories : allCourses)
@@ -88,6 +88,46 @@ export default function AllCourses() {
         }
     }, [filterCourseTypes])
 
+    //search value
+    const searchCourseHandler = event => {
+        setSearchCourse(event.target.value)
+        let removedWord = false
+        if (event._reactName === 'onKeyDown' && event.code === "Backspace") removedWord = true
+        if (event._reactName !== 'onKeyDown' && event.target.value === '') {
+            setSearchedCoursePrev([])
+            if (filterCategoryTypes.length) {
+                let filterCoursesCategory = [...allCourses].filter(course => course.categoryID.name === filterCategoryTypes && course)
+                console.log('<=poop=>', filterCoursesCategory);
+                setCategories(filterCoursesCategory)
+            } else {
+                console.log('ok');
+                setCategories(allCourses)
+            }
+        } else {
+            if (removedWord && searchedCoursePrev.length >= 1) {
+                console.log('-----------------------------');
+                let newSearch = event.target.value.slice(0, event.target.value.length - 1)
+                console.log(newSearch);
+                let alpha = [...searchedCoursePrev].filter(course => {
+                    if (course.name.toLowerCase().includes(newSearch)) {
+                        console.log(course);
+                        return course
+                    }
+                })
+                setCategories(alpha)
+
+            } else {
+                console.log('p');
+                let alpha = [...categories].filter(course => course.name.toLowerCase().includes(event.target.value) ? course : setSearchedCoursePrev(prev => [...prev, course]))
+                setCategories(alpha)
+            }
+        }
+
+
+
+    }
+
+
     const showCategoriesCoursesHandler = filter => setFilterCategoryTypes(prev => [...prev, filter])
 
     const removeCategoryHandler = nameCategory => setFilterCategoryTypes(filterCategoryTypes.filter(name => name !== nameCategory))
@@ -111,7 +151,7 @@ export default function AllCourses() {
                         <aside className='category-aside'>
 
                             <section className='category-research'>
-                                <input type="text" className='category-research__input' placeholder='در بین دوره ها جستجو کنید' />
+                                <input type="text" className='category-research__input' placeholder='در بین دوره ها جستجو کنید' value={searchCourse} onChange={e => searchCourseHandler(e)} onKeyDown={e => searchCourseHandler(e)} />
                                 <RiSearchLine className='category-research__icon' />
                             </section>
 
