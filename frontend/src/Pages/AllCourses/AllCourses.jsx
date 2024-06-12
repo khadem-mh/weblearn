@@ -40,15 +40,7 @@ export default function AllCourses() {
     }, [])
 
     useEffect(() => {
-        if (allCourses.length >= 1 && filterCategoryTypes.length) {
-            let arrCategory = []
-            filterCategoryTypes.map(name => arrCategory.push(...allCourses.filter(course => course.categoryID.name === name && course)))
-            setCategories(arrCategory)
-            setFilterCourseTypes(prev => { return { newText: prev?.newText ? [...prev.newText].join('') : [...prev].join('') } })
-        } else if (!filterCategoryTypes.length) {
-            setCategories(allCourses)
-            setFilterCourseTypes(prev => { return { newText: prev?.newText ? [...prev.newText].join('') : [...prev].join('') } })
-        }
+        controlFilter()
     }, [filterCategoryTypes, allCourses])
 
     useEffect(() => {
@@ -95,13 +87,7 @@ export default function AllCourses() {
         if (event._reactName === 'onKeyDown' && event.code === "Backspace") removedWord = true
         if (event._reactName !== 'onKeyDown' && event.target.value === '') {
             setSearchedCoursePrev([])
-            if (filterCategoryTypes.length) {
-                let arrCategory = []
-                filterCategoryTypes.map(name => arrCategory.push(...allCourses.filter(course => course.categoryID.name === name && course)))
-                setCategories(arrCategory)
-            } else {
-                setCategories(allCourses)
-            }
+            controlFilter()
         } else {
             if (removedWord && searchedCoursePrev.length >= 1) {
                 console.log('-----------------------------');
@@ -126,6 +112,17 @@ export default function AllCourses() {
 
     }
 
+    function controlFilter() {
+        if (allCourses.length >= 1 && filterCategoryTypes.length) {
+            let arrCategory = []
+            filterCategoryTypes.map(name => arrCategory.push(...allCourses.filter(course => course.categoryID.name === name && course)))
+            setCategories(arrCategory)
+            setFilterCourseTypes(prev => { return { newText: prev?.newText ? [...prev.newText].join('') : [...prev].join('') } })
+        } else if (!filterCategoryTypes.length) {
+            setCategories(allCourses)
+            setFilterCourseTypes(prev => { return { newText: prev?.newText ? [...prev.newText].join('') : [...prev].join('') } })
+        }
+    }
 
     const showCategoriesCoursesHandler = filter => setFilterCategoryTypes(prev => [...prev, filter])
 
