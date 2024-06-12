@@ -7,6 +7,7 @@ import ArticleInfo from "./Pages/ArticleInfo/ArticleInfo"
 import Lesson from "./Pages/Lesson/Lesson"
 import Login from "./Pages/Login/Login"
 import Register from "./Pages/Register/Register"
+import ContactUs from "./Pages/ContactUs/ContactUs"
 import Page404 from "./Pages/Page404/Page404"
 //import pages my account
 import MyAccount from "./Pages/MyAccount/Components/Account/MyAccount"
@@ -28,6 +29,7 @@ const routes = [
     { path: 'lesson', element: <Lesson /> },
     { path: 'login', element: <Login /> },
     { path: 'register', element: <Register /> },
+    { path: 'contactus', element: <ContactUs /> },
     //Route Account
     {
         path: 'my-account/*', element: <MyAccount children={< PageFirstAccount />} />, children: [

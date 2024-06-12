@@ -3,11 +3,12 @@
 /* start header styles*/
 
 .footer {
-    background-color: var(--dark-alpha-color);
-    padding: 1rem 0;
+    background-color: rgba(43, 203, 86, .1);
+    border-top-left-radius: 10rem;
+    border-top-right-radius: 10rem;
+    padding: 2rem;
+    margin-top: 10rem !important;
     text-align: justify;
-    position: relative;
-    z-index: -2;
 }
 
 .footer-header {
@@ -16,9 +17,11 @@
 
 .footer-header__title {
     color: var(--primary-color);
-    font-weight: bold;
+    font-family: Lalezar;
     text-indent: 52px;
+    font-size: 1.8rem;
     margin-bottom: 2rem;
+    margin-top: 2rem;
 }
 
 .footer-header__text {
