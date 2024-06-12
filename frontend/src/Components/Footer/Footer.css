@@ -69,6 +69,8 @@
 
 .footer-end__text {
     color: var(--whitedie-color);
+    font-family: Lalezar;
+    font-size: 1.6rem;
 }
 
 .footer-end__text-title {
