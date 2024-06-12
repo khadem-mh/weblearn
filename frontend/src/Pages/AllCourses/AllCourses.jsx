@@ -18,6 +18,7 @@ export default function AllCourses() {
 
     const [allCourses, setAllCourses] = useState([])
     const [categories, setCategories] = useState([])
+    const [searchedCoursePrev, setSearchedCoursePrev] = useState([])
     const [categoriesFilter, setCategoriesFilter] = useState([])
     const [filterCoursesPage, setFilterCoursesPage] = useState([])
     const [categoryMenusCourses, setCategoryMenusCourses] = useState([])
@@ -25,7 +26,6 @@ export default function AllCourses() {
     const [filterCourseTypes, setFilterCourseTypes] = useState('all')
     const [selectedItem, setSelectedItem] = useState(0)
     const [searchCourse, setSearchCourse] = useState('')
-    const [searchedCoursePrev, setSearchedCoursePrev] = useState([])
 
     useEffect(() => {
         fetch(`http://localhost:4000/v1/courses`)
@@ -90,26 +90,15 @@ export default function AllCourses() {
             controlFilter()
         } else {
             if (removedWord && searchedCoursePrev.length >= 1) {
-                console.log('-----------------------------');
                 let newSearch = event.target.value.slice(0, event.target.value.length - 1)
-                console.log(newSearch);
-                let alpha = [...searchedCoursePrev].filter(course => {
-                    if (course.name.toLowerCase().includes(newSearch)) {
-                        console.log(course);
-                        return course
-                    }
-                })
+                let alpha = [...searchedCoursePrev].filter(course => course.name.toLowerCase().includes(newSearch) && course)
                 setCategories(alpha)
 
             } else {
-                console.log('p');
-                let alpha = [...categories].filter(course => course.name.toLowerCase().includes(event.target.value) ? course : setSearchedCoursePrev(prev => [...prev, course]))
+                let alpha = [...searchedCoursePrev].filter(course => course.name.toLowerCase().includes(event.target.value) && course)
                 setCategories(alpha)
             }
         }
-
-
-
     }
 
     function controlFilter() {
@@ -117,9 +106,11 @@ export default function AllCourses() {
             let arrCategory = []
             filterCategoryTypes.map(name => arrCategory.push(...allCourses.filter(course => course.categoryID.name === name && course)))
             setCategories(arrCategory)
+            setSearchedCoursePrev(arrCategory)
             setFilterCourseTypes(prev => { return { newText: prev?.newText ? [...prev.newText].join('') : [...prev].join('') } })
         } else if (!filterCategoryTypes.length) {
             setCategories(allCourses)
+            setSearchedCoursePrev(allCourses)
             setFilterCourseTypes(prev => { return { newText: prev?.newText ? [...prev.newText].join('') : [...prev].join('') } })
         }
     }
