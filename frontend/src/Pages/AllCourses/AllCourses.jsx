@@ -38,27 +38,25 @@ export default function AllCourses() {
     }, [])
 
     useEffect(() => {
-       /*  if (filterCategoryTypes.length) {
-            console.log('ppppp');
-            setFilterCourseTypes(prev => [prev])
-        } */
         if (allCourses.length >= 1 && filterCategoryTypes.length) {
             let arrCategory = []
             filterCategoryTypes.map(name => {
                 arrCategory.push(...allCourses.filter(course => course.categoryID.name === name && course))
             })
+            console.log(arrCategory);
             setCategories(arrCategory)
+            setFilterCourseTypes(prev => { return { newText: prev?.newText ? [...prev.newText].join('') : [...prev].join('') } })
         } else if (!filterCategoryTypes.length) {
-            setCategories(allCourses)
+            setCategories(filterCategoryTypes.length ? categories : allCourses)
         }
 
 
     }, [filterCategoryTypes, allCourses])
 
     useEffect(() => {
-     /*    console.log('ozed');
-        console.log(filterCourseTypes); */
-        switch (filterCourseTypes) {
+        console.log('uuuuu');
+        console.log(filterCourseTypes);
+        switch (filterCourseTypes.newText || filterCourseTypes) {
             case 'all': {
                 setCategories(filterCourseTypes.length ? categories : allCourses)
                 setSelectedItem(0)
@@ -101,7 +99,7 @@ export default function AllCourses() {
     const handleFilterCourses = datas => setFilterCoursesPage(datas)
 
     const filteredCoursesHandler = filterType => setFilterCourseTypes(filterType)
-    
+
 
     return (
         <section className='page category-page'>
