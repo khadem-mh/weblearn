@@ -54,7 +54,7 @@ export default function AllCourses() {
         console.log(filterCourseTypes);
         switch (filterCourseTypes.newText || filterCourseTypes) {
             case 'all': {
-                setCategories(filterCourseTypes.length ? categories : allCourses)
+                setCategories(filterCourseTypes.newText ? categories : allCourses)
                 setSelectedItem(0)
                 break
             }
