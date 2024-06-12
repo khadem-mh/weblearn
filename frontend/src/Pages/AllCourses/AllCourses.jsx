@@ -96,11 +96,10 @@ export default function AllCourses() {
         if (event._reactName !== 'onKeyDown' && event.target.value === '') {
             setSearchedCoursePrev([])
             if (filterCategoryTypes.length) {
-                let filterCoursesCategory = [...allCourses].filter(course => course.categoryID.name === filterCategoryTypes && course)
-                console.log('<=poop=>', filterCoursesCategory);
-                setCategories(filterCoursesCategory)
+                let arrCategory = []
+                filterCategoryTypes.map(name => arrCategory.push(...allCourses.filter(course => course.categoryID.name === name && course)))
+                setCategories(arrCategory)
             } else {
-                console.log('ok');
                 setCategories(allCourses)
             }
         } else {
