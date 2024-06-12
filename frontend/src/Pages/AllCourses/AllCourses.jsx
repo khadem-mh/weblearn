@@ -38,20 +38,29 @@ export default function AllCourses() {
     }, [])
 
     useEffect(() => {
+       /*  if (filterCategoryTypes.length) {
+            console.log('ppppp');
+            setFilterCourseTypes(prev => [prev])
+        } */
         if (allCourses.length >= 1 && filterCategoryTypes.length) {
             let arrCategory = []
-            filterCategoryTypes.map(name => arrCategory.push(...allCourses.filter(course => course.categoryID.name === name && course)))
+            filterCategoryTypes.map(name => {
+                arrCategory.push(...allCourses.filter(course => course.categoryID.name === name && course))
+            })
             setCategories(arrCategory)
         } else if (!filterCategoryTypes.length) {
             setCategories(allCourses)
         }
+
+
     }, [filterCategoryTypes, allCourses])
 
     useEffect(() => {
-
+     /*    console.log('ozed');
+        console.log(filterCourseTypes); */
         switch (filterCourseTypes) {
             case 'all': {
-                setCategories(allCourses)
+                setCategories(filterCourseTypes.length ? categories : allCourses)
                 setSelectedItem(0)
                 break
             }
@@ -66,6 +75,7 @@ export default function AllCourses() {
                 break
             }
             case 'expensive': {
+                console.log('EXPENSIVE COURSES =>', categories);
                 setCategories([...categories].sort((first, second) => second.price - first.price))
                 setSelectedItem(2)
                 break
@@ -90,10 +100,8 @@ export default function AllCourses() {
 
     const handleFilterCourses = datas => setFilterCoursesPage(datas)
 
-    const filteredCoursesHandler = filterType => {
-        console.log(filterType);
-        setFilterCourseTypes(filterType)
-    }
+    const filteredCoursesHandler = filterType => setFilterCourseTypes(filterType)
+    
 
     return (
         <section className='page category-page'>
@@ -121,7 +129,7 @@ export default function AllCourses() {
                             <div className='d-none d-sm-block'>
                                 {
                                     categoryMenusCourses.length &&
-                                    <FilterCategory categorySwitch={true} titleCategory={'دسته بندی دوره ها'} category={categoryMenusCourses} onAddCategory={showCategoriesCoursesHandler} onRemoveCategory={removeCategoryHandler} onFilteredOverCourses={filteredCoursesHandler} selectedItem={selectedItem} />
+                                    <FilterCategory categorySwitch={true} titleCategory={'دسته بندی دوره ها'} category={categoryMenusCourses} onAddCategory={showCategoriesCoursesHandler} onRemoveCategory={removeCategoryHandler} onFilteredOverCourses={filteredCoursesHandler} selecteItem={selectedItem} />
                                 }
                             </div>
 
@@ -135,9 +143,13 @@ export default function AllCourses() {
                                 <div className="row row-cols-sm-2 row-cols-md-2 row-cols-xl-3" id="courses-container">
 
                                     {
-                                        filterCoursesPage.map((courseInfo, index) => (
+                                        filterCoursesPage.length ? filterCoursesPage.map((courseInfo, index) => (
                                             <Course key={index} {...courseInfo} />
-                                        ))
+                                        )) :
+                                            <div className='w-100' style={{ height: '40vh', textAlign: 'center', marginTop: '15rem' }}>
+                                                <h2 className='mb-0 mb-4 text-light' style={{ fontSize: '3rem', fontFamily: 'Lalezar' }}>فعلا برای این دسته بندی دوره ای قرار نگرفته است</h2>
+                                                <h5 className='text-success display-3'>⌡☻⌠</h5>
+                                            </div>
                                     }
 
                                 </div>

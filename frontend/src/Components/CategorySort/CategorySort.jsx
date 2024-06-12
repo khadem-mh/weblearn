@@ -10,7 +10,11 @@ export default function CategorySort({ namesList, onSelectedItem, selectItem }) 
 
     useEffect(() => setCurrentChildActive(refListSort.current.children[0]), [])
 
-    useEffect(() => { selectItem > 3 && currentChildActive.classList.remove('select-item-sort') }, [selectItem])
+    useEffect(() => {
+        setSelectedItem(selectItem)
+    }, [selectItem])
+
+    useEffect(() => { selectedItem > 3 && currentChildActive.classList.remove('select-item-sort') }, [selectedItem])
 
     const clickHandlerSelectItem = (e) => {
         if (e.target.dataset.value !== selectedItem) {

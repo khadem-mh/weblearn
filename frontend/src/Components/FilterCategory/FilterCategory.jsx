@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
-export default function FilterCategory({ categorySwitch, titleCategory, category = null, onAddCategory, onRemoveCategory, onFilteredOverCourses, selectedItem }) {
+export default function FilterCategory({ categorySwitch, titleCategory, category = null, onAddCategory, onRemoveCategory, onFilteredOverCourses, selecteItem }) {
 
-    const [textActiveFilter, setTextActiveFilter] = useState(selectedItem)
+    const [textActiveFilter, setTextActiveFilter] = useState(selecteItem)
 
     useEffect(() => {
-        setTextActiveFilter(selectedItem)
-    }, [selectedItem])
+        setTextActiveFilter(selecteItem)
+    }, [selecteItem])
 
     const getCategoryHandler = event => event.target.checked ? onAddCategory(event.target.dataset.category) : onRemoveCategory(event.target.dataset.category)
 
