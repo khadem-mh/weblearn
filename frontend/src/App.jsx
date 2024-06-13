@@ -21,7 +21,7 @@ export default function App() {
     <main>
       <AuthProvider>
         {
-          location.pathname !== '/register' && location.pathname !== '/login' && !location.pathname.includes('/my-account') &&
+          location.pathname !== '/register' && location.pathname !== '/login' && !location.pathname.includes('/my-account') && location.pathname !== '/contactus' &&
           <header className="header">
             {
               routes[0].path === location.pathname ?
@@ -43,7 +43,7 @@ export default function App() {
         </section>
 
         {
-          location.pathname !== '/register' && location.pathname !== '/login' && !location.pathname.includes('/my-account') &&
+          location.pathname !== '/register' && location.pathname !== '/login' && !location.pathname.includes('/my-account') && location.pathname !== '/contactus' &&
           < Footer />
         }
       </AuthProvider>
