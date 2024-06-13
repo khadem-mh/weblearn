@@ -17,8 +17,8 @@ const inputReducer = (state, action) => {
         }
         case 'CLEAN_INPUT': {
             return {
-                value: '',
-                isValid: false
+                value: action.value,
+                isValid: action.valid
             }
         }
         case inputPhoneNumber: {

@@ -54,7 +54,9 @@
     font-size: 1.3rem;
 }
 
-.footer-article__item , .footer-article__item q, .footer-article__item address {
+.footer-article__item,
+.footer-article__item q,
+.footer-article__item address {
     color: var(--white-color);
     font-size: 1.3rem;
 }
@@ -88,8 +90,17 @@
     font-size: 1.2rem;
 }
 
+.btn-membering {
+    position: absolute;
+    left: 10px;
+}
+
 .footer-widgets__form {
     margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    width: 338px;
+    position: relative;
 }
 
 .footer-widgets__input {

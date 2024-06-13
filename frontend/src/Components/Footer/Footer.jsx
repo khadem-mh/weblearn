@@ -19,7 +19,13 @@ export default function Footer() {
     }, [])
 
     useEffect(() => {
-        inpValid?.valid && inpValid.valid ? btnRef.current.removeAttribute('disabled') : btnRef.current.setAttribute('disabled', true)
+        if (inpValid?.valid && inpValid.valid) {
+            btnRef.current.removeAttribute('disabled')
+        } else {
+            setInpClean(null)
+            btnRef.current.setAttribute('disabled', true)
+        }
+
     }, [inpValid])
 
     const sendEmailForJoinNewsLetter = event => {
@@ -141,8 +147,8 @@ export default function Footer() {
                             شوید!</span>
 
                         <form className="footer-widgets__form">
-                            <Input inpIcon={<MdOutlineAttachEmail />} inpPlaceholder={'ایمیل خود را وارد نمایید'} onValid={validRul} type={inputEmail} cleanInput={inpClean}/>
-                            <button type="submit" className="button btn-submit-letters" ref={btnRef} onClick={e => sendEmailForJoinNewsLetter(e)}>عضویت</button>
+                            <Input inpIcon={<MdOutlineAttachEmail />} inpPlaceholder={'ایمیل خود را وارد نمایید'} onValid={validRul} type={inputEmail} cleanInput={inpClean} />
+                            <button type="submit" className="button btn-submit-letters btn-membering rounded-4" ref={btnRef} onClick={e => sendEmailForJoinNewsLetter(e)}>عضویت</button>
                         </form>
                     </div>
 
