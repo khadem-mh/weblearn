@@ -145,10 +145,11 @@ export default function FormPage({ nameFormPage }) {
     return (
         <FormGetData
             ref={formRef}
-            title={nameFormPage === 'register' ? "عضویت" : "ورود با ایمیل"}
-            subTitle={nameFormPage === 'register' ? "قبلا ثبت نام کرده اید؟ " : " حساب کاربری ندارید؟ "}
-            subTitleTextLink={nameFormPage === 'register' ? "وارد شوید " : "ثبت نام کنید"}
-            subTitleLink={nameFormPage === 'register' ? "/login" : "/register"}
+            title={nameFormPage === 'register' ? "عضویت" : nameFormPage === 'login' ? "ورود با ایمیل" : nameFormPage === 'contactus' && 'ارتباط با ما'}
+            subTitle={nameFormPage === 'register' ? "قبلا ثبت نام کرده اید؟ " : nameFormPage === 'login' ? " حساب کاربری ندارید؟ " : nameFormPage === 'contactus' && 'نظر یا انتقادتو برامون بنویس :)'}
+            subTitleTextLink={nameFormPage === 'register' ? "وارد شوید " : nameFormPage === 'login' ? "ثبت نام کنید" : nameFormPage === 'contactus' && ''}
+            subTitleLink={nameFormPage === 'register' ? "/login" : nameFormPage === 'login' ? "/register" : nameFormPage === 'contactus' && ''}
+            footer={nameFormPage === 'contactus' ? false : true}
         >
             {
                 nameFormPage === 'register'
@@ -160,7 +161,7 @@ export default function FormPage({ nameFormPage }) {
                         <Input onValid={validRul} type={inputEmail} inpPlaceholder={'آدرس ایمیل'} inpIcon={<MdOutlineAttachEmail />} />
                         <Input onValid={validRul} type={inputPassword} inpPlaceholder={'رمز عبور'} inpIcon={<RiLockPasswordLine />} />
                     </>
-                    : nameFormPage === 'register' ?
+                    : nameFormPage === 'login' ?
                         <>
                             <Input onValid={validRul} type={inputEmail} inpPlaceholder={'آدرس ایمیل'} inpIcon={<MdOutlineAttachEmail />} />
                             <Input onValid={validRul} type={inputPassword} inpPlaceholder={'رمز عبور'} inpIcon={<RiLockPasswordLine />} />
