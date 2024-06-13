@@ -15,6 +15,12 @@ const inputReducer = (state, action) => {
                 isValid: isRightVal
             }
         }
+        case 'CLEAN_INPUT': {
+            return {
+                value: '',
+                isValid: false
+            }
+        }
         case inputPhoneNumber: {
             let isValidatePhone = validatePhone(action.value)
             return {

@@ -1,8 +1,66 @@
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import './Footer.css'
 import { Link } from 'react-router-dom'
+import Input from '../Input/Input'
+import { MdOutlineAttachEmail } from "react-icons/md";
+import {
+    inputEmail
+} from "../../Validators/RulesInput.js"
+import swal from 'sweetalert';
 
 export default function Footer() {
+
+    const btnRef = useRef()
+    const [inpValid, setInpValid] = useState(null)
+    const [inpClean, setInpClean] = useState(null)
+
+    useEffect(() => {
+        btnRef.current.setAttribute('disabled', true)
+    }, [])
+
+    useEffect(() => {
+        inpValid?.valid && inpValid.valid ? btnRef.current.removeAttribute('disabled') : btnRef.current.setAttribute('disabled', true)
+    }, [inpValid])
+
+    const sendEmailForJoinNewsLetter = event => {
+        event.preventDefault()
+        if (inpValid.valid) {
+            fetch(`http://localhost:4000/v1/newsletters`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ email: inpValid.value })
+            })
+                .then(res => {
+                    if (res.ok) {
+                        setInpClean("")
+                        setInpValid({})
+                        return res.json()
+                    }
+                    else return res.text().then(textErr => { throw new Error(textErr) })
+                })
+                .then(result => {
+                    {
+                        swal({
+                            title: 'با موفقیت در خبرنامه عضو شدید',
+                            icon: 'success',
+                            buttons: 'باشه'
+                        })
+                    }
+                })
+                .catch(err => {
+                    swal({
+                        title: 'مشکلی در ارتباط با سرور پیش آمده',
+                        icon: 'error',
+                        buttons: 'تلاش دوباره'
+                    })
+                })
+        }
+    }
+
+    const validRul = valid => setInpValid(valid)
+
     return (
         <section className="page footer foot">
 
@@ -83,9 +141,8 @@ export default function Footer() {
                             شوید!</span>
 
                         <form className="footer-widgets__form">
-                            <input type="text" className="footer-widgets__input" placeholder="ایمیل خود را وارد کنید"
-                                id="news-letter-input" />
-                            <button type="submit" className="button btn-submit-letters">عضویت</button>
+                            <Input inpIcon={<MdOutlineAttachEmail />} inpPlaceholder={'ایمیل خود را وارد نمایید'} onValid={validRul} type={inputEmail} cleanInput={inpClean}/>
+                            <button type="submit" className="button btn-submit-letters" ref={btnRef} onClick={e => sendEmailForJoinNewsLetter(e)}>عضویت</button>
                         </form>
                     </div>
 

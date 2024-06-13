@@ -2,11 +2,17 @@ import React, { useReducer, useRef, useState, useEffect } from 'react'
 import './Input.css'
 import inputReducer from './InputReducer'
 
-export default function Input({ inpPlaceholder, inpIcon, type, onValid, textarea = false }) {
+export default function Input({ inpPlaceholder, inpIcon, type, onValid, textarea = false, cleanInput }) {
 
     const validRef = useRef()
+    const inpRef = useRef()
     const [isBlurInput, setIsBlurInput] = useState(false)
     const [state, dispatch] = useReducer(inputReducer, { value: '', isValid: false })
+
+    useEffect(() => {
+        dispatch({type: 'CLEAN_INPUT'})
+        inpRef.current.value = ''
+    }, [cleanInput])
 
     useEffect(() => {
         if (isBlurInput && state.value.length > 0) onValid({ type, valid: state.isValid, value: state.value })
@@ -23,7 +29,7 @@ export default function Input({ inpPlaceholder, inpIcon, type, onValid, textarea
                     <textarea placeholder={inpPlaceholder} value={state.value} onChange={event => inpChangeHandler(event)} onBlur={() => setIsBlurInput(true)} className={`textarea-form ${state.isValid ? 'valid-inp' : state.value.length !== 0 ? 'not-valid-inp' : ''}`}></textarea>
                     :
                     <>
-                        <input type="text" placeholder={inpPlaceholder} value={state.value} onChange={event => inpChangeHandler(event)} onBlur={() => setIsBlurInput(true)} />
+                        <input ref={inpRef} type="text" placeholder={inpPlaceholder} value={state.value} onChange={event => inpChangeHandler(event)} onBlur={() => setIsBlurInput(true)} />
                         {inpIcon}
                     </>
             }
