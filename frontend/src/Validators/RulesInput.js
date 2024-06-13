@@ -1,4 +1,5 @@
 export const inputFullName = 'INP_FULL_NAME'
+export const textArea = 'TEXT_AREA'
 export const inputUserName = 'INP_USER_NAME'
 export const inputPhoneNumber = 'INP_PHONE_NAMBER'
 export const inputEmail = 'INP_EMAIL'

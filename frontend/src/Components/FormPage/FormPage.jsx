@@ -10,7 +10,7 @@ import { MdOutlineAttachEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 //types
 import {
-    inputFullName, inputUserName, inputPhoneNumber, inputEmail, inputPassword
+    inputFullName, inputUserName, inputPhoneNumber, inputEmail, inputPassword, textArea
 } from "../../Validators/RulesInput.js"
 import { AuthContext } from '../../Contexts/AuthContext.js'
 //package
@@ -30,10 +30,11 @@ export default function FormPage({ nameFormPage }) {
         !recaptchaOk && btnForm.setAttribute('disabled', true)
 
         if (window.location.pathname.includes('login') && inpValid.length === formRef.current.children.length - 2 && recaptchaOk ||
-            window.location.pathname.includes('register') && inpValid.length === formRef.current.children.length && recaptchaOk) {
+            window.location.pathname.includes('register') && inpValid.length === formRef.current.children.length - 1 ||
+            window.location.pathname.includes('contact') && inpValid.length === formRef.current.children.length - 1) {
 
             let isInpValid = inpValid.every(inp => !inp.valid ? false : true)
-            console.log(isInpValid);
+
             if (!isInpValid) {
                 btnForm.setAttribute('disabled', true)
             } else {
@@ -82,7 +83,7 @@ export default function FormPage({ nameFormPage }) {
                             })
 
                     }
-                    else {
+                    else if (nameFormPage === 'login') {
 
                         const loginUser = {
                             identifier: null,
@@ -119,6 +120,50 @@ export default function FormPage({ nameFormPage }) {
                             .catch(err => {
                                 swal({
                                     title: 'همچین کاربری وجود ندارد',
+                                    icon: 'error',
+                                    buttons: 'تلاش دوباره'
+                                })
+                            })
+                    } else {
+
+                        const criticismUser = {
+                            name: null,
+                            email: null,
+                            phone: null,
+                            body: null,
+                        }
+
+                        inpValid.map(item => {
+                            item.type === inputFullName && (criticismUser.name = item.value)
+                            item.type === inputEmail && (criticismUser.email = item.value)
+                            item.type === inputPhoneNumber && (criticismUser.phone = item.value)
+                            item.type === textArea && (criticismUser.body = item.value)
+                            return true
+                        })
+
+                        fetch(`http://localhost:4000/v1/contact`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(criticismUser)
+                        })
+                            .then(res => {
+                                if (res.ok) return res.json()
+                                else return res.text().then(textErr => { throw new Error(textErr) })
+                            })
+                            .then(result => {
+                                {
+                                    swal({
+                                        title: 'با موفقیت نظرتون ارسال شد',
+                                        icon: 'success',
+                                        buttons: 'باشه'
+                                    }).then(val => navigate('/'))
+                                }
+                            })
+                            .catch(err => {
+                                swal({
+                                    title: 'مشکلی در ارتباط با سروز پیش آمد',
                                     icon: 'error',
                                     buttons: 'تلاش دوباره'
                                 })
@@ -174,7 +219,7 @@ export default function FormPage({ nameFormPage }) {
                             <Input onValid={validRul} type={inputFullName} inpPlaceholder={'نام و نام خوانوادگی'} inpIcon={<HiOutlineUser />} />
                             <Input onValid={validRul} type={inputEmail} inpPlaceholder={'آدرس ایمیل'} inpIcon={<MdOutlineAttachEmail />} />
                             <Input onValid={validRul} type={inputPhoneNumber} inpPlaceholder={'شماره تلفن'} inpIcon={<HiOutlinePhone />} />
-                            <textarea placeholder='متن خود را وارد کنید' className='textarea-form'></textarea>
+                            <Input onValid={validRul} type={textArea} inpPlaceholder={'متن خود را وارد کنید'} textarea={true} />
                         </>
 
             }
