@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react'
+import './FormPage.css'
 import { useNavigate } from 'react-router-dom'
 import FormGetData from '../FormGetData/FormGetData.jsx';
 import Input from '../Input/Input.jsx';
@@ -159,14 +160,22 @@ export default function FormPage({ nameFormPage }) {
                         <Input onValid={validRul} type={inputEmail} inpPlaceholder={'آدرس ایمیل'} inpIcon={<MdOutlineAttachEmail />} />
                         <Input onValid={validRul} type={inputPassword} inpPlaceholder={'رمز عبور'} inpIcon={<RiLockPasswordLine />} />
                     </>
-                    :
-                    <>
-                        <Input onValid={validRul} type={inputEmail} inpPlaceholder={'آدرس ایمیل'} inpIcon={<MdOutlineAttachEmail />} />
-                        <Input onValid={validRul} type={inputPassword} inpPlaceholder={'رمز عبور'} inpIcon={<RiLockPasswordLine />} />
-                        <div className='parent-recaptcha'>
-                            <ReCAPTCHA sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" onChange={onChangeHandler} theme="dark" />
-                        </div>
-                    </>
+                    : nameFormPage === 'register' ?
+                        <>
+                            <Input onValid={validRul} type={inputEmail} inpPlaceholder={'آدرس ایمیل'} inpIcon={<MdOutlineAttachEmail />} />
+                            <Input onValid={validRul} type={inputPassword} inpPlaceholder={'رمز عبور'} inpIcon={<RiLockPasswordLine />} />
+                            <div className='parent-recaptcha'>
+                                <ReCAPTCHA sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" onChange={onChangeHandler} theme="dark" />
+                            </div>
+                        </>
+                        : nameFormPage === 'contactus' &&
+                        <>
+                            <Input onValid={validRul} type={inputFullName} inpPlaceholder={'نام و نام خوانوادگی'} inpIcon={<HiOutlineUser />} />
+                            <Input onValid={validRul} type={inputEmail} inpPlaceholder={'آدرس ایمیل'} inpIcon={<MdOutlineAttachEmail />} />
+                            <Input onValid={validRul} type={inputPhoneNumber} inpPlaceholder={'شماره تلفن'} inpIcon={<HiOutlinePhone />} />
+                            <textarea placeholder='متن خود را وارد کنید' className='textarea-form'></textarea>
+                        </>
+
             }
         </FormGetData>
     )

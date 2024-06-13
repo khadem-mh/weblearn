@@ -1,0 +1,11 @@
+.textarea-form {
+    width: inherit !important;
+    background-color: var(--blue-lighter-color);
+    border-radius: 1rem;
+    padding: 1rem;
+    width: 282px !important;
+    height: 200px;
+    border: 0;
+    color: var(--secondary-light-color) !important;
+    font-size: 1.3rem;
+}
