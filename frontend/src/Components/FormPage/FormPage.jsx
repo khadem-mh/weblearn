@@ -27,8 +27,12 @@ export default function FormPage({ nameFormPage }) {
         let btnForm = formRef.current.lastElementChild
 
         !recaptchaOk && btnForm.setAttribute('disabled', true)
-        if (inpValid.length === formRef.current.children.length || recaptchaOk) {
+
+        if (window.location.pathname.includes('login') && inpValid.length === formRef.current.children.length - 2 && recaptchaOk ||
+            window.location.pathname.includes('register') && inpValid.length === formRef.current.children.length && recaptchaOk) {
+
             let isInpValid = inpValid.every(inp => !inp.valid ? false : true)
+            console.log(isInpValid);
             if (!isInpValid) {
                 btnForm.setAttribute('disabled', true)
             } else {
