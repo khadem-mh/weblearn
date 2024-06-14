@@ -33,12 +33,28 @@
     left: 18px;
     z-index: 1;
     transition: all 400ms;
+    animation-direction: alternate;
+    animation-name: rotate-search;
+    animation-iteration-count: infinite;
+    animation-duration: 10s;
+    box-shadow: 40px -40px 20px var(--primary-color), -40px 40px 20px var(--primary-color), 40px 40px 20px whitesmoke, -40px -40px 20px whitesmoke;
+    border-radius: 50rem;
 }
 
 .search-icon:hover {
-    box-shadow: 20px 20px 10px black;
     transform: translateY(-10px) scale(150%) rotate(45deg);
     color: var(--primary-color);
+}
+
+@keyframes rotate-search {
+    to {
+        transform: rotate(0deg);
+    }
+
+    from {
+        transform: rotate(360deg);
+    }
+
 }
 
 /* Finish search input styles */
