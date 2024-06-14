@@ -29,8 +29,16 @@
     color: var(--bluedie-color);
     cursor: pointer;
     position: absolute;
-    left: 15px;
+    top: 16px;
+    left: 18px;
     z-index: 1;
+    transition: all 400ms;
+}
+
+.search-icon:hover {
+    box-shadow: 20px 20px 10px black;
+    transform: translateY(-10px) scale(150%) rotate(45deg);
+    color: var(--primary-color);
 }
 
 /* Finish search input styles */
