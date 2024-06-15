@@ -10,8 +10,10 @@ export default function Input({ inpPlaceholder, inpIcon, type, onValid, textarea
     const [state, dispatch] = useReducer(inputReducer, { value: '', isValid: false })
 
     useEffect(() => {
-        dispatch({ type: 'CLEAN_INPUT', valid: false, value: '' })
-        inpRef.current.value = ''
+        if (cleanInput !== undefined) {
+            dispatch({ type: 'CLEAN_INPUT', valid: false, value: '' })
+            inpRef.current.value = ''
+        }
     }, [cleanInput])
 
     useEffect(() => {
