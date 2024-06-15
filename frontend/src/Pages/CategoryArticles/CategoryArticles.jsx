@@ -19,31 +19,34 @@ export default function CategoryArticles() {
   const [filterArticlesPage, setFilterArticlesPage] = useState([])
   //
   const [filterArticlesTypes, setFilterArticlesTypes] = useState('all')
-  const [selectedItem, setSelectedItem] = useState(4)
+  const [selectedItem, setSelectedItem] = useState(0)
   const [categories, setCategories] = useState([])
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/articles`)
       .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
-      .then(allDatas => setAllArticles(allDatas))
+      .then(allDatas => {
+        setAllArticles(allDatas)
+        setCategories(allDatas)
+      })
       .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
   }, [])
 
   useEffect(() => {
-    switch (filterArticlesTypes.newText || filterArticlesTypes) {
+    switch (filterArticlesTypes) {
       case 'all': {
-        setCategories(filterArticlesTypes.newText ? categories : allArticles)
-        setSelectedItem(4)
+        setCategories(allArticles)
+        setSelectedItem(0)
         break
       }
-      case 'past': {
-        setCategories([...categories].reverse())
-        setSelectedItem(5)
+      case 'cheap': {
+        setCategories([...allArticles].reverse())
+        setSelectedItem(1)
         break
       }
-      case 'new': {
-        setCategories([...categories])
-        setSelectedItem(6)
+      case 'expensive': {
+        setCategories(allArticles)
+        setSelectedItem(2)
         break
       }
       default: setCategories(allArticles)
@@ -84,7 +87,7 @@ export default function CategoryArticles() {
 
             <div className='category-courses-and-sort-parent'>
 
-              <CategorySort namesList={['عادی', 'قدیمی ترین', 'جدیدترین', 'پرمخاطب ترین']} onSelectedItem={filteredArticlesHandler} selectItem={selectedItem} />
+              <CategorySort namesList={['عادی', 'قدیمی ترین', 'جدیدترین']} onSelectedItem={filteredArticlesHandler} selectItem={selectedItem} />
 
               <section className='category-courses'>
                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-3" id="courses-container">
@@ -109,7 +112,7 @@ export default function CategoryArticles() {
           <Pagination
             bgColorActive='rgb(43, 203, 86)'
             colorActive='white'
-            arrDatas={allArticles}
+            arrDatas={categories}
             countDataPerPage={6}
             pathName={'/all-articles/page/'}
             onFilterDatas={handleFilterArticles}
