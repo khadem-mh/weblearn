@@ -28,60 +28,67 @@ export default function CategoryArticles() {
   const handleFilterArticles = datas => setFilterArticlesPage(datas)
 
   return (
-    <section className='page category-page'>
+    <>
+      {
+        allArticles.length &&
+        <section className='page category-page'>
 
-      <h2 className='category-h2'>مقالات</h2>
+          <h2 className='category-h2'>تمامی مقالات</h2>
+          <p className='text-light me-3 mb-2'>{allArticles.length} مقاله</p>
 
-      <div className='category-filters'>
+          <div className='category-filters'>
 
-        <aside className='category-aside'>
+            <aside className='category-aside'>
 
-          <section className='category-research'>
-            <input type="text" className='category-research__input' placeholder='در بین مقالات جستجو کنید' />
-            <RiSearchLine className='category-research__icon' />
-          </section>
+              <section className='category-research'>
+                <input type="text" className='category-research__input' placeholder='در بین مقالات جستجو کنید' />
+                <RiSearchLine className='category-research__icon' />
+              </section>
 
-          <div className='d-flex align-items-center justify-content-center'>
-            <OffCanvasBottom displayCanvas={'d-flex d-sm-none'} iconBtn={<ImSortAmountDesc />} titleHeader={'مرتب سازی بر اساس'} namesLi={['همه مقالات', 'جدیدترین', 'قدیمی ترین', 'پرمخاطب ترین']} />
-          </div>
+              <div className='d-flex align-items-center justify-content-center'>
+                <OffCanvasBottom displayCanvas={'d-flex d-sm-none'} iconBtn={<ImSortAmountDesc />} titleHeader={'مرتب سازی بر اساس'} namesLi={['همه مقالات', 'جدیدترین', 'قدیمی ترین', 'پرمخاطب ترین']} />
+              </div>
 
-          <div className='d-none d-sm-block'>
-            <FilterCategory categorySwitch={false} titleCategory={'دسته بندی مقالات'} />
-          </div>
+              <div className='d-none d-sm-block'>
+                <FilterCategory categorySwitch={false} titleCategory={'دسته بندی مقالات'} />
+              </div>
 
-        </aside>
+            </aside>
 
-        <div className='category-courses-and-sort-parent'>
+            <div className='category-courses-and-sort-parent'>
 
-          <CategorySort namesList={['عادی', 'قدیمی ترین', 'جدیدترین', 'پرمخاطب ترین']} />
+              <CategorySort namesList={['عادی', 'قدیمی ترین', 'جدیدترین', 'پرمخاطب ترین']} />
 
-          <section className='category-courses'>
-            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-3" id="courses-container">
+              <section className='category-courses'>
+                <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-3" id="courses-container">
 
-              {
-                filterArticlesPage.map((articleInfo, index) => (
-                  <Article key={index} {...articleInfo} pathCover={'public/Images/Blogs/'}/>
-                ))
-              }
+                  {
+                    filterArticlesPage.length ? filterArticlesPage.map((articleInfo, index) => (
+                      <Article key={index} {...articleInfo} pathCover={'public/Images/Blogs/'} />
+                    )) :
+                      <div className='w-100' style={{ height: '40vh', textAlign: 'center', marginTop: '15rem' }}>
+                        <h2 className='mb-0 mb-4 text-light' style={{ fontSize: '3rem', fontFamily: 'Lalezar' }}>فعلا برای این دسته بندی مقاله ای قرار نگرفته است</h2>
+                        <h5 className='text-success display-3'>⌡☻⌠</h5>
+                      </div>
+                  }
+
+                </div>
+              </section>
 
             </div>
-          </section>
 
-        </div>
+          </div>
 
-      </div>
-
-      {
-        allArticles.length && allArticles.length > 6 &&
-        <Pagination
-          bgColorActive='rgb(43, 203, 86)'
-          colorActive='white'
-          arrDatas={allArticles}
-          countDataPerPage={6}
-          pathName={'/all-articles/page/'}
-          onFilterDatas={handleFilterArticles}
-        />
+          <Pagination
+            bgColorActive='rgb(43, 203, 86)'
+            colorActive='white'
+            arrDatas={allArticles}
+            countDataPerPage={6}
+            pathName={'/all-articles/page/'}
+            onFilterDatas={handleFilterArticles}
+          />
+        </section>
       }
-    </section>
+    </>
   )
 }
