@@ -32,6 +32,8 @@ export default function CourseInfo() {
 
   const authContext = useContext(AuthContext)
   const [courseInfo, setCourseInfo] = useState({})
+  const [allcourses, setAllCourses] = useState([])
+  const [coursesRelated, setCoursesRelated] = useState([])
   const [comments, setComments] = useState([])
   const [maxScore, setMaxScore] = useState(0)
   const [sessions, setSessions] = useState([])
@@ -59,7 +61,18 @@ export default function CourseInfo() {
         setSessions(datas.sessions)
       })
 
+    fetch(`http://localhost:4000/v1/courses`)
+      .then(res => res.json())
+      .then(courses => setAllCourses(courses))
   }, [location])
+
+  useEffect(() => {
+    if (courseInfo?.name && allcourses.length >= 2) {
+      let filterCourses = [...allcourses].filter(course => course.categoryID.name === courseInfo.categoryID.name && course)
+      let randomChooseItem = filterCourses.sort(() => 0.5 - Math.random())
+      setCoursesRelated(randomChooseItem.slice(0, 3))
+    } else setCoursesRelated([])
+  }, [allcourses, courseInfo])
 
   useEffect(() => {
     if (sessions) {
@@ -318,11 +331,24 @@ export default function CourseInfo() {
 
                     <CopyLinkBox textForCopy={`http://localhost:3000/course-info/${params.course}`} titleBox={'لینک کوتاه'} yourStyle={'d-none d-lg-block'} children={<i className="fas fa-link short-url-icon"></i>} />
 
-                    <CategoryBox title={'دوره های مرتبط'} yourStyle={'d-none d-lg-block'}>
-                      <CourseCoverAside teacher={'سید محمد حسین خادم المهدی'} pathImg={'/Images/Courses/regex.png'} link={'pwa'} title={'دوره آموزشی Pwa'} />
-                      <CourseCoverAside teacher={'محمد امین سعیدی راد'} pathImg={'/Images/Courses/ts.png'} link={'typescript'} title={'دوره آموزشی TypeScript'} />
-                      <CourseCoverAside teacher={'قدیر یلمه'} pathImg={'/Images/Courses/next.png'} link={'blackjs'} title={'دوره آموزشی هک و امنیت جاوااسکریپت سیاه'} />
-                    </CategoryBox>
+                    {
+                      coursesRelated.length >= 2
+                        ?
+                        <CategoryBox title={'دوره های مرتبط'} yourStyle={'d-none d-lg-block'}>
+                          {
+                            coursesRelated.map((course, index) => (
+                              <CourseCoverAside key={index} teacher={course.creator} pathImg={`/images/courses/${course.cover}`} link={`course-info/${course.shortName}`} title={course.name} />
+                            ))
+                          }
+                        </CategoryBox>
+                        :
+                        <div>
+                          <CategoryBox title={'دوره های مرتبط'} yourStyle={'d-none d-lg-block'}>
+                            <p className='text-center text-secondary'>فعلا دوره ای قرار نگرفته است</p>
+                          </CategoryBox>
+                        </div>
+                    }
+
 
                   </div>
                 </div>
