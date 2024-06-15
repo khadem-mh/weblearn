@@ -17,10 +17,10 @@ export default function CategoryArticles() {
 
   const [allArticles, setAllArticles] = useState([])
   const [filterArticlesPage, setFilterArticlesPage] = useState([])
-  //
   const [filterArticlesTypes, setFilterArticlesTypes] = useState('all')
   const [selectedItem, setSelectedItem] = useState(0)
   const [categories, setCategories] = useState([])
+  const [searchCourse, setSearchCourse] = useState('')
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/articles`)
@@ -33,7 +33,7 @@ export default function CategoryArticles() {
   }, [])
 
   useEffect(() => {
-    switch (filterArticlesTypes) {
+    switch (filterArticlesTypes.newText || filterArticlesTypes) {
       case 'all': {
         setCategories(allArticles)
         setSelectedItem(0)
@@ -53,6 +53,25 @@ export default function CategoryArticles() {
     }
   }, [filterArticlesTypes])
 
+  //search value
+  const searchCourseHandler = event => {
+    setSearchCourse(event.target.value)
+    let removedWord = false
+    if (event._reactName === 'onKeyDown' && event.code === "Backspace") removedWord = true
+    if (event._reactName !== 'onKeyDown' && event.target.value === '') setCategories(allArticles)
+    else {
+      if (removedWord) {
+        let newSearch = event.target.value.slice(0, event.target.value.length - 1)
+        let alpha = [...allArticles].filter(article => article.title.toLowerCase().includes(newSearch) && article)
+        setCategories(alpha)
+
+      } else {
+        let alpha = [...allArticles].filter(article => article.title.toLowerCase().includes(event.target.value) && article)
+        setCategories(alpha)
+      }
+    }
+  }
+
   const handleFilterArticles = datas => setFilterArticlesPage(datas)
 
   const filteredArticlesHandler = filterType => setFilterArticlesTypes(filterType)
@@ -64,14 +83,14 @@ export default function CategoryArticles() {
         <section className='page category-page'>
 
           <h2 className='category-h2'>تمامی مقالات</h2>
-          <p className='text-light me-3 mb-2'>{allArticles.length} مقاله</p>
+          <p className='text-light me-3 mb-2'>{categories.length} مقاله</p>
 
           <div className='category-filters'>
 
             <aside className='category-aside'>
 
               <section className='category-research'>
-                <input type="text" className='category-research__input' placeholder='در بین مقالات جستجو کنید' />
+                <input type="text" className='category-research__input' placeholder='در بین مقالات جستجو کنید' value={searchCourse} onChange={e => searchCourseHandler(e)} onKeyDown={e => searchCourseHandler(e)} />
                 <RiSearchLine className='category-research__icon' />
               </section>
 
