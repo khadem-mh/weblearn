@@ -17,6 +17,10 @@ export default function CategoryArticles() {
 
   const [allArticles, setAllArticles] = useState([])
   const [filterArticlesPage, setFilterArticlesPage] = useState([])
+  //
+  const [filterArticlesTypes, setFilterArticlesTypes] = useState('all')
+  const [selectedItem, setSelectedItem] = useState(4)
+  const [categories, setCategories] = useState([])
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/articles`)
@@ -25,7 +29,30 @@ export default function CategoryArticles() {
       .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
   }, [])
 
+  useEffect(() => {
+    switch (filterArticlesTypes.newText || filterArticlesTypes) {
+      case 'all': {
+        setCategories(filterArticlesTypes.newText ? categories : allArticles)
+        setSelectedItem(4)
+        break
+      }
+      case 'past': {
+        setCategories([...categories].reverse())
+        setSelectedItem(5)
+        break
+      }
+      case 'new': {
+        setCategories([...categories])
+        setSelectedItem(6)
+        break
+      }
+      default: setCategories(allArticles)
+    }
+  }, [filterArticlesTypes])
+
   const handleFilterArticles = datas => setFilterArticlesPage(datas)
+
+  const filteredArticlesHandler = filterType => setFilterArticlesTypes(filterType)
 
   return (
     <>
@@ -57,7 +84,7 @@ export default function CategoryArticles() {
 
             <div className='category-courses-and-sort-parent'>
 
-              <CategorySort namesList={['عادی', 'قدیمی ترین', 'جدیدترین', 'پرمخاطب ترین']} />
+              <CategorySort namesList={['عادی', 'قدیمی ترین', 'جدیدترین', 'پرمخاطب ترین']} onSelectedItem={filteredArticlesHandler} selectItem={selectedItem} />
 
               <section className='category-courses'>
                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-3" id="courses-container">
