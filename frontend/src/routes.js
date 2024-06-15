@@ -31,7 +31,7 @@ const routes = [
     { path: 'login', element: <Login /> },
     { path: 'register', element: <Register /> },
     { path: 'contactus', element: <ContactUs /> },
-    { path: 'search', element: <SearchGlobal /> },
+    { path: 'search/:val', element: <SearchGlobal /> },
     //Route Account
     {
         path: 'my-account/*', element: <MyAccount children={< PageFirstAccount />} />, children: [

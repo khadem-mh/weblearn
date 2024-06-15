@@ -1,27 +1,28 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useState } from "react";
 import './SearchGlobal.css'
 import Course from "../../Components/Course/Course";
 import HeaderTitle from "../../Components/HeaderTitle/HeaderTitle"
 import Article from "../../Components/Article/Article"
-
-const reducerIndexPage = (state = {}, action) => {
-    switch (action.type) {
-        case 'COURSES': return { ...state, courses: action.payload }
-        case 'ARTICLES': return { ...state, articles: action.payload }
-        default: return state
-    }
-}
+import { useParams } from "react-router-dom";
+import swal from 'sweetalert'
 
 export default function SearchGlobal() {
 
-    const [state, dispatch] = useReducer(reducerIndexPage, {
-        courses: [],
-        articles: [],
-    })
+    const { val } = useParams()
+
+    const [courses, setCourses] = useState([])
+    const [articles, setArticles] = useState([])
 
     useEffect(() => {
-
-    }, [])
+        fetch(`http://localhost:4000/v1/search/${val.slice(2)}`)
+            .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
+            .then(allResult => {
+                console.log(allResult);
+                setCourses(allResult.allResultCourses)
+                setArticles(allResult.allResultArticles)
+            })
+            .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
+    }, [val])
 
     return (
         <div>
@@ -31,16 +32,16 @@ export default function SearchGlobal() {
             <article id="courses" style={{ marginTop: '13rem', marginBottom: '10rem' }}>
                 <div className="container">
 
-                    {state.courses.length ?
+                    {courses.length ?
                         <>
-                            <HeaderTitle title={'دوره ها'} subTitle={'سکوی پرتاپ شما به سمت موفقیت'} textBtn={`${state.courses.length} دوره`} />
+                            <HeaderTitle title={'دوره ها'} subTitle={'سکوی پرتاپ شما به سمت موفقیت'} textBtn={`${courses.length} دوره`} />
 
                             <div className="courses-content">
                                 <div className="container">
 
                                     <div className="row row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-4" id="courses-container">
                                         {
-                                            state.courses.length && state.courses.map((courseInformation, index) => (
+                                            courses.map((courseInformation, index) => (
                                                 <Course
                                                     key={index}
                                                     {...courseInformation}
@@ -65,15 +66,15 @@ export default function SearchGlobal() {
                 <div className="container">
 
                     {
-                        state.articles.length
+                        articles.length
                             ?
                             <>
-                                <HeaderTitle title={'مقالات'} subTitle={'پیش به سوی ارتقای دانش'} textBtn={`${state.courses.length} مقاله`} />
+                                <HeaderTitle title={'مقالات'} subTitle={'پیش به سوی ارتقای دانش'} textBtn={`${articles.length} مقاله`} />
 
                                 <div className="article__content">
                                     <div className="row row-cols-sm-2 row-cols-md-3 row-cols-xl-4 d-flex justify-content-center justify-content-sm-start" id="articles-wrapper">
                                         {
-                                            state.articles.length && state.articles.map((articleInformation, index) => (
+                                            articles.map((articleInformation, index) => (
                                                 <Article
                                                     key={index}
                                                     {...articleInformation}
