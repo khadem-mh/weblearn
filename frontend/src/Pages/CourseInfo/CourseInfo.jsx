@@ -87,7 +87,7 @@ export default function CourseInfo() {
           <BreadCrumb
             links={
               [
-                { to: `category-courses/${courseInfo.categoryID.name}`, title: `${courseInfo.categoryID.title}` },
+                { to: `${courseInfo.categoryID.name}/page/1`, title: `${courseInfo.categoryID.title}` },
                 { to: `course-info/${courseInfo.shortName}`, title: `${courseInfo.name}` },
               ]
             }
