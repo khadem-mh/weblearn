@@ -26,6 +26,7 @@ export default function CategoryCourses() {
   const [filterCourseTypes, setFilterCourseTypes] = useState('all')
   const [selectedItem, setSelectedItem] = useState(0)
   const [categoriesFilter, setCategoriesFilter] = useState([])
+  const [searchCourse, setSearchCourse] = useState('')
 
   useEffect(() => {
     fetch(`http://localhost:4000/v1/courses/category/${category}`)
@@ -75,6 +76,27 @@ export default function CategoryCourses() {
     }
   }, [filterCourseTypes])
 
+
+  //search value
+  const searchCourseHandler = event => {
+    setSearchCourse(event.target.value)
+    let removedWord = false
+    if (event._reactName === 'onKeyDown' && event.code === "Backspace") removedWord = true
+    if (event._reactName !== 'onKeyDown' && event.target.value === '') setCategories(allCourses)
+    else {
+      if (removedWord) {
+        let newSearch = event.target.value.slice(0, event.target.value.length - 1)
+        let alpha = [...allCourses].filter(courses => courses.name.toLowerCase().includes(newSearch) && courses)
+        setCategories(alpha)
+
+      } else {
+        let alpha = [...allCourses].filter(courses => courses.name.toLowerCase().includes(event.target.value) && courses)
+        setCategories(alpha)
+      }
+    }
+  }
+
+
   const handleFilterCourses = datas => setFilterCoursesPage(datas)
 
   const filteredCoursesHandler = filterType => setFilterCourseTypes(filterType)
@@ -83,7 +105,7 @@ export default function CategoryCourses() {
     <section className='page category-page'>
 
 
-      {categories.length
+      {allCourses.length
         ?
         <>
           <h2 className='category-h2'>دوره های {category}</h2>
@@ -94,7 +116,7 @@ export default function CategoryCourses() {
             <aside className='category-aside'>
 
               <section className='category-research'>
-                <input type="text" className='category-research__input' placeholder='در بین دوره ها جستجو کنید' />
+                <input type="text" className='category-research__input' placeholder='در بین دوره ها جستجو کنید' value={searchCourse} onChange={e => searchCourseHandler(e)} onKeyDown={e => searchCourseHandler(e)} />
                 <RiSearchLine className='category-research__icon' />
               </section>
 
@@ -104,7 +126,7 @@ export default function CategoryCourses() {
               </div>
 
               <div className='d-none d-sm-block'>
-                <FilterCategory categorySwitch={true} onFilteredOverCourses={filteredCoursesHandler} selecteItem={selectedItem}/>
+                <FilterCategory categorySwitch={true} onFilteredOverCourses={filteredCoursesHandler} selecteItem={selectedItem} />
               </div>
 
             </aside>
@@ -117,7 +139,7 @@ export default function CategoryCourses() {
                 <div className="row row-cols-sm-2 row-cols-md-2 row-cols-xl-3" id="courses-container">
 
                   {
-                    filterCoursesPage.length ? filterCoursesPage.map((courseInfo, index) => (
+                    categories.length ? filterCoursesPage.map((courseInfo, index) => (
                       <Course key={index} {...courseInfo} />
                     )) :
                       <div className='w-100' style={{ height: '40vh', textAlign: 'center', marginTop: '15rem' }}>
@@ -132,17 +154,16 @@ export default function CategoryCourses() {
             </div>
 
           </div>
-          {
-            categories.length &&
-            <Pagination
-              bgColorActive='rgb(43, 203, 86)'
-              colorActive='white'
-              arrDatas={selectedItem === 5 ? categoriesFilter : categories}
-              countDataPerPage={6}
-              pathName={`/${category}/page/`}
-              onFilterDatas={handleFilterCourses}
-            />
-          }
+
+          <Pagination
+            bgColorActive='rgb(43, 203, 86)'
+            colorActive='white'
+            arrDatas={selectedItem === 5 ? categoriesFilter : categories}
+            countDataPerPage={6}
+            pathName={`/${category}/page/`}
+            onFilterDatas={handleFilterCourses}
+          />
+
         </>
         :
         <div style={{ height: '40vh', textAlign: 'center', marginTop: '15rem' }}>
