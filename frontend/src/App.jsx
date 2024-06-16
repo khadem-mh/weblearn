@@ -13,8 +13,9 @@ import { AuthProvider } from "./Contexts/AuthContext"
 export default function App() {
 
   const location = useLocation()
-  if (location.pathname === '/my-account' || location.pathname === '/my-account/') routes[8].element = <MyAccount children={<PageFirstAccount />} />
-  else routes[8].element = null
+  console.log(routes);
+  if (location.pathname === '/my-account' || location.pathname === '/my-account/') routes[11].element = <MyAccount children={<PageFirstAccount />} />
+  else routes[11].element = null
   const router = useRoutes(routes)
 
   return (
