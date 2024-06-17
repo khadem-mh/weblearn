@@ -1,14 +1,11 @@
 import React from "react";
-import './Index.css'
-import { Outlet } from "react-router-dom"
+import './Courses.css'
 
 export default function AdminPanel() {
 
     return (
         <section>
-            admin panel page
-
-            <Outlet />
+            courses
         </section>
     )
 }

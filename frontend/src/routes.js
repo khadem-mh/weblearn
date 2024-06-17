@@ -18,7 +18,9 @@ import DetailsAccount from "./Pages/MyAccount/Pages/DetailsAccount/DetailsAccoun
 import Tickets from "./Pages/MyAccount/Pages/Tickets/Tickets";
 import AddTicket from "./Pages/MyAccount/Pages/AddTicket/AddTicket";
 //admin panel
-import AdminPanel from "./Pages/Admin"
+import AdminPanel from "./Pages/Admin/index"
+import Users from "./Pages/Admin/Users/Users"
+import AdminCourses from "./Pages/Admin/Courses/Courses"
 
 const routes = [
     //Routes Main
@@ -43,9 +45,12 @@ const routes = [
             { path: '*', element: < Page404 /> },
         ]
     },
-    { path: 'p-admin', element: <AdminPanel />, children: [
-
-    ] },
+    {
+        path: 'p-admin', element: <AdminPanel />, children: [
+            { path: 'users', element: <Users /> },
+            { path: 'courses', element: <AdminCourses /> },
+        ]
+    },
     { path: '/*', element: <Page404 /> },
 ]
 
