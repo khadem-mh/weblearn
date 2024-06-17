@@ -17,7 +17,8 @@ import MyCourses from "./Pages/MyAccount/Pages/MyCourses/MyCourses";
 import DetailsAccount from "./Pages/MyAccount/Pages/DetailsAccount/DetailsAccount";
 import Tickets from "./Pages/MyAccount/Pages/Tickets/Tickets";
 import AddTicket from "./Pages/MyAccount/Pages/AddTicket/AddTicket";
-
+//admin panel
+import AdminPanel from "./Pages/Admin"
 
 const routes = [
     //Routes Main
@@ -42,6 +43,9 @@ const routes = [
             { path: '*', element: < Page404 /> },
         ]
     },
+    { path: 'p-admin', element: <AdminPanel />, children: [
+
+    ] },
     { path: '/*', element: <Page404 /> },
 ]
 
