@@ -22,6 +22,7 @@ import AdminPanel from "./Pages/Admin/index"
 import AdminPanel_Users from "./Pages/Admin/Users/Users"
 import AdminPanel_Courses from "./Pages/Admin/Courses/Courses"
 import AdminPanel_Menus from "./Pages/Admin/Menus/Menus"
+import AdminPanel_Articles from "./Pages/Admin/Articles/Articles"
 
 const routes = [
     //Routes Main
@@ -51,6 +52,7 @@ const routes = [
             { path: 'users', element: <AdminPanel_Users /> },
             { path: 'courses', element: <AdminPanel_Courses /> },
             { path: 'menus', element: <AdminPanel_Menus /> },
+            { path: 'articles', element: <AdminPanel_Articles /> },
         ]
     },
     { path: '/*', element: <Page404 /> },
