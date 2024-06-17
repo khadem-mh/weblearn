@@ -19,8 +19,9 @@ import Tickets from "./Pages/MyAccount/Pages/Tickets/Tickets";
 import AddTicket from "./Pages/MyAccount/Pages/AddTicket/AddTicket";
 //admin panel
 import AdminPanel from "./Pages/Admin/index"
-import Users from "./Pages/Admin/Users/Users"
-import AdminCourses from "./Pages/Admin/Courses/Courses"
+import AdminPanel_Users from "./Pages/Admin/Users/Users"
+import AdminPanel_Courses from "./Pages/Admin/Courses/Courses"
+import AdminPanel_Menus from "./Pages/Admin/Menus/Menus"
 
 const routes = [
     //Routes Main
@@ -47,8 +48,9 @@ const routes = [
     },
     {
         path: 'p-admin', element: <AdminPanel />, children: [
-            { path: 'users', element: <Users /> },
-            { path: 'courses', element: <AdminCourses /> },
+            { path: 'users', element: <AdminPanel_Users /> },
+            { path: 'courses', element: <AdminPanel_Courses /> },
+            { path: 'menus', element: <AdminPanel_Menus /> },
         ]
     },
     { path: '/*', element: <Page404 /> },

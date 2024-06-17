@@ -1,7 +1,7 @@
 import React from "react";
 import './Users.css'
 
-export default function Users() {
+export default function AdminPanel_Users() {
 
     return (
         <section>
