@@ -1,11 +1,11 @@
 @media screen and (max-width: 1200px) {
-    .sidebar {
+    .admin .sidebar {
         width: 150px;
     }
 }
 
 @media screen and (max-width: 800px) {
-    .sidebar-div {
+    .admin .sidebar-div {
         width: 60px;
     }
 
@@ -15,14 +15,14 @@
 }
 
 @media screen and (max-height: 768px) {
-    .sidebar {
+    .admin .sidebar {
         align-items: flex-end;
     }
 }
 
 @media screen and (max-height: 650px),
 (max-width: 1200px) {
-    .sidebar-title {
+    .admin .sidebar-title {
         display: none;
     }
 }
@@ -33,11 +33,11 @@
         margin: 0 !important;
     }
 
-    .sidebar {
+    .admin .sidebar {
         width: 60px;
     }
 
-    .sidebar-links li {
+    .admin .sidebar-links li {
         padding: 15px;
     }
 
@@ -45,7 +45,7 @@
 
 @media screen and (max-width: 800px),
 (max-height: 650px) {
-    .sidebar-links {
+    .admin .sidebar-links {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -54,18 +54,18 @@
 
 @media screen and (max-width: 1200px),
 (max-height: 650px) {
-    .sidebar-links li .active {
+    .admin .sidebar-links li .active {
         padding-right: 0;
     }
 }
 
 @media screen and (max-height: 650px),
 (max-width: 800px) {
-    .sidebar-links__link span {
+    .admin .sidebar-links__link span {
         display: none;
     }
 
-    .sidebar-links li a {
+    .admin .sidebar-links li a {
         justify-content: center;
     }
 

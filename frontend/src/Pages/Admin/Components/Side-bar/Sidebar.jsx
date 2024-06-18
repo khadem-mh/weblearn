@@ -26,49 +26,49 @@ export default function Sidebar() {
 
     return (
         <>
-            <section className="sidebar">
-                <div className='sidebar-div'>
-                    <h1 className="sidebar-title">به داشبورد خود خوش آمدید</h1>
+            <section className="admin sidebar">
+                <div className='admin sidebar-div'>
+                    <h1 className="admin sidebar-title">به داشبورد خود خوش آمدید</h1>
 
-                    <ul className="sidebar-links">
+                    <ul className="admin sidebar-links">
                         <li >
-                            <NavLink to="/p-admin" className={`sidebar-links__link`}>
+                            <NavLink to="/p-admin" className={`admin sidebar-links__link`}>
                                 <AiOutlineHome className="icon" />
                                 <span>صفحه اصلی</span>
                             </NavLink>
                         </li>
                         <li >
-                            <NavLink to="/p-admin/courses" className={`sidebar-links__link`} >
+                            <NavLink to="/p-admin/courses" className={`admin sidebar-links__link`} >
                                 <MdProductionQuantityLimits className="icon" />
                                 <span>محصولات</span>
                             </NavLink>
                         </li>
                         <li >
-                            <NavLink to="/p-admin/comments" className={`sidebar-links__link`}>
+                            <NavLink to="/p-admin/comments" className={`admin sidebar-links__link`}>
                                 <BiCommentDetail className="icon" />
                                 <span>کامنت ها</span>
                             </NavLink>
                         </li>
                         <li >
-                            <NavLink to="/p-admin/users" className={`sidebar-links__link`}>
+                            <NavLink to="/p-admin/users" className={`admin sidebar-links__link`}>
                                 <FiUsers className="icon" />
                                 <span>کاربران</span>
                             </NavLink>
                         </li>
                         <li >
-                            <NavLink to="/p-admin/orders" className={`sidebar-links__link`}>
+                            <NavLink to="/p-admin/orders" className={`admin sidebar-links__link`}>
                                 <BsBagCheck className="icon" />
                                 <span>سفارشات</span>
                             </NavLink>
                         </li>
                         <li >
-                            <NavLink to="/p-admin/offs" className={`sidebar-links__link`}>
+                            <NavLink to="/p-admin/offs" className={`admin sidebar-links__link`}>
                                 <BsCurrencyDollar className="icon" />
                                 <span>تخفیف ها</span>
                             </NavLink>
                         </li>
                         <li >
-                            <a href="/" className={`sidebar-links__link`} onClick={e => logoutHandle(e)}>
+                            <a href="/" className={`admin sidebar-links__link`} onClick={e => logoutHandle(e)}>
                                 <IoLogOutOutline className="icon" />
                                 <span>خروج</span>
                             </a>
