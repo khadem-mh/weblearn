@@ -1,5 +1,5 @@
-import React, { useEffect, useContext } from "react"
-import { useRoutes, useLocation } from "react-router-dom"
+import React, { useEffect, useContext, useLayoutEffect } from "react"
+import { useRoutes, useLocation, useNavigate } from "react-router-dom"
 import routes from "./routes"
 //components
 import Navbar from "./Components/Navbar/Navbar"
@@ -12,22 +12,18 @@ import { AuthProvider, AuthContext } from "./Contexts/AuthContext"
 
 export default function App() {
 
+  const navigate = useNavigate()
   const location = useLocation()
   const authContext = useContext(AuthContext)
   if (location.pathname === '/my-account' || location.pathname === '/my-account/') routes[11].element = <MyAccount children={<PageFirstAccount />} />
   else routes[11].element = null
   const router = useRoutes(routes)
 
-  useEffect(() => {
-    if (location.pathname.includes('/p-admin')) document.body.style.cssText = "background-color: whitesmoke; font-family: 'Lalezar'"
-    else document.body.style.backgroundColor = 'var(--black-color)'
 
-    if (location.pathname.includes('/p-admin') && authContext.userInfos?.role === 'USER' ||
-      location.pathname.includes('/p-admin') && authContext.userInfos === null) {
-        window.location.pathname = '/'
-        document.body.style.filter = 'blur(100px)'
-    }
-  }, [location])
+  useEffect(() => {
+    location.pathname.includes('/p-admin') ? document.body.style.cssText = "background-color: whitesmoke; font-family: Lalezar" : document.body.style.cssText = 'background-color: var(--black-color) ; font-family: IRANSans'
+
+  }, [location]);
 
   return (
     <main>

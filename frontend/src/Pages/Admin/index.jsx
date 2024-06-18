@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 //Css
 import './Css/custom.css'
 import './Css/style.css'
 import './Css/medias.css'
-import { Link, useLocation, Outlet } from "react-router-dom";
+import { Link, useLocation, Outlet, useNavigate } from "react-router-dom";
 //import context
 import { BtnClickContext } from "./Contexts/BtnClickContext";
 import { getOrdersTotalPrice, getProductNotExist, getProductsMaxBuy } from "./Contexts/InfosHomePage";
@@ -21,7 +21,7 @@ import DetailsModal from './Components/Modals/DetailsModal/DetailsModal'
 import InputEditModal from './Components/InputEditModal/InputEditModal'
 //Funcs Folder
 import getAllOrders from "./Functions/getAllOrders";
-
+import { AuthContext } from "../../Contexts/AuthContext";
 
 export default function AdminPanel() {
     const [productsMaxBuyProduct, setProductsMaxBuyProduct] = useState()
@@ -40,6 +40,13 @@ export default function AdminPanel() {
     const [managerInfos, setManagerInfos] = useState([]);
     const [adminName, setAdminName] = useState('');
     const [adminPass, setAdminPass] = useState('');
+
+    const authContext = useContext(AuthContext)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+
+    }, [location, authContext]);
 
     useEffect(() => {
         if (localStorage.getItem('admin-infos')) {

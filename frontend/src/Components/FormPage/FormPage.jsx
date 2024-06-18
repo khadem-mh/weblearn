@@ -113,7 +113,7 @@ export default function FormPage({ nameFormPage }) {
                                         title: 'با موفقیت وارد شدید',
                                         icon: 'success',
                                         buttons: 'ورود به پنل'
-                                    }).then(val => navigate('/my-account'))
+                                    }).then(val => navigate(authContext.userInfos?.role && authContext.userInfos.role === 'ADMIN' ? '/my-account' : '/p-admin'))
                                 }
                                 authContext.login(result.user, result.accessToken)
                             })
