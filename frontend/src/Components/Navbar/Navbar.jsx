@@ -16,6 +16,8 @@ export default function Navbar() {
     const [menus, setMenus] = useState([])
     const [topBar, setTopBar] = useState([])
 
+    console.log('o', authContext.userInfos.role);
+
     useEffect(() => {
         const handleResize = () => {
             setWindowWidth(window.innerWidth)
@@ -93,7 +95,7 @@ export default function Navbar() {
 
                             <div className="top-bar__email">
                                 <a href="/" className="top-bar__email-text top-bar__link">
-                                    sabz@gmail.com
+                                    sabzlearn@gmail.io
                                 </a>
                                 <i className="fas fa-envelope top-bar__email-icon"></i>
                             </div>
@@ -209,7 +211,7 @@ export default function Navbar() {
                                 <SearchInput w={'24rem'} h={'3.9rem'} fz={'.8em'} iconFz={'1em'} />
                             </div>
 
-                            <Link to={authContext.isLoggedIn ? '/my-account' : '/register'} className="main-header__profile">
+                            <Link to={authContext.isLoggedIn && authContext.userInfos.role === 'USER' ? '/my-account' : authContext.isLoggedIn && authContext.userInfos.role === 'ADMIN' ? '/p-admin' : '/register'} className="main-header__profile">
                                 <div className='d-none d-sm-block'>
                                     <p className='main-header__profile-text'>{authContext.token ? authContext.userInfos.name : 'ورود |  عضویت'}</p>
                                 </div>

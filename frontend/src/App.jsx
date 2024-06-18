@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useContext } from "react"
 import { useRoutes, useLocation } from "react-router-dom"
 import routes from "./routes"
 //components
@@ -8,12 +8,12 @@ import Footer from "./Components/Footer/Footer"
 import MyAccount from "./Pages/MyAccount/Components/Account/MyAccount"
 import PageFirstAccount from "./Pages/MyAccount/Pages/PageFirstAccount/PageFirstAccount";
 // Contexts
-import { AuthProvider } from "./Contexts/AuthContext"
+import { AuthProvider, AuthContext } from "./Contexts/AuthContext"
 
 export default function App() {
 
   const location = useLocation()
-  console.log(routes);
+  const authContext = useContext(AuthContext)
   if (location.pathname === '/my-account' || location.pathname === '/my-account/') routes[11].element = <MyAccount children={<PageFirstAccount />} />
   else routes[11].element = null
   const router = useRoutes(routes)
@@ -21,6 +21,12 @@ export default function App() {
   useEffect(() => {
     if (location.pathname.includes('/p-admin')) document.body.style.cssText = "background-color: whitesmoke; font-family: 'Lalezar'"
     else document.body.style.backgroundColor = 'var(--black-color)'
+
+    if (location.pathname.includes('/p-admin') && authContext.userInfos?.role === 'USER' ||
+      location.pathname.includes('/p-admin') && authContext.userInfos === null) {
+        window.location.pathname = '/'
+        document.body.style.filter = 'blur(100px)'
+    }
   }, [location])
 
   return (
