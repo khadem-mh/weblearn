@@ -19,10 +19,15 @@ import Tickets from "./Pages/MyAccount/Pages/Tickets/Tickets";
 import AddTicket from "./Pages/MyAccount/Pages/AddTicket/AddTicket";
 //admin panel
 import AdminPanel from "./Pages/Admin/index"
-import AdminPanel_Users from "./Pages/Admin/Users/Users"
-import AdminPanel_Courses from "./Pages/Admin/Courses/Courses"
-import AdminPanel_Menus from "./Pages/Admin/Menus/Menus"
-import AdminPanel_Articles from "./Pages/Admin/Articles/Articles"
+import AdminPanelMenus from "./Pages/Admin/Pages/Menus/Menus"
+import AdminPanelArticles from "./Pages/Admin/Pages/Articles/Articles"
+import AdminPanelHome from "./Pages/Admin/Pages/Home/Home"
+import AdminPanelCourses from "./Pages/Admin/Pages/Courses/Courses"
+import AdminPanelUsere from "./Pages/Admin/Pages/Users/Users"
+import AdminPanelComments from "./Pages/Admin/Pages/Comments/Comments"
+import AdminPanelOrders from "./Pages/Admin/Pages/Orders/Orders"
+import AdminPanelOffs from "./Pages/Admin/Pages/Offs/Offs"
+import Page404admin from "./Pages/Admin/Pages/Page404-admin/Page404-admin"
 
 const routes = [
     //Routes Main
@@ -48,11 +53,18 @@ const routes = [
         ]
     },
     {
-        path: 'p-admin', element: <AdminPanel />, children: [
-            { path: 'users', element: <AdminPanel_Users /> },
-            { path: 'courses', element: <AdminPanel_Courses /> },
-            { path: 'menus', element: <AdminPanel_Menus /> },
-            { path: 'articles', element: <AdminPanel_Articles /> },
+        path: 'p-admin/*', element: <AdminPanel />, children: [
+            { path: '', element: <AdminPanelHome /> },
+            { path: 'courses', element: <AdminPanelCourses /> },
+            { path: 'users', element: <AdminPanelUsere /> },
+            { path: 'comments', element: <AdminPanelComments /> },
+            { path: 'orders', element: <AdminPanelOrders /> },
+            { path: 'offs', element: <AdminPanelOffs /> },
+            //new
+            { path: 'menus', element: <AdminPanelMenus /> },
+            { path: 'articles', element: <AdminPanelArticles /> },
+            //
+            { path: '*', element: <Page404admin /> },
         ]
     },
     { path: '/*', element: <Page404 /> },

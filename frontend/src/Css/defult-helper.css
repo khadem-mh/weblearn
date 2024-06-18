@@ -12,7 +12,6 @@ body {
     font-size: 1.5rem;
     font-family: var(--primary-font);
     direction: rtl;
-    background-color: var(--black-color);
 }
 
 *,

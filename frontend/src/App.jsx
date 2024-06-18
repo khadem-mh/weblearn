@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useRoutes, useLocation } from "react-router-dom"
 import routes from "./routes"
 //components
@@ -17,6 +17,11 @@ export default function App() {
   if (location.pathname === '/my-account' || location.pathname === '/my-account/') routes[11].element = <MyAccount children={<PageFirstAccount />} />
   else routes[11].element = null
   const router = useRoutes(routes)
+
+  useEffect(() => {
+    if (location.pathname.includes('/p-admin')) document.body.style.cssText = "background-color: whitesmoke; font-family: 'Lalezar'"
+    else document.body.style.backgroundColor = 'var(--black-color)'
+  }, [location])
 
   return (
     <main>
