@@ -21,7 +21,7 @@ export default function Header({ children , isLightMode, setIsLightMode}) {
     return (
         <>
             <section className='parent-header'>
-                <Row className='header'>
+                <Row className='admin header'>
 
                     {children}
 
