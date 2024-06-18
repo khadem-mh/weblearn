@@ -22,7 +22,6 @@ export default function App() {
 
   useEffect(() => {
     location.pathname.includes('/p-admin') ? document.body.style.cssText = "background-color: whitesmoke; font-family: Lalezar" : document.body.style.cssText = 'background-color: var(--black-color) ; font-family: IRANSans'
-
   }, [location]);
 
   return (

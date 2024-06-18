@@ -16,8 +16,6 @@ export default function Navbar() {
     const [menus, setMenus] = useState([])
     const [topBar, setTopBar] = useState([])
 
-    console.log('o', authContext.userInfos.role);
-
     useEffect(() => {
         const handleResize = () => {
             setWindowWidth(window.innerWidth)

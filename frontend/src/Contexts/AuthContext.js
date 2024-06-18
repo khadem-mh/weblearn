@@ -19,7 +19,10 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const localStorageToken = JSON.parse(localStorage.getItem('user'))
 
-        if (location.pathname.includes('my-account') && !isLoggedIn) {
+        if (
+            (location.pathname.includes('my-account') && !isLoggedIn) ||
+            (location.pathname.includes('p-admin') && (!isLoggedIn || (userInfos?.role && userInfos.role === "USER" )))
+        ) {
             window.document.documentElement.style.backgroundColor = 'black'
             window.document.documentElement.style.filter = 'blur(100px)'
             window.document.documentElement.style.opacity = '0'
