@@ -19,16 +19,6 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const localStorageToken = JSON.parse(localStorage.getItem('user'))
 
-        if (
-            (location.pathname.includes('my-account') && !isLoggedIn) ||
-            (location.pathname.includes('p-admin') && (!isLoggedIn || (userInfos?.role && userInfos.role === "USER" )))
-        ) {
-            window.document.documentElement.style.backgroundColor = 'black'
-            window.document.documentElement.style.filter = 'blur(100px)'
-            window.document.documentElement.style.opacity = '0'
-            window.location.pathname = '/'
-        }
-
         if (localStorageToken) {
             fetch('http://localhost:4000/v1/auth/me', {
                 headers: {
@@ -36,13 +26,27 @@ export const AuthProvider = ({ children }) => {
                 }
             })
                 .then(res => res.json())
-                .then(data => {
+                .then(datas => {
                     setIsLoggedIn(true)
-                    setUserInfos(data)
+                    setUserInfos(datas)
                     setToken(localStorageToken.token)
-                    console.log(data);
+                    console.log(datas);
+
+                    if ((location.pathname.includes('p-admin') && datas.role === "USER")) {
+                        window.document.documentElement.style.filter = 'blur(100px)'
+                        window.document.documentElement.style.opacity = '0'
+                        window.location.pathname = '/my-account'
+                    }
+
                 })
+        } else {
+            if (location.pathname.includes('my-account') && !isLoggedIn || location.pathname.includes('p-admin') && !isLoggedIn) {
+                window.document.documentElement.style.filter = 'blur(100px)'
+                window.document.documentElement.style.opacity = '0'
+                window.location.pathname = '/'
+            }
         }
+
     }, [location, isLoggedIn])
 
     const login = (userInfo, token) => {
