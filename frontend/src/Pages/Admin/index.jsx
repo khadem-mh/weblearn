@@ -38,20 +38,21 @@ export default function AdminPanel() {
     const [isManager, setIsManagar] = useState(true);
     const [isShowDetailsError, setIsShowDetailsError] = useState(false)
     const [managerInfos, setManagerInfos] = useState([]);
-    const [adminName, setAdminName] = useState('');
-    const [adminPass, setAdminPass] = useState('');
+    const [adminToken, setAdminToken] = useState('');
+    const [adminEmail, setAdminEmail] = useState('');
+    const [adminPhone, setAdminPhone] = useState('');
 
     const authContext = useContext(AuthContext)
     const navigate = useNavigate()
 
     useEffect(() => {
-
-    }, [location, authContext]);
+        if (localStorage.getItem('admin-infos')) {
+            localStorage.removeItem('admin-infos')
+        }
+    }, [location]);
 
     useEffect(() => {
-        if (localStorage.getItem('admin-infos')) {
-            getAllAdmins()
-        }
+        if (localStorage.getItem('user')) setAdminToken(JSON.parse(localStorage.getItem('user')).token)
 
         if (JSON.parse(localStorage.getItem('light-mode')) === null) {
             localStorage.setItem('light-mode', JSON.stringify('false'))
@@ -82,52 +83,28 @@ export default function AdminPanel() {
 
     const getAllAdmins = event => {
         event && event.preventDefault()
-        let mainAdmin = JSON.parse(localStorage.getItem('admin-infos'))
+        let mainAdmin = JSON.parse(localStorage.getItem('user')).token
 
-        if (mainAdmin) {
-            fetch(`http://localhost:8000/api/admins`, {
+        if (authContext.userInfos.email === adminEmail && authContext.userInfos.email && mainAdmin) {
+            fetch(`http://localhost:4000/v1/auth/me`, {
                 method: 'GET',
                 headers: {
-                    'adminname': mainAdmin.username,
-                    'adminpassword': mainAdmin.password,
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${mainAdmin}`
                 }
             })
                 .then(res => res.json())
-                .then(admin => {
-                    if (admin.length) {
-                        setManagerInfos(...admin)
+                .then(adminInfos => {
+                    if (adminInfos) {
+                        console.log(adminInfos);
+                        setManagerInfos(adminInfos)
                         setIsManagar(false)
+                        localStorage.setItem('admin-infos', JSON.stringify({ ...adminInfos }))
                     }
                     else setIsShowDetailsError(true)
                 })
-        }
-        event && !mainAdmin &&
-            fetch(`http://localhost:8000/api/admins`, {
-                method: 'GET',
-                headers: {
-                    'adminname': adminName,
-                    'adminpassword': adminPass,
-                }
-            })
-                .then(res => res.json())
-                .then(admin => {
-                    if (admin.length) {
-                        setManagerInfos(...admin)
-                        setIsManagar(false)
-                        localStorage.setItem('admin-infos', JSON.stringify(
-                            {
-                                id: admin[0].id,
-                                firstname: admin[0].firstname,
-                                lastname: admin[0].lastname,
-                                username: admin[0].username,
-                                password: admin[0].password,
-                                task: admin[0].task,
-                                img: admin[0].img,
-                            }
-                        ))
-                    }
-                    else setIsShowDetailsError(true)
-                })
+        } else setIsShowDetailsError(true)
+
     }
 
     const getAllProducts = () => {
@@ -191,9 +168,9 @@ export default function AdminPanel() {
 
             {
                 isManager && (
-                    <EditMoal title={'نام کاربری و رمزعبور خود را وارد نمایید'} onSubmit={getAllAdmins} onClose={() => false} >
-                        <InputEditModal setValInp={setAdminName} valInp={adminName} cildren={<SiNamecheap />} placeHolderInp={"نام کاربری خود"} />
-                        <InputEditModal setValInp={setAdminPass} valInp={adminPass} cildren={<RiLockPasswordLine />} placeHolderInp={"رمز عبور خود"} />
+                    <EditMoal title={'ایمیل و رمزعبور خود را وارد نمایید'} onSubmit={getAllAdmins} onClose={() => false} >
+                        <InputEditModal setValInp={setAdminEmail} valInp={adminEmail} cildren={<SiNamecheap />} placeHolderInp={"ایمیل خود"} />
+                        <InputEditModal setValInp={setAdminPhone} valInp={adminPhone} cildren={<RiLockPasswordLine />} placeHolderInp={"رمز عبور خود"} />
                     </EditMoal>
                 )
             }

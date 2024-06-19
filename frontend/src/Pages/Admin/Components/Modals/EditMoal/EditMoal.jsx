@@ -15,7 +15,7 @@ export default function EditMoal({ children, onClose, onSubmit, title }) {
                 <h1>{title}</h1>
                 {children}
 
-                <button className='edit-form-submit' onClick={onSubmit}>ثبت اطلاعات جدید</button>
+                <button className='edit-form-submit' onClick={onSubmit}>ادامه</button>
             </form>
         </div>,
         document.getElementById('modals-parent')
