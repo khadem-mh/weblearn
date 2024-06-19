@@ -85,7 +85,7 @@ export default function AdminPanel() {
         event && event.preventDefault()
         let mainAdmin = JSON.parse(localStorage.getItem('user')).token
 
-        if (authContext.userInfos.email === adminEmail && authContext.userInfos.email && mainAdmin) {
+        if (authContext.userInfos.email === adminEmail && authContext.userInfos.phone === adminPhone && mainAdmin) {
             fetch(`http://localhost:4000/v1/auth/me`, {
                 method: 'GET',
                 headers: {
@@ -170,7 +170,7 @@ export default function AdminPanel() {
                 isManager && (
                     <EditMoal title={'ایمیل و رمزعبور خود را وارد نمایید'} onSubmit={getAllAdmins} onClose={() => false} >
                         <InputEditModal setValInp={setAdminEmail} valInp={adminEmail} cildren={<SiNamecheap />} placeHolderInp={"ایمیل خود"} />
-                        <InputEditModal setValInp={setAdminPhone} valInp={adminPhone} cildren={<RiLockPasswordLine />} placeHolderInp={"رمز عبور خود"} />
+                        <InputEditModal setValInp={setAdminPhone} valInp={adminPhone} cildren={<RiLockPasswordLine />} placeHolderInp={"شماره تلفن خود"} />
                     </EditMoal>
                 )
             }
