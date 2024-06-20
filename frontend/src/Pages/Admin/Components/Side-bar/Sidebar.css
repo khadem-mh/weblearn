@@ -1,16 +1,14 @@
 .admin.sidebar {
     width: 288px;
     height: 100vh;
-    display: flex;
-    align-items: center;
     position: fixed;
 }
 
 .sidebar-div {
     width: inherit;
-    position: fixed;
-    height: auto;
-    border-radius: 1.5rem;
+    height: inherit;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem ;
     box-shadow: -110px 90px 100px #0E2338 inset;
 }
 
@@ -68,9 +66,6 @@
     padding-right: 1rem;
 }
 
-/* .sidebar-links li:first-child {
-    margin-bottom: 20px;
-} */
 
 .icon {
     margin-left: 10px;

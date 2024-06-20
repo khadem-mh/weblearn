@@ -15,7 +15,7 @@
 }
 
 @media screen and (max-height: 768px) {
-    .sidebar {
+    .admin.sidebar {
         align-items: flex-end;
     }
 }
@@ -33,7 +33,7 @@
         margin: 0 !important;
     }
 
-    .sidebar {
+    .admin.sidebar {
         width: 60px;
     }
 
