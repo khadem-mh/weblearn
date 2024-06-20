@@ -46,17 +46,9 @@ export default function AdminPanel() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (localStorage.getItem('admin-infos')) {
-            localStorage.removeItem('admin-infos')
-        }
-    }, [location]);
-
-    useEffect(() => {
         if (localStorage.getItem('user')) setAdminToken(JSON.parse(localStorage.getItem('user')).token)
 
-        if (JSON.parse(localStorage.getItem('light-mode')) === null) {
-            localStorage.setItem('light-mode', JSON.stringify('false'))
-        }
+        if (JSON.parse(localStorage.getItem('light-mode')) === null) localStorage.setItem('light-mode', JSON.stringify('false'))
 
         else {
             if (JSON.parse(localStorage.getItem('light-mode')) === "true") {
@@ -141,10 +133,10 @@ export default function AdminPanel() {
                         <Sidebar />
                         <Header isLightMode={isLightMode} setIsLightMode={setIsLightMode}>
                             <Col className="admin-profile">
-                                <Link to={'p-admin/admin'} ><img src={managerInfos.img} alt="Admin Profile" /></Link>
+                                <Link to={'admin'} ><img src={managerInfos.profile} alt="Admin Profile" /></Link>
                                 <div>
-                                    <Link to={'p-admin/admin'} ><h1>{managerInfos.firstname} {managerInfos.lastname}</h1></Link>
-                                    <h3>{managerInfos.task}</h3>
+                                    <Link to={'admin'} ><h1>{managerInfos.name}</h1></Link>
+                                    <h3>{managerInfos.username}</h3>
                                 </div>
                             </Col>
                         </Header>
