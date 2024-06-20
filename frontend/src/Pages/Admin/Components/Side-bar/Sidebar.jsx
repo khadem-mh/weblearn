@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './Sidebar.css'
 import './media.css'
 import { AiOutlineHome } from "react-icons/ai";
@@ -13,6 +13,13 @@ import DeleteModal from '../Modals/DeleteModal/DeleteModal';
 export default function Sidebar() {
 
     const [logout, setLogout] = useState(false)
+    const adminSideRef = useRef()
+
+    useEffect(() => {
+        if (window.location.pathname.includes('/p-admin') && (window.location.pathname !== '/p-admin/' || window.location.pathname !== '/p-admin') && adminSideRef.current.classList.contains('active')) {
+            adminSideRef.current.classList.remove('active')
+        }
+    })
 
     const logoutHandle = e => {
         e.preventDefault()
@@ -31,8 +38,8 @@ export default function Sidebar() {
                     <h1 className="admin sidebar-title">به داشبورد خود خوش آمدید</h1>
 
                     <ul className="admin sidebar-links">
-                        <li >
-                            <NavLink to="/p-admin" className={`admin sidebar-links__link`}>
+                        <li>
+                            <NavLink to="/p-admin" className={`admin sidebar-links__link`} ref={adminSideRef}>
                                 <AiOutlineHome className="icon" />
                                 <span>صفحه اصلی</span>
                             </NavLink>
@@ -40,13 +47,25 @@ export default function Sidebar() {
                         <li >
                             <NavLink to="/p-admin/courses" className={`admin sidebar-links__link`} >
                                 <MdProductionQuantityLimits className="icon" />
-                                <span>محصولات</span>
+                                <span>دوره ها</span>
                             </NavLink>
                         </li>
                         <li >
-                            <NavLink to="/p-admin/comments" className={`admin sidebar-links__link`}>
+                            <NavLink to="/p-admin/menus" className={`admin sidebar-links__link`}>
                                 <BiCommentDetail className="icon" />
-                                <span>کامنت ها</span>
+                                <span>دسته بندی ها</span>
+                            </NavLink>
+                        </li>
+                        <li >
+                            <NavLink to="/p-admin/menus" className={`admin sidebar-links__link`}>
+                                <BiCommentDetail className="icon" />
+                                <span>منو ها</span>
+                            </NavLink>
+                        </li>
+                        <li >
+                            <NavLink to="/p-admin/articles" className={`admin sidebar-links__link`}>
+                                <BiCommentDetail className="icon" />
+                                <span>مقالات</span>
                             </NavLink>
                         </li>
                         <li >
@@ -59,6 +78,12 @@ export default function Sidebar() {
                             <NavLink to="/p-admin/orders" className={`admin sidebar-links__link`}>
                                 <BsBagCheck className="icon" />
                                 <span>سفارشات</span>
+                            </NavLink>
+                        </li>
+                        <li >
+                            <NavLink to="/p-admin/comments" className={`admin sidebar-links__link`}>
+                                <BiCommentDetail className="icon" />
+                                <span>کامنت ها</span>
                             </NavLink>
                         </li>
                         <li >

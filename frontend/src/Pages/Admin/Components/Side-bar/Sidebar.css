@@ -1,4 +1,4 @@
-.admin .sidebar {
+.admin.sidebar {
     width: 288px;
     height: 100vh;
     display: flex;
@@ -6,16 +6,15 @@
     position: fixed;
 }
 
-.admin .sidebar-div {
+.sidebar-div {
     width: inherit;
     position: fixed;
-    background-color: var(--blue);
     height: auto;
     border-radius: 1.5rem;
-    box-shadow: 10px 20px 0 var(--gray);
+    box-shadow: -110px 90px 100px #0E2338 inset;
 }
 
-.admin .sidebar-title {
+.sidebar-title {
     font-size: 1.4rem;
     color: var(--white-btn-color);
     text-align: center;
@@ -23,23 +22,28 @@
     padding: 1.3rem 0;
 }
 
-.admin .sidebar-links li {
+.sidebar-links li {
     position: relative;
     padding: 25px 15px;
     display: flex !important;
     display: inline-block;
 }
 
-.admin .sidebar-links li a {
+.sidebar-links li a {
     transition: all 400ms;
 }
 
-.admin .sidebar-links li:hover a:not(.active) {
-    color: var(--gray);
+.sidebar-links__link:hover {
+    box-shadow: 0px 0px 10px var(--blue);
+    border-radius: .8rem;
 }
 
-.admin .sidebar-links li,
-.admin .sidebar-links li a {
+.sidebar-links li:hover a:not(.active) {
+    color: gray;
+}
+
+.sidebar-links li,
+.sidebar-links li a {
     color: var(--white-btn-color);
     text-decoration: none;
     font-size: 1.3rem;
@@ -47,24 +51,24 @@
     align-items: center;
 }
 
-.admin .sidebar-links li {
+.sidebar-links li {
     width: 100%;
     height: 70.8px;
 }
 
-.admin .sidebar-links li a {
-    width: inherit ;
+.sidebar-links li a {
+    width: inherit;
     height: inherit;
     cursor: pointer;
 }
 
-.admin .sidebar-links li .active {
-    background-color: var(--blue-50);
-    border-radius: .5rem;
+.sidebar-links li .active {
+    box-shadow: 0px 0px 10px var(--blue);
+    border-radius: .8rem;
     padding-right: 1rem;
 }
 
-/* .admin .sidebar-links li:first-child {
+/* .sidebar-links li:first-child {
     margin-bottom: 20px;
 } */
 
