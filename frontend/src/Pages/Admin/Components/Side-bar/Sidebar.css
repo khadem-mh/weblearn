@@ -7,8 +7,6 @@
 .sidebar-div {
     width: inherit;
     height: inherit;
-    border-top-left-radius: 1.5rem;
-    border-bottom-left-radius: 1.5rem ;
     box-shadow: -110px 90px 100px #0E2338 inset;
 }
 

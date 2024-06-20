@@ -2,11 +2,19 @@
     .admin.sidebar {
         width: 150px;
     }
+
+    .admin.header {
+        width: calc(100% - 150px);
+    }
 }
 
 @media screen and (max-width: 800px) {
     .sidebar-div {
         width: 60px;
+    }
+
+    .admin.header {
+        width: calc(100% - 60px);
     }
 
     .icon {

@@ -1,10 +1,13 @@
 .parent-header {
-    width: 100%;
-    padding: 1rem 0; 
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+/*     padding: 1rem 0;  */
     z-index: 10000000 !important;
 }
 
-.admin .header {
+.admin.header {
+    width: calc(100% - 279px);
     padding: .3rem 1rem;
     display: flex;
     align-items: center;
@@ -18,6 +21,7 @@
 }
 
 .admin-profile img {
+    margin-top: .5rem;
     width: 50px;
     border-radius: 1rem;
 }
