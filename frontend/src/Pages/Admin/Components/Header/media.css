@@ -1,7 +1,13 @@
 @media screen and (max-width: 992px) {
-    .admin-profile div h1 {
-        font-size: 1rem;
+
+    .admin-profile div h1,
+    .search-box button,
+    .search-box input,
+    .admin-profile div h3,
+    .header-icon {
+        font-size: 16px;
     }
+
 }
 
 @media screen and (max-width: 768px) {

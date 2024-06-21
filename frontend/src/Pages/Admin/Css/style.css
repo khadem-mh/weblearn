@@ -34,7 +34,7 @@ table {
 thead tr {
     background-color: var(--blue-50) !important;
     color: var(--white-btn-color) !important;
-    font-size: 1.6rem;
+    font-size: 23px;
     text-shadow: 5px 3px 1px var(--gray);
     text-align: center;
 }
@@ -49,8 +49,9 @@ tbody tr {
 }
 
 tbody tr td {
-    font-size: 1.4rem;
+    font-size: 22px;
     color: var(--black);
+    padding: 2rem;
 }
 
 th,
@@ -95,7 +96,6 @@ td {
 .cms-table th,
 .cms-table td {
     padding: 20px;
-    
 }
 
 .form-select {
