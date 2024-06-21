@@ -41,12 +41,6 @@
 
 }
 
-@media screen and (max-height: 575px) {
-    .parent-header {
-        padding-right: 4.5rem;
-    }
-}
-
 @media screen and (max-width: 433px) {
     .admin-profile div h1 {
         font-size: .7rem;

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useLayoutEffect } from "react"
+import React, { useEffect, useContext } from "react"
 import { useRoutes, useLocation, useNavigate } from "react-router-dom"
 import routes from "./routes"
 //components
@@ -22,7 +22,7 @@ export default function App() {
 
   useEffect(() => {
     location.pathname.includes('/p-admin')
-      ? document.body.style.cssText = "background-color: whitesmoke; font-family: Lalezar"
+      ? document.body.style.cssText = "background-color: #F1F2F2; font-family: Lalezar"
       : document.body.style.cssText = 'background-color: var(--black-color) ; font-family: IRANSans'
   }, [location]);
 

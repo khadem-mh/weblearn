@@ -45,6 +45,10 @@
         width: 60px;
     }
 
+    .admin.header {
+        width: calc(100% - 45px);
+    }
+
     .sidebar-links li {
         padding: 15px;
     }
