@@ -51,7 +51,7 @@ tbody tr {
 tbody tr td {
     font-size: 22px;
     color: var(--black);
-    padding: 2rem;
+    padding: 1.7rem;
 }
 
 th,
