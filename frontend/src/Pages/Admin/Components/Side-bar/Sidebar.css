@@ -11,7 +11,7 @@
 }
 
 .sidebar-title {
-    font-size: 1.4rem;
+    font-size: 22px;
     color: var(--white-btn-color);
     text-align: center;
     border-bottom: 2px solid var(--blue-50);
@@ -42,7 +42,7 @@
 .sidebar-links li a {
     color: var(--white-btn-color);
     text-decoration: none;
-    font-size: 1.3rem;
+    font-size: 21px;
     display: flex;
     align-items: center;
 }

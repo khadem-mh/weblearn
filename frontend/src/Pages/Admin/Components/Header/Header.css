@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-/*     padding: 1rem 0;  */
+    /*     padding: 1rem 0;  */
     z-index: 10000000 !important;
 }
 
@@ -29,17 +29,17 @@
 .admin-profile div {
     display: flex;
     flex-direction: column;
-    row-gap: 5px;
     margin-right: 0.5rem;
 }
 
 .admin-profile div h1 {
-    font-size: 1.2rem;
+    font-size: 19px;
     color: var(--black) !important;
 }
 
 .admin-profile div h3 {
     color: var(--gray);
+    font-size: 17px;
 }
 
 .header-left-section {
@@ -66,14 +66,14 @@
     border: none;
     background: unset;
     width: 100%;
-    font-size: 1.1rem;
+    font-size: 18px;
     padding: 10px 20px 10px 10px;
 }
 
 .search-box button {
     display: flex;
     align-items: center;
-    font-size: 1.1rem;
+    font-size: 18px;
     width: 155px;
     height: 40px;
     border-radius: 10px;
@@ -105,7 +105,7 @@
 }
 
 .header-icon {
-    font-size: 1rem;
+    font-size: 18px;
 }
 
 .parent-checkbox-remmeber {
