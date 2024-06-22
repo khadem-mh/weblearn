@@ -122,3 +122,11 @@
 a {
     text-decoration: none;
 }
+
+.hidden-search-icon {
+    display: none !important;
+}
+
+.show-search-icon {
+    display: flex !important;
+}

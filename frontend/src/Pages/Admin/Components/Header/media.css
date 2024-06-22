@@ -1,4 +1,4 @@
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1200px) {
 
     .admin-profile div h1,
     .search-box button,
@@ -10,18 +10,16 @@
 
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
 
     .search-box {
         background-color: transparent;
         box-shadow: transparent 0 0 0;
         display: flex;
         align-items: flex-start;
-        height: 80vh;
-        visibility: hidden;
-        opacity: 0;
         position: absolute;
-        top: 5rem;
+        top: 65px;
+        left: 13px;
     }
 
     .search-box input {
@@ -37,35 +35,31 @@
         height: 47px;
     }
 
-    .search-icon-nav:hover~.search-box,
-    .search-box:focus,
-    .search-box:hover {
-        visibility: visible;
-        opacity: 1;
-    }
-
-
 }
 
-@media screen and (max-width: 433px) {
-    .admin-profile div h1 {
-        font-size: .7rem;
-    }
-
+@media screen and (max-width: 550px) {
     .search-box {
         width: 290px;
     }
 
-    .search-box input,
-    .search-box button {
-        font-size: .9rem;
+    .header-left-section {
+        justify-content: center;
+        margin-top: 1.5rem !important
+    }
+
+    .admin-profile {
+        justify-content: center;
+    }
+
+    .admin.header {
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .search-box button {
         height: 42px;
-    }
-
-    .admin-profile div h3 {
-        font-size: .7rem;
     }
 }

@@ -5,6 +5,13 @@
     }
 }
 
+
+@media screen and (max-width: 550px) {
+    .wellcom-back-admin-title {
+        text-align: center !important;
+    }
+}
+
 @media screen and (max-height: 525px) {
     .content-middle-cms {
         width: 90% !important;
