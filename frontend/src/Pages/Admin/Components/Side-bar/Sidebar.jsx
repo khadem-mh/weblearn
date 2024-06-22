@@ -16,8 +16,10 @@ export default function Sidebar() {
     const adminSideRef = useRef()
 
     useEffect(() => {
-        if (window.location.pathname.includes('/p-admin') && (window.location.pathname !== '/p-admin/' || window.location.pathname !== '/p-admin') && adminSideRef.current.classList.contains('active')) {
+        console.log('oppf');
+        if (window.location.pathname.length > ("/p-admin/").length) {
             adminSideRef.current.classList.remove('active')
+            console.log(("/p-admin/").length);
         }
     })
 
