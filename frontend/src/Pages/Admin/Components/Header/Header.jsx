@@ -72,7 +72,6 @@ export default function Header({ children, isLightMode, setIsLightMode }) {
                     {children}
 
                     <Col className='header-left-section'>
-
                         <button className={`header-left-icon search-icon-nav d-auto d-lg-none`} onClick={e => setIsShowInput(true)}>
                             <IoSearch className='header-icon' />
                         </button>
@@ -82,9 +81,22 @@ export default function Header({ children, isLightMode, setIsLightMode }) {
                             <button>جست و جو</button>
                         </div>
 
+
+
                         <button className='header-left-icon'>
                             <AiOutlineBell className='header-icon' />
                         </button>
+
+                        <ul className='admin-notif'>
+                            <li className='admin-notif__li'> hello world! thanks very much from you
+                                <span className='admin-notif__show'>دیدم</span>
+                            </li>
+                            <li className='admin-notif__li'> hello world! thanks very much from you
+                                <span className='admin-notif__show'>دیدم</span>
+                            </li>
+                        </ul>
+
+
                         <button className='header-left-icon' onClick={handleButtonClick} >
                             {isLightMode ? <BsBrightnessHigh className='header-icon' /> : <IoMoonOutline className='header-icon' />}
                         </button>

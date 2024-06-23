@@ -38,6 +38,13 @@
 }
 
 @media screen and (max-width: 550px) {
+    
+    .admin-notif {
+        display: block;
+        margin: auto;
+        top: 170px;
+    }
+
     .search-box {
         width: 290px;
     }
