@@ -10,6 +10,7 @@ import { IoMoonOutline } from "react-icons/io5";
 export default function Header({ children, isLightMode, setIsLightMode }) {
 
     const [isShowInput, setIsShowInput] = useState(false)
+    const [isShowAdminNotification, setIsShowAdminNotification] = useState(false)
     const searchBoxRef = useRef()
 
     useEffect(() => {
@@ -83,11 +84,11 @@ export default function Header({ children, isLightMode, setIsLightMode }) {
 
 
 
-                        <button className='header-left-icon'>
+                        <button className='header-left-icon' onMouseEnter={() => setIsShowAdminNotification(true)}>
                             <AiOutlineBell className='header-icon' />
                         </button>
 
-                        <ul className='admin-notif'>
+                        <ul className={`admin-notif ${isShowAdminNotification ? 'open-notif' : 'close-notif'}`} onMouseEnter={() => setIsShowAdminNotification(true)} onMouseLeave={() => setIsShowAdminNotification(false)}>
                             <li className='admin-notif__li'> hello world! thanks very much from you
                                 <span className='admin-notif__show'>دیدم</span>
                             </li>

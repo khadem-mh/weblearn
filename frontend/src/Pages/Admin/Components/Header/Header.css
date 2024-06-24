@@ -142,6 +142,17 @@ a {
     position: fixed;
     top: 70px;
     left: 70px;
+    transition: all 400ms;
+}
+
+.open-notif {
+    opacity: 1;
+    visibility: visible;
+}
+
+.close-notif {
+    opacity: 0;
+    visibility: hidden;
 }
 
 .admin-notif__li {
