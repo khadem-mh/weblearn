@@ -156,6 +156,9 @@ a {
 }
 
 .admin-notif__li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     border-bottom: 1px solid lightgrey;
     border-radius: 1rem;
     padding: 1rem;

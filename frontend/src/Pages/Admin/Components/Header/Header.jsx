@@ -7,10 +7,11 @@ import { BsBrightnessHigh } from 'react-icons/bs'
 import { IoSearch } from "react-icons/io5";
 import { IoMoonOutline } from "react-icons/io5";
 
-export default function Header({ children, isLightMode, setIsLightMode }) {
+export default function Header({ children, isLightMode, setIsLightMode, adminNotif }) {
 
     const [isShowInput, setIsShowInput] = useState(false)
     const [isShowAdminNotification, setIsShowAdminNotification] = useState(false)
+    const [adminNotification, setAdminNotification] = useState(adminNotif)
     const searchBoxRef = useRef()
 
     useEffect(() => {
@@ -56,6 +57,20 @@ export default function Header({ children, isLightMode, setIsLightMode }) {
 
     }, [isShowInput])
 
+    const seeNotifHandler = notifID => {
+        fetch(`http://localhost:4000/v1/notifications/see/${notifID}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                let adminNotifFilter = adminNotification.filter(notif => notif._id !== notifID)
+                setAdminNotification(adminNotifFilter)
+            })
+    }
+
     const handleButtonClick = () => {
         setIsLightMode(prev => {
             localStorage.setItem('light-mode', JSON.stringify(`${!prev}`))
@@ -89,12 +104,22 @@ export default function Header({ children, isLightMode, setIsLightMode }) {
                         </button>
 
                         <ul className={`admin-notif ${isShowAdminNotification ? 'open-notif' : 'close-notif'}`} onMouseEnter={() => setIsShowAdminNotification(true)} onMouseLeave={() => setIsShowAdminNotification(false)}>
-                            <li className='admin-notif__li'> hello world! thanks very much from you
-                                <span className='admin-notif__show'>دیدم</span>
-                            </li>
-                            <li className='admin-notif__li'> hello world! thanks very much from you
-                                <span className='admin-notif__show'>دیدم</span>
-                            </li>
+
+                            {
+                                adminNotification && adminNotification.length ?
+                                    adminNotification.map((notif, index) => (
+                                        <li key={index} className='admin-notif__li' >
+                                            <p>{notif.msg}</p>
+                                            <span className='admin-notif__show' onClick={() => seeNotifHandler(notif._id)}>دیدم</span>
+                                        </li>
+                                    ))
+                                    :
+                                    <li className='admin-notif__li'>
+                                        <span className='admin-notif__show mx-0'>هیچ اعلانی دریافت نکرده اید</span>
+                                    </li>
+                            }
+
+
                         </ul>
 
 
@@ -102,8 +127,8 @@ export default function Header({ children, isLightMode, setIsLightMode }) {
                             {isLightMode ? <BsBrightnessHigh className='header-icon' /> : <IoMoonOutline className='header-icon' />}
                         </button>
                     </Col>
-                </Row>
-            </section>
+                </Row >
+            </section >
         </>
     )
 }

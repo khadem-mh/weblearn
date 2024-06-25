@@ -6,7 +6,7 @@ import { MdProductionQuantityLimits } from "react-icons/md";
 import { BiCommentDetail } from "react-icons/bi";
 import { FiUsers } from "react-icons/fi";
 import { BsBagCheck, BsCurrencyDollar } from "react-icons/bs";
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { IoLogOutOutline } from "react-icons/io5";
 import DeleteModal from '../Modals/DeleteModal/DeleteModal';
 
@@ -30,6 +30,7 @@ export default function Sidebar() {
 
     const logoutLogic = () => {
         localStorage.removeItem('admin-infos')
+        localStorage.removeItem('user')
         window.location.reload(false);
     }
 
@@ -95,10 +96,10 @@ export default function Sidebar() {
                             </NavLink>
                         </li>
                         <li >
-                            <a href="/" className={`admin sidebar-links__link`} onClick={e => logoutHandle(e)}>
+                            <Link to="/" className={`admin sidebar-links__link`} onClick={e => logoutHandle(e)}>
                                 <IoLogOutOutline className="icon" />
                                 <span>خروج</span>
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>

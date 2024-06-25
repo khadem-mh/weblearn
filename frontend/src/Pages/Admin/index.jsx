@@ -61,7 +61,7 @@ export default function AdminPanel() {
         <section>
             <Sidebar />
 
-            <Header isLightMode={isLightMode} setIsLightMode={setIsLightMode}>
+            <Header isLightMode={isLightMode} setIsLightMode={setIsLightMode} adminNotif={adminInfos.notifications} >
                 <Col className="admin-profile">
                     <Link to={'admin'} ><img src={adminInfos.profile} alt="Admin Profile" /></Link>
                     <div>
