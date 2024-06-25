@@ -56,7 +56,7 @@ export default function Header({ children, isLightMode, setIsLightMode, adminNot
         return () => window.removeEventListener('click', handleClick)
 
     }, [isShowInput])
-
+ 
     const seeNotifHandler = notifID => {
         fetch(`http://localhost:4000/v1/notifications/see/${notifID}`, {
             method: 'PUT',
