@@ -75,11 +75,24 @@ export default function FormPage({ nameFormPage }) {
                                 else return res.text().then(err => { throw new Error(err) })
                             })
                             .then(result => {
+                                {
+                                    swal({
+                                        title: 'با موفقیت ثبت نام شدید',
+                                        icon: 'success',
+                                        buttons: 'ورود به پنل'
+                                    })
+                                }
                                 authContext.login(result.user, result.accessToken)
-                                window.location = '/'
+                                window.location = '/my-account'
                             })
                             .catch(err => {
-                                console.error(err);
+                                {
+                                    swal({
+                                        title: 'این شماره تلفن بن شده است و شما مجاز به ثبت نام نیستید',
+                                        icon: 'error',
+                                        buttons: 'باشه'
+                                    })
+                                }
                             })
 
                     }
