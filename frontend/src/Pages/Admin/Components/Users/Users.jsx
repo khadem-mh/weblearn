@@ -10,15 +10,14 @@ import { SlBasketLoaded } from "react-icons/sl";
 import { FaUser, FaCity } from "react-icons/fa";
 import { PiPasswordDuotone, PiAddressBookLight } from "react-icons/pi";
 import { MdOutlinePhoneIphone, MdAlternateEmail, MdOutlineScoreboard } from "react-icons/md";
+import swal from 'sweetalert'
 
-
-export default function Users({allUsers, getAllUsers}) {
+export default function Users({ allUsers, getAllUsers }) {
 
   const [userId, setUserId] = useState(null)
   const [isShowDeleteUser, setIsShowDeleteUser] = useState(false)
-  const [isShowDetailsUser, setIsShowDetailsUser] = useState(false)
-  const [detailsBody, setDetailsBody] = useState({})
   //update state
+  const [isShowbanUser, setIsShowBanUser] = useState(false)
   const [isShowEditModal, setIsShowEditModal] = useState(false)
   const [userNewFirsname, setUserNewFirsname] = useState("");
   const [userNewLastname, setUserNewLastname] = useState("");
@@ -48,7 +47,7 @@ export default function Users({allUsers, getAllUsers}) {
       buy: userNewBuy,
     };
 
-    fetch(`http://localhost:8000/api/users/${userId}`, {
+    fetch(`http://localhost:4000/v1/users/${userId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -64,20 +63,56 @@ export default function Users({allUsers, getAllUsers}) {
   };
 
   const submitDeleteUser = () => {
-    fetch(`http://localhost:8000/api/users/${userId}`, {
-      method: 'DELETE'
+    fetch(`http://localhost:4000/v1/users/${userId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+      }
     })
       .then(res => {
         if (res.ok) {
+          {
+            swal({
+              title: 'با موفقیت کاربر حذف شد',
+              icon: 'success',
+              buttons: 'باشه'
+            })
+          }
           setIsShowDeleteUser(false)
           getAllUsers()
         }
       })
   }
 
-  const setDelete = (remove) => {
-    remove(false)
+  const submitBanUser = () => {
+    fetch(`http://localhost:4000/v1/users/ban/${userId}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+      }
+    }).then(res => res.ok && setIsShowBanUser(false))
+
+    fetch(`http://localhost:4000/v1/users/${userId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+      }
+    })
+      .then(res => {
+        if (res.ok) {
+          {
+            swal({
+              title: 'با موفقیت کاربر بن و به صورت خودکار حذف شد',
+              icon: 'success',
+              buttons: 'باشه'
+            })
+          }
+          getAllUsers()
+        }
+      })
   }
+
+  const setDelete = remove => remove(false)
 
   return (
     <>
@@ -90,9 +125,9 @@ export default function Users({allUsers, getAllUsers}) {
                 <table>
                   <thead>
                     <tr>
+                      <th scope="col">شناسه</th>
                       <th scope="col">نام و نام خوانوادگی</th>
                       <th scope="col">نام کاربری</th>
-                      <th scope="col">رمز عبور</th>
                       <th scope="col">شماره تماس</th>
                       <th scope="col">ایمیل</th>
                       <th scope="col">کنترل</th>
@@ -101,23 +136,22 @@ export default function Users({allUsers, getAllUsers}) {
 
                   <tbody>
                     {
-                      allUsers.map(user => (
-                        <tr key={user.id}>
-                          <td>{user.firsname}-{user.lastname}</td>
+                      allUsers.map((user, index) => (
+                        <tr key={index}>
+                          <td>{index + 1}</td>
+                          <td>{user.name}</td>
                           <td>{user.username}</td>
-                          <td>{user.password}</td>
                           <td>{user.phone}</td>
                           <td>{user.email}</td>
                           <td>
                             <button className='products-table-btn' onClick={() => {
                               setIsShowDeleteUser(true)
-                              setUserId(user.id)
+                              setUserId(user._id)
                             }}>حذف</button>
                             <button className='products-table-btn' onClick={() => {
-                              setIsShowDetailsUser(true)
-                              setUserId(user.id)
-                              setDetailsBody(user)
-                            }}>جزئیات</button>
+                              setIsShowBanUser(true)
+                              setUserId(user._id)
+                            }}>بن</button>
                             <button className='products-table-btn'
                               onClick={() => {
                                 setIsShowEditModal(true);
@@ -154,8 +188,8 @@ export default function Users({allUsers, getAllUsers}) {
         <DeleteModal cancleAction={() => setDelete(setIsShowDeleteUser)} submitAction={submitDeleteUser} title={'آیا از حذف کاربر اطمینان دارید'} />
       )}
 
-      {isShowDetailsUser && (
-          <DetailsModal onHide={() => setIsShowDetailsUser(false)} tHead={['شهر', 'آدرس', 'نمره', 'خرید']} tdIntoTbody={[detailsBody.city, detailsBody.address, detailsBody.score, detailsBody.buy]}/>
+      {isShowbanUser && (
+        <DeleteModal cancleAction={() => setIsShowBanUser(false)} submitAction={submitBanUser} title={'آیا از بن کردن کاربر اطمینان دارید'} />
       )}
 
       {isShowEditModal &&

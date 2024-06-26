@@ -29,8 +29,7 @@ export default function Sidebar() {
     }
 
     const logoutLogic = () => {
-        localStorage.removeItem('admin-infos')
-        localStorage.removeItem('user')
+        localStorage.clear()
         window.location.reload(false);
     }
 

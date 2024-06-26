@@ -34,7 +34,7 @@ export default function AddNewUser({ getAllUsers }) {
             email: inpEmail,
         }
 
-        fetch(`http://localhost:8000/api/users`, {
+        fetch(`http://localhost:4000/v1/users`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
