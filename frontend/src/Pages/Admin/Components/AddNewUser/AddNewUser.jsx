@@ -7,6 +7,7 @@ import { MdAlternateEmail } from "react-icons/md";
 
 export default function AddNewUser({ getAllUsers }) {
 
+    const [btnIsActive, setBtnIsActive] = useState(false)
     const [inpFullname, setInpFullname] = useState('')
     const [inpUsername, setInpUsername] = useState('')
     const [inpEmail, setInpEmail] = useState('')
@@ -56,7 +57,7 @@ export default function AddNewUser({ getAllUsers }) {
                     <InputEditModal valInp={inpPhone} setValInp={setInpPhone} cildren={<FaPhoneAlt />} placeHolderInp='شماره تلفن' />
                     <InputEditModal valInp={inpPassword} setValInp={setInpPassword} cildren={< PiPasswordDuotone />} placeHolderInp='رمز عبور' />
                 </div>
-                <button className='add-com-submit' onClick={(e) => sendNewUser(e)}>اضافه کردن کاربر</button>
+                <button className='add-com-submit' onClick={(e) => sendNewUser(e)} disabled={btnIsActive ? false : true}>اضافه کردن کاربر</button>
             </form>
         </div>
     )
