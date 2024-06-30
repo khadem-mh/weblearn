@@ -5,17 +5,16 @@ import { FaUser, FaPhoneAlt } from "react-icons/fa";
 import { PiPasswordDuotone } from "react-icons/pi";
 import { MdAlternateEmail } from "react-icons/md";
 import swal from 'sweetalert';
+//types
+import {
+    inputFullName, inputUserName, inputPhoneNumber, inputEmail, inputPassword
+} from "../../../../Validators/RulesInput.js"
 
 export default function AddNewUser({ getAllUsers }) {
 
     const [inpValid, setInpValid] = useState([])
     const [isAllInpValid, setIsAllInpValid] = useState(false)
     const [btnIsActive, setBtnIsActive] = useState(false)
-    const [inpFullname, setInpFullname] = useState('')
-    const [inpUsername, setInpUsername] = useState('')
-    const [inpEmail, setInpEmail] = useState('')
-    const [inpPhone, setInpPhone] = useState('')
-    const [inpPassword, setInpPassword] = useState('')
 
     useEffect(() => {
         if (inpValid.length === 5) {
@@ -40,41 +39,33 @@ export default function AddNewUser({ getAllUsers }) {
             setBtnIsActive(true)
 
             const newUserInfos = {
-                name: inpFullname,
-                username: inpUsername,
-                email: inpEmail,
-                phone: inpPhone,
-                password: inpPassword,
-                confirmPassword: inpPassword,
+                name: null,
+                username: null,
+                email: null,
+                phone: null,
+                password: null,
+                confirmPassword: null,
             }
 
             inpValid.map(item => {
-                item.type === inpFullname && (newUserInfos.name = item.value)
-                item.type === inpUsername && (newUserInfos.username = item.value)
-                item.type === inpEmail && (newUserInfos.phone = item.value)
-                item.type === inpPhone && (newUserInfos.email = item.value)
-                item.type === inpPassword && (newUserInfos.password = item.value) && (newUserInfos.confirmPassword = item.value)
+                item.type === inputFullName && (newUserInfos.name = item.value)
+                item.type === inputUserName && (newUserInfos.username = item.value)
+                item.type === inputEmail && (newUserInfos.email = item.value)
+                item.type === inputPhoneNumber && (newUserInfos.phone = item.value)
+                item.type === inputPassword && (newUserInfos.password = item.value) && (newUserInfos.confirmPassword = item.value)
                 return true
             })
-
-            fetch(`http://localhost:4000/v1/users`, {
+            console.log("user infos => ", newUserInfos);
+            fetch(`http://localhost:4000/v1/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(newUserInfos)
             })
-                .then(res => {
-                    if (res.ok) return res.json()
-                    else return res.text().then(err => { throw new Error(err) })
-                })
+                .then(res => res.json())
                 .then(() => {
                     getAllUsers()
-                    setInpFullname("")
-                    setInpUsername("")
-                    setInpPassword("")
-                    setInpPhone("")
-                    setInpEmail("")
                     {
                         swal({
                             title: 'کاربر با موفقیت اضافه شد',
@@ -83,10 +74,10 @@ export default function AddNewUser({ getAllUsers }) {
                         })
                     }
                 })
-                .catch(() => {
+                .catch(err => {
                     {
                         swal({
-                            title: 'این شماره تلفن بن شده است و شما مجاز به ثبت نام این کاربر نیستید',
+                            title: 'خطایی در سمت سرور پیش امده یا شماره تلفن کاربر بن هست',
                             icon: 'error',
                             buttons: 'باشه'
                         })
@@ -113,11 +104,11 @@ export default function AddNewUser({ getAllUsers }) {
 
             <form className='add-com-form'>
                 <div className='add-com-form-wrap'>
-                    <Input onValid={validRul} type={inpFullname} inpPlaceholder={'نام و نام خوانوادگی'} inpIcon={< SiNamecheap />} />
-                    <Input onValid={validRul} type={inpUsername} inpPlaceholder={'نام کاربری '} inpIcon={< FaUser />} />
-                    <Input onValid={validRul} type={inpEmail} inpPlaceholder={'شماره تلفن'} inpIcon={< MdAlternateEmail />} />
-                    <Input onValid={validRul} type={inpPhone} inpPlaceholder={'آدرس ایمیل'} inpIcon={<FaPhoneAlt />} />
-                    <Input onValid={validRul} type={inpPassword} inpPlaceholder={'رمز عبور'} inpIcon={<PiPasswordDuotone />} />
+                    <Input onValid={validRul} type={inputFullName} inpPlaceholder={'نام و نام خوانوادگی'} inpIcon={< SiNamecheap />} />
+                    <Input onValid={validRul} type={inputUserName} inpPlaceholder={'نام کاربری '} inpIcon={< FaUser />} />
+                    <Input onValid={validRul} type={inputPhoneNumber} inpPlaceholder={'شماره تلفن'} inpIcon={<FaPhoneAlt />} />
+                    <Input onValid={validRul} type={inputEmail} inpPlaceholder={'آدرس ایمیل'} inpIcon={< MdAlternateEmail />} />
+                    <Input onValid={validRul} type={inputPassword} inpPlaceholder={'رمز عبور'} inpIcon={<PiPasswordDuotone />} />
                 </div>
                 <button className='add-com-submit' onClick={(e) => sendNewUser(e)} disabled={btnIsActive ? false : true}>اضافه کردن کاربر</button>
             </form>
