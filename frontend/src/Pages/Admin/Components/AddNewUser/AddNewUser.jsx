@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import InputEditModal from '../InputEditModal/InputEditModal';
+import Input from '../../../../Components/Input/Input';
 import { SiNamecheap } from "react-icons/si";
 import { FaUser, FaPhoneAlt } from "react-icons/fa";
 import { PiPasswordDuotone } from "react-icons/pi";
@@ -36,7 +36,7 @@ export default function AddNewUser({ getAllUsers }) {
         e.preventDefault()
 
         if (isAllInpValid) {
-            
+
             setBtnIsActive(true)
 
             const newUserInfos = {
@@ -53,7 +53,7 @@ export default function AddNewUser({ getAllUsers }) {
                 item.type === inpUsername && (newUserInfos.username = item.value)
                 item.type === inpEmail && (newUserInfos.phone = item.value)
                 item.type === inpPhone && (newUserInfos.email = item.value)
-                item.type === inpPassword && (newUserInfos.password = item.value) && (newUser.confirmPassword = item.value)
+                item.type === inpPassword && (newUserInfos.password = item.value) && (newUserInfos.confirmPassword = item.value)
                 return true
             })
 
