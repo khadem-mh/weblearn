@@ -12,6 +12,7 @@ import {
 
 export default function AddNewUser({ getAllUsers }) {
 
+    const [inpClean, setInpClean] = useState(null)
     const [inpValid, setInpValid] = useState([])
     const [isAllInpValid, setIsAllInpValid] = useState(false)
     const [btnIsActive, setBtnIsActive] = useState(false)
@@ -28,6 +29,15 @@ export default function AddNewUser({ getAllUsers }) {
                 setBtnIsActive(true)
                 setIsAllInpValid(true)
             }
+        }
+    }, [inpValid])
+
+    useEffect(() => {
+        if (inpValid?.valid && inpValid.valid) {
+            setBtnIsActive(false)
+        } else {
+            setInpClean(null)
+            setBtnIsActive(true)
         }
     }, [inpValid])
 
@@ -55,7 +65,7 @@ export default function AddNewUser({ getAllUsers }) {
                 item.type === inputPassword && (newUserInfos.password = item.value) && (newUserInfos.confirmPassword = item.value)
                 return true
             })
-            console.log("user infos => ", newUserInfos);
+
             fetch(`http://localhost:4000/v1/auth/register`, {
                 method: 'POST',
                 headers: {
@@ -66,6 +76,8 @@ export default function AddNewUser({ getAllUsers }) {
                 .then(res => res.json())
                 .then(() => {
                     getAllUsers()
+                    setInpClean("")
+                    setInpValid({})
                     {
                         swal({
                             title: 'کاربر با موفقیت اضافه شد',
@@ -104,11 +116,11 @@ export default function AddNewUser({ getAllUsers }) {
 
             <form className='add-com-form'>
                 <div className='add-com-form-wrap'>
-                    <Input onValid={validRul} type={inputFullName} inpPlaceholder={'نام و نام خوانوادگی'} inpIcon={< SiNamecheap />} />
-                    <Input onValid={validRul} type={inputUserName} inpPlaceholder={'نام کاربری '} inpIcon={< FaUser />} />
-                    <Input onValid={validRul} type={inputPhoneNumber} inpPlaceholder={'شماره تلفن'} inpIcon={<FaPhoneAlt />} />
-                    <Input onValid={validRul} type={inputEmail} inpPlaceholder={'آدرس ایمیل'} inpIcon={< MdAlternateEmail />} />
-                    <Input onValid={validRul} type={inputPassword} inpPlaceholder={'رمز عبور'} inpIcon={<PiPasswordDuotone />} />
+                    <Input cleanInput={inpClean} onValid={validRul} type={inputFullName} inpPlaceholder={'نام و نام خوانوادگی'} inpIcon={< SiNamecheap />} />
+                    <Input cleanInput={inpClean} onValid={validRul} type={inputUserName} inpPlaceholder={'نام کاربری '} inpIcon={< FaUser />} />
+                    <Input cleanInput={inpClean} onValid={validRul} type={inputPhoneNumber} inpPlaceholder={'شماره تلفن'} inpIcon={<FaPhoneAlt />} />
+                    <Input cleanInput={inpClean} onValid={validRul} type={inputEmail} inpPlaceholder={'آدرس ایمیل'} inpIcon={< MdAlternateEmail />} />
+                    <Input cleanInput={inpClean} onValid={validRul} type={inputPassword} inpPlaceholder={'رمز عبور'} inpIcon={<PiPasswordDuotone />} />
                 </div>
                 <button className='add-com-submit' onClick={(e) => sendNewUser(e)} disabled={btnIsActive ? false : true}>اضافه کردن کاربر</button>
             </form>
