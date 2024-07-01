@@ -37,7 +37,10 @@ export default function Sidebar() {
         <>
             <section className="admin sidebar">
                 <div className='admin sidebar-div'>
-                    <h1 className="admin sidebar-title">به داشبورد خود خوش آمدید</h1>
+
+                    <Link to={'/'} className='logo-on-adminpanel'>
+                        <img src="/Images/Logos/Logo-site/logo-one-copy.png" alt="logo"/>
+                    </Link>
 
                     <ul className="admin sidebar-links">
                         <li>

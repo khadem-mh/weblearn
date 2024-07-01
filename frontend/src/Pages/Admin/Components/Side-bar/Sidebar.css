@@ -4,10 +4,19 @@
     position: fixed;
 }
 
+.admin.sidebar-div .logo-on-adminpanel img {
+    width: 130px;
+    padding: 2rem 0 2rem 0;
+    margin: auto;
+    display: block;
+}
+
 .sidebar-div {
+    border-top-left-radius: 7rem;
+    border-bottom-left-radius: 7rem;
     width: inherit;
     height: inherit;
-    box-shadow: -110px 90px 100px rgb(108, 108, 108) inset;
+    box-shadow: -40px 0px 100px 80px var(--blue) inset, 0 0 350px black;
 }
 
 .sidebar-title {
