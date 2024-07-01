@@ -1,3 +1,15 @@
+@media screen and (max-width: 1500px) {
+    tbody tr td, .products-table-btn {
+        font-size: 17px;
+    }
+}
+
+@media screen and (max-width: 1301px) {
+    tbody tr td, .products-table-btn {
+        font-size: 14px;
+    }
+}
+
 @media screen and (max-width: 1200px) {
     .content-middle-cms {
         width: calc(100% - 150px) !important;

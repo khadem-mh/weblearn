@@ -6,6 +6,10 @@
     margin-top: 4rem;
 }
 
+tbody tr td, .products-table-btn {
+    min-width: 140px !important;
+}
+
 .content-middle-cms {
     width: calc(100% - 288px);
     padding: 0 1.5rem;
