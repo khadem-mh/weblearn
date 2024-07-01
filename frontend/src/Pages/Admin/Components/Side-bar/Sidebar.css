@@ -11,12 +11,22 @@
     display: block;
 }
 
-.sidebar-div {
+.admin.sidebar-div {
+    direction: ltr;
+    overflow-y: auto;
     border-top-left-radius: 7rem;
     border-bottom-left-radius: 7rem;
     width: inherit;
     height: inherit;
     box-shadow: -40px 0px 100px 80px var(--blue) inset, 0 0 350px black;
+}
+
+.admin.sidebar-div::-webkit-scrollbar-track {
+    background-color: transparent !important;
+}
+
+.admin.sidebar-div::-webkit-scrollbar-thumb {
+    background-color: rgb(79, 79, 79) !important;
 }
 
 .sidebar-title {

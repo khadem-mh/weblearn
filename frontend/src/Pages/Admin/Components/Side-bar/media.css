@@ -3,6 +3,10 @@
         width: 150px;
     }
 
+    .admin.sidebar-div .logo-on-adminpanel img {
+        width: 90px;
+    }
+
     .sidebar-title {
         font-size: 16px !important;
     }
@@ -22,6 +26,15 @@
         width: 60px;
     }
 
+    .admin.sidebar-div {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .admin.sidebar-div .logo-on-adminpanel img {
+        width: 45px;
+    }
+
     .admin.header {
         width: calc(100% - 60px);
     }
@@ -34,6 +47,18 @@
 @media screen and (max-height: 768px) {
     .admin.sidebar {
         align-items: flex-end;
+    }
+}
+
+@media screen and (max-height: 650px) {
+    
+    .admin.sidebar-div {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .admin.sidebar-div .logo-on-adminpanel img {
+        width: 45px;
     }
 }
 
