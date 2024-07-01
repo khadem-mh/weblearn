@@ -12,7 +12,6 @@
 }
 
 .admin.sidebar-div {
-    direction: ltr;
     overflow-y: auto;
     border-top-left-radius: 7rem;
     border-bottom-left-radius: 7rem;
