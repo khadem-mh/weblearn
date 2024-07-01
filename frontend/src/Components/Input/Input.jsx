@@ -2,7 +2,7 @@ import React, { useReducer, useRef, useState, useEffect } from 'react'
 import './Input.css'
 import inputReducer from './InputReducer'
 
-export default function Input({ inpPlaceholder, inpIcon, type, onValid, textarea = false, cleanInput }) {
+export default function Input({ inpPlaceholder, inpIcon, type, onValid, textarea = false, cleanInput, customStyleInp = "", customStyle = "" }) {
 
     const validRef = useRef()
     const inpRef = useRef()
@@ -25,13 +25,13 @@ export default function Input({ inpPlaceholder, inpIcon, type, onValid, textarea
     const inpChangeHandler = event => dispatch({ type, value: event.target.value })
 
     return (
-        <div className={`${!textarea ? 'user-datas__parent-input' : ''} ${state.isValid && !textarea ? 'valid-inp' : state.value.length !== 0 && !textarea ? 'not-valid-inp' : ''} `} ref={validRef}>
+        <div className={`${customStyle} ${!textarea ? 'user-datas__parent-input' : ''} ${state.isValid && !textarea ? 'valid-inp' : state.value.length !== 0 && !textarea ? 'not-valid-inp' : ''} `} ref={validRef}>
             {
                 textarea ?
                     <textarea placeholder={inpPlaceholder} value={state.value} onChange={event => inpChangeHandler(event)} onBlur={() => setIsBlurInput(true)} className={`textarea-form ${state.isValid ? 'valid-inp' : state.value.length !== 0 ? 'not-valid-inp' : ''}`}></textarea>
                     :
                     <>
-                        <input ref={inpRef} type="text" placeholder={inpPlaceholder} value={state.value} onChange={event => inpChangeHandler(event)} onBlur={() => setIsBlurInput(true)} />
+                        <input ref={inpRef} type="text" className={customStyleInp} placeholder={inpPlaceholder} value={state.value} onChange={event => inpChangeHandler(event)} onBlur={() => setIsBlurInput(true)} />
                         {inpIcon}
                     </>
             }

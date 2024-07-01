@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import './AddNewUser.css'
 import Input from '../../../../Components/Input/Input';
 import { SiNamecheap } from "react-icons/si";
 import { FaUser, FaPhoneAlt } from "react-icons/fa";
@@ -44,7 +45,7 @@ export default function AddNewUser({ getAllUsers }) {
     const sendNewUser = e => {
         e.preventDefault()
 
-        if (isAllInpValid) {
+        if (isAllInpValid && inpValid.length) {
 
             setBtnIsActive(true)
 
@@ -77,7 +78,7 @@ export default function AddNewUser({ getAllUsers }) {
                 .then(() => {
                     getAllUsers()
                     setInpClean("")
-                    setInpValid({})
+                    setInpValid([])
                     {
                         swal({
                             title: 'کاربر با موفقیت اضافه شد',
@@ -116,11 +117,11 @@ export default function AddNewUser({ getAllUsers }) {
 
             <form className='add-com-form'>
                 <div className='add-com-form-wrap'>
-                    <Input cleanInput={inpClean} onValid={validRul} type={inputFullName} inpPlaceholder={'نام و نام خوانوادگی'} inpIcon={< SiNamecheap />} />
-                    <Input cleanInput={inpClean} onValid={validRul} type={inputUserName} inpPlaceholder={'نام کاربری '} inpIcon={< FaUser />} />
-                    <Input cleanInput={inpClean} onValid={validRul} type={inputPhoneNumber} inpPlaceholder={'شماره تلفن'} inpIcon={<FaPhoneAlt />} />
-                    <Input cleanInput={inpClean} onValid={validRul} type={inputEmail} inpPlaceholder={'آدرس ایمیل'} inpIcon={< MdAlternateEmail />} />
-                    <Input cleanInput={inpClean} onValid={validRul} type={inputPassword} inpPlaceholder={'رمز عبور'} inpIcon={<PiPasswordDuotone />} />
+                    <Input customStyle='edit-products-form-group m-0' customStyleInp='edit-products-input' cleanInput={inpClean} onValid={validRul} type={inputFullName} inpPlaceholder={'نام و نام خوانوادگی'} inpIcon={< SiNamecheap />} />
+                    <Input customStyle='edit-products-form-group m-0' customStyleInp='edit-products-input' cleanInput={inpClean} onValid={validRul} type={inputUserName} inpPlaceholder={'نام کاربری '} inpIcon={< FaUser />} />
+                    <Input customStyle='edit-products-form-group m-0' customStyleInp='edit-products-input' cleanInput={inpClean} onValid={validRul} type={inputPhoneNumber} inpPlaceholder={'شماره تلفن'} inpIcon={<FaPhoneAlt />} />
+                    <Input customStyle='edit-products-form-group m-0' customStyleInp='edit-products-input' cleanInput={inpClean} onValid={validRul} type={inputEmail} inpPlaceholder={'آدرس ایمیل'} inpIcon={< MdAlternateEmail />} />
+                    <Input customStyle='edit-products-form-group m-0' customStyleInp='edit-products-input' cleanInput={inpClean} onValid={validRul} type={inputPassword} inpPlaceholder={'رمز عبور'} inpIcon={<PiPasswordDuotone />} />
                 </div>
                 <button className='add-com-submit' onClick={(e) => sendNewUser(e)} disabled={btnIsActive ? false : true}>اضافه کردن کاربر</button>
             </form>
