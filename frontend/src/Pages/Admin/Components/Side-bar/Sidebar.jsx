@@ -56,7 +56,7 @@ export default function Sidebar() {
                             </NavLink>
                         </li>
                         <li >
-                            <NavLink to="/p-admin/menus" className={`admin sidebar-links__link`}>
+                            <NavLink to="/p-admin/categories" className={`admin sidebar-links__link`}>
                                 <BiCommentDetail className="icon" />
                                 <span>دسته بندی ها</span>
                             </NavLink>

@@ -27,6 +27,7 @@ import AdminPanelUsere from "./Pages/Admin/Pages/Users/Users"
 import AdminPanelComments from "./Pages/Admin/Pages/Comments/Comments"
 import AdminPanelOrders from "./Pages/Admin/Pages/Orders/Orders"
 import AdminPanelOffs from "./Pages/Admin/Pages/Offs/Offs"
+import AdminPanelCategories from "./Pages/Admin/Pages/Categories/Categories"
 import Page404admin from "./Pages/Admin/Pages/Page404-admin/Page404-admin"
 
 const routes = [
@@ -56,6 +57,7 @@ const routes = [
         path: 'p-admin/*', element: <AdminPanel />, children: [
             { path: '', element: <AdminPanelHome /> },
             { path: 'courses', element: <AdminPanelCourses /> },
+            { path: 'categories', element: <AdminPanelCategories /> },
             { path: 'users', element: <AdminPanelUsere /> },
             { path: 'comments', element: <AdminPanelComments /> },
             { path: 'orders', element: <AdminPanelOrders /> },
