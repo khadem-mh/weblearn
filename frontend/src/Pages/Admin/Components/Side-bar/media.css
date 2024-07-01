@@ -51,7 +51,7 @@
 }
 
 @media screen and (max-height: 650px) {
-    
+
     .admin.sidebar-div {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
@@ -59,6 +59,10 @@
 
     .admin.sidebar-div .logo-on-adminpanel img {
         width: 45px;
+    }
+
+    .content-middle-cms {
+        width: calc(100% - 60px) !important;
     }
 }
 
@@ -113,10 +117,6 @@
 
     .sidebar-links li a {
         justify-content: center;
-    }
-
-    .content-middle-cms {
-        width: calc(100% - 60px);
     }
 
 }
