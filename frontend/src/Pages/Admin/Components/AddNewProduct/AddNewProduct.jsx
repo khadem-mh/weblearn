@@ -54,7 +54,7 @@ export default function AddNewProduct({ getAllProducts }) {
 
     return (
         <div className='com-main'>
-            <h1 className='com-title'>افزودن محصول جدید</h1>
+            <h1 className='com-title'>افزودن دوره جدید</h1>
 
             <form className='add-com-form'>
                 <div className='add-com-form-wrap'>
@@ -66,7 +66,7 @@ export default function AddNewProduct({ getAllProducts }) {
                     <InputEditModal valInp={inpImg} setValInp={setInpImg} cildren={<FaRegImage />} placeHolderInp='آدرس عکس محصول' />
                     <InputEditModal valInp={inpSale} setValInp={setInpSale} cildren={<GoPersonFill />} placeHolderInp='میزان فروش محصول' />
                 </div>
-                <button className='add-com-submit' onClick={sendNewProduct}>ثبت محصول</button>
+                <button className='add-com-submit' onClick={sendNewProduct}>ثبت دوره</button>
             </form>
         </div>
     )
