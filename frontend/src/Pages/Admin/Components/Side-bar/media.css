@@ -22,7 +22,7 @@
 }
 
 @media screen and (max-width: 800px) {
-    .sidebar-div {
+    .admin.sidebar-div {
         width: 60px;
     }
 
