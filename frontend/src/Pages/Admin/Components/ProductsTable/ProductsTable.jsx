@@ -77,7 +77,7 @@ export default function ProductsTable({ allProducts, getAllProducts }) {
                                         <tr key={index}>
                                             <td>{index + 1}</td>
                                             <td>
-                                                <img src={product.cover} alt="course" className='products-table-img' />
+                                                <img src={`/Images/Courses/${product.cover}`} alt="course" className='products-table-img' />
                                             </td>
                                             <td>{product.name}</td>
                                             <td>{product.price === 0 ? 'رایگان' : `${product.price.toLocaleString()} تومان`}</td>
