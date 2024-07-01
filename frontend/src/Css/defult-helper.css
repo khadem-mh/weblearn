@@ -49,6 +49,10 @@ body {
     margin-top: 1.5rem;
 }
 
+td {
+    vertical-align: middle !important;
+}
+
 /*? category title page */
 .category-h2 {
     color: whitesmoke;
