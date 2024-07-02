@@ -4,6 +4,7 @@ import './media.css'
 import DeleteModal from '../Modals/DeleteModal/DeleteModal'
 import EditMoal from '../Modals/EditMoal/EditMoal'
 import ErrorBoxEmpty from '../ErrorBoxEmpty/ErrorBoxEmpty'
+import swal from 'sweetalert'
 
 export default function ProductsTable({ allProducts, getAllProducts }) {
 
@@ -14,18 +15,28 @@ export default function ProductsTable({ allProducts, getAllProducts }) {
 
     const deleteModalCancleAction = () => setIsShowDeleteModal(false)
 
-    const deleteModalSubmitAction = () => {
+    const deleteModalSubmitAction = event => {
+
+        event.preventDefault()
 
         fetch(`http://localhost:4000/v1/courses/${productID}`, {
             method: "DELETE",
             headers: {
-                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+                'Content-Type': 'application/json'
             }
         })
             .then(res => {
                 if (res.ok) {
                     getAllProducts()
                     setIsShowDeleteModal(false)
+                    {
+                        swal({
+                            title: 'با موفقیت دوره حذف شد',
+                            icon: 'success',
+                            buttons: 'باشه'
+                        })
+                    }
                 }
             })
     }
@@ -91,7 +102,7 @@ export default function ProductsTable({ allProducts, getAllProducts }) {
                                             <td>
                                                 <button className='products-table-btn' onClick={() => {
                                                     setIsShowDeleteModal(true)
-                                                    setProductID(product.id)
+                                                    setProductID(product._id)
                                                 }}>حذف</button>
                                             </td>
                                         </tr>
@@ -101,7 +112,7 @@ export default function ProductsTable({ allProducts, getAllProducts }) {
                         </table>
                     ) : <ErrorBoxEmpty msg={'هیچ دوره ای یافت نشد'} />
                 }
-                {isShowDeleteModal && <DeleteModal submitAction={deleteModalSubmitAction} cancleAction={deleteModalCancleAction} title='آیا از حذف محصول اطمینان دارید' />}
+                {isShowDeleteModal && <DeleteModal submitAction={e => deleteModalSubmitAction(e)} cancleAction={deleteModalCancleAction} title='آیا از حذف دوره اطمینان دارید' />}
                 {isShowEditModal &&
                     <EditMoal onClose={() => setIsShowEditModal(false)} onSubmit={updateProductInfos} title={'اطلاعات جدید را وارد نمایید'}>
                         {/*                         <InputEditModal setValInp={setProductTitle} valInp={productTitle} cildren={<MdOutlineTitle />} placeHolderInp={"عنوان "} />
