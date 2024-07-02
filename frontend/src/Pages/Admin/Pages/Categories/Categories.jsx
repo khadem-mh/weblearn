@@ -3,7 +3,12 @@ import DeleteModal from '../../Components/Modals/DeleteModal/DeleteModal'
 import InputEditModal from "../../Components/InputEditModal/InputEditModal";
 import EditMoal from '../../Components/Modals/EditMoal/EditMoal'
 import ErrorBoxEmpty from '../../Components/ErrorBoxEmpty/ErrorBoxEmpty'
+import Input from '../../../../Components/Input/Input';
 import swal from "sweetalert";
+//types
+import {
+    inputFullName, inputUserName
+} from "../../../../Validators/RulesInput.js"
 
 export default function AdminPanelCategories() {
 
@@ -14,6 +19,11 @@ export default function AdminPanelCategories() {
     const [isShowEditModal, setIsShowEditModal] = useState(false)
     const [categoryID, setCategoryID] = useState(false)
     const [allCategories, setAllCategories] = useState([])
+    ///
+    const [inpClean, setInpClean] = useState(null)
+    const [inpValid, setInpValid] = useState([])
+    const [isAllInpValid, setIsAllInpValid] = useState(false)
+    const [btnIsActive, setBtnIsActive] = useState(false)
 
     useEffect(() => {
         getAllCategories()
@@ -82,10 +92,110 @@ export default function AdminPanelCategories() {
             })
     }
 
+    useEffect(() => {
+        if (inpValid.length === 2) {
+
+            let isInpValid = inpValid.every(inp => !inp.valid ? false : true)
+
+            if (!isInpValid) {
+                setBtnIsActive(false)
+                setIsAllInpValid(false)
+            } else {
+                setBtnIsActive(true)
+                setIsAllInpValid(true)
+            }
+        }
+    }, [inpValid])
+
+    useEffect(() => {
+        if (inpValid?.valid && inpValid.valid) {
+            setBtnIsActive(false)
+        } else {
+            setInpClean(null)
+            setBtnIsActive(true)
+        }
+    }, [inpValid])
+
+    const addCategory = e => {
+        e.preventDefault()
+
+        if (isAllInpValid && inpValid.length) {
+
+            setBtnIsActive(true)
+
+            const newUserInfos = {
+                title: null,
+                name: null,
+            }
+
+            inpValid.map(item => {
+                item.type === inputFullName && (newUserInfos.title = item.value)
+                item.type === inputUserName && (newUserInfos.name = item.value)
+                return true
+            })
+
+            fetch(`http://localhost:4000/v1/category`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+                },
+                body: JSON.stringify(newUserInfos)
+            })
+                .then(res => res.json())
+                .then(() => {
+                    getAllCategories()
+                    setInpClean("")
+                    setInpValid([])
+                    {
+                        swal({
+                            title: 'دسته بندی جدید با موفقیت اضافه شد',
+                            icon: 'success',
+                            buttons: 'باشه'
+                        })
+                    }
+                })
+                .catch(err => {
+                    {
+                        swal({
+                            title: 'خطایی در سمت سرور پیش امده',
+                            icon: 'error',
+                            buttons: 'باشه'
+                        })
+                    }
+                })
+
+        }
+
+    }
+
+    const validRul = valid => {
+        setInpValid(state => {
+            if (state.length === 0) return [valid]
+            else {
+                let isRepeat = state.filter(inp => inp.type !== valid.type && inp)
+                if (isRepeat) return [...isRepeat, valid]
+            }
+        })
+    }
+
+
+
     return (
         <>
 
             <section>
+                <div className='com-main'>
+                    <h1 className='com-title'>افزودن دسته بندی جدید</h1>
+
+                    <form className='add-com-form'>
+                        <div className='add-com-form-wrap'>
+                            <Input customStyle='edit-products-form-group m-0' customStyleInp='edit-products-input' cleanInput={inpClean} onValid={validRul} type={inputFullName} inpPlaceholder={'عنوان'} />
+                            <Input customStyle='edit-products-form-group m-0' customStyleInp='edit-products-input' cleanInput={inpClean} onValid={validRul} type={inputUserName} inpPlaceholder={'مسیر عنوان'} />
+                        </div>
+                        <button className='add-com-submit' onClick={(e) => addCategory(e)} disabled={btnIsActive ? false : true}>افزودن</button>
+                    </form>
+                </div>
                 <div>
                     {allCategories.length ? <h1 className='products-title title-pr'>دسته بندی ها</h1> : ''}
                     <div className='parent-table'>
