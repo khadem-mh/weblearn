@@ -4,7 +4,6 @@ import './media.css'
 import DeleteModal from '../Modals/DeleteModal/DeleteModal'
 import EditMoal from '../Modals/EditMoal/EditMoal'
 import ErrorBoxEmpty from '../ErrorBoxEmpty/ErrorBoxEmpty'
-import InputEditModal from '../InputEditModal/InputEditModal'
 
 export default function ProductsTable({ allProducts, getAllProducts }) {
 

@@ -16,11 +16,7 @@ export default function Sidebar() {
     const adminSideRef = useRef()
 
     useEffect(() => {
-        console.log('oppf');
-        if (window.location.pathname.length > ("/p-admin/").length) {
-            adminSideRef.current.classList.remove('active')
-            console.log(("/p-admin/").length);
-        }
+        window.location.pathname.length > ("/p-admin/").length && adminSideRef.current.classList.remove('active')
     })
 
     const logoutHandle = e => {
@@ -39,7 +35,7 @@ export default function Sidebar() {
                 <div className='admin sidebar-div'>
 
                     <Link to={'/'} className='logo-on-adminpanel'>
-                        <img src="/Images/Logos/Logo-site/logo-one-copy.png" alt="logo"/>
+                        <img src="/Images/Logos/Logo-site/logo-one-copy.png" alt="logo" />
                     </Link>
 
                     <ul className="admin sidebar-links">
