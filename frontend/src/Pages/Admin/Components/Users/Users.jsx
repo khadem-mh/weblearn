@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './Users.css'
 import ErrorBoxEmpty from '../ErrorBoxEmpty/ErrorBoxEmpty'
 import DeleteModal from '../Modals/DeleteModal/DeleteModal'
 import EditMoal from '../Modals/EditMoal/EditMoal'
 import InputEditModal from '../InputEditModal/InputEditModal'
-import DetailsModal from '../Modals/DetailsModal/DetailsModal'
 import { SiNamecheap } from "react-icons/si";
 import { SlBasketLoaded } from "react-icons/sl";
 import { FaUser, FaCity } from "react-icons/fa";

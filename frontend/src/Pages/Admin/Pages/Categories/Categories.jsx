@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import DeleteModal from '../../Components/Modals/DeleteModal/DeleteModal'
 import EditMoal from '../../Components/Modals/EditMoal/EditMoal'
 import ErrorBoxEmpty from '../../Components/ErrorBoxEmpty/ErrorBoxEmpty'
+import swal from "sweetalert";
 
 export default function AdminPanelCategories() {
 
@@ -10,6 +11,10 @@ export default function AdminPanelCategories() {
     const [allCategories, setAllCategories] = useState([])
 
     useEffect(() => {
+        getAllCategories()
+    }, [])
+
+    const getAllCategories = () => {
         fetch(`http://localhost:4000/v1/category`, {
             method: 'GET',
             headers: {
@@ -21,7 +26,7 @@ export default function AdminPanelCategories() {
                 console.log(datas);
                 setAllCategories(datas)
             })
-    }, [])
+    }
 
     const deleteModalCancleAction = () => setIsShowDeleteModal(false)
 
@@ -35,7 +40,12 @@ export default function AdminPanelCategories() {
         })
             .then(res => res.json())
             .then(datas => {
-                console.log(datas);
+                getAllCategories()
+                swal({
+                    title: 'دسته بندی مدنظر با موفقیت حذف شد',
+                    icon: 'success',
+                    buttons: 'باشه'
+                })
                 setAllCategories(datas)
                 setIsShowDeleteModal(false)
             })
