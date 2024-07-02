@@ -8,7 +8,7 @@ export default function InputEditModal({ cildren, placeHolderInp, valInp, setVal
             <span>
                 {cildren}
             </span>
-            <input type="text" disabled={dis} value={valInp || ""} onChange={(e) => setValInp(e.target.value)} placeholder={placeHolderInp} className='edit-products-input' />
+            <input type="text" minLength={3} disabled={dis} value={valInp || ""} onChange={(e) => setValInp(e.target.value)} placeholder={placeHolderInp} className='edit-products-input' />
         </div>
     )
 }
