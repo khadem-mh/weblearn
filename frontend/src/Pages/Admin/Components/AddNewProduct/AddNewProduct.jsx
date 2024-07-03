@@ -4,7 +4,7 @@ import { TbFileDescription } from "react-icons/tb";
 import { GoRelFilePath } from "react-icons/go";
 import { MdOutlineContactSupport } from "react-icons/md";
 import InputEditModal from '../InputEditModal/InputEditModal';
-import { swal } from "sweetalert";
+import swal from "sweetalert";
 
 export default function AddNewProduct({ getAllProducts }) {
 
@@ -14,6 +14,7 @@ export default function AddNewProduct({ getAllProducts }) {
     const [shortName, setShortName] = useState('')
     const [price, setPrice] = useState('')
     const [status, setStatus] = useState('')
+    const [support, setSupport] = useState('')
     const [categoryID, setCategoryID] = useState('')
     ///
     const [categories, setCategories] = useState([])
@@ -42,25 +43,31 @@ export default function AddNewProduct({ getAllProducts }) {
     const addNewCourse = e => {
         e.preventDefault()
 
+        const infosCourse = {
+            name,
+            description,
+            cover,
+            shortName,
+            price,
+            status,
+            support,
+            categoryID,
+        }
+
         fetch(`http://localhost:4000/v1/courses`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                name,
-                description,
-                cover,
-                shortName,
-                price,
-                status,
-                categoryID,
-            })
+            body: JSON.stringify(infosCourse)
         })
-            .then(res => res.ok ? res.json() : res.text().then(err => { return new Error(`Text Error: `, err) }))
+            .then(res => {
+                console.log(res);
+                return res.json()
+            })
             .then(() => {
-                getAllProducts('')
+                getAllProducts()
                 setName("")
                 setDescription("")
                 setCover(null)
@@ -99,11 +106,11 @@ export default function AddNewProduct({ getAllProducts }) {
                     <InputEditModal valInp={description} setValInp={setDescription} cildren={<TbFileDescription />} placeHolderInp='توضیحات دوره' />
                     <InputEditModal valInp={price} setValInp={setPrice} cildren='$$' placeHolderInp='قیمت دوره' />
                     <InputEditModal valInp={shortName} setValInp={setShortName} cildren={<GoRelFilePath />} placeHolderInp='URL دوره' />
-                    <InputEditModal valInp={shortName} setValInp={setStatus} cildren={<MdOutlineContactSupport />} placeHolderInp='نحوه پشتیبانی دوره' />
+                    <InputEditModal valInp={support} setValInp={setSupport} cildren={<MdOutlineContactSupport />} placeHolderInp='نحوه پشتیبانی دوره' />
                     <br />
                     <div className='mt-2'>
                         <label htmlFor="cover" className='text-secondary mb-2 me-2'>عکس دوره</label>
-                        <input type="file" className="form-control" id='cover' onChange={event => getSrcCoverHandler(event)}/>
+                        <input type="file" className="form-control" id='cover' onChange={event => getSrcCoverHandler(event)} />
                     </div>
                     <select className="form-select border mt-md-5" onChange={event => selectCategory(event.target.value)}>
                         <option value="-1">دسته بندی دوره</option>
