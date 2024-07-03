@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { SiNamecheap } from "react-icons/si";
-import { FaLess } from "react-icons/fa6";
+import { TbFileDescription } from "react-icons/tb";
+import { GoRelFilePath } from "react-icons/go";
+import { MdOutlineContactSupport } from "react-icons/md";
 import InputEditModal from '../InputEditModal/InputEditModal';
 import { swal } from "sweetalert";
 
@@ -34,6 +36,8 @@ export default function AddNewProduct({ getAllProducts }) {
     const selectCategory = value => value !== -1 && setCategoryID(value)
 
     const selectStatusCourse = value => value !== -1 && setStatus(value)
+
+    const getSrcCoverHandler = event => setCover(event.target.files[0])
 
     const addNewCourse = e => {
         e.preventDefault()
@@ -91,12 +95,15 @@ export default function AddNewProduct({ getAllProducts }) {
 
             <form className='add-com-form'>
                 <div className='add-com-form-wrap'>
-                    <InputEditModal multiInp='name' valInp={name} setValInp={setName} cildren={<SiNamecheap />} placeHolderInp='نام دوره' />
-                    <InputEditModal multiInp='price' valInp={price} setValInp={setPrice} cildren='$$' placeHolderInp='قیمت دوره' />
-                    <InputEditModal multiInp='shortName' valInp={shortName} setValInp={setShortName} cildren={<FaLess />} placeHolderInp='شورت نیم' />
+                    <InputEditModal valInp={name} setValInp={setName} cildren={<SiNamecheap />} placeHolderInp='نام دوره' />
+                    <InputEditModal valInp={description} setValInp={setDescription} cildren={<TbFileDescription />} placeHolderInp='توضیحات دوره' />
+                    <InputEditModal valInp={price} setValInp={setPrice} cildren='$$' placeHolderInp='قیمت دوره' />
+                    <InputEditModal valInp={shortName} setValInp={setShortName} cildren={<GoRelFilePath />} placeHolderInp='URL دوره' />
+                    <InputEditModal valInp={shortName} setValInp={setStatus} cildren={<MdOutlineContactSupport />} placeHolderInp='نحوه پشتیبانی دوره' />
+                    <br />
                     <div className='mt-2'>
                         <label htmlFor="cover" className='text-secondary mb-2 me-2'>عکس دوره</label>
-                        <input type="file" className="form-control" id='cover' />
+                        <input type="file" className="form-control" id='cover' onChange={event => getSrcCoverHandler(event)}/>
                     </div>
                     <select className="form-select border mt-md-5" onChange={event => selectCategory(event.target.value)}>
                         <option value="-1">دسته بندی دوره</option>
