@@ -28,6 +28,7 @@ import AdminPanelComments from "./Pages/Admin/Pages/Comments/Comments"
 import AdminPanelOrders from "./Pages/Admin/Pages/Orders/Orders"
 import AdminPanelOffs from "./Pages/Admin/Pages/Offs/Offs"
 import AdminPanelCategories from "./Pages/Admin/Pages/Categories/Categories"
+import AdminPanelContacts from "./Pages/Admin/Pages/Contacts/Contacts"
 import Page404admin from "./Pages/Admin/Pages/Page404-admin/Page404-admin"
 
 const routes = [
@@ -62,6 +63,7 @@ const routes = [
             { path: 'comments', element: <AdminPanelComments /> },
             { path: 'orders', element: <AdminPanelOrders /> },
             { path: 'offs', element: <AdminPanelOffs /> },
+            { path: 'contacts', element: <AdminPanelContacts /> },
             //new
             { path: 'menus', element: <AdminPanelMenus /> },
             { path: 'articles', element: <AdminPanelArticles /> },

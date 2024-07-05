@@ -88,6 +88,12 @@ export default function Sidebar() {
                             </NavLink>
                         </li>
                         <li >
+                            <NavLink to="/p-admin/contacts" className={`admin sidebar-links__link`}>
+                                <BiCommentDetail className="icon" />
+                                <span>پیغام ها</span>
+                            </NavLink>
+                        </li>
+                        <li >
                             <NavLink to="/p-admin/offs" className={`admin sidebar-links__link`}>
                                 <BsCurrencyDollar className="icon" />
                                 <span>تخفیف ها</span>
