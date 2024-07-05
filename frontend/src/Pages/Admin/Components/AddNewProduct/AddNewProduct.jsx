@@ -12,7 +12,7 @@ export default function AddNewProduct({ getAllProducts }) {
     const [description, setDescription] = useState('')
     const [cover, setCover] = useState(null)
     const [shortName, setShortName] = useState('')
-    const [price, setPrice] = useState('')
+    const [price, setPrice] = useState(null)
     const [status, setStatus] = useState('')
     const [support, setSupport] = useState('')
     const [categoryID, setCategoryID] = useState('')
@@ -43,54 +43,53 @@ export default function AddNewProduct({ getAllProducts }) {
     const addNewCourse = e => {
         e.preventDefault()
 
-        const infosCourse = {
-            name,
-            description,
-            cover,
-            shortName,
-            price,
-            status,
-            support,
-            categoryID,
-        }
+        let infosCourse = new FormData()
+
+        infosCourse.append('name', name)
+        infosCourse.append('description', description)
+        infosCourse.append('cover', cover)
+        infosCourse.append('shortName', shortName)
+        infosCourse.append('price', price)
+        infosCourse.append('status', status)
+        infosCourse.append('support', support)
+        infosCourse.append('categoryID', categoryID)
 
         fetch(`http://localhost:4000/v1/courses`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
-                'Content-Type': 'application/json'
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
             },
-            body: JSON.stringify(infosCourse)
+            body: infosCourse
         })
-            .then(res => {
-                console.log(res);
-                return res.json()
-            })
-            .then(() => {
-                getAllProducts()
-                setName("")
-                setDescription("")
-                setCover(null)
-                setShortName("")
-                setPrice("")
-                setStatus("")
-                setCategoryID("")
-                {
-                    swal({
-                        title: 'با موفقیت دوره اضافه شد',
-                        icon: 'success',
-                        buttons: 'باشه'
-                    })
-                }
-            })
-            .catch(err => {
-                console.error(err)
-                {
-                    swal({
-                        title: 'خطایی پیش آمده لطفا کنسول مرورگر را چک کنید',
-                        icon: 'error',
-                        buttons: 'باشه'
-                    })
+            .then(res => res.json())
+            .then(datas => {
+                if (!datas.message) {
+                    getAllProducts()
+                    setName("")
+                    setDescription("")
+                    setCover(null)
+                    setShortName("")
+                    setPrice("")
+                    setStatus("")
+                    setCategoryID("")
+                    setSupport("")
+                    {
+                        swal({
+                            title: 'با موفقیت دوره اضافه شد',
+                            icon: 'success',
+                            buttons: 'باشه'
+                        })
+                    }
+                } else {
+                    console.error('▐▬◙╕');
+                    console.log(datas);
+                    {
+                        swal({
+                            title: 'خطایی پیش آمده لطفا کنسول مرورگر را چک کنید',
+                            icon: 'error',
+                            buttons: 'باشه'
+                        })
+                    }
                 }
             })
 
