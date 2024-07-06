@@ -1,19 +1,31 @@
 import React, { useEffect, useState } from "react";
-import EditMoal from "../../Components/Modals/EditMoal/EditMoal";
+import InputEditModal from "../../Components/InputEditModal/InputEditModal"
 import DeleteModal from "../../Components/Modals/DeleteModal/DeleteModal";
 import ErrorBoxEmpty from "../../Components/ErrorBoxEmpty/ErrorBoxEmpty";
 import swal from "sweetalert";
 import './Articles.css'
+//icons
+import { SiNamecheap } from "react-icons/si";
+import { GoRelFilePath } from "react-icons/go";
+import { TbFileDescription } from "react-icons/tb";
 
 export default function AdminPanelArticles() {
 
     const [articles, setArticles] = useState([])
     const [isShowModalDel, setIsShowModalDel] = useState(false)
     const [choosIDForRemove, setChoosIDForRemove] = useState("")
-
+    //
+    const [title, setTitle] = useState("")
+    const [shortName, setShortName] = useState("")
+    const [descriptionBrief, setDescriptionBrief] = useState("")
+    const [cover, setCover] = useState(null)
+    const [categoryID, setCategoryID] = useState("")
+    const [categories, setCategories] = useState([])
+    ///
 
     useEffect(() => {
         getArticles()
+        getAllCategories()
     }, [])
 
     const getArticles = () => {
@@ -51,8 +63,100 @@ export default function AdminPanelArticles() {
         }
     }
 
+    //!
+
+    const getAllCategories = () => {
+        fetch(`http://localhost:4000/v1/category`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+            }
+        })
+            .then(res => res.json())
+            .then(datas => setCategories(datas))
+    }
+
+    const selectCategory = value => value !== -1 && setCategoryID(value)
+
+    const getSrcCoverHandler = event => setCover(event.target.files[0])
+
+    const addNewArticle = e => {
+        e.preventDefault()
+
+        let infosArticles = {
+            categoryID,
+        }
+
+
+        fetch(`http://localhost:4000/v1/articles`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(infosArticles)
+        })
+            .then(res => res.json())
+            .then(datas => {
+                if (!datas.message) {
+                    getArticles()
+                    setCover(null)
+                    setCategoryID("")
+                    {
+                        swal({
+                            title: 'با موفقیت مقاله اضافه شد',
+                            icon: 'success',
+                            buttons: 'باشه'
+                        })
+                    }
+                } else {
+                    console.error('▐▬◙╕');
+                    console.log(datas);
+                    {
+                        swal({
+                            title: 'خطایی پیش آمده لطفا کنسول مرورگر را چک کنید',
+                            icon: 'error',
+                            buttons: 'باشه'
+                        })
+                    }
+                }
+            })
+
+    }
+
     return (
         <>
+
+            <div className='com-main'>
+                <h1 className='com-title'>افزودن مقاله جدید</h1>
+
+                <form className='add-com-form'>
+                    <div className='add-com-form-wrap'>
+                        <InputEditModal valInp={title} setValInp={setTitle} cildren={<SiNamecheap />} placeHolderInp='عنوان مقاله' />
+                        <InputEditModal valInp={shortName} setValInp={setShortName} cildren={<GoRelFilePath />} placeHolderInp='URL مقاله' />
+                        <div className="mt-2 mb-0 mb-md-5">
+                            <label htmlFor="brief" className='text-secondary mb-2 me-2'>چکیده مقاله</label>
+                            <textarea id="brief" className="w-100 h-100 rounded-4" defaultValue={descriptionBrief} onChange={e => setDescriptionBrief(e.target.value)}></textarea>
+                        </div>
+                        <div>
+                            <div className='mt-0 mt-md-2 mb-5 mb-md-0'>
+                                <label htmlFor="article" className='text-secondary mb-2 me-2'>عکس مقاله</label>
+                                <input type="file" className="form-control" id='article' onChange={event => getSrcCoverHandler(event)} />
+                            </div>
+                            <select className="form-select border mt-md-5" onChange={event => selectCategory(event.target.value)}>
+                                <option value="-1">دسته بندی مقاله</option>
+                                {
+                                    categories.length && categories.map((category, index) => (
+                                        <option key={index} value={category._id}>{category.title}</option>
+                                    ))
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <button className='add-com-submit' onClick={event => addNewArticle(event)}>ثبت مقاله</button>
+                </form>
+            </div>
+
             <div className='parent-table'>
                 {
                     articles.length ? (
