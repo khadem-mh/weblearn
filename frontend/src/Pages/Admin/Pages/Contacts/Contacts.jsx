@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import EditMoal from "../../Components/Modals/EditMoal/EditMoal";
+import DeleteModal from "../../Components/Modals/DeleteModal/DeleteModal";
 import ErrorBoxEmpty from "../../Components/ErrorBoxEmpty/ErrorBoxEmpty";
 import swal from "sweetalert";
 
@@ -10,6 +11,8 @@ export default function AdminPanelContacts() {
     const [isShowModalRes, setIsShowModalRes] = useState(false)
     const [bodyTextReq, setBodyTextReq] = useState("")
     const [resEmail, setResEmail] = useState("")
+    const [isShowModalDel, setIsShowModalDel] = useState(false)
+    const [choosIDForRemove, setChoosIDForRemove] = useState("")
     const [textInputRes, setTextInputRes] = useState("")
 
 
@@ -60,6 +63,32 @@ export default function AdminPanelContacts() {
         }
     }
 
+    const removeContactHandler = event => {
+        event.preventDefault()
+        if (choosIDForRemove) {
+            fetch(`http://localhost:4000/v1/contact/${choosIDForRemove}`, {
+                method: 'DELETE',
+                referrerPolicy: 'strict-origin-when-cross-origin',
+                headers: {
+                    'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+                }
+            })
+                .then(res => res.json())
+                .then(() => {
+                    getCotacts()
+                    setChoosIDForRemove(false)
+                    setIsShowModalDel(false)
+                    {
+                        swal({
+                            title: 'پیغام مورد نظر با موفقیت حذف شد',
+                            icon: 'success',
+                            buttons: 'باشه'
+                        })
+                    }
+                })
+        }
+    }
+
     return (
         <>
             <div className='parent-table'>
@@ -105,7 +134,10 @@ export default function AdminPanelContacts() {
                                                 }
                                             </td>
                                             <td>
-                                                <button className='products-table-btn'>حذف</button>
+                                                <button className='products-table-btn' onClick={() => {
+                                                    setChoosIDForRemove(product._id)
+                                                    setIsShowModalDel(true)
+                                                }}>حذف</button>
                                             </td>
                                         </tr>
                                     ))
@@ -128,6 +160,11 @@ export default function AdminPanelContacts() {
                 <EditMoal onClose={() => setIsShowModalBody(false)} btnIsActive={false}>
                     <textarea readOnly defaultValue={bodyTextReq}></textarea>
                 </EditMoal>
+            }
+
+            {
+                isShowModalDel &&
+                <DeleteModal cancleAction={() => setIsShowModalDel(false)} submitAction={e => removeContactHandler(e)} title={'آیا از حذف پیغام اطمینان دارید'}></DeleteModal>
             }
 
         </>
