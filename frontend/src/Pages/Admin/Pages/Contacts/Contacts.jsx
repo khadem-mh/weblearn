@@ -9,7 +9,7 @@ export default function AdminPanelContacts() {
     const [isShowModalBody, setIsShowModalBody] = useState(false)
     const [isShowModalRes, setIsShowModalRes] = useState(false)
     const [bodyTextReq, setBodyTextReq] = useState("")
-    const [resID, setResID] = useState("")
+    const [resEmail, setResEmail] = useState("")
     const [textInputRes, setTextInputRes] = useState("")
 
 
@@ -30,16 +30,24 @@ export default function AdminPanelContacts() {
         event.preventDefault()
         if (textInputRes.length) {
 
-            fetch(`http://localhost:4000/v1/contact/${resID}`, {
+            const nweAnswerToUser = {
+                email: resEmail,
+                answer: textInputRes
+            }
+
+            fetch(`http://localhost:4000/v1/contact/answer`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify()
+                body: JSON.stringify(nweAnswerToUser)
             })
                 .then(res => res.json())
                 .then(() => {
+                    getCotacts()
+                    setResEmail("")
+                    setTextInputRes("")
                     {
                         swal({
                             title: 'پیغام شما با موفقیت ارسال شد',
@@ -48,7 +56,7 @@ export default function AdminPanelContacts() {
                         })
                     }
                 })
-
+            setIsShowModalRes(false)
         }
     }
 
@@ -85,10 +93,16 @@ export default function AdminPanelContacts() {
                                                 }}>دیدن پیغام</button>
                                             </td>
                                             <td>
-                                                <button className='products-table-btn' onClick={() => {
-                                                    setResID(product._id)
-                                                    setIsShowModalRes(true)
-                                                }}>پاسخ</button>
+                                                {
+                                                    product.answer === 1
+                                                        ?
+                                                        <button className='products-table-btn' disabled>پاسخ داده شده</button>
+                                                        :
+                                                        <button className='products-table-btn' onClick={() => {
+                                                            setResEmail(product.email)
+                                                            setIsShowModalRes(true)
+                                                        }}>پاسخ</button>
+                                                }
                                             </td>
                                             <td>
                                                 <button className='products-table-btn'>حذف</button>
@@ -111,8 +125,8 @@ export default function AdminPanelContacts() {
 
             {
                 isShowModalBody &&
-                <EditMoal onClose={() => setIsShowModalBody(false)}>
-                    <textarea readOnly>{bodyTextReq}</textarea>
+                <EditMoal onClose={() => setIsShowModalBody(false)} btnIsActive={false}>
+                    <textarea readOnly defaultValue={bodyTextReq}></textarea>
                 </EditMoal>
             }
 

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import './EditMoal.css'
 import CloseModalEsc from '../CloseModalEsc';
 
-export default function EditMoal({ children, onClose, onSubmit, title }) {
+export default function EditMoal({ children, onClose, onSubmit, title, btnIsActive = true }) {
 
     useEffect(() => {
         CloseModalEsc(onClose)
@@ -15,7 +15,10 @@ export default function EditMoal({ children, onClose, onSubmit, title }) {
                 <h1>{title}</h1>
                 {children}
 
-                <button className='edit-form-submit' onClick={onSubmit}>ادامه</button>
+                {
+                    btnIsActive &&
+                    <button className='edit-form-submit' onClick={onSubmit}>ادامه</button>
+                }
             </form>
         </div>,
         document.getElementById('modals-parent')
