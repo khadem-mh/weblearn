@@ -60,6 +60,7 @@ export default function AdminPanelArticles() {
                             <thead>
                                 <tr>
                                     <th scope="col">شناسه</th>
+                                    <th scope="col">عکس</th>
                                     <th scope="col">عنوان</th>
                                     <th scope="col">لینک</th>
                                     <th scope="col">نویسنده</th>
@@ -73,8 +74,11 @@ export default function AdminPanelArticles() {
                                     articles.map((product, index) => (
                                         <tr key={index}>
                                             <td>{index + 1}</td>
+                                            <td>
+                                                <img src={product.cover} alt="article" className='products-table-img hgf' />
+                                            </td>
                                             <td>{product.title}</td>
-                                            <td style={{fontSize: '1.3rem', color: 'gray'}}>{product.shortName}</td>
+                                            <td style={{ fontSize: '1.3rem', color: 'gray' }}>{product.shortName}</td>
                                             <td>{product.creator.name}</td>
                                             <td>
                                                 <button className='products-table-btn'>ویرایش</button>
