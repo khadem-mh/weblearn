@@ -121,7 +121,6 @@ export default function AdminPanelArticles() {
                             icon: 'success',
                             buttons: 'باشه'
                         })
-
                     }
                 })
         } else {
