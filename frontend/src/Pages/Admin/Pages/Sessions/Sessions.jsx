@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import swal from "sweetalert";
+import InputEditModal from "../../Components/InputEditModal/InputEditModal";
+//icons
+import { SiNamecheap } from "react-icons/si";
+import { IoMdTime } from "react-icons/io";
+
 
 export default function AdminPanelSessions() {
 
@@ -28,6 +33,8 @@ export default function AdminPanelSessions() {
 
     const selectCourse = value => value !== -1 && setCourseID(value)
 
+    const selectStatusSession = value => value !== -1 && setIsFree(value)
+
     const addNewCourse = e => {
         e.preventDefault()
 
@@ -49,6 +56,7 @@ export default function AdminPanelSessions() {
             })
                 .then(res => res.json())
                 .then(datas => {
+                    console.log(datas);
                     videoRef.current.value = ""
                     setTitle("")
                     setTime("")
@@ -69,9 +77,34 @@ export default function AdminPanelSessions() {
     return (
         <>
 
-            <section>
-                hi
-            </section>
+            <div className='com-main'>
+                <h1 className='com-title'>افزودن جلسه به دوره</h1>
+
+                <form className='add-com-form'>
+                    <div className='add-com-form-wrap'>
+                        <InputEditModal valInp={title} setValInp={setTitle} cildren={<SiNamecheap />} placeHolderInp='عنوان جلسه' />
+                        <InputEditModal valInp={time} setValInp={setTime} cildren={<IoMdTime />} placeHolderInp='مدت رمان جلسه' />
+                        <select className="form-select border" onChange={event => selectCourse(event.target.value)}>
+                            <option value="-1">دوره مدنظر را انتخاب کنید</option>
+                            {
+                                allCourses.length && allCourses.map((course, index) => (
+                                    <option key={index} value={course._id}>{course.name}</option>
+                                ))
+                            }
+                        </select>
+                        <select className="form-select border" onChange={event => selectStatusSession(event.target.value)}>
+                            <option value="-1">وضعیت جلسه</option>
+                            <option value="1">رایگان</option>
+                            <option value="0">پولی</option>
+                        </select>
+                        <div className='mt-2'>
+                            <label htmlFor="video" className='text-secondary mb-2 me-2'>ویدئوی جلسه</label>
+                            <input type="file" className="form-control" id='video' onChange={event => setVideo(event.target.files[0])} ref={videoRef}/>
+                        </div>
+                    </div>
+                    <button className='add-com-submit' onClick={event => addNewCourse(event)}>ثبت دوره</button>
+                </form>
+            </div>
 
         </>
     )
