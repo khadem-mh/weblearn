@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import swal from "sweetalert";
 import InputEditModal from "../../Components/InputEditModal/InputEditModal";
+import ErrorBoxEmpty from "../../Components/ErrorBoxEmpty/ErrorBoxEmpty";
 //icons
 import { SiNamecheap } from "react-icons/si";
 import { IoMdTime } from "react-icons/io";
@@ -17,10 +18,12 @@ export default function AdminPanelSessions() {
     const [video, setVideo] = useState(null)
     ///
     const [allCourses, setAllCourses] = useState([])
+    const [allSessions, setAllSessions] = useState([])
 
     useEffect(() => {
         getAllCourses()
-    })
+        getAllSessions()
+    }, [])
 
     const getAllCourses = () => {
         fetch('http://localhost:4000/v1/courses', {
@@ -28,7 +31,21 @@ export default function AdminPanelSessions() {
             referrerPolicy: 'strict-origin-when-cross-origin'
         })
             .then(res => res.json())
-            .then(datas => setAllCourses(datas))
+            .then(datas => {
+                setAllCourses(datas)
+            })
+    }
+
+    const getAllSessions = () => {
+        fetch('http://localhost:4000/v1/courses/sessions', {
+            method: 'GET',
+            referrerPolicy: 'strict-origin-when-cross-origin'
+        })
+            .then(res => res.json())
+            .then(datas => {
+                console.log(datas);
+                setAllSessions(datas)
+            })
     }
 
     const selectCourse = value => value !== -1 && setCourseID(value)
@@ -56,7 +73,7 @@ export default function AdminPanelSessions() {
             })
                 .then(res => res.json())
                 .then(datas => {
-                    console.log(datas);
+                    getAllSessions()
                     videoRef.current.value = ""
                     setTitle("")
                     setTime("")
@@ -75,7 +92,7 @@ export default function AdminPanelSessions() {
     }
 
     return (
-        <>
+        <section>
 
             <div className='com-main'>
                 <h1 className='com-title'>افزودن جلسه به دوره</h1>
@@ -99,13 +116,48 @@ export default function AdminPanelSessions() {
                         </select>
                         <div className='mt-2'>
                             <label htmlFor="video" className='text-secondary mb-2 me-2'>ویدئوی جلسه</label>
-                            <input type="file" className="form-control" id='video' onChange={event => setVideo(event.target.files[0])} ref={videoRef}/>
+                            <input type="file" className="form-control" id='video' onChange={event => setVideo(event.target.files[0])} ref={videoRef} />
                         </div>
                     </div>
                     <button className='add-com-submit' onClick={event => addNewCourse(event)}>ثبت دوره</button>
                 </form>
             </div>
 
-        </>
+
+            {
+                allSessions.length ?
+                    <div className='parent-table'>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">شناسه</th>
+                                    <th scope="col">عنوان</th>
+                                    <th scope="col">مدت زمان</th>
+                                    <th scope="col">دوره</th>
+                                    <th scope="col">حذف</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    allSessions.map((product, index) => (
+                                        <tr key={index}>
+                                            <td>{index + 1}</td>
+                                            <td>{product.title}</td>
+                                            <td>{product.time}</td>
+                                            <td>{product.course?.name}</td>
+                                            <td>
+                                                <button className='products-table-btn'>حذف</button>
+                                            </td>
+                                        </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    : <ErrorBoxEmpty msg={'هیچ دوره‌ای یافت نشد'} />
+            }
+
+
+        </section>
     )
 }
