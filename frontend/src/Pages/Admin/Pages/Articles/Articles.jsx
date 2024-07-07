@@ -4,10 +4,10 @@ import DeleteModal from "../../Components/Modals/DeleteModal/DeleteModal";
 import ErrorBoxEmpty from "../../Components/ErrorBoxEmpty/ErrorBoxEmpty";
 import swal from "sweetalert";
 import './Articles.css'
+import TextEditor from "../../Components/TextEditor/TextEditor";
 //icons
 import { SiNamecheap } from "react-icons/si";
 import { GoRelFilePath } from "react-icons/go";
-import { TbFileDescription } from "react-icons/tb";
 
 export default function AdminPanelArticles() {
 
@@ -101,7 +101,9 @@ export default function AdminPanelArticles() {
                 if (!datas.message) {
                     getArticles()
                     setCover(null)
+                    setShortName("")
                     setCategoryID("")
+                    setDescriptionBrief("")
                     {
                         swal({
                             title: 'با موفقیت مقاله اضافه شد',
@@ -136,7 +138,7 @@ export default function AdminPanelArticles() {
                         <InputEditModal valInp={shortName} setValInp={setShortName} cildren={<GoRelFilePath />} placeHolderInp='URL مقاله' />
                         <div className="mt-2 mb-0 mb-md-5">
                             <label htmlFor="brief" className='text-secondary mb-2 me-2'>چکیده مقاله</label>
-                            <textarea id="brief" className="w-100 h-100 rounded-4" defaultValue={descriptionBrief} onChange={e => setDescriptionBrief(e.target.value)}></textarea>
+                            <textarea id="brief" className="w-100 h-100 rounded-4 px-3 pt-2" defaultValue={descriptionBrief} onChange={e => setDescriptionBrief(e.target.value)}></textarea>
                         </div>
                         <div>
                             <div className='mt-0 mt-md-2 mb-5 mb-md-0'>
@@ -152,6 +154,10 @@ export default function AdminPanelArticles() {
                                 }
                             </select>
                         </div>
+                    </div>
+                    <div style={{ width: '100%', marginTop: '2rem' }}>
+
+                        <TextEditor />
                     </div>
                     <button className='add-com-submit' onClick={event => addNewArticle(event)}>ثبت مقاله</button>
                 </form>
