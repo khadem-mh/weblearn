@@ -23,7 +23,7 @@ export default function AdminPanelComments() {
   }, [])
 
   const getAllComments = () => {
-    fetch('http://localhost:8000/api/comments')
+    fetch('http://localhost:4000/v1/comments')
       .then(res => res.json())
       .then(comments => setAllComments(comments))
   }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import swal from "sweetalert";
+import DeleteModal from "../../Components/Modals/DeleteModal/DeleteModal";
 import InputEditModal from "../../Components/InputEditModal/InputEditModal";
 import ErrorBoxEmpty from "../../Components/ErrorBoxEmpty/ErrorBoxEmpty";
 //icons
@@ -11,6 +12,8 @@ export default function AdminPanelSessions() {
 
     const videoRef = useRef()
     //
+    const [isShowModalDel, setIsShowModalDel] = useState(false)
+    const [sessionID, setSessionID] = useState(null)
     const [title, setTitle] = useState('')
     const [time, setTime] = useState('')
     const [courseID, setCourseID] = useState('')
@@ -91,6 +94,30 @@ export default function AdminPanelSessions() {
 
     }
 
+    const deleteSessionHandler = e => {
+        e.preventDefault()
+
+        fetch(`http://localhost:4000/v1/courses/sessions/${sessionID}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+            },
+        })
+            .then(res => res.json())
+            .then(datas => {
+                getAllSessions()
+                setSessionID(null)
+                setIsShowModalDel(false)
+                {
+                    swal({
+                        title: 'ویدئو با موفقیت حذف شد',
+                        icon: 'success',
+                        buttons: 'باشه'
+                    })
+                }
+            })
+    }
+
     return (
         <section>
 
@@ -146,7 +173,10 @@ export default function AdminPanelSessions() {
                                             <td>{product.time}</td>
                                             <td>{product.course?.name}</td>
                                             <td>
-                                                <button className='products-table-btn'>حذف</button>
+                                                <button className='products-table-btn' onClick={() => {
+                                                    setIsShowModalDel(true)
+                                                    setSessionID(product._id)
+                                                }}>حذف</button>
                                             </td>
                                         </tr>
                                     ))
@@ -157,6 +187,10 @@ export default function AdminPanelSessions() {
                     : <ErrorBoxEmpty msg={'هیچ دوره‌ای یافت نشد'} />
             }
 
+            {
+                isShowModalDel &&
+                <DeleteModal cancleAction={() => setIsShowModalDel(false)} title={'آیا از حذف جلسه اطمینان دارید'} submitAction={e => deleteSessionHandler(e)} />
+            }
 
         </section>
     )
