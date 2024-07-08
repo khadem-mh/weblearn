@@ -4,6 +4,7 @@ import './media.css'
 import { Link } from 'react-router-dom';
 import SearchInput from '../SearchInput/SearchInput';
 import { AuthContext } from '../../Contexts/AuthContext';
+import { InfosIndexPageContext } from '../../Contexts/InfosIndexPageContext';
 //icons
 import { IoCloseOutline } from "react-icons/io5";
 import { HiOutlineUser } from "react-icons/hi2";
@@ -11,6 +12,7 @@ import { HiOutlineUser } from "react-icons/hi2";
 export default function Navbar() {
 
     const menuRef = useRef()
+    const infosIndex = useContext(InfosIndexPageContext)
     const authContext = useContext(AuthContext)
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [menus, setMenus] = useState([])
@@ -35,6 +37,7 @@ export default function Navbar() {
         fetch(`http://localhost:4000/v1/menus`)
             .then(res => res.json())
             .then(menus => setMenus(menus))
+            console.log(infosIndex);
     }, [])
 
     const grtRandomItemsFromArray = (arr, randomCount) => {
@@ -93,14 +96,14 @@ export default function Navbar() {
 
                             <div className="top-bar__email">
                                 <a href="/" className="top-bar__email-text top-bar__link">
-                                    sabzlearn@gmail.io
+                                    {infosIndex.email}
                                 </a>
                                 <i className="fas fa-envelope top-bar__email-icon"></i>
                             </div>
 
                             <div className="top-bar__phone">
                                 <a href="/" className="top-bar__phone-text top-bar__link">
-                                    09031335939
+                                    {infosIndex.phone}
                                 </a>
                                 <i className="fas fa-phone top-bar__phone-icon"></i>
                             </div>

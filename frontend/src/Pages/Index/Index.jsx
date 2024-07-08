@@ -49,9 +49,7 @@ export default function Index() {
       .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
       .then(popular => dispatch({ type: 'POPULAR__COURSES', payload: popular.reverse().slice(0, 8) }))
       .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
-
   }, [])
-
 
   return (
     <section className="page">
@@ -132,15 +130,15 @@ export default function Index() {
           </div>
 
           <SwiperComponent>
-              {
-                state.presellCourses.length && state.presellCourses.map((courseInformation, index) => (
-                  <Course
-                    key={index}
-                    {...courseInformation}
-                    courseBadg={'پیش فروش'}
-                  />
-                ))
-              }
+            {
+              state.presellCourses.length && state.presellCourses.map((courseInformation, index) => (
+                <Course
+                  key={index}
+                  {...courseInformation}
+                  courseBadg={'پیش فروش'}
+                />
+              ))
+            }
           </SwiperComponent>
 
         </div>
