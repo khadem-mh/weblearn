@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import './Lesson.css'
 import './media.css'
@@ -26,24 +26,29 @@ export default function Lesson() {
 
     const location = useLocation()
     const params = useParams()
+    //
+    const [allSessions, setAllSessions] = useState([])
+    const [session, setSession] = useState({})
 
     useEffect(() => {
-
-        console.log(params);
-
         fetch(`http://localhost:4000/v1/courses/${params.courseNmae}/${params.idSession}`, {
             method: 'GET',
             referrerPolicy: 'strict-origin-when-cross-origin',
             headers: {
-                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+               /*  'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`, */
             }
         })
             .then(res => res.json())
             .then(datas => {
-                console.log(datas?.message);
-                console.log(datas);
+                if (datas?.message) {
+                    window.document.body.style.filter = 'blur(100px)'
+                    window.document.body.style.backgroundColor = 'black'
+                    window.location.pathname = '/'
+                } else {
+                    setSession(datas.session)
+                    setAllSessions(datas.sessions)
+                }
             })
-
     }, [location])
 
     const playerStyle = {
