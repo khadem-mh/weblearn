@@ -29,6 +29,7 @@ export default function Lesson() {
     //
     const [allSessions, setAllSessions] = useState([])
     const [session, setSession] = useState({})
+    const [sessionID, setSessionID] = useState(1)
 
     useEffect(() => {
         fetch(`http://localhost:4000/v1/courses/${params.courseNmae}/${params.idSession}`, {
@@ -53,7 +54,8 @@ export default function Lesson() {
 
     useEffect(() => {
         console.log(session);
-    }, [session])
+        if (session && allSessions.length) setSessionID([...allSessions].findIndex(item => item._id === session._id) + 1)
+    }, [session, allSessions])
 
     const playerStyle = {
         width: '100%',
@@ -67,9 +69,9 @@ export default function Lesson() {
             <BreadCrumb
                 links={
                     [
-                        { to: 'all-courses/page/1', title: 'دوره های آموزشی'},
-                        { to: `course-info/${params.courseNmae}`, title: params.courseNmae},
-                        { title: "جلسات دوره"},
+                        { to: 'all-courses/page/1', title: 'دوره های آموزشی' },
+                        { to: `course-info/${params.courseNmae}`, title: params.courseNmae },
+                        { title: "جلسات دوره" },
                     ]
                 }
             />
@@ -118,8 +120,8 @@ export default function Lesson() {
                                 آموزش ری اکت ( ReactJS ) در دنیای واقعی | از 0 تا استخدام [منتورشیپ]
                             </h2>
                             <div className='details-lesson__right-header-name'>
-                                <span className='details-lesson__right-header-number'>1</span>
-                                <span className='details-lesson__right-header-name-video'>ویدیوی معرفی</span>
+                                <span className='details-lesson__right-header-number'>{sessionID}</span>
+                                <span className='details-lesson__right-header-name-video'>{session.title}</span>
                             </div>
                         </div>
 
