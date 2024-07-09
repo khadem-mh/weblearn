@@ -75,6 +75,7 @@ export default function CourseInfo() {
   }, [allcourses, courseInfo])
 
   useEffect(() => {
+    console.log(sessions);
     if (sessions) {
       let sessionMinuteTime = 0
       sessions.map(session => sessionMinuteTime += +session.time.split(':')[0])
@@ -278,7 +279,7 @@ export default function CourseInfo() {
                           }
                         </p>
                       </div>
-                      <AccordionListVideo sessionsList={sessions} />
+                      <AccordionListVideo sessionsList={sessions} shortNameCourse={courseInfo.shortName}/>
                     </div>
 
                     <div className="comments">

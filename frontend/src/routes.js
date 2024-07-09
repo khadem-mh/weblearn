@@ -40,7 +40,7 @@ const routes = [
     { path: 'all-articles/page/:count', element: <CategoryArticles /> },
     { path: ':category/page/:count', element: <CategoryCourses /> },
     { path: 'all-courses/page/:count', element: <AllCourses /> },
-    { path: 'lesson', element: <Lesson /> },
+    { path: 'lesson/:courseNmae/:idSession', element: <Lesson /> },
     { path: 'login', element: <Login /> },
     { path: 'register', element: <Register /> },
     { path: 'contactus', element: <ContactUs /> },

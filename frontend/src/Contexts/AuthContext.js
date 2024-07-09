@@ -30,7 +30,6 @@ export const AuthProvider = ({ children }) => {
                     setIsLoggedIn(true)
                     setUserInfos(datas)
                     setToken(localStorageToken.token)
-                    console.log(datas);
 
                     if ((location.pathname.includes('p-admin') && datas.role === "USER")) {
                         window.document.documentElement.style.filter = 'blur(100px)'

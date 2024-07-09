@@ -5,7 +5,9 @@ import Accordion from 'react-bootstrap/Accordion';
 import { MdOutlinePlayCircle } from "react-icons/md";
 import { GoLock } from "react-icons/go";
 
-export default function AccordionListVideo({ sessionsList }) {
+export default function AccordionListVideo({ sessionsList, shortNameCourse }) {
+
+    console.log(sessionsList);
 
     return (
         <Accordion>
@@ -18,7 +20,7 @@ export default function AccordionListVideo({ sessionsList }) {
                     sessionsList && sessionsList.length ? sessionsList.map((key, index) => (
                         <div key={index} className='container-accordion-body'>
                             <Accordion.Body className='accordion-body'>
-                                <Link to={`/${key.free ? '' : ''}`} className={`introduction__accordion-body ${key.free ? 'pe-auto' : 'pe-none'}`}>
+                                <Link to={`/${key.free ? `lesson/${shortNameCourse}/${key._id}` : ''}`} className={`introduction__accordion-body ${key.free ? 'pe-auto' : 'pe-none'}`}>
 
                                     <div className="introduction__accordion-right">
                                         <div className='d-flex align-items-center'>

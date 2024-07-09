@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useLocation, useParams } from 'react-router-dom'
 import './Lesson.css'
 import './media.css'
 //package
@@ -22,6 +23,28 @@ import { RiTimeLine } from "react-icons/ri";
 import { IoVideocamOutline } from "react-icons/io5";
 
 export default function Lesson() {
+
+    const location = useLocation()
+    const params = useParams()
+
+    useEffect(() => {
+
+        console.log(params);
+
+        fetch(`http://localhost:4000/v1/courses/${params.courseNmae}/${params.idSession}`, {
+            method: 'GET',
+            referrerPolicy: 'strict-origin-when-cross-origin',
+            headers: {
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+            }
+        })
+            .then(res => res.json())
+            .then(datas => {
+                console.log(datas?.message);
+                console.log(datas);
+            })
+
+    }, [location])
 
     const playerStyle = {
         width: '100%',
