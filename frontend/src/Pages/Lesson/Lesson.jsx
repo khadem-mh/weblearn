@@ -30,6 +30,8 @@ export default function Lesson() {
     const [allSessions, setAllSessions] = useState([])
     const [session, setSession] = useState({})
     const [sessionID, setSessionID] = useState(1)
+    const [durationTimeMinuteCourses, setDurationTimeMinuteCourses] = useState(null)
+    const [durationTimeHoursCourses, setDurationTimeHoursCourses] = useState(null)
 
     useEffect(() => {
         fetch(`http://localhost:4000/v1/courses/${params.courseNmae}/${params.idSession}`, {
@@ -54,7 +56,13 @@ export default function Lesson() {
 
     useEffect(() => {
         console.log(session);
+        console.log(allSessions);
         if (session && allSessions.length) setSessionID([...allSessions].findIndex(item => item._id === session._id) + 1)
+        if (allSessions) {
+            let sessionMinuteTime = 0
+            allSessions.map(session => sessionMinuteTime += +session.time.split(':')[0])
+            sessionMinuteTime >= 60 ? setDurationTimeHoursCourses(Math.floor(sessionMinuteTime / 60)) : setDurationTimeMinuteCourses(sessionMinuteTime)
+        }
     }, [session, allSessions])
 
     const playerStyle = {
@@ -232,16 +240,10 @@ export default function Lesson() {
                     </div>
 
                     <div className='parent-box-status-details'>
-                        <StatusBox fzTitle='1.5rem' fzSubTitle='1.3rem' classBox={'box-tiny-status mt-2'} title={'وضعیت دوره'} subTitle={'تکمیل شده'} icon={<HiOutlineInformationCircle />} />
-                        <StatusBox fzTitle='1.5rem' fzSubTitle='1.3rem' classBox={'box-tiny-status mt-2'} title={'زمان دوره'} subTitle={'تکمیل شده'} icon={<RiTimeLine />} />
-                        <StatusBox fzTitle='1.5rem' fzSubTitle='1.3rem' classBox={'box-tiny-status mt-2'} title={'جلسات دوره'} subTitle={faNumber(45)} icon={<IoVideocamOutline />} />
+                        <StatusBox fzTitle='1.5rem' fzSubTitle='1.3rem' classBox={'box-tiny-status mt-2'} title={'وضعیت دوره'} subTitle={'در حال ضبط'} icon={<HiOutlineInformationCircle />} />
+                        <StatusBox fzTitle='1.5rem' fzSubTitle='1.3rem' classBox={'box-tiny-status mt-2'} title={'زمان دوره'} subTitle={allSessions.length ? `${durationTimeHoursCourses ? `${durationTimeHoursCourses} ساعت` : `${durationTimeMinuteCourses} دقیقه`}` : 'نامشخص'} icon={<RiTimeLine />} />
+                        <StatusBox fzTitle='1.5rem' fzSubTitle='1.3rem' classBox={'box-tiny-status mt-2'} title={'جلسات دوره'} subTitle={allSessions.length} icon={<IoVideocamOutline />} />
                     </div>
-
-                    <DetailsTeacher
-                        nameTeacher={'محمدحسین'}
-                        imgTeacher={"images/info/teacher.png"}
-                        to={'/'}
-                    />
 
                 </section>
 
