@@ -35,7 +35,7 @@ export default function Lesson() {
             method: 'GET',
             referrerPolicy: 'strict-origin-when-cross-origin',
             headers: {
-               /*  'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`, */
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
             }
         })
             .then(res => res.json())
@@ -51,6 +51,10 @@ export default function Lesson() {
             })
     }, [location])
 
+    useEffect(() => {
+        console.log(session);
+    }, [session])
+
     const playerStyle = {
         width: '100%',
         maxWidth: '700px',
@@ -63,8 +67,9 @@ export default function Lesson() {
             <BreadCrumb
                 links={
                     [
-                        { to: 'category-articles', title: 'وبلاگ', },
-                        { title: 'بهترین وبسایت های فریلنسری خارجی', },
+                        { to: 'all-courses/page/1', title: 'دوره های آموزشی'},
+                        { to: `course-info/${params.courseNmae}`, title: params.courseNmae},
+                        { title: "جلسات دوره"},
                     ]
                 }
             />
