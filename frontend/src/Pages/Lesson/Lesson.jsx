@@ -12,8 +12,6 @@ import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb'
 import ReapondComment from '../../Components/Comment/RespondComment/ReapondComment';
 import AccordionListVideo from '../../Components/AccordionListVideo/AccordionListVideo';
 import StatusBox from '../../Components/StatusBox/StatusBox';
-import faNumber from '../../Functions/FaNumber/FaNumber';
-import DetailsTeacher from '../../Components/DetailsTeacher/DetailsTeacher';
 //icons
 import { FaRegCommentDots, FaRegFileLines } from "react-icons/fa6";
 import { IoPersonCircleOutline } from "react-icons/io5";
@@ -32,13 +30,29 @@ export default function Lesson() {
     const [sessionID, setSessionID] = useState(1)
     const [durationTimeMinuteCourses, setDurationTimeMinuteCourses] = useState(null)
     const [durationTimeHoursCourses, setDurationTimeHoursCourses] = useState(null)
+    const [userInfos, setUserInfos] = useState(null)
 
     useEffect(() => {
+
+        let userToken = JSON.parse(localStorage.getItem('user')).token
+
+        fetch(`http://localhost:4000/v1/auth/me`, {
+            referrerPolicy: 'strict-origin-when-cross-origin',
+            headers: {
+                'Authorization': `Bearer ${userToken}`
+            }
+        })
+            .then(res => res.json())
+            .then(datas => {
+                if (datas.ok) setUserInfos(datas)
+                else window.location.pathname = 'login'
+            })
+
         fetch(`http://localhost:4000/v1/courses/${params.courseNmae}/${params.idSession}`, {
             method: 'GET',
             referrerPolicy: 'strict-origin-when-cross-origin',
             headers: {
-                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+                'Authorization': `Bearer ${userToken}`,
             }
         })
             .then(res => res.json())
@@ -92,7 +106,7 @@ export default function Lesson() {
                         ratio: '16:9',
                         sources: [
                             {
-                                src: 'Images/video-1.mp4',
+                                src: session.video ? session.video : '',
                                 type: 'video/mp4',
                             },
                         ],
@@ -125,7 +139,7 @@ export default function Lesson() {
 
                         <div className='details-lesson__right-header-parent'>
                             <h2 className='details-lesson__right-header-title title-main'>
-                                آموزش ری اکت ( ReactJS ) در دنیای واقعی | از 0 تا استخدام [منتورشیپ]
+                                دوره آموزشی {params.courseNmae}
                             </h2>
                             <div className='details-lesson__right-header-name'>
                                 <span className='details-lesson__right-header-number'>{sessionID}</span>
@@ -183,10 +197,10 @@ export default function Lesson() {
                                         ],
                                         direction: 'rtl'
                                     }}
-                                    /*
-                                    onChange={(event, editor) => {
-                                        const data = editor.getData();
-                                    }} */
+                                /*
+                                onChange={(event, editor) => {
+                                    const data = editor.getData();
+                                }} */
                                 />
                             </div>
                         </section>
