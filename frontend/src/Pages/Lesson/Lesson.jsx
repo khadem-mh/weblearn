@@ -183,9 +183,7 @@ export default function Lesson() {
                                         ],
                                         direction: 'rtl'
                                     }}
-                                    onReady={(editor) => {
-                                        console.log('این CKEditor آماده‌ی استفاده است!', editor);
-                                    }}/* 
+                                    /*
                                     onChange={(event, editor) => {
                                         const data = editor.getData();
                                     }} */

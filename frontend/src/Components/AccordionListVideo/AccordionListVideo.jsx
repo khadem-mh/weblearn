@@ -7,8 +7,6 @@ import { GoLock } from "react-icons/go";
 
 export default function AccordionListVideo({ sessionsList, shortNameCourse }) {
 
-    console.log(sessionsList);
-
     return (
         <Accordion>
 

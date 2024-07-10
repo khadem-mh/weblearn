@@ -37,7 +37,6 @@ export default function Navbar() {
         fetch(`http://localhost:4000/v1/menus`)
             .then(res => res.json())
             .then(menus => setMenus(menus))
-            console.log(infosIndex);
     }, [])
 
     const grtRandomItemsFromArray = (arr, randomCount) => {
