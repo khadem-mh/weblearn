@@ -47,6 +47,15 @@ export default function CourseInfo() {
 
     const userToken = JSON.parse(localStorage.getItem('user'))
 
+    fetch(`http://localhost:4000/v1/courses/covers/${courseInfo.cover}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${userToken && userToken.token ? userToken.token : ''}`
+      }
+    })
+    .then(res => res.json())
+    .then(datas => console.log(datas))
+
     fetch(`http://localhost:4000/v1/courses/${params.course}`, {
       method: 'GET',
       headers: {
@@ -144,7 +153,7 @@ export default function CourseInfo() {
                     <Plyr
                       source={{
                         type: 'video',
-                        poster: `/images/courses/${courseInfo.cover}`,
+                        poster: '',
                         ratio: '16:9',
                         sources: [
                           {

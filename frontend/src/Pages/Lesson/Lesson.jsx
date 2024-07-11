@@ -103,7 +103,7 @@ export default function Lesson() {
                         ratio: '16:9',
                         sources: [
                             {
-                                src: `http://localhost:4000/v1/courses/covers/${session.video}`,
+                                src: session.video,
                                 type: 'video/mp4',
                             },
                         ],
