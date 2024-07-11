@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import ErrorBoxEmpty from "../../Components/ErrorBoxEmpty/ErrorBoxEmpty";
+import DeleteModal from "../../Components/Modals/DeleteModal/DeleteModal";
 import './Menus.css'
+import swal from "sweetalert";
 
 export default function AdminPanelMenus() {
 
-    const [menus, setMenus] = useState()
+    const [menus, setMenus] = useState([])
+    const [menuID, setMenuID] = useState(null)
+    const [isShowModalRemove, setIsShowModalRemove] = useState(false)
 
     useEffect(() => {
         getAllMenus()
@@ -13,6 +17,27 @@ export default function AdminPanelMenus() {
     useEffect(() => {
         console.log(menus);
     }, [menus])
+
+    const handleRemoveMenu = e => {
+        e.preventDefault()
+        fetch(`http://localhost:4000/v1/menus/${menuID}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization' : `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+            }
+        })
+        .then(res => res.json())
+        .then(() => {
+            getAllMenus()
+            setIsShowModalRemove(false)
+            swal({
+                title: "با موفقیت منو پاک شد",
+                icon: 'success',
+                buttons: 'باشه'
+            })
+        })
+
+    }
 
     const getAllMenus = () => {
         fetch(`http://localhost:4000/v1/menus/all`)
@@ -52,7 +77,10 @@ export default function AdminPanelMenus() {
                                                 <button className='products-table-btn'>ویرایش</button>
                                             </td>
                                             <td>
-                                                <button className='products-table-btn'>حذف</button>
+                                                <button className='products-table-btn' onClick={() => {
+                                                    setMenuID(menu._id)
+                                                    setIsShowModalRemove(true)
+                                                }}>حذف</button>
                                             </td>
                                         </tr>
                                     ))
@@ -62,6 +90,12 @@ export default function AdminPanelMenus() {
                     ) : <ErrorBoxEmpty msg={'هیچ منویی یافت نشد'} />
                 }
             </div>
+
+            {
+                isShowModalRemove &&
+                <DeleteModal cancleAction={() => setIsShowModalRemove(false)} submitAction={e => handleRemoveMenu(e)} title={'آیا از حذف منو اطمینان دارید؟'}/>
+            }
+
         </div>
     )
 }
