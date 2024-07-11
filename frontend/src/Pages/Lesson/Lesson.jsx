@@ -100,11 +100,11 @@ export default function Lesson() {
                 <Plyr
                     source={{
                         type: 'video',
-                        poster: 'Images/Courses/BL-852x479-1.png',
+                        poster: `http://localhost:4000/v1/courses/covers/bootstrap.png`,
                         ratio: '16:9',
                         sources: [
                             {
-                                src: session.video ? session.video : '',
+                                src: `http://localhost:4000/v1/courses/covers/a716ceb49b4e1bb981e180c1c13f9fc1b197e68882968cf40a82d702186f03d4.mp4`,
                                 type: 'video/mp4',
                             },
                         ],
@@ -230,7 +230,7 @@ export default function Lesson() {
                             <FaRegFileLines />
                             <p>سرفصل های دوره</p>
                         </div>
-                        <AccordionListVideo sessionsList={allSessions} shortNameCourse={params.courseNmae}/>
+                        <AccordionListVideo sessionsList={allSessions} shortNameCourse={params.courseNmae} />
                     </div>
 
                     <div className='parent-box-status-details'>

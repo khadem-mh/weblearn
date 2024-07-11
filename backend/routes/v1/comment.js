@@ -23,7 +23,7 @@ router
   .route("/accept/:id")
   .put(authenticatedMiddleware, isAdminMiddleware, commentController.accept);
 
-router
+  router
   .route("/reject/:id")
   .put(authenticatedMiddleware, isAdminMiddleware, commentController.reject);
 
