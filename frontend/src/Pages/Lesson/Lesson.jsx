@@ -100,11 +100,10 @@ export default function Lesson() {
                 <Plyr
                     source={{
                         type: 'video',
-/*                         poster: `http://localhost:4000/v1/courses/covers/bootstrap.png`, */
                         ratio: '16:9',
                         sources: [
                             {
-                                src: `http://localhost:4000/v1/courses/covers/a716ceb49b4e1bb981e180c1c13f9fc1b197e68882968cf40a82d702186f03d4.mp4`,
+                                src: `http://localhost:4000/v1/courses/covers/${session.video}`,
                                 type: 'video/mp4',
                             },
                         ],
