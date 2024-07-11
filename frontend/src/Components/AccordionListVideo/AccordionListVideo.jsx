@@ -1,6 +1,6 @@
 import React from 'react'
 import './AccordionListVideo.css'
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Accordion from 'react-bootstrap/Accordion';
 import { MdOutlinePlayCircle } from "react-icons/md";
 import { GoLock } from "react-icons/go";
@@ -18,7 +18,15 @@ export default function AccordionListVideo({ sessionsList, shortNameCourse }) {
                     sessionsList && sessionsList.length ? sessionsList.map((key, index) => (
                         <div key={index} className='container-accordion-body'>
                             <Accordion.Body className='accordion-body'>
-                                <Link to={`/${key.free ? `lesson/${shortNameCourse}/${key._id}` : ''}`} className={`introduction__accordion-body ${key.free ? 'pe-auto' : 'pe-none'}`}>
+                                <NavLink to={`/${key.free === 1 ? `lesson/${shortNameCourse}/${key._id}` : ''}`} className={`introduction__accordion-body ${key.free ? 'pe-auto' : 'pe-none'}`}
+                                    style={({ isActive }) => {
+                                        return {
+                                            backgroundColor: isActive ? "gray" : "",
+                                            borderRadius: isActive ? '1rem' : "",
+                                            padding: isActive ? '1rem' : "",
+                                            marginBottom: isActive ? '.5rem' : "",
+                                        }
+                                    }}>
 
                                     <div className="introduction__accordion-right">
                                         <div className='d-flex align-items-center'>
@@ -41,7 +49,7 @@ export default function AccordionListVideo({ sessionsList, shortNameCourse }) {
                                         </span>
                                     </div>
 
-                                </Link>
+                                </NavLink>
                             </Accordion.Body>
                         </div>
                     ))

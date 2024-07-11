@@ -43,10 +43,7 @@ export default function Lesson() {
             }
         })
             .then(res => res.json())
-            .then(datas => {
-                if (datas.ok) setUserInfos(datas)
-                else window.location.pathname = 'login'
-            })
+            .then(datas => setUserInfos(datas))
 
         fetch(`http://localhost:4000/v1/courses/${params.courseNmae}/${params.idSession}`, {
             method: 'GET',
@@ -57,6 +54,7 @@ export default function Lesson() {
         })
             .then(res => res.json())
             .then(datas => {
+                console.log(datas);
                 if (datas?.message) {
                     window.document.body.style.filter = 'blur(100px)'
                     window.document.body.style.backgroundColor = 'black'
@@ -66,7 +64,7 @@ export default function Lesson() {
                     setAllSessions(datas.sessions)
                 }
             })
-    }, [location])
+    }, [])
 
     useEffect(() => {
         console.log(session);
@@ -232,23 +230,7 @@ export default function Lesson() {
                             <FaRegFileLines />
                             <p>سرفصل های دوره</p>
                         </div>
-                        <AccordionListVideo
-                            obj={{
-                                'carousel - 1': [
-                                    { textBody: "اوزش js", isFree: false, time: '05:56', to: 'js' },
-                                    { textBody: "اوزش react", isFree: false, time: '15:06', to: 'react' },
-                                    { textBody: "اوزش css", isFree: true, time: '08:10', to: 'css' },
-                                ],
-                                'carousel - 2': [
-                                    { textBody: "اوزش nextJS", isFree: false, time: '02:36', to: 'next' },
-                                ],
-                                'carousel - 3': [
-                                    { textBody: "اوزش js", isFree: false, time: '05:56', to: 'js' },
-                                    { textBody: "اوزش react", isFree: false, time: '15:06', to: 'react' },
-                                ],
-                                'carousel-feature': []
-                            }}
-                        />
+                        <AccordionListVideo sessionsList={allSessions} shortNameCourse={params.courseNmae}/>
                     </div>
 
                     <div className='parent-box-status-details'>
