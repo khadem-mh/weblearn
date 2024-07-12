@@ -4,6 +4,7 @@ import DetailsModal from '../../Components/Modals/DetailsModal/DetailsModal'
 import DeleteModal from '../../Components/Modals/DeleteModal/DeleteModal'
 import EditMoal from '../../Components/Modals/EditMoal/EditMoal'
 import ErrorBoxEmpty from '../../Components/ErrorBoxEmpty/ErrorBoxEmpty'
+import swal from 'sweetalert'
 
 export default function AdminPanelComments() {
 
@@ -25,30 +26,49 @@ export default function AdminPanelComments() {
   const getAllComments = () => {
     fetch('http://localhost:4000/v1/comments')
       .then(res => res.json())
-      .then(comments => setAllComments(comments))
+      .then(comments => {
+        console.log(comments);
+        setAllComments(comments)
+      })
   }
 
   const AcceptComment = event => {
     event.preventDefault()
-    fetch(`http://localhost:8000/api/comments/accept/${getID}`, {
-      method: 'POST'
+    fetch(`http://localhost:4000/v1/comments/accept/${getID}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+      }
     })
       .then(res => res.json())
       .then(result => {
         console.log(result);
         getAllComments()
+        swal({
+          title: "با موفقیت کامنت تایید شد",
+          icon: 'success',
+          buttons: 'باشه'
+        })
       })
     setIsShowAcceptModal(false)
   }
 
   const RejecctComment = event => {
     event.preventDefault()
-    fetch(`http://localhost:8000/api/comments/reject/${getID}`, {
-      method: 'POST'
+    fetch(`http://localhost:4000/v1/comments/reject/${getID}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+      }
     })
       .then(res => res.json())
       .then(result => {
         getAllComments()
+        swal({
+          title: "با موفقیت کامنت رد شد",
+          icon: 'success',
+          buttons: 'باشه'
+        })
       })
     setIsShowRejectModal(false)
   }
@@ -75,10 +95,11 @@ export default function AdminPanelComments() {
 
   const replyComment = (e) => {
     e.preventDefault()
-    fetch(`http://localhost:8000/api/comments/reply/${getID}`, {
-      method: 'PUT',
+    fetch(`http://localhost:4000/v1/comments/answer/${getID}`, {
+      method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
       },
       body: JSON.stringify({
         body: mainCommentBody
@@ -88,6 +109,11 @@ export default function AdminPanelComments() {
       .then(result => {
         console.log(result);
         getAllComments()
+        swal({
+          title: "با موفقیت کامنت پاسخ داده شد",
+          icon: 'success',
+          buttons: 'باشه'
+        })
       })
     setIsShowReplyModal(false)
     setMainCommentBody('')
@@ -112,14 +138,25 @@ export default function AdminPanelComments() {
     setIsShowEditReplyModal(false)
   }
 
-  const deleteComment = () => {
-    fetch(`http://localhost:8000/api/comments/${getID}`, {
-      method: 'DELETE'
+  const deleteComment = e => {
+    e.preventDefault()
+
+    fetch(`http://localhost:4000/v1/comments/${getID}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+      }
     })
       .then(res => res.json())
-      .then(comments => {
+      .then(datas => {
+        console.log(datas);
         getAllComments()
         setIsShowDeleteModal(false)
+        swal({
+          title: "با موفقیت کامنت حذف شد",
+          icon: 'success',
+          buttons: 'باشه'
+        })
       })
   }
 
@@ -131,7 +168,7 @@ export default function AdminPanelComments() {
   return (
     <div>
       {
-        allComments.length ?
+        allComments ?
           (
             <>
               <h1 className='products-title'>کامنت ها</h1>
@@ -139,63 +176,55 @@ export default function AdminPanelComments() {
                 <table>
                   <thead>
                     <tr>
+                      <th scope="col">شناسه</th>
                       <th scope="col">اسم کاربر</th>
-                      <th scope="col">محصول</th>
+                      <th scope="col">دوره</th>
                       <th scope="col">مشاهده کامنت</th>
                       <th scope="col">تاریخ</th>
-                      <th scope="col">ساعت</th>
                       <th scope="col">کنترل</th>
                     </tr>
                   </thead>
 
                   <tbody>
                     {
-                      allComments.map(comment => (
-                        <tr key={comment.id}>
-                          <td>{comment.userID}</td>
-                          <td>{comment.productID}</td>
+                      allComments.map((comment, index) => (
+                        <tr key={index}>
+                          <td>{index + 1}</td>
+                          <td>{comment.creator.name}</td>
+                          <td style={{ fontSize: '1.2rem', color: 'gray' }}>{comment.course}</td>
                           <td><button onClick={() => {
                             setIsShowDetailsModal(true)
                             setMainCommentBody(comment.body)
                           }} className='products-table-btn'>دیدن متن</button></td>
-                          <td>{comment.date}</td>
-                          <td>{comment.hour}</td>
+                          <td>{comment.creator.createdAt.slice(0, 9).split('-').join('/')}</td>
                           <td>
                             <button className='products-table-btn' onClick={() => {
                               setIsShowDeleteModal(true)
-                              setGetID(comment.id)
+                              setGetID(comment._id)
                             }}>حذف</button>
                             <button className='products-table-btn' onClick={() => {
                               setIsShowEditModal(true)
-                              setGetID(comment.id)
+                              setGetID(comment._id)
                               setMainCommentBody(comment.body)
                             }}>ویرایش</button>
-                            {
-                              comment.reply.length > 1 ? <button className='products-table-btn' onClick={() => {
-                                setMainCommentBody(comment.reply)
-                                setIsShowEditReplyModal(true)
-                                setGetID(comment.id)
-                              }}>ویرایش پاسخ</button> : (
-                                <button className='products-table-btn' onClick={() => {
-                                  setIsShowReplyModal(true)
-                                  setMainCommentBody('')
-                                  setGetID(comment.id)
-                                }}>پاسخ</button>
-                              )
-                            }
+                            <button className='products-table-btn' disabled={comment.answer === 1 ? true : false} onClick={() => {
+                              setIsShowReplyModal(true)
+                              setMainCommentBody('')
+                              setGetID(comment._id)
+                            }}>{comment.answer === 1 ? 'پاسخ داده شده' : 'ثبت پاسخ'}</button>
                             {
                               comment.isAccept === 1 ? (
                                 <>
                                   <button className='products-table-btn' onClick={() => {
                                     setIsShowRejectModal(true)
-                                    setGetID(comment.id)
+                                    setGetID(comment._id)
                                   }}>رد کامنت</button>
                                 </>
                               ) : (
                                 <button className='products-table-btn' onClick={
                                   () => {
                                     setIsShowAcceptModal(true)
-                                    setGetID(comment.id)
+                                    setGetID(comment._id)
                                   }}>تایید</button>
                               )
                             }
@@ -214,7 +243,7 @@ export default function AdminPanelComments() {
 
       {
         isShowDetailsModal &&
-        <DetailsModal onHide={() => closeModal(setIsShowDetailsModal)} tdIntoTbody={[mainCommentBody]}/>
+        <DetailsModal onHide={() => closeModal(setIsShowDetailsModal)} tdIntoTbody={[mainCommentBody]} />
       }
 
       {
@@ -225,7 +254,7 @@ export default function AdminPanelComments() {
       }
 
       {
-        isShowDeleteModal && <DeleteModal cancleAction={() => setIsShowDeleteModal(false)} submitAction={deleteComment} title={'آیا از حذف کامنت اطمینان دارید'} />
+        isShowDeleteModal && <DeleteModal cancleAction={() => setIsShowDeleteModal(false)} submitAction={(e) => deleteComment(e)} title={'آیا از حذف کامنت اطمینان دارید'} />
       }
 
       {
