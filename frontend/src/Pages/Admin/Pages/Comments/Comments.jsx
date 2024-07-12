@@ -13,7 +13,6 @@ export default function AdminPanelComments() {
   const [isShowDeleteModal, setIsShowDeleteModal] = useState(false)
   const [isShowAcceptModal, setIsShowAcceptModal] = useState(false)
   const [isShowRejectModal, setIsShowRejectModal] = useState(false)
-  const [isShowEditModal, setIsShowEditModal] = useState(false)
   const [isShowReplyModal, setIsShowReplyModal] = useState(false)
   const [isShowEditReplyModal, setIsShowEditReplyModal] = useState(false)
   const [mainCommentBody, setMainCommentBody] = useState('')
@@ -71,26 +70,6 @@ export default function AdminPanelComments() {
         })
       })
     setIsShowRejectModal(false)
-  }
-
-  const updateComment = event => {
-    event.preventDefault()
-    console.log('update');
-    fetch(`http://localhost:8000/api/comments/${getID}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        body: mainCommentBody
-      })
-    })
-      .then(res => res.json())
-      .then(result => {
-        getAllComments()
-        console.log(result);
-        setIsShowEditModal(false)
-      })
   }
 
   const replyComment = (e) => {
@@ -202,18 +181,21 @@ export default function AdminPanelComments() {
                               setIsShowDeleteModal(true)
                               setGetID(comment._id)
                             }}>حذف</button>
-                            <button className='products-table-btn' onClick={() => {
-                              setIsShowEditModal(true)
-                              setGetID(comment._id)
-                              setMainCommentBody(comment.body)
-                            }}>ویرایش</button>
-                            <button className='products-table-btn' disabled={comment.answer === 1 ? true : false} onClick={() => {
-                              setIsShowReplyModal(true)
-                              setMainCommentBody('')
-                              setGetID(comment._id)
-                            }}>{comment.answer === 1 ? 'پاسخ داده شده' : 'ثبت پاسخ'}</button>
                             {
-                              comment.isAccept === 1 ? (
+                              comment.answer === 1 ?
+                                <button className='products-table-btn' onClick={() => {
+                                  setIsShowDetailsModal(true)
+                                  setMainCommentBody(comment.answerContent?.body)
+                                }}>{comment.answer === 1 && 'مشاهده پاسخ'}</button>
+                                :
+                                <button className='products-table-btn' onClick={() => {
+                                  setIsShowReplyModal(true)
+                                  setMainCommentBody('')
+                                  setGetID(comment._id)
+                                }}>{comment.answer !== 1 && 'ثبت پاسخ'}</button>
+                            }
+                            {
+                              comment.answer === 1 ? (
                                 <>
                                   <button className='products-table-btn' onClick={() => {
                                     setIsShowRejectModal(true)
@@ -244,13 +226,6 @@ export default function AdminPanelComments() {
       {
         isShowDetailsModal &&
         <DetailsModal onHide={() => closeModal(setIsShowDetailsModal)} tdIntoTbody={[mainCommentBody]} />
-      }
-
-      {
-        isShowEditModal &&
-        <EditMoal onClose={() => closeModal(setIsShowEditModal)} onSubmit={updateComment} title={'اطلاعات جدید را وارد نمایید'}>
-          <textarea value={mainCommentBody} onChange={event => setMainCommentBody(event.target.value)}></textarea>
-        </EditMoal>
       }
 
       {
