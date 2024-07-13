@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ErrorBoxEmpty from '../ErrorBoxEmpty/ErrorBoxEmpty'
 import DeleteModal from '../Modals/DeleteModal/DeleteModal'
+import swal from "sweetalert"
 
 export default function Offs({ getOffs, getAllOffs }) {
 
@@ -9,22 +10,34 @@ export default function Offs({ getOffs, getAllOffs }) {
   const [isActive, setIsActive] = useState(0)
   const [offID, setOffID] = useState(null)
 
-  const submitDeleteOffs = () => {
-    fetch(`http://localhost:8000/api/offs/${offID}`, {
-      method: 'DELETE'
+  const submitDeleteOffs = e => {
+    e.preventDefault()
+    fetch(`http://localhost:4000/v1/offs/${offID}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+      }
     })
       .then(res => {
         if (res.ok) {
           setIsShowDeleteOffs(false)
           getAllOffs()
+          swal({
+            title: 'با موفقیت کد تخفیف حذف شد',
+            icon:'success',
+            buttons: 'باشه'
+          })
         }
       })
   }
 
   const offIsActive = () => {
 
-    fetch(`http://localhost:8000/api/offs/active-off/${offID}/${isActive}`, {
-      method: 'PUT'
+    fetch(`http://localhost:4000/v1/offs/active-off/${offID}/${isActive}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+      }
     })
       .then(res => {
         if (res.ok) getAllOffs()
@@ -65,7 +78,7 @@ export default function Offs({ getOffs, getAllOffs }) {
                         <td>{off.isActive === 0 ? 'خیر' : 'بله'}</td>
                         <td>
                           <button className='products-table-btn' onClick={() => {
-                            setOffID(off.id)
+                            setOffID(off._id)
                             setIsShowDeleteOffs(true)
                           }}>حذف</button>
                           {
@@ -100,7 +113,7 @@ export default function Offs({ getOffs, getAllOffs }) {
 
 
       {isShowDeleteOffs && (
-        <DeleteModal cancleAction={() => setIsShowDeleteOffs(false)} submitAction={submitDeleteOffs} title={'آیا از حذف کد تخفیف اطمینان دارید'} />
+        <DeleteModal cancleAction={() => setIsShowDeleteOffs(false)} submitAction={e => submitDeleteOffs(e)} title={'آیا از حذف کد تخفیف اطمینان دارید'} />
       )}
 
       {isShowActiveOffs && (

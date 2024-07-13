@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import AddNewOff from '../../Components/AddNewOff/AddNewOff'
 import Offs from '../../Components/Offs/Offs'
 
@@ -11,14 +11,19 @@ export default function AdminPanelOffs() {
     }, [])
 
     const getAllOffs = () => {
-        fetch(`http://localhost:8000/api/offs`)
+        fetch(`http://localhost:4000/v1/offs`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+            }
+        })
             .then(res => res.json())
             .then(result => setGetOffs(result))
     }
 
     return (
         <div>
-            <AddNewOff  getAllOffs={getAllOffs}/>
+            <AddNewOff getAllOffs={getAllOffs} />
             <Offs getOffs={getOffs} getAllOffs={getAllOffs} />
         </div>
     )
