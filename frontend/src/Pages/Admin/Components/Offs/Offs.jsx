@@ -7,7 +7,6 @@ export default function Offs({ getOffs, getAllOffs }) {
 
   const [isShowDeleteOffs, setIsShowDeleteOffs] = useState(false)
   const [isShowActiveOffs, setIsShowActiveOffs] = useState(false)
-  const [isActive, setIsActive] = useState(0)
   const [offID, setOffID] = useState(null)
 
   const submitDeleteOffs = e => {
@@ -31,28 +30,6 @@ export default function Offs({ getOffs, getAllOffs }) {
       })
   }
 
-  const offIsActive = e => {
-    e.preventDefault()
-
-    fetch(`http://localhost:4000/v1/offs/active-off/${offID}/${isActive}`, {
-      method: 'PUT',
-      headers: {
-        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
-      }
-    })
-      .then(res => {
-        if (res.ok) {
-          getAllOffs()
-          swal({
-            title: 'با موفقیت کد تخفیف حذف شد',
-            icon: 'success',
-            buttons: 'باشه'
-          })
-        }
-      })
-    setIsShowActiveOffs()
-  }
-
   return (
     <>
       {
@@ -71,7 +48,7 @@ export default function Offs({ getOffs, getAllOffs }) {
                       <th scope="col">حداکثر استفاده</th>
                       <th scope="col">استفاده شده</th>
                       <th scope="col">فعال</th>
-                      <th scope="col">کنترل</th>
+                      <th scope="col">حذف</th>
                     </tr>
                   </thead>
 
@@ -89,24 +66,6 @@ export default function Offs({ getOffs, getAllOffs }) {
                             setOffID(off._id)
                             setIsShowDeleteOffs(true)
                           }}>حذف</button>
-                          {
-                            off.isActive === 0 ?
-                              (
-                                <button className='products-table-btn' onClick={() => {
-                                  setOffID(off._id)
-                                  setIsActive(1)
-                                  setIsShowActiveOffs(true)
-                                }}>فعال کردن</button>
-                              )
-                              :
-                              (
-                                <button className='products-table-btn' onClick={() => {
-                                  setOffID(off._id)
-                                  setIsActive(0)
-                                  setIsShowActiveOffs(true)
-                                }}>غیر فعال کردن</button>
-                              )
-                          }
                         </td>
                       </tr>
                     ))}
@@ -122,10 +81,6 @@ export default function Offs({ getOffs, getAllOffs }) {
 
       {isShowDeleteOffs && (
         <DeleteModal cancleAction={() => setIsShowDeleteOffs(false)} submitAction={e => submitDeleteOffs(e)} title={'آیا از حذف کد تخفیف اطمینان دارید'} />
-      )}
-
-      {isShowActiveOffs && (
-        <DeleteModal cancleAction={() => setIsShowActiveOffs(false)} submitAction={e => offIsActive(e)} title={'آیا از فعال یا غیر فعال کردن کد تخفیف اطمینان دارید'} />
       )}
 
     </>
