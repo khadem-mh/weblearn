@@ -24,14 +24,15 @@ export default function Offs({ getOffs, getAllOffs }) {
           getAllOffs()
           swal({
             title: 'با موفقیت کد تخفیف حذف شد',
-            icon:'success',
+            icon: 'success',
             buttons: 'باشه'
           })
         }
       })
   }
 
-  const offIsActive = () => {
+  const offIsActive = e => {
+    e.preventDefault()
 
     fetch(`http://localhost:4000/v1/offs/active-off/${offID}/${isActive}`, {
       method: 'PUT',
@@ -40,7 +41,14 @@ export default function Offs({ getOffs, getAllOffs }) {
       }
     })
       .then(res => {
-        if (res.ok) getAllOffs()
+        if (res.ok) {
+          getAllOffs()
+          swal({
+            title: 'با موفقیت کد تخفیف حذف شد',
+            icon: 'success',
+            buttons: 'باشه'
+          })
+        }
       })
     setIsShowActiveOffs()
   }
@@ -60,8 +68,8 @@ export default function Offs({ getOffs, getAllOffs }) {
                       <th scope="col">کد تخفیف</th>
                       <th scope="col">درصد تخفیف</th>
                       <th scope="col">نام admin</th>
-                      <th scope="col">محصول</th>
-                      <th scope="col">تنظیم شده در تاریخ</th>
+                      <th scope="col">حداکثر استفاده</th>
+                      <th scope="col">استفاده شده</th>
                       <th scope="col">فعال</th>
                       <th scope="col">کنترل</th>
                     </tr>
@@ -72,10 +80,10 @@ export default function Offs({ getOffs, getAllOffs }) {
                       <tr key={off.id}>
                         <td>{off.code}</td>
                         <td>{off.percent} %</td>
-                        <td>{off.adminID}</td>
-                        <td>{off.productID}</td>
-                        <td>{off.date}</td>
-                        <td>{off.isActive === 0 ? 'خیر' : 'بله'}</td>
+                        <td>{off.creator}</td>
+                        <td>{off.max}</td>
+                        <td>{off.uses}</td>
+                        <td>{off.uses == off.max ? 'خیر' : 'بله'}</td>
                         <td>
                           <button className='products-table-btn' onClick={() => {
                             setOffID(off._id)
@@ -85,7 +93,7 @@ export default function Offs({ getOffs, getAllOffs }) {
                             off.isActive === 0 ?
                               (
                                 <button className='products-table-btn' onClick={() => {
-                                  setOffID(off.id)
+                                  setOffID(off._id)
                                   setIsActive(1)
                                   setIsShowActiveOffs(true)
                                 }}>فعال کردن</button>
@@ -93,7 +101,7 @@ export default function Offs({ getOffs, getAllOffs }) {
                               :
                               (
                                 <button className='products-table-btn' onClick={() => {
-                                  setOffID(off.id)
+                                  setOffID(off._id)
                                   setIsActive(0)
                                   setIsShowActiveOffs(true)
                                 }}>غیر فعال کردن</button>
@@ -117,7 +125,7 @@ export default function Offs({ getOffs, getAllOffs }) {
       )}
 
       {isShowActiveOffs && (
-        <DeleteModal cancleAction={() => setIsShowActiveOffs(false)} submitAction={offIsActive} title={'آیا از فعال یا غیر فعال کردن کد تخفیف اطمینان دارید'} />
+        <DeleteModal cancleAction={() => setIsShowActiveOffs(false)} submitAction={e => offIsActive(e)} title={'آیا از فعال یا غیر فعال کردن کد تخفیف اطمینان دارید'} />
       )}
 
     </>

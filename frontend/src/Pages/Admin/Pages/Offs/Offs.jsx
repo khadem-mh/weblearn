@@ -18,7 +18,10 @@ export default function AdminPanelOffs() {
             }
         })
             .then(res => res.json())
-            .then(result => setGetOffs(result))
+            .then(result => {
+                console.log(result);
+                setGetOffs(result)
+            })
     }
 
     return (
