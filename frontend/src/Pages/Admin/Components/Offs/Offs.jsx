@@ -6,7 +6,6 @@ import swal from "sweetalert"
 export default function Offs({ getOffs, getAllOffs }) {
 
   const [isShowDeleteOffs, setIsShowDeleteOffs] = useState(false)
-  const [isShowActiveOffs, setIsShowActiveOffs] = useState(false)
   const [offID, setOffID] = useState(null)
 
   const submitDeleteOffs = e => {
@@ -42,6 +41,7 @@ export default function Offs({ getOffs, getAllOffs }) {
                 <table>
                   <thead>
                     <tr>
+                      <th scope="col">شناسه</th>
                       <th scope="col">کد تخفیف</th>
                       <th scope="col">درصد تخفیف</th>
                       <th scope="col">نام admin</th>
@@ -55,6 +55,7 @@ export default function Offs({ getOffs, getAllOffs }) {
                   <tbody>
                     {getOffs.map((off, index) => (
                       <tr key={index}>
+                        <td>{index + 1}</td>
                         <td>{off.code}</td>
                         <td>{off.percent} %</td>
                         <td>{off.creator}</td>
