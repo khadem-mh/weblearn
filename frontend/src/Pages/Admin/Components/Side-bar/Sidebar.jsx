@@ -82,12 +82,6 @@ export default function Sidebar() {
                             </NavLink>
                         </li>
                         <li >
-                            <NavLink to="/p-admin/orders" className={`admin sidebar-links__link`}>
-                                <BsBagCheck className="icon" />
-                                <span>سفارشات</span>
-                            </NavLink>
-                        </li>
-                        <li >
                             <NavLink to="/p-admin/comments" className={`admin sidebar-links__link`}>
                                 <BiCommentDetail className="icon" />
                                 <span>کامنت ها</span>
