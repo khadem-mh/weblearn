@@ -4,12 +4,14 @@ import { SiNamecheap } from "react-icons/si";
 import { MdOutlinePercent } from "react-icons/md";
 import { FaMaxcdn } from "react-icons/fa";
 import swal from 'sweetalert';
+import { number } from 'prop-types';
 
 export default function AddNewOff({ getAllOffs }) {
 
     const [offCode, setOffCode] = useState('')
     const [offPercent, setOffPercent] = useState('')
     const [offUses, setOffUses] = useState(null)
+    const [productID, setProductID] = useState(null)
     const [allProducts, setAllProducts] = useState([])
 
     useEffect(() => {
@@ -27,32 +29,42 @@ export default function AddNewOff({ getAllOffs }) {
 
     const postInfosOff = event => {
         event.preventDefault()
-        const date = new Date()
-        const setNewOff = {
-            code: offCode,
-            percent: +offPercent,
-        }
 
-        fetch("http://localhost:4000/v1/offs", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
-            },
-            body: JSON.stringify(setNewOff)
-        })
-            .then(res => res.json())
-            .then(off => {
-                getAllOffs()
-                setOffCode('')
-                setOffPercent('')
-                swal({
-                    title: 'با موفقیت کد تخفیف اضافه شد',
-                    icon: 'success',
-                    buttons: 'باشه'
-                })
+        if (offCode.length && offPercent.length && productID && offUses.length) {
+            let setNewOff = {
+                code: offCode,
+                percent: offPercent,
+                course: productID,
+                max: offUses,
+            }
+
+            fetch("http://localhost:4000/v1/offs", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+                },
+                body: JSON.stringify(setNewOff)
             })
+                .then(res => res.json())
+                .then(off => {
+                    getAllOffs()
+                    setOffCode('')
+                    setOffPercent('')
+                    swal({
+                        title: 'با موفقیت کد تخفیف اضافه شد',
+                        icon: 'success',
+                        buttons: 'باشه'
+                    })
+                })
 
+        } else {
+            swal({
+                title: 'لطفا مقادیر خواسته شده را وارد نمایید',
+                icon: 'error',
+                buttons: 'باشه'
+            })
+        }
     }
 
     return (
@@ -66,7 +78,7 @@ export default function AddNewOff({ getAllOffs }) {
                     <InputEditModal valInp={offUses} setValInp={setOffUses} cildren={<FaMaxcdn />} placeHolderInp='حداگثر استفاده' />
 
                     <select className="form-select mt-4" onChange={e => {
-
+                        setProductID(e.target.value)
                     }}>
                         <option value="-1">دوره مدنظر را انتخاب کنید</option>
                         {

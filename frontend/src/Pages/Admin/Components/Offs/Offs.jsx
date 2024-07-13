@@ -76,8 +76,8 @@ export default function Offs({ getOffs, getAllOffs }) {
                   </thead>
 
                   <tbody>
-                    {getOffs.map(off => (
-                      <tr key={off.id}>
+                    {getOffs.map((off, index) => (
+                      <tr key={index}>
                         <td>{off.code}</td>
                         <td>{off.percent} %</td>
                         <td>{off.creator}</td>
