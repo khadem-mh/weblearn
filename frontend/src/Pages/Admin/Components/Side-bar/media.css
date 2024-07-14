@@ -19,6 +19,13 @@
     .admin.header {
         width: calc(100% - 150px);
     }
+
+    .sidebar-links li .active {
+        margin: 0;
+        transform: translateX(0) rotate(0);
+        box-shadow: 0 0 10px whitesmoke;
+        padding-right: 1rem !important;
+    }
 }
 
 @media screen and (max-width: 800px) {
@@ -64,6 +71,13 @@
     .content-middle-cms {
         width: calc(100% - 60px) !important;
     }
+
+    .sidebar-links li .active {
+        margin: 0;
+        transform: translateX(0) rotate(0);
+        box-shadow: 4px 4px 10px whitesmoke;
+        padding: 0;
+    }
 }
 
 @media screen and (max-height: 650px),
@@ -99,6 +113,13 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    .sidebar-links li .active {
+        margin: 0;
+        transform: translateX(0) rotate(0);
+        box-shadow: 4px 4px 10px whitesmoke;
+        padding: 0;
     }
 }
 
