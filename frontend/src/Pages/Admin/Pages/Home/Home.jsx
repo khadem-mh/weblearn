@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './index.css'
 import './Home.css'
 import './media.css'
+import PAdminItem from '../../Components/PAdminItem/PAdminItem'
 
 export default function AdminPanelHome() {
 
@@ -38,12 +39,11 @@ export default function AdminPanelHome() {
           </div> */}
           <div class="home-content-boxes">
             <div class="row">
-              {/*    {
+              {
                 infos.map(item => (
                   <PAdminItem {...item} />
                 ))
-              } */}
-
+              }
             </div>
           </div>
 
