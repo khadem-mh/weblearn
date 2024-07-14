@@ -1,13 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react'
 import './Sidebar.css'
 import './media.css'
+import { Link, NavLink } from 'react-router-dom';
+//
 import { AiOutlineHome } from "react-icons/ai";
-import { MdProductionQuantityLimits } from "react-icons/md";
 import { BiCommentDetail } from "react-icons/bi";
 import { FiUsers } from "react-icons/fi";
-import { BsBagCheck, BsCurrencyDollar } from "react-icons/bs";
-import { Link, NavLink } from 'react-router-dom';
 import { IoLogOutOutline } from "react-icons/io5";
+import { SiGooglemeet } from "react-icons/si";
+import { MdOutlineAssessment } from "react-icons/md";
+import { BiCategoryAlt } from "react-icons/bi";
+import { RiMenu2Fill } from "react-icons/ri";
+import { GrArticle } from "react-icons/gr";
+import { TbMessages } from "react-icons/tb";
+import { BiSolidOffer } from "react-icons/bi";
+
+
 import DeleteModal from '../Modals/DeleteModal/DeleteModal';
 
 export default function Sidebar() {
@@ -47,31 +55,31 @@ export default function Sidebar() {
                         </li>
                         <li >
                             <NavLink to="/p-admin/courses" className={`admin sidebar-links__link`} >
-                                <MdProductionQuantityLimits className="icon" />
+                                <MdOutlineAssessment className="icon" />
                                 <span>دوره ها</span>
                             </NavLink>
                         </li>
                         <li >
                             <NavLink to="/p-admin/sessions" className={`admin sidebar-links__link`} >
-                                <MdProductionQuantityLimits className="icon" />
+                                <SiGooglemeet className="icon" />
                                 <span>جلسات</span>
                             </NavLink>
                         </li>
                         <li >
                             <NavLink to="/p-admin/categories" className={`admin sidebar-links__link`}>
-                                <BiCommentDetail className="icon" />
+                                <BiCategoryAlt className="icon" />
                                 <span>دسته بندی ها</span>
                             </NavLink>
                         </li>
                         <li >
                             <NavLink to="/p-admin/menus" className={`admin sidebar-links__link`}>
-                                <BiCommentDetail className="icon" />
+                                <RiMenu2Fill className="icon" />
                                 <span>منو ها</span>
                             </NavLink>
                         </li>
                         <li >
                             <NavLink to="/p-admin/articles" className={`admin sidebar-links__link`}>
-                                <BiCommentDetail className="icon" />
+                                <GrArticle className="icon" />
                                 <span>مقالات</span>
                             </NavLink>
                         </li>
@@ -89,13 +97,13 @@ export default function Sidebar() {
                         </li>
                         <li >
                             <NavLink to="/p-admin/contacts" className={`admin sidebar-links__link`}>
-                                <BiCommentDetail className="icon" />
+                                <TbMessages className="icon" />
                                 <span>پیغام ها</span>
                             </NavLink>
                         </li>
                         <li >
                             <NavLink to="/p-admin/offs" className={`admin sidebar-links__link`}>
-                                <BsCurrencyDollar className="icon" />
+                                <BiSolidOffer className="icon" />
                                 <span>تخفیف ها</span>
                             </NavLink>
                         </li>

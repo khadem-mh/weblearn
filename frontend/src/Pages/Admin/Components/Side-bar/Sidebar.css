@@ -13,11 +13,9 @@
 
 .admin.sidebar-div {
     overflow-y: auto;
-    border-top-left-radius: 7rem;
-    border-bottom-left-radius: 7rem;
     width: inherit;
     height: inherit;
-    box-shadow: -40px 0px 100px 80px var(--blue) inset, 0 0 350px black;
+    box-shadow: -120px 50px 75px 80px var(--blue) inset;
 }
 
 .admin.sidebar-div::-webkit-scrollbar-track {
