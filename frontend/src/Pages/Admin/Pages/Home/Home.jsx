@@ -9,21 +9,18 @@ export default function AdminPanelHome() {
 
   const [infos, setInfos] = useState([])
   const [lastRegisteredUsers, setLastRegisteredUsers] = useState([])
-  const [adminName, setAdminName] = useState('')
 
   useEffect(() => {
     fetch("http://localhost:4000/v1/infos/p-admin", {
       headers: {
-        Authorization: `Bearer ${JSON.parse(localStorage.getItem("user")).token
-          }`,
-      },
+        Authorization: `Bearer ${JSON.parse(localStorage.getItem("user")).token}`,
+      }
     })
       .then((res) => res.json())
       .then((pageInfo) => {
         console.log(pageInfo);
         setInfos(pageInfo.infos)
         setLastRegisteredUsers(pageInfo.lastUsers)
-        setAdminName(pageInfo.adminName)
       });
   }, []);
 
@@ -34,18 +31,18 @@ export default function AdminPanelHome() {
 
       <div class="container-fluid" id="home-content">
         <div class="container">
-          <div class="home-content-title">
+          {/*  <div class="home-content-title">
             <span class="welcome">
               خوش آمدید,<span class="name">{adminName}</span>
             </span>
-          </div>
+          </div> */}
           <div class="home-content-boxes">
             <div class="row">
-              {
+              {/*    {
                 infos.map(item => (
                   <PAdminItem {...item} />
                 ))
-              }
+              } */}
 
             </div>
           </div>
