@@ -39,9 +39,9 @@ export default function AdminPanelHome() {
         </div>
       </div>
 
-      <section className="home-content-latset-users">
+      <section className="home-content-latset-users mt-5">
 
-        <h1 className='products-title title-pr'>دوره ها</h1>
+        <h1 className='products-title title-pr'>آخرین ثبت نامی ها</h1>
         <div className='parent-table'>
           {
             <table>
