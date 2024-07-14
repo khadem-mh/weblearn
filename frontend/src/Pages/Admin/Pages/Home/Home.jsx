@@ -50,31 +50,36 @@ export default function AdminPanelHome() {
             </div>
           </div>
 
-          <div class="home-content-latset-users">
-            <DataTable title="افراد اخیرا ثبت نام شده">
+          <section class="home-content-latset-users">
 
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>شناسه</th>
-                    <th>نام و نام خانوادگی</th>
-                    <th>ایمیل</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {lastRegisteredUsers.map((user, index) => (
+            <h1 className='products-title title-pr'>دوره ها</h1>
+            <div className='parent-table'>
+              {
+                <table>
+                  <thead>
                     <tr>
-                      <td>{index + 1}</td>
-                      <td>{user.name}</td>
-                      {/* <td>09123443243</td> */}
-                      <td>{user.email}</td>
+                      <th scope="col">شناسه</th>
+                      <th scope="col">نام و نام خانوادگی</th>
+                      <th scope="col">ایمیل</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
 
-            </DataTable>
-          </div>
+                  <tbody>
+                    {lastRegisteredUsers.map((user, index) => (
+                      <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td>{user.name}</td>
+                        {/* <td>09123443243</td> */}
+                        <td>{user.email}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+
+              }
+            </div>
+
+          </section>
         </div>
       </div>
 
