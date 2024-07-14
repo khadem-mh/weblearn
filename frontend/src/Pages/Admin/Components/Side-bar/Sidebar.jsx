@@ -24,7 +24,15 @@ export default function Sidebar() {
     const adminSideRef = useRef()
 
     useEffect(() => {
-        window.location.pathname.length > ("/p-admin/").length && adminSideRef.current.classList.remove('active')
+        console.log(window.location.pathname);
+        if (
+            window.location.pathname === '/p-admin' ||
+            window.location.pathname === '/p-admin/'
+        ) {
+            adminSideRef.current.classList.add('active')
+        } else {
+            adminSideRef.current.classList.remove('active')
+        }
     })
 
     const logoutHandle = e => {
@@ -48,7 +56,7 @@ export default function Sidebar() {
 
                     <ul className="admin sidebar-links">
                         <li>
-                            <NavLink to="/p-admin" className={`admin sidebar-links__link`} ref={adminSideRef}>
+                            <NavLink to="/p-admin" className={`admin sidebar-links__link admin-panel-home-s`} style={{ marginTop: `${window.location.pathname === '/p-admin' || window.location.pathname === '/p-admin/' ? '15rem' : '0'}` }} ref={adminSideRef}>
                                 <AiOutlineHome className="icon" />
                                 <span>صفحه اصلی</span>
                             </NavLink>
