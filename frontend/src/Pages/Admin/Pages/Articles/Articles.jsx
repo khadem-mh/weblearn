@@ -193,7 +193,7 @@ export default function AdminPanelArticles() {
                                         <tr key={index}>
                                             <td>{index + 1}</td>
                                             <td>
-                                                <img src={product.cover} alt="article" className='products-table-img hgf' />
+                                                <img src={`/Images/Blogs/${product.cover}`} alt="article" className='products-table-img hgf' />
                                             </td>
                                             <td>{product.title}</td>
                                             <td style={{ fontSize: '1.3rem', color: 'gray' }}>{product.shortName}</td>
