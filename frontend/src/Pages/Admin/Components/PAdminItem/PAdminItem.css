@@ -1,0 +1,13 @@
+.card-det-admin {
+    min-width: 400px;
+    flex-wrap: wrap;
+    margin: 3rem;
+    box-shadow: 0 0 15px var(--blue);
+    align-items: center;
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+.home-box-title span {
+    font-size: 2rem;
+}
