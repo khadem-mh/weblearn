@@ -155,6 +155,7 @@ export default function CourseInfo() {
                         type: 'video',
                         poster: '',
                         ratio: '16:9',
+                        poster: `/Images/Courses/${courseInfo.cover}`,
                         sources: [
                           {
                             src: 'Images/video-1.mp4',

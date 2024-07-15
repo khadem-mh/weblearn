@@ -101,6 +101,7 @@ export default function Lesson() {
                     source={{
                         type: 'video',
                         ratio: '16:9',
+                        poster: `/Images/Background-header/desert-system.jpg`,
                         sources: [
                             {
                                 src: session.video,

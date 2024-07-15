@@ -63,7 +63,7 @@ export default function AdminPanel() {
 
             <Header isLightMode={isLightMode} setIsLightMode={setIsLightMode} adminNotif={adminInfos.notifications} >
                 <Col className="admin-profile">
-                    <Link to={'admin'} ><img src={adminInfos.profile} alt="Admin Profile" /></Link>
+                    <Link to={'admin'} ><img src={`/Images/teachers/${adminInfos.profile}`} alt="Admin Profile" /></Link>
                     <div>
                         <Link to={'admin'} ><h1>{adminInfos.name}</h1></Link>
                         <h3>{adminInfos.username}</h3>
