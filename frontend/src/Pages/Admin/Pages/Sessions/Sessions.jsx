@@ -22,11 +22,18 @@ export default function AdminPanelSessions() {
     ///
     const [allCourses, setAllCourses] = useState([])
     const [allSessions, setAllSessions] = useState([])
+    const [courseCover, setCourseCover] = useState([])
 
     useEffect(() => {
         getAllCourses()
         getAllSessions()
+        setAllSessions(courseCover)
     }, [])
+
+    useEffect(() => {
+        helper()
+    }, [allCourses, allSessions])
+
 
     const getAllCourses = () => {
         fetch('http://localhost:4000/v1/courses', {
@@ -46,7 +53,7 @@ export default function AdminPanelSessions() {
         })
             .then(res => res.json())
             .then(datas => {
-                console.log(datas);
+                setCourseCover([])
                 setAllSessions(datas)
             })
     }
@@ -54,6 +61,20 @@ export default function AdminPanelSessions() {
     const selectCourse = value => value !== -1 && setCourseID(value)
 
     const selectStatusSession = value => value !== -1 && setIsFree(value)
+
+    const helper = () => {
+        allCourses.map(course => {
+            allSessions.map(session => {
+                if (session.course._id === course._id) {
+                    session.course = {
+                        ...session.course,
+                        cover: course.cover
+                    }
+                    setCourseCover(prev => [...prev, session])
+                }
+            })
+        })
+    }
 
     const addNewCourse = e => {
         e.preventDefault()
@@ -160,6 +181,7 @@ export default function AdminPanelSessions() {
                                     <th scope="col">شناسه</th>
                                     <th scope="col">عنوان</th>
                                     <th scope="col">مدت زمان</th>
+                                    <th scope="col">کاور</th>
                                     <th scope="col">دوره</th>
                                     <th scope="col">حذف</th>
                                 </tr>
@@ -171,6 +193,11 @@ export default function AdminPanelSessions() {
                                             <td>{index + 1}</td>
                                             <td>{product.title}</td>
                                             <td>{product.time}</td>
+                                            <td>
+                                                {
+                                                    <img src={`/Images/Courses/${product.course.cover}`} alt="corseImg" width={130} className="rounded-3"/>
+                                                }
+                                            </td>
                                             <td>{product.course?.name}</td>
                                             <td>
                                                 <button className='products-table-btn' onClick={() => {

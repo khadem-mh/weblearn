@@ -100,13 +100,6 @@ export default function ArticleInfo() {
 
                 <CopyLinkBox textForCopy={window.location.href} titleBox={'اشتراک گذاری مطلب'} children={<BsShare className='blog-infos__share-icon' />} fzTitle={'1.6rem'} />
 
-                <CategoryBox title={'پیشنهاد مطالعه'}>
-                  <CourseCoverAside fzTitle={'1.1rem'} pathImg={'Blogs/1.png'} title={'حداقل سیستم برای برنامه نویسی'} teacher={'محمد امین سعیدی راد'} link={'pwa'} />
-                  <CourseCoverAside fzTitle={'1.1rem'} pathImg={'Blogs/2.png'} title={'بهترین افزونه های کروم برای برنامه نویسان'} teacher={'علی اکبری'} link={'typescript'} />
-                  <CourseCoverAside fzTitle={'1.1rem'} pathImg={'Blogs/4.png'} title={'ابزار های ورد پرس'} teacher={'قاسم سلیمانی'} link={'blackjs'} />
-                  <CourseCoverAside fzTitle={'1.1rem'} pathImg={'Blogs/5.png'} title={'نحوه یادگیری برنامه نویسی جاوا'} teacher={'خادم المهدی'} link={'blackjs'} />
-                </CategoryBox>
-
               </section>
             </div>
 

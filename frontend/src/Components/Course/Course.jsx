@@ -15,7 +15,7 @@ export default function Course({ shortName, cover, categoryID, description, crea
 
                 <Link to={`/course-info/${shortName}`}>
                     <img
-                        src={`/images/courses/${cover}`}
+                        src={`./Images/Courses/${cover}`}
                         alt="course"
                         className="course-box__img"
                         onLoad={onImageLoaded}
