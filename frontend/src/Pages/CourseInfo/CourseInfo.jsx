@@ -27,6 +27,7 @@ import DetailsTeacher from '../../Components/DetailsTeacher/DetailsTeacher';
 //?Funcs
 import faNumber from '../../Functions/FaNumber/FaNumber';
 import { AuthContext } from '../../Contexts/AuthContext'
+import swal from 'sweetalert'
 
 export default function CourseInfo() {
 
@@ -44,31 +45,7 @@ export default function CourseInfo() {
   const params = useParams()
 
   useEffect(() => {
-
-    const userToken = JSON.parse(localStorage.getItem('user'))
-
-    fetch(`http://localhost:4000/v1/courses/covers/${courseInfo.cover}`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${userToken && userToken.token ? userToken.token : ''}`
-      }
-    })
-    .then(res => res.json())
-    .then(datas => console.log(datas))
-
-    fetch(`http://localhost:4000/v1/courses/${params.course}`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${userToken && userToken.token ? userToken.token : ''}`
-      }
-    })
-      .then(res => res.json())
-      .then(datas => {
-        console.log(datas);
-        setCourseInfo(datas)
-        setComments(datas.comments)
-        setSessions(datas.sessions)
-      })
+    getCourseDetails()
 
     fetch(`http://localhost:4000/v1/courses`)
       .then(res => res.json())
@@ -84,7 +61,6 @@ export default function CourseInfo() {
   }, [allcourses, courseInfo])
 
   useEffect(() => {
-    console.log(sessions);
     if (sessions) {
       let sessionMinuteTime = 0
       sessions.map(session => sessionMinuteTime += +session.time.split(':')[0])
@@ -100,6 +76,155 @@ export default function CourseInfo() {
       setMaxScore(maxScore)
     }
   }, [comments])
+
+  const getCourseDetails = () => {
+    const userToken = JSON.parse(localStorage.getItem('user'))
+
+    fetch(`http://localhost:4000/v1/courses/${params.course}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${userToken && userToken.token ? userToken.token : ''}`
+      }
+    })
+      .then(res => res.json())
+      .then(datas => {
+        setCourseInfo(datas)
+        setComments(datas.comments)
+        setSessions(datas.sessions)
+      })
+  }
+
+  const registerInCourse = course => {
+    if (course.price === 0) {
+      swal({
+        title: "آیا از ثبت نام در دوره اطمینان دارید؟",
+        icon: "warning",
+        buttons: ["نه", "آره"],
+      }).then((result) => {
+        if (result) {
+          fetch(`http://localhost:4000/v1/courses/${course._id}/register`, {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${JSON.parse(localStorage.getItem("user")).token
+                }`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              price: course.price,
+            }),
+          }).then((res) => {
+            console.log(res);
+            if (res.ok) {
+              swal({
+                title: "ثبت نام با موفقیت انجام شد",
+                icon: "success",
+                buttons: "اوکی",
+              }).then(() => {
+                getCourseDetails();
+              });
+            }
+          });
+        }
+      });
+    } else {
+      swal({
+        title: "آیا از ثبت نام در دوره اطمینان دارید؟",
+        icon: "warning",
+        buttons: ["نه", "آره"],
+      }).then((result) => {
+        if (result) {
+          swal({
+            title: "در صورت داشتن کد تخفیف وارد کنید:",
+            content: "input",
+            buttons: ["ثبت نام بدون کد تخفیف", "اعمال کد تخفیف"],
+          }).then((code) => {
+            if (code === null) {
+              fetch(`http://localhost:4000/v1/courses/${course._id}/register`, {
+                method: "POST",
+                headers: {
+                  Authorization: `Bearer ${JSON.parse(localStorage.getItem("user")).token
+                    }`,
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  price: course.price,
+                }),
+              }).then((res) => {
+                console.log(res);
+                if (res.ok) {
+                  swal({
+                    title: "ثبت نام با موفقیت انجام شد",
+                    icon: "success",
+                    buttons: "اوکی",
+                  }).then(() => {
+                    getCourseDetails();
+                  });
+                }
+              });
+            } else {
+              fetch(`http://localhost:4000/v1/offs/${code}`, {
+                method: "POST",
+                headers: {
+                  Authorization: `Bearer ${JSON.parse(localStorage.getItem("user")).token
+                    }`,
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  course: course._id,
+                }),
+              })
+                .then((res) => {
+                  console.log(res);
+
+                  if (res.status === 404) {
+                    swal({
+                      title: "کد تخفیف معتبر نیست",
+                      icon: "error",
+                      buttons: "ای بابا",
+                    });
+                  } else if (res.status === 409) {
+                    swal({
+                      title: "کد تخفیف قبلا استفاده شده :/",
+                      icon: "error",
+                      buttons: "ای بابا",
+                    });
+                  } else {
+                    return res.json();
+                  }
+                })
+                .then((code) => {
+                  fetch(
+                    `http://localhost:4000/v1/courses/${course._id}/register`,
+                    {
+                      method: "POST",
+                      headers: {
+                        Authorization: `Bearer ${JSON.parse(localStorage.getItem("user")).token
+                          }`,
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({
+                        price: course.price - (course.price * code.percent / 100)
+                      }),
+                    }
+                  ).then((res) => {
+                    console.log(res);
+                    if (res.ok) {
+                      swal({
+                        title: "ثبت نام با موفقیت انجام شد",
+                        icon: "success",
+                        buttons: "اوکی",
+                      }).then(() => {
+                        getCourseDetails();
+                      });
+                    }
+                  });
+                });
+            }
+          });
+        }
+      });
+    }
+  };
 
   return (
     <>
@@ -133,7 +258,9 @@ export default function CourseInfo() {
 
                   <div className='course-info__footer'>
                     <div className='course-info__footer_right'>
-                      <button className='course-info__footer_btn'>
+                      <button className='course-info__footer_btn' onClick={() => {
+                        !courseInfo.isUserRegisteredToThisCourse && registerInCourse(courseInfo)
+                      }}>
                         <GoShieldCheck className='course-info__footer_icon' />
                         <span className='course-info__footer_text-btn'>{courseInfo.isUserRegisteredToThisCourse ? 'دانشجوی این دوره' : 'شرکت در دوره'}</span>
                       </button>
@@ -153,7 +280,6 @@ export default function CourseInfo() {
                     <Plyr
                       source={{
                         type: 'video',
-                        poster: '',
                         ratio: '16:9',
                         poster: `/Images/Courses/${courseInfo.cover}`,
                         sources: [
@@ -289,7 +415,7 @@ export default function CourseInfo() {
                           }
                         </p>
                       </div>
-                      <AccordionListVideo sessionsList={sessions} shortNameCourse={courseInfo.shortName}/>
+                      <AccordionListVideo sessionsList={sessions} shortNameCourse={courseInfo.shortName} />
                     </div>
 
                     <div className="comments">

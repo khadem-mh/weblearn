@@ -179,7 +179,7 @@ export default function Navbar() {
 
                                     {
                                         menus && menus.map((item, index) => (
-                                            <li className="main-header__item">
+                                            <li key={index} className="main-header__item">
                                                 <details open>
                                                     <summary key={index}>
                                                         <div className='summary-arrow'>
