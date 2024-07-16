@@ -174,27 +174,48 @@ export default function Navbar() {
                                 </ul>
 
                                 <ul className="main-header__menu menu-mobile">
-                                    <li className="main-header__item">
-
-                                        <details>
-                                            <summary>
-                                                <div className='summary-arrow'>
-                                                    <p>مهارت های شبکه</p>
-                                                    <div>
-                                                        <i className="fas fa-angle-down main-header__link-icon text-light"></i>
-                                                    </div>
-                                                </div>
-                                            </summary>
-
-                                            <div>
-                                                <p><a href='/'>برنامه نویسی جاوااسکریپت</a></p>
-                                                <p><a href='/'>متخصص React Js</a></p>
-                                                <p><a href='/'>Dart</a></p>
-                                            </div>
-                                        </details>
 
 
-                                    </li>
+
+                                    {
+                                        menus && menus.map((item, index) => (
+                                            <li className="main-header__item">
+                                                <details open>
+                                                    <summary key={index}>
+                                                        <div className='summary-arrow'>
+                                                            <Link to={`/${item.href}/page/1`}>{item.title}</Link>
+                                                            {
+                                                                item.submenus.length ?
+                                                                    <div>
+                                                                        <i className="fas fa-angle-down main-header__link-icon text-light"></i>
+                                                                    </div>
+                                                                    :
+                                                                    ''
+                                                            }
+                                                        </div>
+                                                    </summary>
+
+                                                    {
+                                                        item.submenus && item.submenus.length ?
+                                                            <div>
+                                                                {
+                                                                    item.submenus.map((subMenu, index) => (
+                                                                        <li key={index}>
+                                                                            <Link to={`${subMenu.href.includes('/') ? subMenu.href : `/course-info/${subMenu.href}`}`} className="main-header__dropdown-link">{subMenu.title}</Link>
+                                                                        </li>
+                                                                    ))
+                                                                }
+                                                            </div>
+                                                            : ''
+                                                    }
+                                                </details>
+                                            </li>
+                                        ))
+                                    }
+
+
+
+
                                 </ul>
 
                                 <div className='search-input-menu-tower'>
