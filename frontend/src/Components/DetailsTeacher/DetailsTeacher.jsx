@@ -10,7 +10,7 @@ export default function DetailsTeacher({nameTeacher, textBio, imgTeacher, to}) {
             <div className="techer-details__header">
 
                 <div className="techer-details__header-right">
-                    <img src={imgTeacher} alt="Teacher Profile" className="techer-details__header-img" />
+                    <img src={`/Images/teachers/${imgTeacher}`} alt="Teacher Profile" className="techer-details__header-img" />
                     <Link to={`${to}`} className="techer-details__header-link">{nameTeacher}</Link>
                 </div>
 
