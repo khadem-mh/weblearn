@@ -36,7 +36,7 @@ export default function PageFirstAccount() {
 
             {
               authContext.userInfos.courses && authContext.userInfos.courses.length && authContext.userInfos.courses.map(course => (
-                <BoxcourseImg key={course.id} text={'پروژه های تخصصی با جاوا اسکریپت برای بازار کار'} imgSrc={'/Images/Courses/1.png'} />
+                <BoxcourseImg key={course.id} text={'پروژه های تخصصی با جاوا اسکریپت برای بازار کار'} imgSrc={`/Images/Courses/${course.cover}`} />
               ))
             }
 

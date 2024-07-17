@@ -31,7 +31,7 @@ export default function AddTicket() {
       <select className='add-ticket__department' onChange={e => setDepartmentID(e.target.value)}>
         <option value="-1">دپارتمان مورد نظر...</option>
         {
-          departments && departments.map(({ title, _id }, index) => (
+          departments && departments.length && departments.map(({ title, _id }, index) => (
             <option value={_id} key={index}>{title}</option>
           ))
         }
@@ -41,7 +41,7 @@ export default function AddTicket() {
       <select className='add-ticket__department'>
         <option value="-1">نوع تیکت را انتخاب کنید...</option>
         {
-          departmentsSubs && departmentsSubs.map(({ title, _id }, index) => (
+          departmentsSubs && departmentsSubs.length && departmentsSubs.map(({ title, _id }, index) => (
             <option value={_id} key={index}>{title}</option>
           ))
         }

@@ -28,7 +28,7 @@ export default function MyCourses() {
           authContext.userInfos.courses && authContext.userInfos.courses.length
           &&
           authContext.userInfos.courses.map(course => (
-            <BoxcourseImg key={course.id} text={course.name} imgSrc={course.cover} />
+            <BoxcourseImg key={course.id} text={course.name} imgSrc={`/Images/Courses/${course.cover}`} />
           ))
         }
       </div>
