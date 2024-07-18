@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './PageFirstAccount.css'
 import './media.css'
 import StatusBoxAccount from '../../Components/StatusBoxAccount/StatusBoxAccount'
@@ -10,20 +10,65 @@ import BoxcourseImg from '../../Components/BoxcourseImg/BoxcourseImg.jsx';
 import { HiOutlineCreditCard, HiOutlineRocketLaunch, HiOutlineTicket } from "react-icons/hi2";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 //Funcs
-import faNumber from '../../../../Functions/FaNumber/FaNumber.js';
 import { AuthContext } from '../../../../Contexts/AuthContext.js';
+import Swal from "sweetalert2"
 
 export default function PageFirstAccount() {
 
   const authContext = useContext(AuthContext)
+  const [tickets, setTickets] = useState([])
+
+  useEffect(() => {
+    fetch(`http://localhost:4000/v1/tickets/user`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+      }
+    })
+      .then(res => res.json())
+      .then(datas => {
+        console.log(datas);
+        setTickets(datas.slice(0, 4))
+      })
+  }, [])
+
+  const handleTicketShow = ticket => {
+    console.log(ticket);
+
+    Swal.fire({
+      icon: 'info',
+      html: `
+      <div style="text-align: start">
+        <h2 style="font-weight: bold; color: skyblue; padding-bottom: 1rem">╩╦ تیکت ارسال شده </h2>
+        <div class="border p-3 rounded-4">
+          <h2 style="font-weight: bold; color: greenyellow; padding-bottom: 1rem">_موضوع تیکت</h2>
+          ${ticket.title}
+          <br/>
+          <br/>
+          <h2 style="font-weight: bold; color: greenyellow; padding-bottom: 1rem">_متن تیکت</h2>
+          <p>${ticket.body}</p>
+        </div>
+        <br/>
+        <br/>
+        <h2 style="font-weight: bold; color: skyblue; padding-bottom: 1rem">╩╦ پاسخ </h2>
+        <p class="text-center text-info">${ticket.answer === 0 ? 'هنوز پاسخی داده نشده است' : ticket.answer}</p>
+      </div>
+      `,
+      background: '#28293D',
+      color: 'whitesmoke',
+      confirmButtonText: 'دیدم'
+    });
+
+
+  }
 
   return (
     <div className='account-page-first'>
 
       <section className='account-page-first__header'>
-        <StatusBoxAccount bgColorBox={'rgba(255, 225, 0, .9)'} logo={<HiOutlineCreditCard />} title={'مجموع پرداخت ها'} subTitle={` ${faNumber(1165500)} تومان`} />
+        <StatusBoxAccount bgColorBox={'rgba(255, 225, 0, .9)'} logo={<HiOutlineCreditCard />} title={'مجموع پرداخت ها'} subTitle={` ${(1165500).toLocaleString()} تومان`} />
         <StatusBoxAccount bgColorBox={'rgba(78, 129, 251, .9)'} logo={<HiOutlineRocketLaunch />} title={'دوره های من'} subTitle={` ${authContext.userInfos.courses && authContext.userInfos.courses.length} دوره`} />
-        <StatusBoxAccount bgColorBox={'rgba(244, 63, 94, .9)'} logo={<HiOutlineTicket />} title={'مجموع تیکت ها'} subTitle={` ${faNumber(3)} تیکت`} />
+        <StatusBoxAccount bgColorBox={'rgba(244, 63, 94, .9)'} logo={<HiOutlineTicket />} title={'مجموع تیکت ها'} subTitle={` ${tickets.length} تیکت`} />
         <StatusBoxAccount bgColorBox={'rgba(46, 213, 115, .9)'} logo={<FaMoneyBillTrendUp />} title={'موجودی حساب'} subTitle={` 0 تومان`} />
       </section>
 
@@ -35,7 +80,7 @@ export default function PageFirstAccount() {
           <div className='content-right__bottom'>
 
             {
-              authContext.userInfos.courses && authContext.userInfos.courses.length && authContext.userInfos.courses.map(course => (
+              authContext.userInfos.courses && authContext.userInfos.courses.length && authContext.userInfos.courses.slice(0, 4).map(course => (
                 <BoxcourseImg key={course._id} text={'پروژه های تخصصی با جاوا اسکریپت برای بازار کار'} imgSrc={`/Images/Courses/${course.cover}`} />
               ))
             }
@@ -55,23 +100,15 @@ export default function PageFirstAccount() {
             </div>
 
             <ul className='content-left__list'>
-              <ItemList textEmpty={'تا به الان تیکتی ارسال نکرده‌اید!'} />
+              {
+                tickets.map((ticket, index) => (
+                  <li className='li-item' style={{ cursor: 'pointer' }} key={index} onClick={() => handleTicketShow(ticket)}>
+                    <ItemList urlDest={'/'} textStatus={ticket.answer === 1 ? false : true} titleTicket={ticket.title} date3Section={ticket.createdAt.slice(0, 10)} statusQues={ticket.departmentID} />
+                  </li>
+                ))
+              }
             </ul>
           </div>
-
-          <div className='content-left__bottom'>
-            <div className='content-left__header'>
-              <HeaderList title={'پرسش های اخیر'} linkActive={false} />
-            </div>
-
-            <ul className='content-left__list'>
-              <ItemList urlDest={'/'} textStatus={true} titleTicket={'گروه واتساپ'} date3Section={[1402, 10, 7]} />
-              <ItemList urlDest={'/'} textStatus={false} titleTicket={'گروه تلگرام'} date3Section={[1402, 10, 7]} />
-              <ItemList urlDest={'/'} textStatus={true} titleTicket={'گروه لینکدین برای چی این جا است'} date3Section={[1402, 10, 7]} />
-              <ItemList urlDest={'/'} textStatus={false} titleTicket={'دپارتمان 133 سبزلرن کجاست'} date3Section={[1402, 10, 7]} />
-            </ul>
-          </div>
-
         </section>
 
       </section>
