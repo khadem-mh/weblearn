@@ -1,16 +1,51 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import './DetailsAccount.css'
 import { VscGitPullRequestGoToChanges } from "react-icons/vsc";
 import { AuthContext } from '../../../../Contexts/AuthContext';
+import { validateEmail, validatePhone } from '../../../../Validators/Regex';
+import swal from 'sweetalert';
 
 export default function DetailsAccount() {
 
   const authContext = useContext(AuthContext)
-  const [name, setName] = useState(authContext.userInfos.name)
-  const [username, setUserName] = useState(authContext.userInfos.username)
-  const [email, setEmail] = useState(authContext.userInfos.email)
-  const [password, setPassword] = useState("")
-  const [phone, setPhone] = useState(authContext.userInfos.phone)
+  const { name, username, email, phone } = authContext.userInfos
+  const [nameInp, setNameInp] = useState("")
+  const [userNameInp, setUserNameInp] = useState("")
+  const [emailInp, setEmailInp] = useState("")
+  const [passwordInp, setPasswordInp] = useState("")
+  const [phoneInp, setPhoneInp] = useState("")
+
+  useEffect(() => {
+
+    if (email) {
+
+      setNameInp(name)
+      setUserNameInp(username)
+      setEmailInp(email)
+      setPhoneInp(phone)
+
+    }
+
+  }, [authContext])
+
+  const updateInfosAccountUser = () => {
+
+    if (
+      nameInp === authContext.userInfos.name
+      && userNameInp === authContext.userInfos.username
+      && emailInp === authContext.userInfos.email
+      && phoneInp === authContext.userInfos.phone
+    ) {
+
+      swal({
+        title: 'شما مقداری را بروز رسانی نکرده اید',
+        icon: 'warning',
+        buttons: 'باشه'
+      })
+
+    }
+
+  }
 
   return (
     <section className='details-account'>
@@ -31,19 +66,19 @@ export default function DetailsAccount() {
             </div>
 
             <p className='lable-task'>شماره موبایل</p>
-            <input type="text" className='input-details-account' defaultValue={phone} />
+            <input type="text" className='input-details-account' value={phoneInp} onChange={e => setPhoneInp(e.target.value)} />
             <p className='lable-task'>نام</p>
-            <input type="text" className='input-details-account' defaultValue={name} />
+            <input type="text" className='input-details-account' value={nameInp} onChange={e => setNameInp(e.target.value)} />
             <p className='lable-task'>نام کاربری</p>
-            <input type="text" className='input-details-account' defaultValue={username} />
+            <input type="text" className='input-details-account' value={userNameInp} onChange={e => setUserNameInp(e.target.value)} />
 
           </div>
 
           <div className='right-box__left'>
             <p className='lable-task'>تاریخ ثبت نام</p>
-            <input type="text" className='input-details-account' defaultValue={authContext.userInfos.createdAt && authContext.userInfos.createdAt.slice(0, 10)} />
+            <input type="text" className='input-details-account' defaultValue={authContext.userInfos.createdAt && authContext.userInfos.createdAt.slice(0, 10)} readOnly />
             <p className='lable-task'>ایمیل</p>
-            <input type="text" className='input-details-account' defaultValue={email} />
+            <input type="text" className='input-details-account' value={emailInp} onChange={e => setEmailInp(e.target.value)} />
           </div>
         </section>
 
@@ -58,11 +93,11 @@ export default function DetailsAccount() {
         <input type="text" placeholder='رمز فعلی را وارد کنید' className='input-details-account' />
         <p className='forget-password-details-account'>رمز عبور را فراموش کرده اید؟</p>
         <p className='lable-task'>رمز عبور جدید</p>
-        <input type="text" placeholder='رمز جدید را وارد کنید' className='input-details-account' value={password} />
+        <input type="text" placeholder='رمز جدید را وارد کنید' className='input-details-account' value={passwordInp} onChange={e => setPasswordInp(e.target.value)} />
         <br />
       </section>
       <div className='btn-details-account-parent'>
-        <button className='btn-details-account'>بروزرسانی اطلاعات</button>
+        <button className='btn-details-account' onClick={updateInfosAccountUser}>بروزرسانی اطلاعات</button>
       </div>
     </section>
   )
