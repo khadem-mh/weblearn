@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Tickets.css'
 import { Link } from 'react-router-dom';
 //components
@@ -15,14 +15,55 @@ import faNumber from '../../../../Functions/FaNumber/FaNumber.js';
 
 export default function Tickets() {
 
+  const [tickets, setTickets] = useState([])
+  const [ticketsOpen, setTicketsOpen] = useState(null)
+  const [ticketsClose, setTicketsClose] = useState(null)
+
+  useEffect(() => {
+
+    fetch(`http://localhost:4000/v1/tickets/user`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
+      }
+    })
+      .then(res => res.json())
+      .then(datas => {
+        console.log(datas);
+        setTickets(datas)
+      })
+
+  }, [])
+
+  useEffect(() => {
+    if (tickets.length) {
+      let achieveCountTicketsOpen = (tickets.map((item, index) => {
+        if (item.answer === 0) return index + 1
+      })).splice(-1)
+
+      let achieveCountTicketsClose = (tickets.map((item, index) => {
+        if (item.answer === 1) return index + 1
+      })).splice(-1)
+
+      if (achieveCountTicketsOpen !== undefined) {
+        setTicketsOpen(achieveCountTicketsOpen)
+      }
+      
+      if (achieveCountTicketsClose !== undefined) {
+        setTicketsClose(achieveCountTicketsClose)
+      }
+    }
+  }, [tickets])
+
+
   return (
     <div className='account-page-my-courses'>
 
       <section className='statusbox-page-tickets'>
         <div className='account-page-first__header'>
-          <StatusBoxAccount bgColorBox={'rgba(255, 225, 0, .9)'} logo={<HiOutlineTicket />} title={'همه تیکت ها'} subTitle={` ${faNumber(10)} دوره`} />
-          <StatusBoxAccount bgColorBox={'rgba(78, 129, 251, .9)'} logo={< HiOutlineMailOpen />} title={'تیکت های باز'} subTitle={` ${faNumber(3)} دوره`} />
-          <StatusBoxAccount bgColorBox={'rgba(46, 213, 115, .9)'} logo={<TfiComments />} title={'بسته شده'} subTitle={`${faNumber(7)} دوره`} />
+          <StatusBoxAccount bgColorBox={'rgba(255, 225, 0, .9)'} logo={<HiOutlineTicket />} title={'همه تیکت ها'} subTitle={` ${tickets.length} دوره`} />
+          <StatusBoxAccount bgColorBox={'rgba(78, 129, 251, .9)'} logo={< HiOutlineMailOpen />} title={'تیکت های باز'} subTitle={`${ticketsOpen && ticketsOpen[0] !== undefined ? ticketsOpen : "0"} دوره`} />
+          <StatusBoxAccount bgColorBox={'rgba(46, 213, 115, .9)'} logo={<TfiComments />} title={'بسته شده'} subTitle={`${ticketsClose && ticketsClose[0] !== undefined ? ticketsClose : "0"} دوره`} />
         </div>
 
         <div className='statusbox-page-tickets__left' >
@@ -36,10 +77,13 @@ export default function Tickets() {
         </div>
 
         <ul className='content-left__list'>
-          <ItemList urlDest={'/'} textStatus={true} titleTicket={'گروه واتساپ'} date3Section={[1402, 10, 7]} statusQues={'پشتیبانی'} />
-          <ItemList urlDest={'/'} textStatus={false} titleTicket={'گروه تلگرام'} date3Section={[1402, 10, 7]} statusQues={'پشتیبانی'} />
-          <ItemList urlDest={'/'} textStatus={true} titleTicket={'گروه لینکدین برای چی این جا است'} date3Section={[1402, 10, 7]} statusQues={'پشتیبانی'} />
-          <ItemList urlDest={'/'} textStatus={false} titleTicket={'دپارتمان 133 سبزلرن کجاست'} date3Section={[1402, 10, 7]} statusQues={'پشتیبانی'} />
+          {
+            tickets.map((ticket, index) => (
+              <li className='li-item' key={index}>
+                <ItemList urlDest={'/'} textStatus={ticket.answer === 1 ? false : true} titleTicket={ticket.title} date3Section={ticket.createdAt.slice(0, 10)} statusQues={ticket.departmentID} />
+              </li>
+            ))
+          }
         </ul>
       </div>
 
