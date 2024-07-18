@@ -11,7 +11,7 @@ import { TfiComments } from "react-icons/tfi";
 import { BsPlusCircle } from "react-icons/bs";
 import StatusBoxAccount from '../../Components/StatusBoxAccount/StatusBoxAccount'
 //Funcs
-import faNumber from '../../../../Functions/FaNumber/FaNumber.js';
+import Swal from "sweetalert2"
 
 export default function Tickets() {
 
@@ -48,13 +48,42 @@ export default function Tickets() {
       if (achieveCountTicketsOpen !== undefined) {
         setTicketsOpen(achieveCountTicketsOpen)
       }
-      
+
       if (achieveCountTicketsClose !== undefined) {
         setTicketsClose(achieveCountTicketsClose)
       }
     }
   }, [tickets])
 
+  const handleTicketShow = ticket => {
+    console.log(ticket);
+
+    Swal.fire({
+      icon: 'info',
+      html: `
+      <div style="text-align: start">
+        <h2 style="font-weight: bold; color: skyblue; padding-bottom: 1rem">╩╦ تیکت ارسال شده </h2>
+        <div class="border p-3 rounded-4">
+          <h2 style="font-weight: bold; color: greenyellow; padding-bottom: 1rem">_موضوع تیکت</h2>
+          ${ticket.title}
+          <br/>
+          <br/>
+          <h2 style="font-weight: bold; color: greenyellow; padding-bottom: 1rem">_متن تیکت</h2>
+          <p>${ticket.body}</p>
+        </div>
+        <br/>
+        <br/>
+        <h2 style="font-weight: bold; color: skyblue; padding-bottom: 1rem">╩╦ پاسخ </h2>
+        <p class="text-center text-info">${ticket.answer === 0 ? 'هنوز پاسخی داده نشده است' : ticket.answer}</p>
+      </div>
+      `,
+      background: '#28293D',
+      color: 'whitesmoke',
+      confirmButtonText: 'دیدم'
+    });
+
+
+  }
 
   return (
     <div className='account-page-my-courses'>
@@ -79,7 +108,7 @@ export default function Tickets() {
         <ul className='content-left__list'>
           {
             tickets.map((ticket, index) => (
-              <li className='li-item' key={index}>
+              <li className='li-item' style={{ cursor: 'pointer' }} key={index} onClick={() => handleTicketShow(ticket)}>
                 <ItemList urlDest={'/'} textStatus={ticket.answer === 1 ? false : true} titleTicket={ticket.title} date3Section={ticket.createdAt.slice(0, 10)} statusQues={ticket.departmentID} />
               </li>
             ))
