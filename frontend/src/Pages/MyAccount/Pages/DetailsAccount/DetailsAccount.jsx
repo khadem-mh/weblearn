@@ -31,14 +31,41 @@ export default function DetailsAccount() {
   const updateInfosAccountUser = () => {
 
     if (
-      nameInp === authContext.userInfos.name
-      && userNameInp === authContext.userInfos.username
-      && emailInp === authContext.userInfos.email
-      && phoneInp === authContext.userInfos.phone
+      nameInp === name
+      && userNameInp === username
+      && emailInp === email
+      && phoneInp === phone
     ) {
 
       swal({
         title: 'شما مقداری را بروز رسانی نکرده اید',
+        icon: 'warning',
+        buttons: 'باشه'
+      })
+
+    }
+
+    else if (
+      nameInp.length
+      && userNameInp.length
+      && phoneInp.length
+      && emailInp.length
+      && validateEmail(emailInp)
+      && validatePhone(phoneInp)
+    ) {
+
+      swal({
+        title: 'اطلاعات حساب شما با موفقیت بروز شد',
+        icon: 'success',
+        buttons: 'باشه'
+      })
+
+    }
+
+    else {
+
+      swal({
+        title: 'مقادیر وارد شده اشتباه یا ناقص است',
         icon: 'warning',
         buttons: 'باشه'
       })
