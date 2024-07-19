@@ -47,34 +47,42 @@ export default function DetailsAccount() {
     }
 
     else if (
-      (
-        nameInp.length
-        && userNameInp.length
-        && phoneInp.length
-        && emailInp.length
-        && validateEmail(emailInp)
-        && validatePhone(phoneInp)
-      )
-      &&
-      (
-        passwordInp.length >= 8
-        || !passwordInp.length
-      )
+
+      nameInp.length
+      && userNameInp.length
+      && phoneInp.length
+      && emailInp.length
+      && validateEmail(emailInp)
+      && validatePhone(phoneInp)
+      && passwordInp.length >= 8
+
     ) {
 
       const newUserInfos = {
         name: nameInp,
         username: userNameInp,
         email: emailInp,
-        password: passwordInp.length ? passwordInp : undefined,
+        password: passwordInp,
         phone: phoneInp
       }
 
-      swal({
-        title: 'اطلاعات حساب شما با موفقیت بروز شد',
-        icon: 'success',
-        buttons: 'باشه'
+      fetch(`http://localhost:4000/v1/users`, {
+        method: "PUT",
+        headers: {
+          'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newUserInfos)
       })
+        .then(res => res.json())
+        .then(datas => {
+          console.log(datas);
+          swal({
+            title: 'اطلاعات حساب شما با موفقیت بروز شد',
+            icon: 'success',
+            buttons: 'باشه'
+          })
+        })
 
     }
 
