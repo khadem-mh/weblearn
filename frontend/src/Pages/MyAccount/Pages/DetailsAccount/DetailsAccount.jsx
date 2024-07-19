@@ -35,6 +35,7 @@ export default function DetailsAccount() {
       && userNameInp === username
       && emailInp === email
       && phoneInp === phone
+      && !passwordInp.length
     ) {
 
       swal({
@@ -46,13 +47,28 @@ export default function DetailsAccount() {
     }
 
     else if (
-      nameInp.length
-      && userNameInp.length
-      && phoneInp.length
-      && emailInp.length
-      && validateEmail(emailInp)
-      && validatePhone(phoneInp)
+      (
+        nameInp.length
+        && userNameInp.length
+        && phoneInp.length
+        && emailInp.length
+        && validateEmail(emailInp)
+        && validatePhone(phoneInp)
+      )
+      &&
+      (
+        passwordInp.length >= 8
+        || !passwordInp.length
+      )
     ) {
+
+      const newUserInfos = {
+        name: nameInp,
+        username: userNameInp,
+        email: emailInp,
+        password: passwordInp.length ? passwordInp : undefined,
+        phone: phoneInp
+      }
 
       swal({
         title: 'اطلاعات حساب شما با موفقیت بروز شد',
