@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ErrorBoxEmpty from "../../Components/ErrorBoxEmpty/ErrorBoxEmpty";
 import DetailsModal from "../../Components/Modals/DetailsModal/DetailsModal";
 import EditMoal from "../../Components/Modals/EditMoal/EditMoal";
+import swal from "sweetalert";
 
 export default function AdminPanelTickets() {
 
@@ -16,6 +17,10 @@ export default function AdminPanelTickets() {
     })
 
     useEffect(() => {
+        getAllTickets()
+    }, [])
+
+    const getAllTickets = () => {
         fetch(`http://localhost:4000/v1/tickets`, {
             method: "GET",
             headers: {
@@ -27,10 +32,35 @@ export default function AdminPanelTickets() {
                 console.log(datas);
                 setTickets(datas)
             })
-    }, [])
+    }
 
     const submitReplyToTicket = event => {
         event.preventDefault()
+
+        fetch(`http://localhost:4000/v1/tickets/answer`, {
+            method: "POST",
+            headers: {
+                'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                body: replyTicketID.reply,
+                ticketID: replyTicketID.ticketID
+            })
+        })
+            .then(res => res.json())
+            .then(res => {
+                getAllTickets()
+                setReplyTicketID({ ticketID: null, reply: "" })
+                {
+                    swal({
+                        title: 'با موفقیت پاسخ داده شد',
+                        icon: 'success',
+                        buttons: 'باشه'
+                    })
+                }
+            })
+
     }
 
     return (
