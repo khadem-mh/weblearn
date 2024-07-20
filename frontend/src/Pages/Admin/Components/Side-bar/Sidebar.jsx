@@ -110,6 +110,12 @@ export default function Sidebar() {
                             </NavLink>
                         </li>
                         <li >
+                            <NavLink to="/p-admin/tickets" className={`admin sidebar-links__link`}>
+                                <BiCommentDetail className="icon" />
+                                <span>تیکت ها</span>
+                            </NavLink>
+                        </li>
+                        <li >
                             <NavLink to="/p-admin/offs" className={`admin sidebar-links__link`}>
                                 <BiSolidOffer className="icon" />
                                 <span>تخفیف ها</span>
