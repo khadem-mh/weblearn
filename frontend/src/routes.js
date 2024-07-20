@@ -71,7 +71,7 @@ const routes = [
             { path: 'menus', element: <AdminPanelMenus /> },
             { path: 'articles', element: <AdminPanelArticles /> },
             { path: 'tickets', element: <AdminPanelTickets /> },
-            { path: 'dicounts', element: <AdminPanelDiscount /> },
+            { path: 'discounts', element: <AdminPanelDiscount /> },
             { path: '*', element: <Page404admin /> },
         ]
     },

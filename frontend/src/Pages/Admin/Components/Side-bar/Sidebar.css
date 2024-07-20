@@ -77,7 +77,7 @@
 
 .sidebar-links li .active {
     z-index: 1000;
-    margin: calc(100%/6);
+    margin: calc(100%/7);
     transform: translateX(-90px) rotate(90deg);
     transition: all .7s !important;
     background-color: var(--blue);
