@@ -31,6 +31,7 @@ import AdminPanelCategories from "./Pages/Admin/Pages/Categories/Categories"
 import AdminPanelContacts from "./Pages/Admin/Pages/Contacts/Contacts"
 import AdminPanelSessions from "./Pages/Admin/Pages/Sessions/Sessions"
 import AdminPanelTickets from "./Pages/Admin/Pages/Tickets/Tickets"
+import AdminPanelDiscount from "./Pages/Admin/Pages/Discounts/Discounts"
 import Page404admin from "./Pages/Admin/Pages/Page404-admin/Page404-admin"
 
 const routes = [
@@ -70,6 +71,7 @@ const routes = [
             { path: 'menus', element: <AdminPanelMenus /> },
             { path: 'articles', element: <AdminPanelArticles /> },
             { path: 'tickets', element: <AdminPanelTickets /> },
+            { path: 'dicounts', element: <AdminPanelDiscount /> },
             { path: '*', element: <Page404admin /> },
         ]
     },

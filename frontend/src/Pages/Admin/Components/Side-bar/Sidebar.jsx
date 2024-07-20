@@ -122,6 +122,12 @@ export default function Sidebar() {
                             </NavLink>
                         </li>
                         <li >
+                            <NavLink to="/p-admin/discounts" className={`admin sidebar-links__link`}>
+                                <BiSolidOffer className="icon" />
+                                <span>تخفیف همگانی</span>
+                            </NavLink>
+                        </li>
+                        <li >
                             <Link to="/" className={`admin sidebar-links__link`} onClick={e => logoutHandle(e)}>
                                 <IoLogOutOutline className="icon" />
                                 <span>خروج</span>
