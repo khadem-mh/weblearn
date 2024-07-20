@@ -35,29 +35,38 @@ export default function PageFirstAccount() {
   const handleTicketShow = ticket => {
     console.log(ticket);
 
-    Swal.fire({
-      icon: 'info',
-      html: `
-      <div style="text-align: start">
-        <h2 style="font-weight: bold; color: skyblue; padding-bottom: 1rem">╩╦ تیکت ارسال شده </h2>
-        <div class="border p-3 rounded-4">
-          <h2 style="font-weight: bold; color: greenyellow; padding-bottom: 1rem">_موضوع تیکت</h2>
-          ${ticket.title}
-          <br/>
-          <br/>
-          <h2 style="font-weight: bold; color: greenyellow; padding-bottom: 1rem">_متن تیکت</h2>
-          <p>${ticket.body}</p>
-        </div>
-        <br/>
-        <br/>
-        <h2 style="font-weight: bold; color: skyblue; padding-bottom: 1rem">╩╦ پاسخ </h2>
-        <p class="text-center text-info">${ticket.answer === 0 ? 'هنوز پاسخی داده نشده است' : ticket.answer}</p>
-      </div>
-      `,
-      background: '#28293D',
-      color: 'whitesmoke',
-      confirmButtonText: 'دیدم'
-    });
+    fetch(`http://localhost:4000/v1/tickets/answer/${ticket._id}`, {
+      method: "GET",
+      headers: {
+        'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+      }
+    })
+      .then(res => res.json())
+      .then(datas => {
+        Swal.fire({
+          icon: 'info',
+          html: `
+          <div style="text-align: start">
+            <h2 style="font-weight: bold; color: skyblue; padding-bottom: 1rem">╩╦ تیکت ارسال شده </h2>
+            <div class="border p-3 rounded-4">
+              <h2 style="font-weight: bold; color: greenyellow; padding-bottom: 1rem">_موضوع تیکت</h2>
+              ${ticket.title}
+              <br/>
+              <br/>
+              <h2 style="font-weight: bold; color: greenyellow; padding-bottom: 1rem">_متن تیکت</h2>
+              <p>${ticket.body}</p>
+            </div>
+            <br/>
+            <br/>
+            <h2 style="font-weight: bold; color: skyblue; padding-bottom: 1rem">╩╦ پاسخ </h2>
+            <p class="text-info">${ticket.answer === 0 ? 'هنوز پاسخی داده نشده است' : datas.answer}</p>
+          </div>
+          `,
+          background: '#28293D',
+          color: 'whitesmoke',
+          confirmButtonText: 'دیدم'
+        });
+      })
 
 
   }
