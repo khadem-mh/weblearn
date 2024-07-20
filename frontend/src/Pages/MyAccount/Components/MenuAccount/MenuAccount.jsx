@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import './MenuAccount.css'
 import ItemMenuAccount from '../ItemMenuAccount/ItemMenuAccount';
+import { useLocation } from 'react-router-dom'
 //icons
 import { AiOutlineHome } from "react-icons/ai";
 import { VscFolderLibrary } from "react-icons/vsc";
 import { GoCommentDiscussion } from "react-icons/go";
 import { HiOutlineUser } from "react-icons/hi2";
 import { IoLogOutOutline } from "react-icons/io5";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import swal from 'sweetalert'
 
 export default function MenuAccount({ liM, fzTitle, fzLogo }) {
 
+    const location = useLocation()
+    const logoutRef = useRef()
     const [isShowLogout, setIsShowLogout] = useState(false)
 
     useEffect(() => {
@@ -29,9 +32,15 @@ export default function MenuAccount({ liM, fzTitle, fzLogo }) {
         }
     }, [isShowLogout])
 
+    useEffect(() => {
+        if (logoutRef.current.classList.contains('account-sidbar__active')) {
+            logoutRef.current.classList.remove('account-sidbar__active')
+        }
+    }, [location.pathname])
+
     const redirectToHome = e => {
         e && e.preventDefault()
-        if (isShowLogout) window.location.pathname = ''
+        if (isShowLogout) window.location.pathname = '/'
     }
 
     return (
@@ -42,13 +51,13 @@ export default function MenuAccount({ liM, fzTitle, fzLogo }) {
             <ItemMenuAccount fzTitle={fzTitle} liMargin={liM} logo={<HiOutlineUser className='logo-menu-account' style={{ fontSize: fzLogo }} />} title={'جزئیات حساب'} path={'/my-account/details-account'} />
 
             <li className='account-sidbar__li' style={{ margin: liM }}>
-                <Link onClick={(e) => {
+                <NavLink to={'/'} ref={logoutRef} onClick={(e) => {
                     redirectToHome(e)
                     setIsShowLogout(true)
                 }} className='account-sidbar__link'>
                     <IoLogOutOutline className='logo-menu-account' style={{ fontSize: fzLogo }} />
                     <span style={{ fontSize: fzTitle }}>خروج</span>
-                </Link>
+                </NavLink>
             </li>
 
         </ul>
