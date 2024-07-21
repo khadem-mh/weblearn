@@ -4,7 +4,6 @@ import { SiNamecheap } from "react-icons/si";
 import { MdOutlinePercent } from "react-icons/md";
 import { FaMaxcdn } from "react-icons/fa";
 import swal from 'sweetalert';
-import { number } from 'prop-types';
 
 export default function AddNewOff({ getAllOffs }) {
 
