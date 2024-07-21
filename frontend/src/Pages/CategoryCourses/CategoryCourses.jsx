@@ -29,6 +29,12 @@ export default function CategoryCourses() {
   const [searchCourse, setSearchCourse] = useState('')
 
   useEffect(() => {
+    setFilterCourseTypes('all')
+    setSelectedItem(0)
+    setAllCourses([])
+    setCategories([])
+    setFilterCoursesPage([])
+    setCategoriesFilter([])
     fetch(`http://localhost:4000/v1/courses/category/${category}`)
       .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
       .then(courses => {
@@ -57,7 +63,6 @@ export default function CategoryCourses() {
         break
       }
       case 'expensive': {
-        console.log('EXPENSIVE COURSES =>', categories);
         setCategories([...categories].sort((first, second) => second.price - first.price))
         setSelectedItem(2)
         break
@@ -96,7 +101,6 @@ export default function CategoryCourses() {
     }
   }
 
-
   const handleFilterCourses = datas => setFilterCoursesPage(datas)
 
   const filteredCoursesHandler = filterType => setFilterCourseTypes(filterType)
@@ -105,7 +109,7 @@ export default function CategoryCourses() {
     <section className='page category-page'>
 
 
-      {allCourses.length 
+      {categories.length
         ?
         <>
           <h2 className='category-h2'>دوره های {category}</h2>
@@ -139,7 +143,7 @@ export default function CategoryCourses() {
                 <div className="row row-cols-sm-2 row-cols-md-2 row-cols-xl-3" id="courses-container">
 
                   {
-                    categories.length ? filterCoursesPage.map((courseInfo, index) => (
+                    categories.length && filterCourseTypes !== 'free' || filterCourseTypes === 'free' && categoriesFilter.length ? filterCoursesPage.map((courseInfo, index) => (
                       <Course key={index} {...courseInfo} />
                     )) :
                       <div className='w-100' style={{ height: '40vh', textAlign: 'center', marginTop: '15rem' }}>
