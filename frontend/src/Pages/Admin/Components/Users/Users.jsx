@@ -111,6 +111,42 @@ export default function Users({ allUsers, getAllUsers }) {
       })
   }
 
+  const changeRole = (userID) => {
+
+    swal({
+      title: "لطفا نقش جدید را وارد نمایید:",
+      content: 'input',
+      buttons: 'تایید'
+    }).then(value => {
+      if (value && value.length) {
+        const reqBodyInfos = {
+          role: value,
+          id: userID
+        }
+
+        fetch(`http://localhost:4000/v1/users/role`, {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(reqBodyInfos)
+        }).then(res => {
+          if (res.ok) {
+            getAllUsers()
+            swal({
+              title: "نقش کاربر مورد نظر با موفقیت تغییر یافت",
+              icon: "success",
+              buttons: "خیلی هم عالی"
+            })
+          }
+        })
+      }
+    })
+
+
+  }
+
   const setDelete = remove => remove(false)
 
   return (
@@ -129,6 +165,7 @@ export default function Users({ allUsers, getAllUsers }) {
                       <th scope="col">نام کاربری</th>
                       <th scope="col">شماره تماس</th>
                       <th scope="col">ایمیل</th>
+                      <th scope="col">تغیر نقش</th>
                       <th scope="col">کنترل</th>
                     </tr>
                   </thead>
@@ -142,6 +179,9 @@ export default function Users({ allUsers, getAllUsers }) {
                           <td>{user.username}</td>
                           <td>{user.phone}</td>
                           <td>{user.email}</td>
+                          <td>
+                            <button className='products-table-btn' onClick={() => changeRole(user._id)}>{user.role === 'ADMIN' ? 'مدیر' : 'کاربر'}</button>
+                          </td>
                           <td>
                             <button className='products-table-btn' onClick={() => {
                               setIsShowDeleteUser(true)
