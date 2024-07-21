@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import InputEditModal from "../../Components/InputEditModal/InputEditModal";
 import { MdOutlinePercent } from "react-icons/md";
 import swal from "sweetalert";

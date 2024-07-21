@@ -267,8 +267,20 @@ export default function CourseInfo() {
                     </div>
 
                     <div className='course-info__footer-left'>
-                      <span className='course-info__footer-left_price'>{!courseInfo.price ? 'رایگان' : faNumber(courseInfo.price)}</span>
-                      <span className='course-info__footer-left_toman'>{courseInfo.price === 0 ? '' : 'تومان'}</span>
+                      <span className='course-info__footer-left_price'>
+                        {
+                          !courseInfo.price ? 'رایگان' : courseInfo.discount > 0
+                            ?
+                            <div className='d-flex flex-row-reverse'>
+                              <div>
+                                <span> <strike className='text-secondary'>{courseInfo.price.toLocaleString()}</strike> </span>
+                                <p className='course-info__footer-left_toman text-start'>{courseInfo.price === 0 ? '' : 'تومان'}</p>
+                              </div>
+                              <span className='mx-3'> {(courseInfo.price - (courseInfo.price * courseInfo.discount) / 100).toLocaleString()}</span>
+                            </div>
+                            :
+                            courseInfo.price.toLocaleString()
+                        }</span>
                     </div>
 
                   </div>
