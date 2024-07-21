@@ -85,7 +85,7 @@ export default function Index() {
 
           <div className="about-us__header">
             <span className="about-us__title title">ما چه کمکی بهتون میکنیم ؟</span>
-            <span className="about-us__subtitle">از اونجایی که آکادمی سبزلرن یک آکادمی خصوصی هست</span>
+            <span className="about-us__subtitle">از اونجایی که آکادمی وب لرن یک آکادمی خصوصی هست</span>
           </div>
 
           <div className="container">
@@ -94,7 +94,7 @@ export default function Index() {
               <AboutUsBox iconBox={<i className="far fa-copyright about-us__icon"></i>} titleBox={'دوره های اختصاصی'} subTitleBox={'با پشتیبانی و کیفیت بالا اراِئه میده'} />
               <AboutUsBox iconBox={<i className="fas fa-leaf about-us__icon"></i>} titleBox={'اجازه تدریس'} subTitleBox={'به هر مدرسی رو نمیده. چون کیفیت براش مهمه !'} />
               <AboutUsBox iconBox={<i className="fas fa-gem about-us__icon"></i>} titleBox={'دوره پولی و رایگان'} subTitleBox={'براش مهم نیست. به مدرسینش حقوق میده تا نهایت کیفیت رو در پشتیبانی و اپدیت دوره ارائه بده'} />
-              <AboutUsBox iconBox={<i className="fas fa-crown about-us__icon"></i>} titleBox={'اهمیت به کاربر'} subTitleBox={'اولویت اول و آخر آکادمی آموزش برنامه نویسی سبزلرن اهمیت به کاربرها و رفع نیاز های آموزشی و رسوندن اونها به بازار کار هست'} />
+              <AboutUsBox iconBox={<i className="fas fa-crown about-us__icon"></i>} titleBox={'اهمیت به کاربر'} subTitleBox={'اولویت اول و آخر آکادمی آموزش برنامه نویسی وب لرن اهمیت به کاربرها و رفع نیاز های آموزشی و رسوندن اونها به بازار کار هست'} />
 
             </div>
           </div>
