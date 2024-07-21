@@ -135,7 +135,6 @@ export default function AdminPanelMenus() {
                                     <th scope="col">عنوان</th>
                                     <th scope="col">URL منو</th>
                                     <th scope="col">دسته بندی</th>
-                                    <th scope="col">ویرایش</th>
                                     <th scope="col">حذف</th>
                                 </tr>
                             </thead>
@@ -148,9 +147,6 @@ export default function AdminPanelMenus() {
                                             <td>{menu.title}</td>
                                             <td>{menu.href}</td>
                                             <td>{!menu?.parent ? "#" : menu.parent.title}</td>
-                                            <td>
-                                                <button className='products-table-btn'>ویرایش</button>
-                                            </td>
                                             <td>
                                                 <button className='products-table-btn' onClick={() => {
                                                     setMenuID(menu._id)

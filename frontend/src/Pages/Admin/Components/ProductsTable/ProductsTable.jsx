@@ -76,7 +76,6 @@ export default function ProductsTable({ allProducts, getAllProducts }) {
                                     <th scope="col">وضعیت</th>
                                     <th scope="col">لینک</th>
                                     <th scope="col">دسته</th>
-                                    <th scope="col">ویرایش</th>
                                     <th scope="col">حذف</th>
                                 </tr>
                             </thead>
@@ -95,10 +94,6 @@ export default function ProductsTable({ allProducts, getAllProducts }) {
                                             <td>{product.status}</td>
                                             <td>{product.shortName}</td>
                                             <td>{product.categoryID.name}</td>
-                                            <td>
-
-                                                <button className='products-table-btn'>ویرایش</button>
-                                            </td>
                                             <td>
                                                 <button className='products-table-btn' onClick={() => {
                                                     setIsShowDeleteModal(true)

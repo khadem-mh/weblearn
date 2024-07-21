@@ -17,49 +17,6 @@ export default function Users({ allUsers, getAllUsers }) {
   const [isShowDeleteUser, setIsShowDeleteUser] = useState(false)
   //update state
   const [isShowbanUser, setIsShowBanUser] = useState(false)
-  const [isShowEditModal, setIsShowEditModal] = useState(false)
-  const [userNewFirsname, setUserNewFirsname] = useState("");
-  const [userNewLastname, setUserNewLastname] = useState("");
-  const [userNewUsername, setUserNewUsername] = useState("");
-  const [userNewPassword, setUserNewPassword] = useState("");
-  const [userNewPhone, setUserNewPhone] = useState("");
-  const [userNewCity, setUserNewCity] = useState("");
-  const [userNewEmail, setUserNewEmail] = useState("");
-  const [userNewAddress, setUserNewAddress] = useState("");
-  const [userNewBuy, setUserNewBuy] = useState("");
-  const [userNewScore, setUserNewScore] = useState("");
-
-
-  const updateUser = (event) => {
-    event.preventDefault();
-
-    const userNewInfos = {
-      firsname: userNewFirsname,
-      lastname: userNewLastname,
-      username: userNewUsername,
-      password: userNewPassword,
-      phone: userNewPhone,
-      city: userNewCity,
-      email: userNewEmail,
-      address: userNewAddress,
-      score: userNewScore,
-      buy: userNewBuy,
-    };
-
-    fetch(`http://localhost:4000/v1/users/${userId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userNewInfos),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
-        setIsShowEditModal(false);
-        getAllUsers()
-      });
-  };
 
   const submitDeleteUser = () => {
     fetch(`http://localhost:4000/v1/users/${userId}`, {
@@ -166,7 +123,8 @@ export default function Users({ allUsers, getAllUsers }) {
                       <th scope="col">شماره تماس</th>
                       <th scope="col">ایمیل</th>
                       <th scope="col">تغیر نقش</th>
-                      <th scope="col">کنترل</th>
+                      <th scope="col">حذف</th>
+                      <th scope="col">بن</th>
                     </tr>
                   </thead>
 
@@ -187,28 +145,12 @@ export default function Users({ allUsers, getAllUsers }) {
                               setIsShowDeleteUser(true)
                               setUserId(user._id)
                             }}>حذف</button>
+                          </td>
+                          <td>
                             <button className='products-table-btn' onClick={() => {
                               setIsShowBanUser(true)
                               setUserId(user._id)
                             }}>بن</button>
-                            <button className='products-table-btn'
-                              onClick={() => {
-                                setIsShowEditModal(true);
-                                setUserId(user.id);
-                                setUserNewFirsname(user.firsname);
-                                setUserNewLastname(user.lastname);
-                                setUserNewUsername(user.username);
-                                setUserNewPassword(user.password);
-                                setUserNewPhone(user.phone);
-                                setUserNewCity(user.city);
-                                setUserNewEmail(user.email);
-                                setUserNewAddress(user.address);
-                                setUserNewScore(user.score);
-                                setUserNewBuy(user.buy);
-                              }}
-                            >
-                              ویرایش
-                            </button>
                           </td>
                         </tr>
                       ))
@@ -221,32 +163,17 @@ export default function Users({ allUsers, getAllUsers }) {
           :
           (<ErrorBoxEmpty msg={'هیچ کاربری یافت نشد'} />)
         }
-      </div>
+      </div >
 
       {isShowDeleteUser && (
         <DeleteModal cancleAction={() => setDelete(setIsShowDeleteUser)} submitAction={submitDeleteUser} title={'آیا از حذف کاربر اطمینان دارید'} />
-      )}
+      )
+      }
 
-      {isShowbanUser && (
-        <DeleteModal cancleAction={() => setIsShowBanUser(false)} submitAction={submitBanUser} title={'آیا از بن کردن کاربر اطمینان دارید'} />
-      )}
-
-      {isShowEditModal &&
-        <EditMoal onClose={() => setIsShowEditModal(false)} onSubmit={updateUser} title={'اطلاعات جدید را وارد نمایید'}>
-
-          <InputEditModal setValInp={setUserNewFirsname} valInp={userNewFirsname} cildren={<SiNamecheap />} placeHolderInp={'نام'} />
-          <InputEditModal setValInp={setUserNewLastname} valInp={userNewLastname} cildren={<SiNamecheap />} placeHolderInp={'نام خوانوادگی'} />
-          <InputEditModal setValInp={setUserNewUsername} valInp={userNewUsername} cildren={<FaUser />} placeHolderInp={'نام کاربری'} />
-          <InputEditModal setValInp={setUserNewPassword} valInp={userNewPassword} cildren={<PiPasswordDuotone />} placeHolderInp={'رمز عبور'} />
-          <InputEditModal setValInp={setUserNewPhone} valInp={userNewPhone} cildren={<MdOutlinePhoneIphone />} placeHolderInp={'شماره تماس'} />
-          <InputEditModal setValInp={setUserNewCity} valInp={userNewCity} cildren={<FaCity />} placeHolderInp={'شهر'} />
-          <InputEditModal setValInp={setUserNewEmail} valInp={userNewEmail} cildren={<MdAlternateEmail />} placeHolderInp={'ایمیل'} />
-          <InputEditModal setValInp={setUserNewAddress} valInp={userNewAddress} cildren={<PiAddressBookLight />} placeHolderInp={'آدرس محل اقامت'} />
-          <InputEditModal setValInp={setUserNewScore} valInp={userNewBuy} cildren={<MdOutlineScoreboard />} placeHolderInp={'نمره'} />
-          <InputEditModal setValInp={setUserNewBuy} valInp={userNewScore} cildren={<SlBasketLoaded />} placeHolderInp={'خرید'} />
-
-
-        </EditMoal>
+      {
+        isShowbanUser && (
+          <DeleteModal cancleAction={() => setIsShowBanUser(false)} submitAction={submitBanUser} title={'آیا از بن کردن کاربر اطمینان دارید'} />
+        )
       }
 
     </>

@@ -56,79 +56,79 @@ export default function Sidebar() {
 
                     <ul className="admin sidebar-links">
                         <li>
-                            <NavLink to="/p-admin" className={`admin sidebar-links__link admin-panel-home-s`} style={{ marginTop: `${window.location.pathname === '/p-admin' || window.location.pathname === '/p-admin/' ? '15rem' : '0'}` }} ref={adminSideRef}>
+                            <NavLink to="/p-admin" title='لیست دوره ها' className={`admin sidebar-links__link admin-panel-home-s`} style={{ marginTop: `${window.location.pathname === '/p-admin' || window.location.pathname === '/p-admin/' ? '15rem' : '0'}` }} ref={adminSideRef}>
                                 <AiOutlineHome className="icon" />
                                 <span>صفحه اصلی</span>
                             </NavLink>
                         </li>
                         <li >
-                            <NavLink to="/p-admin/courses" className={`admin sidebar-links__link`} >
+                            <NavLink to="/p-admin/courses" className={`admin sidebar-links__link`} title='لیست دوره ها'>
                                 <MdOutlineAssessment className="icon" />
                                 <span>دوره ها</span>
                             </NavLink>
                         </li>
                         <li >
-                            <NavLink to="/p-admin/sessions" className={`admin sidebar-links__link`} >
+                            <NavLink to="/p-admin/sessions" className={`admin sidebar-links__link`} title='جلسات دوره ها'>
                                 <SiGooglemeet className="icon" />
                                 <span>جلسات</span>
                             </NavLink>
                         </li>
                         <li >
-                            <NavLink to="/p-admin/categories" className={`admin sidebar-links__link`}>
+                            <NavLink to="/p-admin/categories" className={`admin sidebar-links__link`} title='دسته بندی ها'>
                                 <BiCategoryAlt className="icon" />
                                 <span>دسته بندی ها</span>
                             </NavLink>
                         </li>
                         <li >
-                            <NavLink to="/p-admin/menus" className={`admin sidebar-links__link`}>
+                            <NavLink to="/p-admin/menus" className={`admin sidebar-links__link`} title='منوها'>
                                 <RiMenu2Fill className="icon" />
                                 <span>منو ها</span>
                             </NavLink>
                         </li>
                         <li >
-                            <NavLink to="/p-admin/articles" className={`admin sidebar-links__link`}>
+                            <NavLink to="/p-admin/articles" className={`admin sidebar-links__link`} title='مقالات'>
                                 <GrArticle className="icon" />
                                 <span>مقالات</span>
                             </NavLink>
                         </li>
                         <li >
-                            <NavLink to="/p-admin/users" className={`admin sidebar-links__link`}>
+                            <NavLink to="/p-admin/users" className={`admin sidebar-links__link`} title='لیست کاربران'>
                                 <FiUsers className="icon" />
                                 <span>کاربران</span>
                             </NavLink>
                         </li>
                         <li >
-                            <NavLink to="/p-admin/comments" className={`admin sidebar-links__link`}>
+                            <NavLink to="/p-admin/comments" className={`admin sidebar-links__link`} title='نظرات کاربران'>
                                 <BiCommentDetail className="icon" />
                                 <span>کامنت ها</span>
                             </NavLink>
                         </li>
                         <li >
-                            <NavLink to="/p-admin/contacts" className={`admin sidebar-links__link`}>
+                            <NavLink to="/p-admin/contacts" className={`admin sidebar-links__link`} title='پیغام ها'>
                                 <TbMessages className="icon" />
                                 <span>پیغام ها</span>
                             </NavLink>
                         </li>
                         <li >
-                            <NavLink to="/p-admin/tickets" className={`admin sidebar-links__link`}>
+                            <NavLink to="/p-admin/tickets" className={`admin sidebar-links__link`} title='تیکت ها'>
                                 <BiCommentDetail className="icon" />
                                 <span>تیکت ها</span>
                             </NavLink>
                         </li>
                         <li >
-                            <NavLink to="/p-admin/offs" className={`admin sidebar-links__link`}>
+                            <NavLink to="/p-admin/offs" className={`admin sidebar-links__link`} title='ساخت کد تخفیف'>
                                 <BiSolidOffer className="icon" />
                                 <span>تخفیف ها</span>
                             </NavLink>
                         </li>
                         <li >
-                            <NavLink to="/p-admin/discounts" className={`admin sidebar-links__link`}>
+                            <NavLink to="/p-admin/discounts" className={`admin sidebar-links__link`} title='برگزاری کمپین'>
                                 <BiSolidOffer className="icon" />
                                 <span>تخفیف همگانی</span>
                             </NavLink>
                         </li>
                         <li >
-                            <Link to="/" className={`admin sidebar-links__link`} onClick={e => logoutHandle(e)}>
+                            <Link to="/" className={`admin sidebar-links__link`} onClick={e => logoutHandle(e)} title='خروج از حساب کاربری'>
                                 <IoLogOutOutline className="icon" />
                                 <span>خروج</span>
                             </Link>

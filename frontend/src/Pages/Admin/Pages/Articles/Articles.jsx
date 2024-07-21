@@ -182,7 +182,6 @@ export default function AdminPanelArticles() {
                                     <th scope="col">عنوان</th>
                                     <th scope="col">لینک</th>
                                     <th scope="col">نویسنده</th>
-                                    <th scope="col">ویرایش</th>
                                     <th scope="col">حذف</th>
                                 </tr>
                             </thead>
@@ -196,11 +195,8 @@ export default function AdminPanelArticles() {
                                                 <img src={`/Images/Blogs/${product.cover}`} alt="article" className='products-table-img hgf' />
                                             </td>
                                             <td>{product.title}</td>
-                                            <td style={{ fontSize: '1.3rem', color: 'gray' }}>{product.shortName}</td>
+                                            <td style={{ fontSize: '1.4rem', color: 'gray' }}>{product.shortName}</td>
                                             <td>{product.creator.name}</td>
-                                            <td>
-                                                <button className='products-table-btn'>ویرایش</button>
-                                            </td>
                                             <td>
                                                 <button className='products-table-btn' onClick={() => {
                                                     setChoosIDForRemove(product._id)

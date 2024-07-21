@@ -49,6 +49,8 @@ export default function AdminPanelHome() {
                 <tr>
                   <th scope="col">شناسه</th>
                   <th scope="col">نام و نام خانوادگی</th>
+                  <th scope="col">نام کاربری</th>
+                  <th scope="col">شماره تلفن</th>
                   <th scope="col">ایمیل</th>
                 </tr>
               </thead>
@@ -58,7 +60,8 @@ export default function AdminPanelHome() {
                   <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{user.name}</td>
-                    {/* <td>09123443243</td> */}
+                    <td>{user.username}</td>
+                    <td>{user.phone}</td>
                     <td>{user.email}</td>
                   </tr>
                 ))}
