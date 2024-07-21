@@ -105,7 +105,7 @@ export default function CategoryCourses() {
     <section className='page category-page'>
 
 
-      {allCourses.length
+      {allCourses.length 
         ?
         <>
           <h2 className='category-h2'>دوره های {category}</h2>

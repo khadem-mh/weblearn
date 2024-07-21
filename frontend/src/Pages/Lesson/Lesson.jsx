@@ -9,7 +9,6 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 //components
 import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb'
-import ReapondComment from '../../Components/Comment/RespondComment/ReapondComment';
 import AccordionListVideo from '../../Components/AccordionListVideo/AccordionListVideo';
 import StatusBox from '../../Components/StatusBox/StatusBox';
 //icons

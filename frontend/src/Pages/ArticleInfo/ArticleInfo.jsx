@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './ArticleInfo.css'
 import './media.css'
 //components
 import BreadCrumb from '../../Components/BreadCrumb/BreadCrumb'
-import CategoryBox from '../../Components/CategoryBox/CategoryBox'
-import CourseCoverAside from '../../Components/CourseCoverAside/CourseCoverAside'
 import ReapondComment from '../../Components/Comment/RespondComment/ReapondComment'
 //icons
 import { BsCalendar2Date, BsEye, BsShare } from "react-icons/bs";
@@ -13,9 +11,11 @@ import CopyLinkBox from '../../Components/CopyLinkBox/CopyLinkBox';
 import { useParams } from 'react-router-dom'
 import swal from 'sweetalert'
 import sanitizeHtml from 'sanitize-html';
+import { AuthContext } from '../../Contexts/AuthContext'
 
 export default function ArticleInfo() {
 
+  const authContext = useContext(AuthContext)
   const [articleInfo, setArticleInfo] = useState(null)
   const { name } = useParams()
 
@@ -90,7 +90,7 @@ export default function ArticleInfo() {
               </div>
 
               <div className="comments">
-                <ReapondComment />
+                <ReapondComment showCommentHeader={authContext.isLoggedIn}/>
               </div>
 
             </section>
