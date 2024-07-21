@@ -30,6 +30,27 @@
     margin-bottom: 2rem;
 }
 
+.parent-course-box {
+    position: relative;
+}
+
+.parent-course-box:hover .discount-box {
+    transform: rotate(0);
+}
+
+.discount-box {
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    background-color: transparent;
+    padding: .5rem 1rem;
+    box-shadow: 0 0 10px var(--primarydie-color);
+    border-radius: .5rem;
+    transform: rotate(-25deg);
+    z-index: 100;
+    transition: all 300ms;
+}
+
 /* Finish total courses */
 
 

@@ -4,13 +4,20 @@ import './media.css'
 import Spinner from 'react-bootstrap/Spinner';
 import { Link } from 'react-router-dom';
 
-export default function Course({ shortName, cover, categoryID, description, creator, courseAverageScore, registers, name, price, courseBadg }) {
+export default function Course({ discount, shortName, cover, categoryID, description, creator, courseAverageScore, registers, name, price, courseBadg }) {
 
     const [imageLoaded, setImageLoaded] = useState(false)
     const onImageLoaded = () => setImageLoaded(true)
 
     return (
-        <div className="col-12 parent-course-box">
+        <div className={`col-12 parent-course-box`}>
+            {
+                price !== 0 ?
+                    <span className={discount > 0 ? 'discount-box' : ''}>{discount}%</span>
+                    :
+                    <span className={discount > 0 ? 'discount-box' : ''}>100%</span>
+            }
+
             <div className="course-box">
 
                 <Link to={`/course-info/${shortName}`}>
@@ -60,7 +67,25 @@ export default function Course({ shortName, cover, categoryID, description, crea
                             <i className="fas fa-users course-box__users-icon"></i>
                             <span className="course-box__user-text">{registers}</span>
                         </div>
-                        <span className="course-box__price">{price !== undefined ? price === 0 ? 'رایگان' : price.toLocaleString() : ''} {price !== 0 && <small>تومان</small>}  </span>
+                        {
+                            !price 
+                            ?
+                                <div className='text-start'>
+                                    <span>رایگان</span>
+                                    <p className='course-info__footer-left_toman text-start'>برو حال کن</p>
+                                </div>
+                                : discount > 0
+                                    ?
+                                    <div className='d-flex flex-row-reverse'>
+                                        <div>
+                                            <span> <strike className='text-secondary'>{price.toLocaleString()}</strike> </span>
+                                            <p className='course-info__footer-left_toman text-start'>{price === 0 ? '' : 'تومان'}</p>
+                                        </div>
+                                        <span className='mx-3'> {(price - (price * discount) / 100).toLocaleString()}</span>
+                                    </div>
+                                    :
+                                    price.toLocaleString()
+                        }
                     </div>
                 </div>
 
