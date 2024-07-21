@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import './Footer.css'
 import { Link } from 'react-router-dom'
 import Input from '../Input/Input'
@@ -7,9 +7,11 @@ import {
     inputEmail
 } from "../../Validators/RulesInput.js"
 import swal from 'sweetalert';
+import { InfosIndexPageContext } from '../../Contexts/InfosIndexPageContext.js';
 
 export default function Footer() {
 
+    const infosIndex = useContext(InfosIndexPageContext)
     const btnRef = useRef()
     const [inpValid, setInpValid] = useState(null)
     const [inpClean, setInpClean] = useState(null)
@@ -71,7 +73,7 @@ export default function Footer() {
         <section className="page footer foot">
 
             <header className="footer-header">
-                <h4 className="footer-header__title">ضمانت سبز لرن برای کلیه محصولات آموزشی</h4>
+                <h4 className="footer-header__title">ضمانت وب لرن برای کلیه محصولات آموزشی</h4>
                 <p className="text-light mb-4 position-relative title-main">درباره ما</p>
                 <blockquote className="footer-header__text">وقتی تازه شروع به یادگیری برنامه نویسی کردم. یکی از مشکلاتی
                     که
@@ -132,10 +134,10 @@ export default function Footer() {
                             <ul>
                                 <li className="footer-article__item position-relative mb-4 title-main">ارتباط ما:</li>
                                 <li className="footer-article__item footer-article__item-email">
-                                    <address>ایمیل : sabzlearn@gmail.com</address>
+                                    <address>ایمیل : {infosIndex.email}</address>
                                 </li>
                                 <li className="footer-article__item footer-article__item-phone">
-                                    <address>شماره تماس : 09334008385</address>
+                                    <address>شماره تماس : {infosIndex.phone}</address>
                                 </li>
                             </ul>
                         </div>
@@ -156,7 +158,7 @@ export default function Footer() {
             </footer>
 
             <footer className="footer-end">
-                <small className="footer-end__text">© کلیه حقوق برای <span className="footer-end__text-title">سبز لرن </span>
+                <small className="footer-end__text">© کلیه حقوق برای <span className="footer-end__text-title"> وب لرن </span>
                     محفوظ است 1403</small>
             </footer>
 

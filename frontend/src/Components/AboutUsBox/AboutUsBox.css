@@ -14,13 +14,29 @@
 }
 
 .about-us__box {
+    position: relative;
     display: flex;
     align-items: center;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-    border-radius: 0.5rem;
+    box-shadow: -3px 3px 10px 0 rgba(0, 128, 0, .4);
+    border-top: 1px solid var(--primarydie-color);
+    border-right: 1px solid var(--primarydie-color);
+    border-radius: 1.5rem;
     margin: 1rem 0;
-    padding: 2rem 1.5rem;
+    padding: 2rem;
     transition: all 400ms ease;
+    font-family: Lalezar;
+}
+
+.about-us__box-right::before {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    right: 10px;
+    width:70px !important;
+    height: 70px !important;
+    background-color: rgba(0, 128, 0, .5) !important;
+    border-radius: 1rem;
+    transform: rotate(45deg);
 }
 
 .about-us__box:hover {
@@ -41,13 +57,14 @@
 .about-us__box-title {
     color: var(--primarydie-color);
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
 }
 
 .about-us__box-text {
     color: var(--bluedie-color);
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin-top: 0.5rem;
+    color: lightgray;
 }
 
 /* Finish About Us */

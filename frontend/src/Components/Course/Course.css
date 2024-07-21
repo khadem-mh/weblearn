@@ -42,10 +42,10 @@
     position: absolute;
     left: 0;
     color: var(--primary-color);
-    background-color: transparent;
+    background-color: rgba(0, 128, 0, .3);
     padding: .5rem 1rem;
-    box-shadow: 0 0 10px var(--primarydie-color);
-    border-radius: .5rem;
+    box-shadow: 0 0 10px var(--primary-color);
+    border-radius: 50rem;
     transform: rotate(-25deg);
     z-index: 100;
     transition: all 300ms;
