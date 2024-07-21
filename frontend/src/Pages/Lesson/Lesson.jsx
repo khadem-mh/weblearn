@@ -33,7 +33,6 @@ export default function Lesson() {
     const [userInfos, setUserInfos] = useState(null)
 
     useEffect(() => {
-
         let userToken = JSON.parse(localStorage.getItem('user')).token
 
         fetch(`http://localhost:4000/v1/auth/me`, {
@@ -67,15 +66,16 @@ export default function Lesson() {
     }, [])
 
     useEffect(() => {
-        console.log(session);
-        console.log(allSessions);
-        if (session && allSessions.length) setSessionID([...allSessions].findIndex(item => item._id === session._id) + 1)
+        if (session && allSessions.length) {
+            setSession([...allSessions].find(session => session._id === params.idSession))
+            setSessionID([...allSessions].findIndex(item => item._id === session._id) + 1)
+        }
         if (allSessions) {
             let sessionMinuteTime = 0
             allSessions.map(session => sessionMinuteTime += +session.time.split(':')[0])
             sessionMinuteTime >= 60 ? setDurationTimeHoursCourses(Math.floor(sessionMinuteTime / 60)) : setDurationTimeMinuteCourses(sessionMinuteTime)
         }
-    }, [session, allSessions])
+    }, [session, allSessions, location.pathname])
 
     const playerStyle = {
         width: '100%',
@@ -210,14 +210,6 @@ export default function Lesson() {
                             </div>
                             <button className='details-lesson__right-comment-footer-btnsend'>ارسال</button>
                         </div>
-
-                        <ReapondComment
-                            bgAnswer={'var(--blue-lighter-color)'}
-                            bgComment={'var(--blue-lighter-hight-color)'}
-                            bgParent={'transparent'}
-                            showCommentHeader={false}
-                            textNoQues={"هنوز برای این جلسه سوالی نپرسیده‌اید!"}
-                        />
 
                     </div>
 

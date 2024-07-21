@@ -1,11 +1,29 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './AccordionListVideo.css'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Accordion from 'react-bootstrap/Accordion';
 import { MdOutlinePlayCircle } from "react-icons/md";
 import { GoLock } from "react-icons/go";
+import { AuthContext } from '../../Contexts/AuthContext';
+import swal from 'sweetalert';
 
 export default function AccordionListVideo({ sessionsList, shortNameCourse }) {
+
+    const navigate = useNavigate()
+    const authContext = useContext(AuthContext)
+
+    const clickHandler = e => {
+        if (!authContext.isLoggedIn) {
+            e.preventDefault()
+            swal({
+                title: 'برای دیدن ویدیو ها لطفا در سایت لاگین کنید',
+                icon: 'warning',
+                buttons: 'باشه'
+            }).then(() => {
+                navigate('/login')
+            })
+        }
+    }
 
     return (
         <Accordion>
@@ -26,7 +44,7 @@ export default function AccordionListVideo({ sessionsList, shortNameCourse }) {
                                             padding: isActive ? '1rem' : "",
                                             marginBottom: isActive ? '.5rem' : "",
                                         }
-                                    }}>
+                                    }} onClick={e => clickHandler(e)}>
 
                                     <div className="introduction__accordion-right">
                                         <div className='d-flex align-items-center'>
