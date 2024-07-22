@@ -58,7 +58,7 @@ export default function AdminPanel() {
 
     return (
         isAdmin &&
-        <section>
+        <section className="test-admin-panel">
             <Sidebar />
 
             <Header isLightMode={isLightMode} setIsLightMode={setIsLightMode} adminNotif={adminInfos.notifications} >
