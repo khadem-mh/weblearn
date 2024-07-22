@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Header.css'
 import './media.css'
 import { Row, Col } from 'react-bootstrap'
@@ -9,54 +9,9 @@ import { IoMoonOutline } from "react-icons/io5";
 
 export default function Header({ children, isLightMode, setIsLightMode, adminNotif }) {
 
-    const [isShowInput, setIsShowInput] = useState(false)
     const [isShowAdminNotification, setIsShowAdminNotification] = useState(false)
     const [adminNotification, setAdminNotification] = useState(adminNotif)
-    const searchBoxRef = useRef()
 
-    useEffect(() => {
-
-        function contrloWidthForShowSearchBox() {
-            if (window.innerWidth <= 992) {
-                searchBoxRef.current.classList.contains('show-search-icon') && searchBoxRef.current.classList.remove('show-search-icon')
-                searchBoxRef.current.classList.add('hidden-search-icon')
-            } else {
-                searchBoxRef.current.classList.contains('hidden-search-icon') && searchBoxRef.current.classList.remove('hidden-search-icon')
-                searchBoxRef.current.classList.add('show-search-icon')
-            }
-        }
-
-        contrloWidthForShowSearchBox()
-
-        window.addEventListener('resize', contrloWidthForShowSearchBox)
-        return () => window.removeEventListener('resize', contrloWidthForShowSearchBox)
-
-    }, [window.innerWidth])
-
-    useEffect(() => {
-
-        const handleClick = event => {
-            searchBoxRef.current.classList.remove('hidden-search-icon')
-            searchBoxRef.current.classList.add('show-search-icon')
-            let getPositionElem = searchBoxRef.current.getBoundingClientRect()
-
-            if (
-                event.clientY < getPositionElem.top ||
-                event.clientY > (getPositionElem.top + getPositionElem.height) ||
-                event.clientX > (getPositionElem.left + getPositionElem.width) ||
-                event.clientX < getPositionElem.left
-            ) {
-                searchBoxRef.current.classList.remove('show-search-icon')
-                searchBoxRef.current.classList.add('hidden-search-icon')
-            }
-
-        }
-
-        isShowInput && window.addEventListener('click', event => handleClick(event))
-        return () => window.removeEventListener('click', handleClick)
-
-    }, [isShowInput])
- 
     const seeNotifHandler = notifID => {
         fetch(`http://localhost:4000/v1/notifications/see/${notifID}`, {
             method: 'PUT',
@@ -88,11 +43,11 @@ export default function Header({ children, isLightMode, setIsLightMode, adminNot
                     {children}
 
                     <Col className='header-left-section'>
-                        <button className={`header-left-icon search-icon-nav d-auto d-lg-none`} onClick={e => setIsShowInput(true)}>
+                        <button className={`header-left-icon search-icon-nav d-auto d-lg-none`}>
                             <IoSearch className='header-icon' />
                         </button>
 
-                        <div className="search-box" ref={searchBoxRef}>
+                        <div className="search-box d-none d-lg-flex">
                             <input type="text" placeholder='جست و جو بکنید ...' />
                             <button>جست و جو</button>
                         </div>

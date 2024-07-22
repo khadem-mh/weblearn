@@ -7,6 +7,7 @@
 }
 
 .test-admin-panel {
+    width: 100%;
     background-color: var(--white);
     min-height: 100vh;
 }
