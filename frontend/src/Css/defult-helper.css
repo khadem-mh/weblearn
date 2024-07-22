@@ -136,14 +136,29 @@ address {
 }
 
 .hty {
+    background: linear-gradient(rgba(36, 37, 50, 0.8), rgba(36, 37, 50, 0.8)), url('../../public/Images/Background-header/neo.jpg');
     z-index: -1;
     position: absolute;
-    top: -200px;
+    top: -300px;
     width: 102%;
-    height: 102vh;
-    background: linear-gradient(rgba(36, 37, 50, 0.8), rgba(36, 37, 50, 0.8)), url('../../public/Images/Background-header/desert-system.jpg');
+    height: 105vh;
     background-size: cover;
     background-position: center;
+    animation: change-bg;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+    animation-direction: alternate;
+}
+
+@keyframes change-bg {
+    to {
+        top: -150px;
+    }
+
+    from {
+        top: -300px;
+    }
 }
 
 .swal-footer {
