@@ -9,8 +9,8 @@ export default function LogoHeader({ srcLogo, imgW, titleFz, subTitleFz }) {
                 <img src={srcLogo} className="logo-header-site" style={{ width: imgW }} alt="logo-sabzlearn" />
             </Link>
             <div className='logo-header__text-logo'>
-                <h2 style={{ fontSize: titleFz }}>سبزلرن</h2>
-                <h3 style={{ fontSize: subTitleFz }} >Sabzlearn.ir</h3>
+                <h2 style={{ fontSize: titleFz }}>وب لرن</h2>
+                <h3 style={{ fontSize: subTitleFz }} >weblearn.ir</h3>
             </div>
         </header>
     )

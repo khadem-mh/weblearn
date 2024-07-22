@@ -26,7 +26,7 @@ const FormGetData = forwardRef(({ title, subTitle, subTitleLink, subTitleTextLin
                     footer &&
                     <div className='register__footer'>
                         <strong>
-                            با عضویت در سایت، تمامی قوانین و شرایط استفاده از خدمت <Link to={'/'}>سبزلرن</Link> را پذیرفته اید.
+                            با عضویت در سایت، تمامی قوانین و شرایط استفاده از خدمت <Link to={'/'}>وب لرن</Link> را پذیرفته اید.
                         </strong>
                     </div>
                 }
