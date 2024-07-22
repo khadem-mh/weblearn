@@ -29,11 +29,11 @@ export default function AdminPanelHome() {
 
       <h1 className='wellcom-back-admin-title'>خوش آمدید <strong>{adminInfos.name}</strong> به پنل مدیریت</h1>
 
-      <div class="home-content-boxes">
-        <div class="row d-flex flex-wrap justify-content-center">
+      <div className="home-content-boxes">
+        <div className="row d-flex flex-wrap justify-content-center">
           {
-            infos.map(item => (
-              <PAdminItem {...item} />
+            infos.map((item, index) => (
+              <PAdminItem {...item} key={index}/>
             ))
           }
         </div>
