@@ -38,7 +38,7 @@ export default function Course({ discount, shortName, cover, categoryID, descrip
                 <div className="course-box__main">
                     {
                         categoryID &&
-                        <span className='course-box__sector'>{categoryID?.name}</span>
+                        <span className='course-box__sector'>{categoryID?.name ? categoryID.name : 'برنامه نویسی'}</span>
                     }
                     {courseBadg && <span className='course-box__sector badg-course'>{courseBadg}</span>}
                     <a href="/" className="course-box__title"> {name} </a>
@@ -48,28 +48,38 @@ export default function Course({ discount, shortName, cover, categoryID, descrip
 
                     <div className="course-box__rating-teacher">
 
-                        <div className="course-box__teacher">
-                            <i className="fas fa-chalkboard-teacher course-box__teacher-icon"></i>
-                            <Link to="/" className="course-box__teacher-link">
-                                {creator}
-                            </Link>
-                        </div>
+                        {
+                            courseAverageScore &&
+                            <div className="course-box__teacher">
+                                <i className="fas fa-chalkboard-teacher course-box__teacher-icon"></i>
+                                <Link to="/" className="course-box__teacher-link">
+                                    {creator}
+                                </Link>
+                            </div>
+                        }
 
-                        <div className="course-box__rating">
-                            <small className='course-box__rating-score'>{`0.${courseAverageScore}`}</small>
-                            <img src="/Images/svgs/star_fill.svg" alt="star" className="course-box__star" />
-                        </div>
+                        {
+                            courseAverageScore &&
+                            <div className="course-box__rating">
+                                <small className='course-box__rating-score'>{`0.${courseAverageScore}`}</small>
+                                <img src="/Images/svgs/star_fill.svg" alt="star" className="course-box__star" />
+                            </div>
+                        }
 
                     </div>
 
                     <div className="course-box__status">
-                        <div className="course-box__users">
-                            <i className="fas fa-users course-box__users-icon"></i>
-                            <span className="course-box__user-text">{registers}</span>
-                        </div>
                         {
-                            !price 
-                            ?
+                            registers &&
+                            <div className="course-box__users">
+                                <i className="fas fa-users course-box__users-icon"></i>
+                                <span className="course-box__user-text">{registers}</span>
+                            </div>
+                        }
+                        {
+                            courseAverageScore &&
+                                !price
+                                ?
                                 <div className='text-start'>
                                     <span>رایگان</span>
                                     <p className='course-info__footer-left_toman text-start'>برو حال کن</p>
