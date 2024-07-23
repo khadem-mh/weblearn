@@ -108,8 +108,8 @@ export default function AdminPanelMenus() {
 
                 <form className='add-com-form'>
                     <div className='add-com-form-wrap'>
-                        <InputEditModal valInp={title} setValInp={setTitle} cildren={<SiNamecheap />} placeHolderInp='عنوان منو' />
-                        <InputEditModal valInp={shortName} setValInp={setShortName} cildren={<GoRelFilePath />} placeHolderInp='URL منو' />
+                        <InputEditModal valInp={title} setValInp={setTitle} cildren={<SiNamecheap />} placeHolderInp={'عنوان منو'} />
+                        <InputEditModal valInp={shortName} setValInp={setShortName} cildren={<GoRelFilePath />} placeHolderInp={'URL منو'} />
                         <select className="form-select border mt-md-5" onChange={event => setParentMenu(event.target.value)} ref={categoryMenuRef}>
                             <option value="-1">دسته بندی منو</option>
                             {

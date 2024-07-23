@@ -1,3 +1,7 @@
+.edit-products-form-group input::placeholder {
+    color: gray !important;
+}
+
 .edit-modal-form textarea {
     margin-top: 1rem;
     padding: 1rem;
