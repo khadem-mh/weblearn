@@ -77,9 +77,9 @@ export default function ArticleInfo() {
                   {
                     articleInfo.description
                   }
-                  <img src={`/Images/Blogs/${articleInfo.cover}`} alt="card" className='rounded-4 my-5 w-100'/>
+                  <img src={`/Images/Blogs/${articleInfo.cover}`} alt="card" className='rounded-4 my-5 w-100' />
                   {
-                    
+
                   }
                   <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(articleInfo.body) }}>
 
@@ -90,7 +90,11 @@ export default function ArticleInfo() {
               </div>
 
               <div className="comments">
-                <ReapondComment showCommentHeader={authContext.isLoggedIn}/>
+
+                <div className="comments__content">
+                  <ReapondComment showCommentHeader={authContext.isLoggedIn} />
+                </div>
+
               </div>
 
             </section>

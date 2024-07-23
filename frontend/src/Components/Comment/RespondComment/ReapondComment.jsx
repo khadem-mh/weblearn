@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import './ReapondComment.css'
+import './Comments.css'
 import AnswerComment from '../AnswerComment/AnswerComment'
 //icons
 import { GoCommentDiscussion } from "react-icons/go";

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useParams, useLocation, useNavigate } from 'react-router-dom'
 import './CourseInfo.css'
-import './Comments.css'
 import './media.css'
 //?package
 import Plyr from "plyr-react"
