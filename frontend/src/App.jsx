@@ -8,6 +8,7 @@ import Landing from "./Components/Landing/Landing"
 import Footer from "./Components/Footer/Footer"
 import MyAccount from "./Pages/MyAccount/Components/Account/MyAccount"
 import PageFirstAccount from "./Pages/MyAccount/Pages/PageFirstAccount/PageFirstAccount";
+import ScrollToTop from "./Components/ScrollToTop/ScrollToTops"
 // Contexts
 import { AuthProvider } from "./Contexts/AuthContext"
 
@@ -47,7 +48,13 @@ export default function App() {
 
 
           <section className={location.pathname === '/' ? 'app' : ''}>
-            {router}
+            {
+              router &&
+              <>
+                {router}
+                <ScrollToTop />
+              </>
+            }
           </section>
 
           {
