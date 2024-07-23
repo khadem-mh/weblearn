@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, Suspense } from "react"
 import { useRoutes, useLocation } from "react-router-dom"
 import routes from "./routes"
 import { InfosIndexPageProvider } from "./Contexts/InfosIndexPageContext"
@@ -11,6 +11,8 @@ import PageFirstAccount from "./Pages/MyAccount/Pages/PageFirstAccount/PageFirst
 import ScrollToTop from "./Components/ScrollToTop/ScrollToTops"
 // Contexts
 import { AuthProvider } from "./Contexts/AuthContext"
+//
+import LoadingFallback from "./Components/LoadingFallback/LoadingFallback"
 
 export default function App() {
 
@@ -29,40 +31,43 @@ export default function App() {
     <main>
       <AuthProvider>
         <InfosIndexPageProvider>
-          {
-            !location.pathname.includes('p-admin') && location.pathname !== '/register' && location.pathname !== '/login' && !location.pathname.includes('/my-account') && location.pathname !== '/contactus' &&
-            <header className="header">
-              {
-                routes[0].path === location.pathname ?
-                  (
-                    <>
-                      <div className="hty"></div>
-                      <Navbar />
-                      <Landing />
-                    </>
-                  )
-                  : <Navbar />
-              }
-            </header>
-          }
+          <Suspense fallback={<LoadingFallback />} >
 
-
-          <section className={location.pathname === '/' ? 'app' : ''}>
             {
-              router &&
-              <>
-                {router}
-                <ScrollToTop />
-              </>
+              !location.pathname.includes('p-admin') && location.pathname !== '/register' && location.pathname !== '/login' && !location.pathname.includes('/my-account') && location.pathname !== '/contactus' &&
+              <header className="header">
+                {
+                  routes[0].path === location.pathname ?
+                    (
+                      <>
+                        <div className="hty"></div>
+                        <Navbar />
+                        <Landing />
+                      </>
+                    )
+                    : <Navbar />
+                }
+              </header>
             }
-          </section>
 
-          {
-            !location.pathname.includes('p-admin') && location.pathname !== '/register' && location.pathname !== '/login' && !location.pathname.includes('/my-account') && location.pathname !== '/contactus' &&
-            < Footer />
-          }
+            <section className={location.pathname === '/' ? 'app' : ''}>
+              {
+                router &&
+                <>
+                  {router}
+                  <ScrollToTop />
+                </>
+              }
+            </section>
+
+            {
+              !location.pathname.includes('p-admin') && location.pathname !== '/register' && location.pathname !== '/login' && !location.pathname.includes('/my-account') && location.pathname !== '/contactus' &&
+              < Footer />
+            }
+
+          </Suspense>
         </InfosIndexPageProvider>
       </AuthProvider>
-    </main>
+    </main >
   )
 }

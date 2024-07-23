@@ -1,38 +1,40 @@
-import Index from "./Pages/Index/Index"
-import CategoryCourses from "./Pages/CategoryCourses/CategoryCourses"
-import CategoryArticles from "./Pages/CategoryArticles/CategoryArticles"
-import AllCourses from "./Pages/AllCourses/AllCourses"
-import CourseInfo from "./Pages/CourseInfo/CourseInfo"
-import ArticleInfo from "./Pages/ArticleInfo/ArticleInfo"
-import Lesson from "./Pages/Lesson/Lesson"
-import Login from "./Pages/Login/Login"
-import Register from "./Pages/Register/Register"
-import ContactUs from "./Pages/ContactUs/ContactUs"
-import SearchGlobal from "./Pages/SearchGlobal/SearchGlobal"
-import Page404 from "./Pages/Page404/Page404"
-//import pages my account
-import MyAccount from "./Pages/MyAccount/Components/Account/MyAccount"
-import PageFirstAccount from "./Pages/MyAccount/Pages/PageFirstAccount/PageFirstAccount";
-import MyCourses from "./Pages/MyAccount/Pages/MyCourses/MyCourses";
-import DetailsAccount from "./Pages/MyAccount/Pages/DetailsAccount/DetailsAccount";
-import Tickets from "./Pages/MyAccount/Pages/Tickets/Tickets";
-import AddTicket from "./Pages/MyAccount/Pages/AddTicket/AddTicket";
+import { lazy } from "react"
+
+const Index = lazy(() => import("./Pages/Index/Index"))
+const CategoryCourses = lazy(() => import("./Pages/CategoryCourses/CategoryCourses"))
+const CategoryArticles = lazy(() => import("./Pages/CategoryArticles/CategoryArticles"))
+const AllCourses = lazy(() => import("./Pages/AllCourses/AllCourses"))
+const CourseInfo = lazy(() => import("./Pages/CourseInfo/CourseInfo"))
+const ArticleInfo = lazy(() => import("./Pages/ArticleInfo/ArticleInfo"))
+const Lesson = lazy(() => import("./Pages/Lesson/Lesson"))
+const Login = lazy(() => import("./Pages/Login/Login"))
+const Register = lazy(() => import("./Pages/Register/Register"))
+const ContactUs = lazy(() => import("./Pages/ContactUs/ContactUs"))
+const SearchGlobal = lazy(() => import("./Pages/SearchGlobal/SearchGlobal"))
+const Page404 = lazy(() => import("./Pages/Page404/Page404"))
+//lazy(() => import()) pages my account
+const MyAccount = lazy(() => import("./Pages/MyAccount/Components/Account/MyAccount"))
+const PageFirstAccount = lazy(() => import("./Pages/MyAccount/Pages/PageFirstAccount/PageFirstAccount"))
+const MyCourses = lazy(() => import("./Pages/MyAccount/Pages/MyCourses/MyCourses"))
+const DetailsAccount = lazy(() => import("./Pages/MyAccount/Pages/DetailsAccount/DetailsAccount"))
+const Tickets = lazy(() => import("./Pages/MyAccount/Pages/Tickets/Tickets"))
+const AddTicket = lazy(() => import("./Pages/MyAccount/Pages/AddTicket/AddTicket"))
 //admin panel
-import AdminPanel from "./Pages/Admin/index"
-import AdminPanelMenus from "./Pages/Admin/Pages/Menus/Menus"
-import AdminPanelArticles from "./Pages/Admin/Pages/Articles/Articles"
-import AdminPanelHome from "./Pages/Admin/Pages/Home/Home"
-import AdminPanelCourses from "./Pages/Admin/Pages/Courses/Courses"
-import AdminPanelUsere from "./Pages/Admin/Pages/Users/Users"
-import AdminPanelComments from "./Pages/Admin/Pages/Comments/Comments"
-import AdminPanelOrders from "./Pages/Admin/Pages/Orders/Orders"
-import AdminPanelOffs from "./Pages/Admin/Pages/Offs/Offs"
-import AdminPanelCategories from "./Pages/Admin/Pages/Categories/Categories"
-import AdminPanelContacts from "./Pages/Admin/Pages/Contacts/Contacts"
-import AdminPanelSessions from "./Pages/Admin/Pages/Sessions/Sessions"
-import AdminPanelTickets from "./Pages/Admin/Pages/Tickets/Tickets"
-import AdminPanelDiscount from "./Pages/Admin/Pages/Discounts/Discounts"
-import Page404admin from "./Pages/Admin/Pages/Page404-admin/Page404-admin"
+const AdminPanel = lazy(() => import("./Pages/Admin/index"))
+const AdminPanelMenus = lazy(() => import("./Pages/Admin/Pages/Menus/Menus"))
+const AdminPanelArticles = lazy(() => import("./Pages/Admin/Pages/Articles/Articles"))
+const AdminPanelHome = lazy(() => import("./Pages/Admin/Pages/Home/Home"))
+const AdminPanelCourses = lazy(() => import("./Pages/Admin/Pages/Courses/Courses"))
+const AdminPanelUsere = lazy(() => import("./Pages/Admin/Pages/Users/Users"))
+const AdminPanelComments = lazy(() => import("./Pages/Admin/Pages/Comments/Comments"))
+const AdminPanelOrders = lazy(() => import("./Pages/Admin/Pages/Orders/Orders"))
+const AdminPanelOffs = lazy(() => import("./Pages/Admin/Pages/Offs/Offs"))
+const AdminPanelCategories = lazy(() => import("./Pages/Admin/Pages/Categories/Categories"))
+const AdminPanelContacts = lazy(() => import("./Pages/Admin/Pages/Contacts/Contacts"))
+const AdminPanelSessions = lazy(() => import("./Pages/Admin/Pages/Sessions/Sessions"))
+const AdminPanelTickets = lazy(() => import("./Pages/Admin/Pages/Tickets/Tickets"))
+const AdminPanelDiscount = lazy(() => import("./Pages/Admin/Pages/Discounts/Discounts"))
+const Page404admin = lazy(() => import("./Pages/Admin/Pages/Page404-admin/Page404-admin"))
 
 const routes = [
     //Routes Main
