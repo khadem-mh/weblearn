@@ -186,3 +186,77 @@ td {
     font-size: 1.1rem;
     border-radius: 10px;
 }
+
+.products-table-img {
+    width: 150px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.products-table-btn {
+    padding: 8px 20px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    color: var(--white-btn-color);
+    background-color: var(--blue-50);
+    margin-right: 20px;
+}
+
+.edit-modal-form textarea {
+    margin-top: 1rem;
+    padding: 1rem;
+    line-height: 1.4rem;
+    border-radius: 1rem;
+}
+
+.edit-modal-form textarea {
+    margin-top: 1rem;
+    padding: 1rem;
+    line-height: 1.4rem;
+    border-radius: 1rem;
+}
+
+.edit-modal-form {
+    width: 400px;
+    padding: 30px;
+    background-color: var(--white);
+    text-align: center;
+    border-radius: 1rem;
+}
+
+.edit-modal-form h1 {
+    font-size: 1.4rem;
+    color: var(--black);
+}
+
+.edit-form-submit {
+    margin-top: 20px;
+    width: 100%;
+    padding: 8px 10px;
+    background-color: var(--blue);
+    color: var(--white-btn-color);
+    font-size: 1.1rem;
+    border-radius: 1rem;
+}
+
+/*  */
+
+.edit-products-form-group {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    width: 100%;
+    background-color: #f4f4f4;
+    padding: 0 20px;
+    border-radius: 1rem;
+}
+
+.edit-products-input {
+    outline: none;
+    border: none;
+    background-color: unset;
+    font-size: 1.1rem;
+    width: 100%;
+    padding: .5rem .8rem;
+}

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import ErrorBoxEmpty from "../../Components/ErrorBoxEmpty/ErrorBoxEmpty";
 import DeleteModal from "../../Components/Modals/DeleteModal/DeleteModal";
 import InputEditModal from "../../Components/InputEditModal/InputEditModal";
-import './Menus.css'
 import swal from "sweetalert";
 import { SiNamecheap } from "react-icons/si";
 import { GoRelFilePath } from "react-icons/go";

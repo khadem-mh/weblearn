@@ -8,7 +8,7 @@ import { Col } from 'react-bootstrap'
 //Components
 import Header from "./Components/Header/Header"
 import Sidebar from "./Components/Side-bar/Sidebar"
-//Modals
+
 
 export default function AdminPanel() {
 

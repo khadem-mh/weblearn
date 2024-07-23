@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react'
-import './Orders.css'
 import ErrorBoxEmpty from '../../Components/ErrorBoxEmpty/ErrorBoxEmpty'
 import DetailsModal from '../../Components/Modals/DetailsModal/DetailsModal'
 import DeleteModal from '../../Components/Modals/DeleteModal/DeleteModal'
