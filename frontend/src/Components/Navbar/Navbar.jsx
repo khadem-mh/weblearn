@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
+import React, { useState, useEffect, useRef, useContext, useMemo } from 'react'
 import './Navbar.css'
 import './media.css'
 import { Link } from 'react-router-dom';
@@ -17,6 +17,21 @@ export default function Navbar() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [menus, setMenus] = useState([])
     const [topBar, setTopBar] = useState([])
+    const [randomItem, seRandomItem] = useState([])
+
+
+    useEffect(() => {
+        fetch(`http://localhost:4000/v1/menus/topbar`)
+            .then(res => res.json())
+            .then(items => {
+                setTopBar(items)
+                seRandomItem(grtRandomItemsFromArray(items, 5))
+            })
+
+        fetch(`http://localhost:4000/v1/menus`)
+            .then(res => res.json())
+            .then(menus => setMenus(menus))
+    }, [])
 
     useEffect(() => {
         const handleResize = () => {
@@ -31,16 +46,6 @@ export default function Navbar() {
         window.innerWidth < 893 && menuRef.current.classList.add('menu-hidden')
         return () => window.removeEventListener('resize', handleResize)
     }, [windowWidth])
-
-    useEffect(() => {
-        fetch(`http://localhost:4000/v1/menus/topbar`)
-            .then(res => res.json())
-            .then(items => setTopBar(items))
-
-        fetch(`http://localhost:4000/v1/menus`)
-            .then(res => res.json())
-            .then(menus => setMenus(menus))
-    }, [])
 
     const grtRandomItemsFromArray = (arr, randomCount) => {
         const shuffled = arr.sort(() => 0.5 - Math.random())
@@ -84,7 +89,7 @@ export default function Navbar() {
 
                             <ul className="top-bar__menu">
                                 {
-                                    topBar && topBar.length && grtRandomItemsFromArray(topBar, 5).map((item, index) => (
+                                    topBar && topBar.length && randomItem.map((item, index) => (
                                         <li key={index} className="top-bar__item">
                                             <Link to={`/course-info/${item.href}`} className="top-bar__link">{item.title}</Link>
                                         </li>
