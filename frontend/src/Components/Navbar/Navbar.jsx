@@ -21,8 +21,11 @@ export default function Navbar() {
     useEffect(() => {
         const handleResize = () => {
             setWindowWidth(window.innerWidth)
-            if (window.innerWidth < 893 && !menuRef.current.classList.contains('menu-show')) menuRef.current.classList.add('menu-hidden')
-            else menuRef.current.classList.remove('menu-hidden')
+            if (menuRef.current?.classList) {
+                if (window.innerWidth < 893 && !menuRef.current.classList.contains('menu-show')) menuRef.current.classList.add('menu-hidden')
+                else menuRef.current.classList.remove('menu-hidden')
+            }
+
         }
         window.addEventListener('resize', handleResize)
         window.innerWidth < 893 && menuRef.current.classList.add('menu-hidden')
