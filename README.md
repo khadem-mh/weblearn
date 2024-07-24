@@ -6,17 +6,7 @@
 
 __*`Note: Any copying of this file and publishing it with a different appearance and putting it as a sample of your work will be prosecuted`*__
 
-I want to show you a relatively large and extremely challenging project that has more than 1000 lines of JavaScript code.
-
-It's not a complete site, just the logic and function. I implemented the logic of a music player. It may not be like the Apple Music sites in 
-
-terms of UI, but the logic is the same, and I focused most of my coding time on its logic.
-
-Because most of the people who design websites have the same for their portfolios, such as shopping cart, registration, login, subscription to the 
-
-newsletter, showing products, etc.
-
-But for the work sample, I decided only for JavaScript, instead of duplicate sites with different ui and the same logic, this project is pure and without
+Implementation and programming of an educational website with ReactJs framework and NodeJs backend
 
 >### Languages
 >> ![](https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&duration=1500&pause=5000&color=F77F1A&random=false&width=55&height=25&lines=Html5)
