@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfrontend=self.webpackChunkfrontend||[]).push([[719],{1719:(e,n,a)=>{a.r(n),a.d(n,{default:()=>s});a(5043);var r=a(579);function s(){return(0,r.jsx)("div",{className:"page-404",children:"Page404"})}}}]);
+//# sourceMappingURL=719.64f5e317.chunk.js.map
