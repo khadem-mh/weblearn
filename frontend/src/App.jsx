@@ -29,7 +29,7 @@ export default function App() {
   }, [location]);
 
   return (
-    <main>
+    <main style={{ overflowX: "hidden" }}>
       <AuthProvider>
         <InfosIndexPageProvider>
           <Suspense fallback={<LoadingFallback />} >
