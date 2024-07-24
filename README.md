@@ -24,15 +24,19 @@ But for the work sample, I decided only for JavaScript, instead of duplicate sit
 >> ![](https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&duration=1500&pause=5000&color=5BCAF7&random=false&width=55&height=25&lines=Css3)
 >> 
 >> ![](https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&duration=1500&pause=5000&color=FAFF09&random=false&width=100&height=25&lines=JavaScript)
+>>
+>> ![](https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&duration=1500&pause=5000&color=5BCAF7&random=false&width=100&height=25&lines=ReactJs)
+>>
+>> ![](https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&duration=1500&pause=5000&color=2BA656&random=false&width=100&height=25&lines=NodeJs)
 
 >### Packages
->> ![](https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&duration=1500&pause=5000&color=CB58F7FF&random=false&width=150&height=25&lines=Bootstrap)
+>> ![](https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&duration=1500&pause=5000&color=CB58F7FF&random=false&width=150&height=25&lines=React-Bootstrap)
 >> 
->> ![](https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&duration=1500&pause=5000&color=skyblue&random=false&width=150&height=25&lines=Bootstrap+Icons)
+>> ![](https://readme-typing-svg.demolab.com?font=Fira+Code&size=16&duration=1500&pause=5000&color=skyblue&random=false&width=150&height=25&lines=React-Icons)
 
 ## View of the project
 
-check this [URL](https://khadem-mh.github.io/music-player/) for visit this page
+check this [URL](https://khadem-mh.github.io/weblearn/) for visit this page
 
 <img src="./public/1.png" alt="view" width="800px">
 
