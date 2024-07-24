@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import './CategoryCourses.css'
 //components
 import Course from '../../Components/Course/Course'
 import OffCanvasRight from '../../Components/OffCanvasesMenu/OffCanvasRight/OffCanvasRight';
@@ -121,7 +122,9 @@ export default function CategoryCourses() {
                 <RiSearchLine className='category-research__icon' />
               </section>
 
-              <OffCanvasRight displayCanvas={'d-flex d-sm-none'} iconBtn={<HiMiniAdjustmentsHorizontal />} children={<FilterCategory categorySwitch={true} titleCategory={'دسته بندی دوره ها'} />} />
+              <OffCanvasRight displayCanvas={'d-flex d-sm-none'} iconBtn={<HiMiniAdjustmentsHorizontal />} >
+                <FilterCategory categorySwitch={true} onFilteredOverCourses={filteredCoursesHandler} selecteItem={selectedItem} />
+              </OffCanvasRight>
 
               <div className='d-none d-sm-block'>
                 <FilterCategory categorySwitch={true} onFilteredOverCourses={filteredCoursesHandler} selecteItem={selectedItem} />
