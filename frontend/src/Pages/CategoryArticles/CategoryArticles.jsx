@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import './media.css'
-import '../../Css/categories.css'
 //icons
 import { RiSearchLine } from "react-icons/ri";
 import { ImSortAmountDesc } from "react-icons/im";

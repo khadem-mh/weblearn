@@ -134,6 +134,11 @@
     background-color: var(--primarydie-color);
 }
 
+.lable-task {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
 @media screen and (max-width: 576px) {
 
     .details-account {

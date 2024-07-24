@@ -1,4 +1,5 @@
 import React, { useEffect, Suspense } from "react"
+import './Css/categories.css'
 import { useRoutes, useLocation } from "react-router-dom"
 import routes from "./routes"
 import { InfosIndexPageProvider } from "./Contexts/InfosIndexPageContext"
