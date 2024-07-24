@@ -29,7 +29,7 @@ export default function OffCanvasRight({ iconBtn, displayCanvas, children }) {
   return (
     <>
 
-      <button className={`btn-offcanvas ${displayCanvas}`} type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" onClick={() => setMenuRightFilter(prev => !prev)}>
+      <button className={`btn-offcanvas ${displayCanvas} w-100`} type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" onClick={() => setMenuRightFilter(prev => !prev)}>
         {iconBtn}
         <p className='btn-text-offcanvas'>فیلتر</p>
       </button>

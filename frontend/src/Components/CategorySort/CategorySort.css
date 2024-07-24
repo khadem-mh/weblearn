@@ -1,0 +1,17 @@
+.category-sort {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 576px) {
+    .category-sort {
+        margin-top: -.5rem;
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .category-sort__right {
+        margin-bottom: 1rem;
+    }
+}

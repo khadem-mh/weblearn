@@ -28,7 +28,7 @@ export default function CategorySort({ namesList, onSelectedItem, selectItem }) 
     }
 
     return (
-        <section className='category-sort d-none d-sm-flex'>
+        <section className='category-sort'>
             <div className='category-sort__right'>
                 <ImSortAmountDesc className='category-sort__icon' />
                 <span className='category-sort__title'>مرتب سازی :</span>

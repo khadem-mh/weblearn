@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react'
 import './media.css'
 //icons
 import { RiSearchLine } from "react-icons/ri";
-import { ImSortAmountDesc } from "react-icons/im";
 //components
 import Article from '../../Components/Article/Article';
-import OffCanvasBottom from '../../Components/OffCanvasesMenu/OffCanvasBottom/OffCanvasBottom';
 import FilterCategory from '../../Components/FilterCategory/FilterCategory';
 import Pagination from "react-pagination-master"
 import CategorySort from '../../Components/CategorySort/CategorySort'
@@ -92,10 +90,6 @@ export default function CategoryArticles() {
                 <input type="text" className='category-research__input' placeholder='در بین مقالات جستجو کنید' value={searchCourse} onChange={e => searchCourseHandler(e)} onKeyDown={e => searchCourseHandler(e)} />
                 <RiSearchLine className='category-research__icon' />
               </section>
-
-              <div className='d-flex align-items-center justify-content-center'>
-                <OffCanvasBottom displayCanvas={'d-flex d-sm-none'} iconBtn={<ImSortAmountDesc />} titleHeader={'مرتب سازی بر اساس'} namesLi={['همه مقالات', 'جدیدترین', 'قدیمی ترین', 'پرمخاطب ترین']} />
-              </div>
 
               <div className='d-none d-sm-block'>
                 <FilterCategory categorySwitch={false} titleCategory={'دسته بندی مقالات'} />
