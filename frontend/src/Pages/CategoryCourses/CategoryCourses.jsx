@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react'
 //components
 import Course from '../../Components/Course/Course'
-import OffCanvasBottom from '../../Components/OffCanvasesMenu/OffCanvasBottom/OffCanvasBottom';
 import OffCanvasRight from '../../Components/OffCanvasesMenu/OffCanvasRight/OffCanvasRight';
 import FilterCategory from '../../Components/FilterCategory/FilterCategory';
 import Pagination from "react-pagination-master"
 import CategorySort from '../../Components/CategorySort/CategorySort';
 //icons
 import { RiSearchLine } from "react-icons/ri";
-import { ImSortAmountDesc } from "react-icons/im";
 import { HiMiniAdjustmentsHorizontal } from "react-icons/hi2";
 import { useParams, useLocation } from 'react-router-dom';
 //
@@ -123,10 +121,7 @@ export default function CategoryCourses() {
                 <RiSearchLine className='category-research__icon' />
               </section>
 
-              <div className='d-flex align-items-center justify-content-between'>
-                <OffCanvasBottom displayCanvas={'d-flex d-sm-none'} iconBtn={<ImSortAmountDesc />} titleHeader={'مرتب سازی بر اساس'} namesLi={['همه دوره ها', 'ارزان ترین', 'گران ترین', 'پرمخاطب ترین']} />
-                <OffCanvasRight displayCanvas={'d-flex d-sm-none'} iconBtn={<HiMiniAdjustmentsHorizontal />} children={<FilterCategory categorySwitch={true} titleCategory={'دسته بندی دوره ها'} />} />
-              </div>
+              <OffCanvasRight displayCanvas={'d-flex d-sm-none'} iconBtn={<HiMiniAdjustmentsHorizontal />} children={<FilterCategory categorySwitch={true} titleCategory={'دسته بندی دوره ها'} />} />
 
               <div className='d-none d-sm-block'>
                 <FilterCategory categorySwitch={true} onFilteredOverCourses={filteredCoursesHandler} selecteItem={selectedItem} />
