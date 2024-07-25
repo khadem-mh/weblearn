@@ -12,7 +12,7 @@ export default function AdminPanelCourses() {
   }, [])
 
   const getAllProducts = () => {
-    fetch("http://localhost:4000/v1/courses", {
+    fetch("https://weblearning.liara.run/v1/courses", {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`

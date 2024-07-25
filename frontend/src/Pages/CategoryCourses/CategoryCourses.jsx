@@ -33,7 +33,7 @@ export default function CategoryCourses() {
     setCategories([])
     setFilterCoursesPage([])
     setCategoriesFilter([])
-    fetch(`http://localhost:4000/v1/courses/category/${category}`)
+    fetch(`https://weblearning.liara.run/v1/courses/category/${category}`)
       .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
       .then(courses => {
         setAllCourses(courses)

@@ -10,7 +10,7 @@ export default function AdminPanelDiscount() {
     const startCampainOffs = e => {
         e.preventDefault()
 
-        fetch(`http://localhost:4000/v1/offs/all`, {
+        fetch(`https://weblearning.liara.run/v1/offs/all`, {
             method: "POST",
             headers: {
                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,

@@ -11,7 +11,7 @@ export default function AdminPanelHome() {
   const [lastRegisteredUsers, setLastRegisteredUsers] = useState([])
 
   useEffect(() => {
-    fetch("http://localhost:4000/v1/infos/p-admin", {
+    fetch("https://weblearning.liara.run/v1/infos/p-admin", {
       headers: {
         Authorization: `Bearer ${JSON.parse(localStorage.getItem("user")).token}`,
       }

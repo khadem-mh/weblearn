@@ -4,11 +4,20 @@ const app = require('./app');
 
 //* Load env
 dotenv.config();
-
+//process.env.MONGO_URI
 //* Database connection
 (async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI);
+    const conn = await mongoose
+      .connect(
+        `mongodb://root:9ItkwjL44GUymIiHArYTKnis@weblearning-db:27017/weblearning-db?
+        authSource=admin`,
+        {
+          useNewUrlParser: true,
+          authSource: "admin"
+        }
+      )
+      .then(() => console.log('DB Conected!'))
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (err) {
     //?error catch
@@ -22,5 +31,5 @@ const port = +process.env.PORT || 3000;
 
 const productionMode = process.env.NODE_ENV === 'production'
 app.listen(port, () => {
-  console.log(`Server running in ${productionMode?"production":"development"} mode on port ${port}`);
+  console.log(`Server running in ${productionMode ? "production" : "development"} mode on port ${port}`);
 });

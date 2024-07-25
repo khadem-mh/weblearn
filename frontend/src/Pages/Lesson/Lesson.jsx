@@ -34,7 +34,7 @@ export default function Lesson() {
     useEffect(() => {
         let userToken = JSON.parse(localStorage.getItem('user')).token
 
-        fetch(`http://localhost:4000/v1/auth/me`, {
+        fetch(`https://weblearning.liara.run/v1/auth/me`, {
             referrerPolicy: 'strict-origin-when-cross-origin',
             headers: {
                 'Authorization': `Bearer ${userToken}`
@@ -43,7 +43,7 @@ export default function Lesson() {
             .then(res => res.json())
             .then(datas => setUserInfos(datas))
 
-        fetch(`http://localhost:4000/v1/courses/${params.courseNmae}/${params.idSession}`, {
+        fetch(`https://weblearning.liara.run/v1/courses/${params.courseNmae}/${params.idSession}`, {
             method: 'GET',
             referrerPolicy: 'strict-origin-when-cross-origin',
             headers: {

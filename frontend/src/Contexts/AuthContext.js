@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
         const localStorageToken = JSON.parse(localStorage.getItem('user'))
 
         if (localStorageToken) {
-            fetch('http://localhost:4000/v1/auth/me', {
+            fetch('https://weblearning.liara.run/v1/auth/me', {
                 headers: {
                     Authorization: `Bearer ${localStorageToken.token}`
                 }

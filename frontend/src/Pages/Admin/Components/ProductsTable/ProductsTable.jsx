@@ -19,7 +19,7 @@ export default function ProductsTable({ allProducts, getAllProducts }) {
 
         event.preventDefault()
 
-        fetch(`http://localhost:4000/v1/courses/${productID}`, {
+        fetch(`https://weblearning.liara.run/v1/courses/${productID}`, {
             method: "DELETE",
             headers: {
                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
@@ -44,7 +44,7 @@ export default function ProductsTable({ allProducts, getAllProducts }) {
     const updateProductInfos = event => {
         event.preventDefault()
 
-        /* fetch(`http://localhost:4000/v1/courses/${productID}`, {
+        /* fetch(`https://weblearning.liara.run/v1/courses/${productID}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

@@ -10,7 +10,7 @@ export default function Offs({ getOffs, getAllOffs }) {
 
   const submitDeleteOffs = e => {
     e.preventDefault()
-    fetch(`http://localhost:4000/v1/offs/${offID}`, {
+    fetch(`https://weblearning.liara.run/v1/offs/${offID}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,

@@ -23,7 +23,7 @@ export default function AdminPanelComments() {
   }, [])
 
   const getAllComments = () => {
-    fetch('http://localhost:4000/v1/comments')
+    fetch('https://weblearning.liara.run/v1/comments')
       .then(res => res.json())
       .then(comments => {
         console.log(comments);
@@ -33,7 +33,7 @@ export default function AdminPanelComments() {
 
   const AcceptComment = event => {
     event.preventDefault()
-    fetch(`http://localhost:4000/v1/comments/accept/${getID}`, {
+    fetch(`https://weblearning.liara.run/v1/comments/accept/${getID}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
@@ -54,7 +54,7 @@ export default function AdminPanelComments() {
 
   const RejecctComment = event => {
     event.preventDefault()
-    fetch(`http://localhost:4000/v1/comments/reject/${getID}`, {
+    fetch(`https://weblearning.liara.run/v1/comments/reject/${getID}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
@@ -74,7 +74,7 @@ export default function AdminPanelComments() {
 
   const replyComment = (e) => {
     e.preventDefault()
-    fetch(`http://localhost:4000/v1/comments/answer/${getID}`, {
+    fetch(`https://weblearning.liara.run/v1/comments/answer/${getID}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ export default function AdminPanelComments() {
   const deleteComment = e => {
     e.preventDefault()
 
-    fetch(`http://localhost:4000/v1/comments/${getID}`, {
+    fetch(`https://weblearning.liara.run/v1/comments/${getID}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,

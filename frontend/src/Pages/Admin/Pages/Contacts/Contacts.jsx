@@ -21,7 +21,7 @@ export default function AdminPanelContacts() {
     }, [])
 
     const getCotacts = () => {
-        fetch(`http://localhost:4000/v1/contact`)
+        fetch(`https://weblearning.liara.run/v1/contact`)
             .then(res => res.json())
             .then(datas => {
                 console.log(datas);
@@ -38,7 +38,7 @@ export default function AdminPanelContacts() {
                 answer: textInputRes
             }
 
-            fetch(`http://localhost:4000/v1/contact/answer`, {
+            fetch(`https://weblearning.liara.run/v1/contact/answer`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
@@ -66,7 +66,7 @@ export default function AdminPanelContacts() {
     const removeContactHandler = event => {
         event.preventDefault()
         if (choosIDForRemove) {
-            fetch(`http://localhost:4000/v1/contact/${choosIDForRemove}`, {
+            fetch(`https://weblearning.liara.run/v1/contact/${choosIDForRemove}`, {
                 method: 'DELETE',
                 referrerPolicy: 'strict-origin-when-cross-origin',
                 headers: {

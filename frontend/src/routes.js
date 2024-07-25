@@ -27,7 +27,6 @@ const AdminPanelHome = lazy(() => import("./Pages/Admin/Pages/Home/Home"))
 const AdminPanelCourses = lazy(() => import("./Pages/Admin/Pages/Courses/Courses"))
 const AdminPanelUsere = lazy(() => import("./Pages/Admin/Pages/Users/Users"))
 const AdminPanelComments = lazy(() => import("./Pages/Admin/Pages/Comments/Comments"))
-const AdminPanelOrders = lazy(() => import("./Pages/Admin/Pages/Orders/Orders"))
 const AdminPanelOffs = lazy(() => import("./Pages/Admin/Pages/Offs/Offs"))
 const AdminPanelCategories = lazy(() => import("./Pages/Admin/Pages/Categories/Categories"))
 const AdminPanelContacts = lazy(() => import("./Pages/Admin/Pages/Contacts/Contacts"))
@@ -67,7 +66,6 @@ const routes = [
             { path: 'categories', element: <AdminPanelCategories /> },
             { path: 'users', element: <AdminPanelUsere /> },
             { path: 'comments', element: <AdminPanelComments /> },
-            { path: 'orders', element: <AdminPanelOrders /> },
             { path: 'offs', element: <AdminPanelOffs /> },
             { path: 'contacts', element: <AdminPanelContacts /> },
             { path: 'menus', element: <AdminPanelMenus /> },

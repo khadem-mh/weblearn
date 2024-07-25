@@ -21,16 +21,19 @@ export default function Navbar() {
 
 
     useEffect(() => {
-        fetch(`http://localhost:4000/v1/menus/topbar`)
+        fetch(`https://weblearning.liara.run/v1/menus/topbar`)
             .then(res => res.json())
             .then(items => {
                 setTopBar(items)
                 seRandomItem(grtRandomItemsFromArray(items, 5))
             })
 
-        fetch(`http://localhost:4000/v1/menus`)
+        fetch(`https://weblearning.liara.run/v1/menus`)
             .then(res => res.json())
-            .then(menus => setMenus(menus))
+            .then(datas => {
+                console.log(datas);
+                setMenus(datas)
+            })
     }, [])
 
     useEffect(() => {
@@ -255,6 +258,6 @@ export default function Navbar() {
                 </div>
             </div>
 
-        </nav>
+        </nav >
     )
 }
