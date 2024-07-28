@@ -372,7 +372,7 @@ export default function CourseInfo() {
                                 اگر بدون بلد بودن این کتابخانه ها وارد بازار کار شوید، خیلی اذیت خواهید شد و حتی
                                 ممکن است ناامید شوید!
                               </p>
-                              <img src={`/images/courses/${courseInfo.cover}`} alt="course-info"
+                              <img src={`/Images/Courses/${courseInfo.cover}`} alt="course-info"
                                 className="introduction__img img-fluid" />
                               <p className="introduction__text">
                                 در این دوره نحوه کار با 20 مورد از پر استفاده ترین کتابخانه های جاوا اسکریپت به
@@ -384,7 +384,7 @@ export default function CourseInfo() {
 
                             <div className="introduction__item">
                               <TilteHeadeer title={'هدف از این دوره چیست'} />
-                              <img src="/images/info/2.jpg" alt="course-info"
+                              <img src="/Images/info/2.jpg" alt="course-info"
                                 className="introduction__img img-fluid" />
                               <p className="introduction__text">
                                 وقتی برای اولین بار وارد یکی از شرکت های برنامه نویسی شدم، از کتابخانه هایی به
@@ -498,7 +498,7 @@ export default function CourseInfo() {
                           <CategoryBox title={'دوره های مرتبط'} yourStyle={'d-none d-lg-block'}>
                             {
                               coursesRelated.map((course, index) => (
-                                <CourseCoverAside key={index} teacher={course.creator} pathImg={`/images/courses/${course.cover}`} link={`course-info/${course.shortName}`} title={course.name} />
+                                <CourseCoverAside key={index} teacher={course.creator} pathImg={`/Images/courses/${course.cover}`} link={`course-info/${course.shortName}`} title={course.name} />
                               ))
                             }
                           </CategoryBox>

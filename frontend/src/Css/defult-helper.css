@@ -151,7 +151,7 @@ address {
     animation-direction: alternate;
 }
 
-@keyframes change-bg {
+/* @keyframes change-bg {
     to {
         top: -150px;
     }
@@ -159,7 +159,7 @@ address {
     from {
         top: -300px;
     }
-}
+} */
 
 .swal-footer {
     text-align: center;

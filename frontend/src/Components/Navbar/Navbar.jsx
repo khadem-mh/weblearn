@@ -31,7 +31,6 @@ export default function Navbar() {
         fetch(`https://weblearning.liara.run/v1/menus`)
             .then(res => res.json())
             .then(datas => {
-                console.log(datas);
                 setMenus(datas)
             })
     }, [])
