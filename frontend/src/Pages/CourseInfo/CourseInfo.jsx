@@ -498,7 +498,7 @@ export default function CourseInfo() {
                           <CategoryBox title={'دوره های مرتبط'} yourStyle={'d-none d-lg-block'}>
                             {
                               coursesRelated.map((course, index) => (
-                                <CourseCoverAside key={index} teacher={course.creator} pathImg={`/Images/courses/${course.cover}`} link={`course-info/${course.shortName}`} title={course.name} />
+                                <CourseCoverAside key={index} teacher={course.creator} pathImg={`/Images/Courses/${course.cover}`} link={`course-info/${course.shortName}`} title={course.name} />
                               ))
                             }
                           </CategoryBox>
@@ -520,7 +520,7 @@ export default function CourseInfo() {
           </section>
           :
           <div style={{ textAlign: 'center', marginTop: '10rem' }}>
-            <img src="/images/info/2.jpg" alt="description" width={900} className='rounded-5'/>
+            <img src="/Images/info/2.jpg" alt="description" width={900} className='rounded-5'/>
             <h2 className='category-h2 mb-0 mt-4 text-secondary'>هنوز برای این آدرس دوره ای قرار نگرفته است</h2>
             <h3 className='text-success display-1'>⌡☻⌠</h3>
           </div>
