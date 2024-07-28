@@ -11,7 +11,7 @@ exports.getAll = async (req, res, next) => {
       const submenus = [];
       for (let i = 0; i < menus.length; i++) {
         const m = menus[i];
-        if (m?.parent == menu._id) {
+        if (m.parent?.equals(menu._id)) {
           submenus.push(menus.splice(i, 1)[0]);
           i = i - 1;
         }
