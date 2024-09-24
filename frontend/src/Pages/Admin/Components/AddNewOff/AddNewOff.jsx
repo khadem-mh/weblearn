@@ -18,7 +18,7 @@ export default function AddNewOff({ getAllOffs }) {
     }, [])
 
     const getAllProducts = () => {
-        fetch("https://weblearning.liara.run/v1/courses")
+        fetch("http://localhost:4000/v1/courses")
             .then(res => res.json())
             .then(products => {
                 console.log(products);
@@ -37,7 +37,7 @@ export default function AddNewOff({ getAllOffs }) {
                 max: offUses,
             }
 
-            fetch("https://weblearning.liara.run/v1/offs", {
+            fetch("http://localhost:4000/v1/offs", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

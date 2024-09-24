@@ -16,14 +16,14 @@ export default function AddTicket() {
   const [courseID, seCcourseID] = useState(null)
 
   useEffect(() => {
-    fetch(`https://weblearning.liara.run/v1/tickets/departments`)
+    fetch(`http://localhost:4000/v1/tickets/departments`)
       .then(res => res.json())
       .then(datas => setDepartments(datas))
   }, [])
 
   useEffect(() => {
     if (departmentID && departmentID !== -1) {
-      fetch(`https://weblearning.liara.run/v1/tickets/departments-subs/${departmentID}`)
+      fetch(`http://localhost:4000/v1/tickets/departments-subs/${departmentID}`)
         .then(res => res.json())
         .then(datas => setDepartmentsSubs(datas))
     }
@@ -31,7 +31,7 @@ export default function AddTicket() {
 
   const isTypeHasSupport = val => {
     if (val === "63b688c5516a30a651e98156") {
-      fetch(`https://weblearning.liara.run/v1/users/courses`, {
+      fetch(`http://localhost:4000/v1/users/courses`, {
         method: "GET",
         headers: {
           'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
@@ -64,7 +64,7 @@ export default function AddTicket() {
         course: courseID ? courseID : undefined,//optional 
       }
 
-      fetch(`https://weblearning.liara.run/v1/tickets`, {
+      fetch(`http://localhost:4000/v1/tickets`, {
         method: "POST",
         headers: {
           'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,

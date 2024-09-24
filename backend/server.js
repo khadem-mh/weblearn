@@ -8,12 +8,7 @@ dotenv.config();
 //* Database connection
 (async () => {
   try {
-    const conn = await mongoose.connect(`mongodb://root:9ItkwjL44GUymIiHArYTKnis@weblearning-db:27017/weblearning-db?
-      authSource=admin`,
-      {
-        useNewUrlParser: true,
-        authSource: "admin"
-      });
+    const conn = await mongoose.connect(process.env.MONGO_URI);
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (err) {
     //?error catch

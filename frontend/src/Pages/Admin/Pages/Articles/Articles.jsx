@@ -32,7 +32,7 @@ export default function AdminPanelArticles() {
     }, [])
 
     const getArticles = () => {
-        fetch(`https://weblearning.liara.run/v1/articles`)
+        fetch(`http://localhost:4000/v1/articles`)
             .then(res => res.json())
             .then(datas => {
                 console.log(datas);
@@ -43,7 +43,7 @@ export default function AdminPanelArticles() {
     const removeArticlesHandler = event => {
         event.preventDefault()
         if (choosIDForRemove) {
-            fetch(`https://weblearning.liara.run/v1/articles/${choosIDForRemove}`, {
+            fetch(`http://localhost:4000/v1/articles/${choosIDForRemove}`, {
                 method: 'DELETE',
                 referrerPolicy: 'strict-origin-when-cross-origin',
                 headers: {
@@ -69,7 +69,7 @@ export default function AdminPanelArticles() {
     //!
 
     const getAllCategories = () => {
-        fetch(`https://weblearning.liara.run/v1/category`, {
+        fetch(`http://localhost:4000/v1/category`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
@@ -96,7 +96,7 @@ export default function AdminPanelArticles() {
             infosArticles.append('shortName', shortName)
             infosArticles.append('categoryID', categoryID)
 
-            fetch(`https://weblearning.liara.run/v1/articles`, {
+            fetch(`http://localhost:4000/v1/articles`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,

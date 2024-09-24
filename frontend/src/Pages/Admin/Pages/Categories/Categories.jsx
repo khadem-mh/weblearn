@@ -30,7 +30,7 @@ export default function AdminPanelCategories() {
     }, [])
 
     const getAllCategories = () => {
-        fetch(`https://weblearning.liara.run/v1/category`, {
+        fetch(`http://localhost:4000/v1/category`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
@@ -50,7 +50,7 @@ export default function AdminPanelCategories() {
             name: editCategoryName,
         }
 
-        fetch(`https://weblearning.liara.run/v1/category/${categoryID}`, {
+        fetch(`http://localhost:4000/v1/category/${categoryID}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
@@ -72,7 +72,7 @@ export default function AdminPanelCategories() {
 
     const deleteModalSubmitAction = () => {
 
-        fetch(`https://weblearning.liara.run/v1/category/${categoryID}`, {
+        fetch(`http://localhost:4000/v1/category/${categoryID}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
@@ -134,7 +134,7 @@ export default function AdminPanelCategories() {
                 return true
             })
 
-            fetch(`https://weblearning.liara.run/v1/category`, {
+            fetch(`http://localhost:4000/v1/category`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

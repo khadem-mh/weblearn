@@ -47,7 +47,7 @@ export default function CourseInfo() {
   useEffect(() => {
     getCourseDetails()
 
-    fetch(`https://weblearning.liara.run/v1/courses`)
+    fetch(`http://localhost:4000/v1/courses`)
       .then(res => res.json())
       .then(courses => setAllCourses(courses))
   }, [location])
@@ -80,7 +80,7 @@ export default function CourseInfo() {
   const getCourseDetails = () => {
     const userToken = JSON.parse(localStorage.getItem('user'))
 
-    fetch(`https://weblearning.liara.run/v1/courses/${params.course}`, {
+    fetch(`http://localhost:4000/v1/courses/${params.course}`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${userToken && userToken.token ? userToken.token : ''}`
@@ -103,7 +103,7 @@ export default function CourseInfo() {
           buttons: ["نه", "آره"],
         }).then((result) => {
           if (result) {
-            fetch(`https://weblearning.liara.run/v1/courses/${course._id}/register`, {
+            fetch(`http://localhost:4000/v1/courses/${course._id}/register`, {
               method: "POST",
               headers: {
                 Authorization: `Bearer ${JSON.parse(localStorage.getItem("user")).token
@@ -140,7 +140,7 @@ export default function CourseInfo() {
               buttons: ["ثبت نام بدون کد تخفیف", "اعمال کد تخفیف"],
             }).then((code) => {
               if (code === null) {
-                fetch(`https://weblearning.liara.run/v1/courses/${course._id}/register`, {
+                fetch(`http://localhost:4000/v1/courses/${course._id}/register`, {
                   method: "POST",
                   headers: {
                     Authorization: `Bearer ${JSON.parse(localStorage.getItem("user")).token
@@ -163,7 +163,7 @@ export default function CourseInfo() {
                   }
                 });
               } else {
-                fetch(`https://weblearning.liara.run/v1/offs/${code}`, {
+                fetch(`http://localhost:4000/v1/offs/${code}`, {
                   method: "POST",
                   headers: {
                     Authorization: `Bearer ${JSON.parse(localStorage.getItem("user")).token
@@ -195,7 +195,7 @@ export default function CourseInfo() {
                   })
                   .then((code) => {
                     fetch(
-                      `https://weblearning.liara.run/v1/courses/${course._id}/register`,
+                      `http://localhost:4000/v1/courses/${course._id}/register`,
                       {
                         method: "POST",
                         headers: {

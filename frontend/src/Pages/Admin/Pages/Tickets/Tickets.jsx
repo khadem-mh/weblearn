@@ -21,7 +21,7 @@ export default function AdminPanelTickets() {
     }, [])
 
     const getAllTickets = () => {
-        fetch(`https://weblearning.liara.run/v1/tickets`, {
+        fetch(`http://localhost:4000/v1/tickets`, {
             method: "GET",
             headers: {
                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
@@ -37,7 +37,7 @@ export default function AdminPanelTickets() {
     const submitReplyToTicket = event => {
         event.preventDefault()
 
-        fetch(`https://weblearning.liara.run/v1/tickets/answer`, {
+        fetch(`http://localhost:4000/v1/tickets/answer`, {
             method: "POST",
             headers: {
                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,

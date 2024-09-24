@@ -30,22 +30,22 @@ export default function Index() {
 
   useEffect(() => {
 
-    fetch(`https://weblearning.liara.run/v1/courses`)
+    fetch(`http://localhost:4000/v1/courses`)
       .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
       .then(allCourses => dispatch({ type: 'LAST_COURSES', payload: allCourses.reverse().slice(0, 8) }))
       .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
 
-    fetch(`https://weblearning.liara.run/v1/articles`)
+    fetch(`http://localhost:4000/v1/articles`)
       .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
       .then(allArticles => dispatch({ type: 'LAST_ARTICLES', payload: allArticles.reverse().slice(0, 8) }))
       .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
 
-    fetch(`https://weblearning.liara.run/v1/courses/presell`)
+    fetch(`http://localhost:4000/v1/courses/presell`)
       .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
       .then(presell => dispatch({ type: 'PRESELL__COURSES', payload: presell.reverse().slice(0, 8) }))
       .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
 
-    fetch(`https://weblearning.liara.run/v1/courses/popular`)
+    fetch(`http://localhost:4000/v1/courses/popular`)
       .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
       .then(popular => dispatch({ type: 'POPULAR__COURSES', payload: popular.reverse().slice(0, 8) }))
       .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))

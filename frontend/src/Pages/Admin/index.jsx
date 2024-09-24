@@ -26,7 +26,7 @@ export default function AdminPanel() {
         if (localStorage.getItem('user')) {
             const adminToken = JSON.parse(localStorage.getItem('user')).token
 
-            fetch(`https://weblearning.liara.run/v1/auth/me`, {
+            fetch(`http://localhost:4000/v1/auth/me`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
