@@ -11,7 +11,7 @@ export default function AdminPanelOffs() {
     }, [])
 
     const getAllOffs = () => {
-        fetch(`http://localhost:4000/v1/offs`, {
+        fetch(`https://kind-tips-jam.loca.lt/v1/offs`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,

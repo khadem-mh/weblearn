@@ -20,7 +20,7 @@ export default function ArticleInfo() {
   const { name } = useParams()
 
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/articles/${name}`)
+    fetch(`https://kind-tips-jam.loca.lt/v1/articles/${name}`)
       .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
       .then(datas => setArticleInfo(datas))
       .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))

@@ -49,7 +49,7 @@ export default function ReapondComment({ showCommentHeader = true, commentsArr }
     }
 
     const submitCommentHandler = () => {
-        fetch(`http://localhost:4000/v1/comments`, {
+        fetch(`https://kind-tips-jam.loca.lt/v1/comments`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,

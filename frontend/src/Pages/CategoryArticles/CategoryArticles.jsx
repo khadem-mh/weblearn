@@ -20,7 +20,7 @@ export default function CategoryArticles() {
   const [searchCourse, setSearchCourse] = useState('')
 
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/articles`)
+    fetch(`https://kind-tips-jam.loca.lt/v1/articles`)
       .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
       .then(allDatas => {
         setAllArticles(allDatas)

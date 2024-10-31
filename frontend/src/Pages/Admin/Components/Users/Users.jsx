@@ -19,7 +19,7 @@ export default function Users({ allUsers, getAllUsers }) {
   const [isShowbanUser, setIsShowBanUser] = useState(false)
 
   const submitDeleteUser = () => {
-    fetch(`http://localhost:4000/v1/users/${userId}`, {
+    fetch(`https://kind-tips-jam.loca.lt/v1/users/${userId}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
@@ -41,14 +41,14 @@ export default function Users({ allUsers, getAllUsers }) {
   }
 
   const submitBanUser = () => {
-    fetch(`http://localhost:4000/v1/users/ban/${userId}`, {
+    fetch(`https://kind-tips-jam.loca.lt/v1/users/ban/${userId}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
       }
     }).then(res => res.ok && setIsShowBanUser(false))
 
-    fetch(`http://localhost:4000/v1/users/${userId}`, {
+    fetch(`https://kind-tips-jam.loca.lt/v1/users/${userId}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
@@ -81,7 +81,7 @@ export default function Users({ allUsers, getAllUsers }) {
           id: userID
         }
 
-        fetch(`http://localhost:4000/v1/users/role`, {
+        fetch(`https://kind-tips-jam.loca.lt/v1/users/role`, {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,

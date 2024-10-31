@@ -33,7 +33,7 @@ export default function Footer() {
     const sendEmailForJoinNewsLetter = event => {
         event.preventDefault()
         if (inpValid.valid) {
-            fetch(`http://localhost:4000/v1/newsletters`, {
+            fetch(`https://kind-tips-jam.loca.lt/v1/newsletters`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

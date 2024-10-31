@@ -24,7 +24,7 @@ export default function AddNewProduct({ getAllProducts }) {
     }, [])
 
     const getAllCategories = () => {
-        fetch(`http://localhost:4000/v1/category`, {
+        fetch(`https://kind-tips-jam.loca.lt/v1/category`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
@@ -54,7 +54,7 @@ export default function AddNewProduct({ getAllProducts }) {
         infosCourse.append('support', support)
         infosCourse.append('categoryID', categoryID)
 
-        fetch(`http://localhost:4000/v1/courses`, {
+        fetch(`https://kind-tips-jam.loca.lt/v1/courses`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`

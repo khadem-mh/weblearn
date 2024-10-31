@@ -6,7 +6,7 @@ export const InfosIndexPageProvider = ({children}) => {
     const [infos, setInfos] = useState([])
 
     useEffect(() => {
-        fetch(`http://localhost:4000/v1/infos/index`)
+        fetch(`https://kind-tips-jam.loca.lt/v1/infos/index`)
         .then(res => res.json())
         .then(infos => setInfos(infos))
     }, [])

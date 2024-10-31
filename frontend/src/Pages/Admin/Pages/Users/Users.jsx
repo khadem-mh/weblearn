@@ -11,7 +11,7 @@ export default function AdminPanelUsere() {
     }, [])
 
     const getAllUsers = () => {
-        fetch('http://localhost:4000/v1/users', {
+        fetch('https://kind-tips-jam.loca.lt/v1/users', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`

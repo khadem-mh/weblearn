@@ -19,7 +19,7 @@ export default function PageFirstAccount() {
   const [tickets, setTickets] = useState([])
 
   useEffect(() => {
-    fetch(`http://localhost:4000/v1/tickets/user`, {
+    fetch(`https://kind-tips-jam.loca.lt/v1/tickets/user`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
@@ -35,7 +35,7 @@ export default function PageFirstAccount() {
   const handleTicketShow = ticket => {
     console.log(ticket);
 
-    fetch(`http://localhost:4000/v1/tickets/answer/${ticket._id}`, {
+    fetch(`https://kind-tips-jam.loca.lt/v1/tickets/answer/${ticket._id}`, {
       method: "GET",
       headers: {
         'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,

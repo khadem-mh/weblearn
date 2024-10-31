@@ -36,7 +36,7 @@ export default function AdminPanelMenus() {
                 parent: parentMenu == -1 ? undefined : parentMenu
             }
             console.log(newMenuInfos);
-            fetch(`http://localhost:4000/v1/menus`, {
+            fetch(`https://kind-tips-jam.loca.lt/v1/menus`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
@@ -73,7 +73,7 @@ export default function AdminPanelMenus() {
 
     const handleRemoveMenu = e => {
         e.preventDefault()
-        fetch(`http://localhost:4000/v1/menus/${menuID}`, {
+        fetch(`https://kind-tips-jam.loca.lt/v1/menus/${menuID}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
@@ -93,7 +93,7 @@ export default function AdminPanelMenus() {
     }
 
     const getAllMenus = () => {
-        fetch(`http://localhost:4000/v1/menus/all`)
+        fetch(`https://kind-tips-jam.loca.lt/v1/menus/all`)
             .then(res => res.json())
             .then(datas => {
                 setMenus(datas)
