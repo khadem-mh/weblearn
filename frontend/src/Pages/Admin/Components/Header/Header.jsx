@@ -13,7 +13,7 @@ export default function Header({ children, isLightMode, setIsLightMode, adminNot
     const [adminNotification, setAdminNotification] = useState(adminNotif)
 
     const seeNotifHandler = notifID => {
-        fetch(`https://kind-tips-jam.loca.lt/v1/notifications/see/${notifID}`, {
+        fetch(`http://localhost:4000/v1/notifications/see/${notifID}`, {
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`

@@ -12,7 +12,7 @@ export default function AdminPanelCourses() {
   }, [])
 
   const getAllProducts = () => {
-    fetch("https://kind-tips-jam.loca.lt/v1/courses", {
+    fetch("http://localhost:4000/v1/courses", {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`

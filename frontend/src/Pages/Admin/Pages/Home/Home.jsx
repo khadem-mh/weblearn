@@ -11,7 +11,7 @@ export default function AdminPanelHome() {
   const [lastRegisteredUsers, setLastRegisteredUsers] = useState([])
 
   useEffect(() => {
-    fetch("https://kind-tips-jam.loca.lt/v1/infos/p-admin", {
+    fetch("http://localhost:4000/v1/infos/p-admin", {
       headers: {
         Authorization: `Bearer ${JSON.parse(localStorage.getItem("user")).token}`,
       }

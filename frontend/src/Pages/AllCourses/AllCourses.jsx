@@ -28,12 +28,12 @@ export default function AllCourses() {
     const [searchCourse, setSearchCourse] = useState('')
 
     useEffect(() => {
-        fetch(`https://kind-tips-jam.loca.lt/v1/courses`)
+        fetch(`http://localhost:4000/v1/courses`)
             .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
             .then(allCourses => setAllCourses(allCourses))
             .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))
 
-        fetch(`https://kind-tips-jam.loca.lt/v1/menus`)
+        fetch(`http://localhost:4000/v1/menus`)
             .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
             .then(menus => setCategoryMenusCourses(menus))
             .catch(err => swal({ title: 'مشکلی در ارتباط با سرور پیش امده', timer: 7000, icon: 'error', buttons: 'باشه' }))

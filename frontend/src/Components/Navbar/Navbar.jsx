@@ -21,14 +21,14 @@ export default function Navbar() {
 
 
     useEffect(() => {
-        fetch(`https://kind-tips-jam.loca.lt/v1/menus/topbar`)
+        fetch(`http://localhost:4000/v1/menus/topbar`)
             .then(res => res.json())
             .then(items => {
                 setTopBar(items)
                 seRandomItem(grtRandomItemsFromArray(items, 5))
             })
 
-        fetch(`https://kind-tips-jam.loca.lt/v1/menus`)
+        fetch(`http://localhost:4000/v1/menus`)
             .then(res => res.json())
             .then(datas => {
                 setMenus(datas)

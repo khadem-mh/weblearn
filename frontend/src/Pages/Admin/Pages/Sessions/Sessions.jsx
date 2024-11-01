@@ -36,7 +36,7 @@ export default function AdminPanelSessions() {
 
 
     const getAllCourses = () => {
-        fetch('https://kind-tips-jam.loca.lt/v1/courses', {
+        fetch('http://localhost:4000/v1/courses', {
             method: 'GET',
             referrerPolicy: 'strict-origin-when-cross-origin'
         })
@@ -47,7 +47,7 @@ export default function AdminPanelSessions() {
     }
 
     const getAllSessions = () => {
-        fetch('https://kind-tips-jam.loca.lt/v1/courses/sessions', {
+        fetch('http://localhost:4000/v1/courses/sessions', {
             method: 'GET',
             referrerPolicy: 'strict-origin-when-cross-origin'
         })
@@ -88,7 +88,7 @@ export default function AdminPanelSessions() {
             infosCourse.append('time', time)
             infosCourse.append('free', isFree)
 
-            fetch(`https://kind-tips-jam.loca.lt/v1/courses/${courseID}/sessions`, {
+            fetch(`http://localhost:4000/v1/courses/${courseID}/sessions`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`
@@ -118,7 +118,7 @@ export default function AdminPanelSessions() {
     const deleteSessionHandler = e => {
         e.preventDefault()
 
-        fetch(`https://kind-tips-jam.loca.lt/v1/courses/sessions/${sessionID}`, {
+        fetch(`http://localhost:4000/v1/courses/sessions/${sessionID}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`

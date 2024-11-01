@@ -109,7 +109,7 @@ export default function FormPage({ nameFormPage }) {
                             return true
                         })
 
-                        fetch(`https://kind-tips-jam.loca.lt/v1/auth/login`, {
+                        fetch(`http://localhost:4000/v1/auth/login`, {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json"
@@ -154,7 +154,7 @@ export default function FormPage({ nameFormPage }) {
                             return true
                         })
 
-                        fetch(`https://kind-tips-jam.loca.lt/v1/contact`, {
+                        fetch(`http://localhost:4000/v1/contact`, {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json"

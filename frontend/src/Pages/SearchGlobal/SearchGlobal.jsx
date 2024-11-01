@@ -14,7 +14,7 @@ export default function SearchGlobal() {
     const [articles, setArticles] = useState([])
 
     useEffect(() => {
-        fetch(`https://kind-tips-jam.loca.lt/v1/search/${val.slice(2)}`)
+        fetch(`http://localhost:4000/v1/search/${val.slice(2)}`)
             .then(res => res.ok ? res.json() : res.text().then(err => { throw new Error(err) }))
             .then(allResult => {
                 console.log(allResult);

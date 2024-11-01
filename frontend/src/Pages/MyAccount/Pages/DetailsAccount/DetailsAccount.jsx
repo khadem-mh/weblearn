@@ -66,7 +66,7 @@ export default function DetailsAccount() {
         phone: phoneInp
       }
 
-      fetch(`https://kind-tips-jam.loca.lt/v1/users`, {
+      fetch(`http://localhost:4000/v1/users`, {
         method: "PUT",
         headers: {
           'Authorization': `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
